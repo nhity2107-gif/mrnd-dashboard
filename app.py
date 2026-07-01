@@ -30,6 +30,12 @@ CSV_FILES = {
     "intent_market_nodes": OUTPUT_ROOT / "intent_layer" / "intent_market_nodes.csv",
 }
 
+OPTIONAL_CSV_FILES = {
+    "composite_keywords",
+    "segment_keywords",
+    "market_node_evidence",
+}
+
 RANK_COLUMNS = [
     "best_rank",
     "p25_rank",
@@ -94,7 +100,11 @@ def load_csv(name: str) -> pd.DataFrame:
 
 
 def missing_files() -> list[Path]:
-    return [path for path in CSV_FILES.values() if not path.exists()]
+    return [
+        path
+        for name, path in CSV_FILES.items()
+        if name not in OPTIONAL_CSV_FILES and not path.exists()
+    ]
 
 
 def format_int(value: object) -> str:
@@ -487,12 +497,59 @@ def select_record(df: pd.DataFrame, label_column: str, id_column: str, key: str)
     return working[working["_select_label"] == selected].iloc[0]
 
 
-def show_evidence_detail(
-    record: pd.Series,
-    evidence: pd.DataFrame,
-    id_column: str,
-    record_id: str,
-) -> None:
+def summary_evidence_text(record: pd.Series) -> str:
+    if "evidence_keywords" not in record.index:
+        return ""
+
+    value = record.get("evidence_keywords")
+    if value is None:
+        return ""
+    try:
+        if pd.isna(value):
+            return ""
+    except (TypeError, ValueError):
+        pass
+
+    text = str(value).strip()
+    return "" if not text or text.lower() == "nan" else text
+
+
+def evidence_by_demand_name(records: pd.DataFrame, demand_name: object) -> str:
+    if records.empty or "demand_name" not in records.columns or "evidence_keywords" not in records.columns:
+        return ""
+
+    target = str(demand_name).strip().casefold()
+    if not target:
+        return ""
+
+    names = records["demand_name"].fillna("").astype(str).str.strip().str.casefold()
+    matches = records[names == target].copy()
+    if matches.empty:
+        return ""
+
+    matches = sort_by_available(matches, ["opportunity_score", "best_rank"], [False, True])
+    for _, match in matches.iterrows():
+        text = summary_evidence_text(match)
+        if text:
+            return text
+    return ""
+
+
+def apply_demand_evidence_fallback(record: pd.Series) -> pd.Series:
+    if summary_evidence_text(record):
+        return record
+
+    result = record.copy()
+    demand_name = result.get("demand_name")
+    for source_name in ["opportunity_master", "top_100_opportunities"]:
+        text = evidence_by_demand_name(load_csv(source_name), demand_name)
+        if text:
+            result["evidence_keywords"] = text
+            return result
+    return result
+
+
+def show_evidence_detail(record: pd.Series) -> None:
     metric_candidates = [
         ("Best Rank", record.get("best_rank")),
         ("Median Rank", record.get("median_rank")),
@@ -501,43 +558,17 @@ def show_evidence_detail(
     ]
     show_metric_row(metric_candidates)
 
-    if "evidence_keywords" in record.index and pd.notna(record["evidence_keywords"]):
+    evidence_keywords = summary_evidence_text(record)
+    if evidence_keywords:
         st.text_area(
             "Evidence Keywords",
-            str(record["evidence_keywords"]),
+            evidence_keywords,
             height=120,
             disabled=True,
         )
-
-    if evidence.empty:
-        st.info("Detailed keyword evidence file is missing or empty.")
         return
 
-    rows = evidence[evidence[id_column].astype(str) == str(record_id)].copy()
-    if rows.empty:
-        st.info("No detailed evidence rows found for this record.")
-        return
-
-    rows = sort_by_available(rows, ["search_frequency_rank", "month"], [True, True])
-    st.subheader("Keyword Evidence")
-    display_table(
-        rows.head(200),
-        [
-            "raw_keyword",
-            "normalized_keyword",
-            "month",
-            "search_frequency_rank",
-            "segment_dimension",
-            "segment_value",
-        ],
-        height=360,
-    )
-
-    curve = monthly_curve(evidence, id_column, record_id)
-    if not curve.empty:
-        st.subheader("Monthly Trend")
-        st.line_chart(curve.set_index("month")[["best_rank", "median_rank"]])
-        display_table(curve, ["month", "best_rank", "median_rank", "keyword_count"], height=220)
+    st.info("No summarized evidence available for this record.")
 
 
 def market_evidence() -> None:
@@ -549,34 +580,32 @@ def market_evidence() -> None:
     )
 
     if source == "Demand":
-        records = load_csv("demand_strength_v3")
-        evidence = load_csv("composite_keywords")
-        records = add_evidence_keywords(records, evidence, "demand_id")
+        records = load_csv("composite_demands")
+        if records.empty:
+            records = load_csv("demand_strength_v3")
         records = sort_by_available(records, ["strength_score", "best_rank"], [False, True])
         selected = select_record(records, "demand_name", "demand_id", "evidence_demand")
         if selected is None:
             st.info("No demand records available.")
             return
+        selected = apply_demand_evidence_fallback(selected)
         st.subheader(str(selected["demand_name"]))
-        show_evidence_detail(selected, evidence, "demand_id", str(selected["demand_id"]))
+        show_evidence_detail(selected)
         return
 
     if source == "Segment":
         records = load_csv("demand_segments")
-        evidence = load_csv("segment_keywords")
         records = sort_by_available(records, ["segment_strength", "best_rank"], [False, True])
         selected = select_record(records, "segment_name", "segment_id", "evidence_segment")
         if selected is None:
             st.info("No segment records available.")
             return
         st.subheader(str(selected["segment_name"]))
-        show_evidence_detail(selected, evidence, "segment_id", str(selected["segment_id"]))
+        show_evidence_detail(selected)
         return
 
     if source == "Market Node":
         records = load_csv("market_nodes")
-        evidence = load_csv("market_node_evidence")
-        records = add_evidence_keywords(records, evidence, "market_node_id")
         records = sort_by_available(records, ["strength_score", "best_rank"], [False, True])
 
         if not records.empty:
@@ -595,20 +624,17 @@ def market_evidence() -> None:
             st.info("No market node records available.")
             return
         st.subheader(str(selected["market_node_label"]))
-        show_evidence_detail(selected, evidence, "market_node_id", str(selected["market_node_id"]))
+        show_evidence_detail(selected)
         return
 
     records = load_csv("opportunity_master")
-    evidence = load_csv("composite_keywords")
-    records = add_evidence_keywords(records, evidence, "demand_id")
     records = sort_by_available(records, ["opportunity_score", "best_rank"], [False, True])
     selected = select_record(records, "demand_name", "opportunity_id", "evidence_opportunity")
     if selected is None:
         st.info("No opportunity records available.")
         return
     st.subheader(str(selected["demand_name"]))
-    demand_id = str(selected["demand_id"]) if "demand_id" in selected.index else ""
-    show_evidence_detail(selected, evidence, "demand_id", demand_id)
+    show_evidence_detail(selected)
 
 
 def render_sidebar() -> str:
