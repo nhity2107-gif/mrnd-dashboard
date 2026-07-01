@@ -544,7 +544,7 @@ def market_evidence() -> None:
     st.title("Market Evidence")
     source = st.radio(
         "Evidence Source",
-        ["Demand", "Segment", "Opportunity"],
+        ["Demand", "Segment", "Opportunity", "Market Node"],
         horizontal=True,
     )
 
@@ -573,8 +573,34 @@ def market_evidence() -> None:
         show_evidence_detail(selected, evidence, "segment_id", str(selected["segment_id"]))
         return
 
+    if source == "Market Node":
+        records = load_csv("market_nodes")
+        evidence = load_csv("market_node_evidence")
+        records = add_evidence_keywords(records, evidence, "market_node_id")
+        records = sort_by_available(records, ["strength_score", "best_rank"], [False, True])
+
+        if not records.empty:
+            records = records.copy()
+            label_columns = existing_columns(records, ["demand", "niche"])
+            if label_columns:
+                records["market_node_label"] = records[label_columns].fillna("").astype(str).agg(
+                    lambda values: " / ".join(value for value in values if value.strip()),
+                    axis=1,
+                )
+            else:
+                records["market_node_label"] = records["market_node_id"].astype(str)
+
+        selected = select_record(records, "market_node_label", "market_node_id", "evidence_market_node")
+        if selected is None:
+            st.info("No market node records available.")
+            return
+        st.subheader(str(selected["market_node_label"]))
+        show_evidence_detail(selected, evidence, "market_node_id", str(selected["market_node_id"]))
+        return
+
     records = load_csv("opportunity_master")
     evidence = load_csv("composite_keywords")
+    records = add_evidence_keywords(records, evidence, "demand_id")
     records = sort_by_available(records, ["opportunity_score", "best_rank"], [False, True])
     selected = select_record(records, "demand_name", "opportunity_id", "evidence_opportunity")
     if selected is None:
