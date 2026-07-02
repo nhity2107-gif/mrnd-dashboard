@@ -219,6 +219,180 @@ st.markdown(
         border-color: rgba(239, 68, 68, 0.35);
     }
 
+    .mrd-tone-green {
+        --mrd-tone: #22c55e;
+        --mrd-tone-soft: rgba(34, 197, 94, 0.12);
+        --mrd-tone-border: rgba(34, 197, 94, 0.38);
+    }
+
+    .mrd-tone-blue {
+        --mrd-tone: #38bdf8;
+        --mrd-tone-soft: rgba(56, 189, 248, 0.12);
+        --mrd-tone-border: rgba(56, 189, 248, 0.38);
+    }
+
+    .mrd-tone-amber {
+        --mrd-tone: #f59e0b;
+        --mrd-tone-soft: rgba(245, 158, 11, 0.12);
+        --mrd-tone-border: rgba(245, 158, 11, 0.38);
+    }
+
+    .mrd-tone-red {
+        --mrd-tone: #ef4444;
+        --mrd-tone-soft: rgba(239, 68, 68, 0.12);
+        --mrd-tone-border: rgba(239, 68, 68, 0.4);
+    }
+
+    .mrd-tone-purple {
+        --mrd-tone: #a78bfa;
+        --mrd-tone-soft: rgba(167, 139, 250, 0.13);
+        --mrd-tone-border: rgba(167, 139, 250, 0.4);
+    }
+
+    .mrd-tone-teal {
+        --mrd-tone: #2dd4bf;
+        --mrd-tone-soft: rgba(45, 212, 191, 0.12);
+        --mrd-tone-border: rgba(45, 212, 191, 0.38);
+    }
+
+    .mrd-tone-gray {
+        --mrd-tone: #94a3b8;
+        --mrd-tone-soft: rgba(148, 163, 184, 0.11);
+        --mrd-tone-border: rgba(148, 163, 184, 0.28);
+    }
+
+    .mrd-portfolio-legend {
+        display: inline-block;
+        margin: 0.15rem 0 0.75rem;
+        padding: 0.55rem 0.7rem;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 8px;
+        background: rgba(15, 23, 42, 0.55);
+        color: var(--mrd-muted);
+        font-size: 0.78rem;
+        line-height: 1.45;
+    }
+
+    .mrd-portfolio-legend strong {
+        color: var(--mrd-text);
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .mrd-portfolio-legend ul {
+        margin: 0.25rem 0 0;
+        padding-left: 1.05rem;
+    }
+
+    .mrd-portfolio-card {
+        min-height: 218px;
+        padding: 0.78rem 0.85rem;
+        border: 1px solid var(--mrd-tone-border);
+        border-left: 3px solid var(--mrd-tone);
+        border-radius: 10px;
+        background:
+            linear-gradient(145deg, var(--mrd-tone-soft), rgba(17, 24, 39, 0.1)),
+            rgba(17, 24, 39, 0.88);
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.14);
+    }
+
+    .mrd-portfolio-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-bottom: 0.52rem;
+    }
+
+    .mrd-portfolio-rank {
+        color: var(--mrd-muted) !important;
+        font-size: 0.78rem;
+        font-weight: 700;
+    }
+
+    .mrd-portfolio-badge,
+    .mrd-signal-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.32rem;
+        border: 1px solid var(--mrd-tone-border);
+        background: var(--mrd-tone-soft);
+        color: var(--mrd-tone) !important;
+        border-radius: 999px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .mrd-portfolio-badge {
+        padding: 0.16rem 0.52rem;
+        font-size: 0.72rem;
+    }
+
+    .mrd-portfolio-title {
+        color: var(--mrd-text);
+        font-size: 1.02rem;
+        line-height: 1.25;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+    }
+
+    .mrd-signal-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin-bottom: 0.58rem;
+    }
+
+    .mrd-signal-chip {
+        padding: 0.13rem 0.45rem;
+        font-size: 0.7rem;
+    }
+
+    .mrd-signal-label {
+        color: var(--mrd-muted) !important;
+        font-weight: 700;
+    }
+
+    .mrd-portfolio-metrics {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.45rem;
+        margin-bottom: 0.58rem;
+    }
+
+    .mrd-portfolio-metric {
+        border: 1px solid rgba(148, 163, 184, 0.16);
+        border-radius: 8px;
+        background: rgba(15, 23, 42, 0.52);
+        padding: 0.46rem 0.5rem;
+    }
+
+    .mrd-portfolio-metric span {
+        display: block;
+        color: var(--mrd-muted) !important;
+        font-size: 0.68rem;
+        line-height: 1.15;
+        margin-bottom: 0.22rem;
+    }
+
+    .mrd-portfolio-metric strong {
+        color: var(--mrd-text);
+        font-size: 0.98rem;
+        line-height: 1.1;
+    }
+
+    .mrd-portfolio-action {
+        color: var(--mrd-text);
+        font-size: 0.79rem;
+        line-height: 1.35;
+    }
+
+    .mrd-portfolio-action span {
+        color: var(--mrd-muted) !important;
+        font-weight: 700;
+    }
+
     .mrd-research-card {
         background: var(--mrd-card);
         border: 1px solid var(--mrd-border);
@@ -549,6 +723,101 @@ def badge_class(priority: object) -> str:
 
 def safe(value: object) -> str:
     return escape(clean_text(value))
+
+
+def portfolio_investment_tone(value: object) -> str:
+    text = clean_text(value).lower()
+    if "invest aggressively" in text or text == "p1":
+        return "green"
+    if "expand" in text or text == "p2":
+        return "blue"
+    if "monitor" in text or "watch" in text or text == "p3":
+        return "amber"
+    if any(keyword in text for keyword in ["avoid", "declining", "decline", "exit", "archive"]):
+        return "red"
+    return "amber"
+
+
+def portfolio_market_size_tone(value: object) -> str:
+    text = clean_text(value).lower()
+    if "mega" in text:
+        return "purple"
+    if "large" in text:
+        return "blue"
+    if "mid" in text or "medium" in text:
+        return "amber"
+    if "small" in text:
+        return "gray"
+    return "gray"
+
+
+def portfolio_growth_tone(value: object) -> str:
+    text = clean_text(value).lower()
+    if "growing" in text:
+        return "green"
+    if "evergreen" in text:
+        return "teal"
+    if "declining" in text or "decline" in text:
+        return "red"
+    return "gray"
+
+
+def portfolio_competition_tone(value: object) -> str:
+    text = clean_text(value).lower()
+    if "low" in text:
+        return "green"
+    if "medium" in text or "moderate" in text:
+        return "amber"
+    if "high" in text:
+        return "red"
+    return "gray"
+
+
+def portfolio_signal_chip(label: str, value: object, tone: str) -> str:
+    display_value = clean_text(value) or "Unknown"
+    return (
+        f'<span class="mrd-signal-chip mrd-tone-{safe(tone)}">'
+        f'<span class="mrd-signal-label">{safe(label)}</span>{safe(display_value)}</span>'
+    )
+
+
+def portfolio_card_html(row: pd.Series, rank: int | None = None, default_investment: str = "Monitor") -> str:
+    investment = clean_text(row.get("Investment")) or default_investment
+    tone = portfolio_investment_tone(investment)
+    rank_label = f"#{rank}" if rank is not None else ""
+    market_size = row.get("Market Size")
+    growth = row.get("Growth")
+    competition = row.get("Competition")
+    chips = "".join(
+        [
+            portfolio_signal_chip("Size", market_size, portfolio_market_size_tone(market_size)),
+            portfolio_signal_chip("Growth", growth, portfolio_growth_tone(growth)),
+            portfolio_signal_chip("Comp", competition, portfolio_competition_tone(competition)),
+        ]
+    )
+    return f"""
+    <div class="mrd-portfolio-card mrd-tone-{safe(tone)}">
+        <div class="mrd-portfolio-top">
+            <span class="mrd-portfolio-rank">{safe(rank_label)}</span>
+            <span class="mrd-portfolio-badge mrd-tone-{safe(tone)}">{safe(investment)}</span>
+        </div>
+        <div class="mrd-portfolio-title">{safe(row.get('Parent Market'))}</div>
+        <div class="mrd-signal-row">{chips}</div>
+        <div class="mrd-portfolio-metrics">
+            <div class="mrd-portfolio-metric">
+                <span>Detected Segment Coverage</span>
+                <strong>{safe(format_score(row.get('Coverage')))}%</strong>
+            </div>
+            <div class="mrd-portfolio-metric">
+                <span>Expansion Potential</span>
+                <strong>{safe(format_score(row.get('Expansion Potential')))} / 100</strong>
+            </div>
+        </div>
+        <div class="mrd-portfolio-action">
+            <span>Action:</span> {safe(market_recommended_action(row))}
+        </div>
+    </div>
+    """
 
 
 def month_number(month: object) -> int:
@@ -2975,6 +3244,7 @@ def executive_market_overview(markets: pd.DataFrame, queue: pd.DataFrame) -> Non
 
 
 def market_investment_cards(markets: pd.DataFrame, limit: int = 15) -> None:
+    portfolio_metric_legend()
     if markets.empty:
         st.info("No market ranking data is available.")
         return
@@ -2983,19 +3253,7 @@ def market_investment_cards(markets: pd.DataFrame, limit: int = 15) -> None:
         columns = st.columns(3)
         for column, (index, row) in zip(columns, top.iloc[start : start + 3].iterrows()):
             with column:
-                with st.container(border=True):
-                    st.caption(f"#{index + 1}")
-                    st.markdown(f"**{clean_text(row.get('Parent Market'))}**")
-                    st.caption(
-                        f"{clean_text(row.get('Market Size'))} | "
-                        f"{clean_text(row.get('Growth'))} | "
-                        f"{clean_text(row.get('Competition'))}"
-                    )
-                    st.markdown(f"**Detected Segment Coverage:** {format_score(row.get('Coverage'))}%")
-                    st.markdown(f"**Expansion Potential:** {format_score(row.get('Expansion Potential'))} / 100")
-                    st.markdown(f"**Priority:** {clean_text(row.get('Investment'))}")
-                    st.markdown(f"**Action:** {market_recommended_action(row)}")
-                    portfolio_metric_note()
+                st.markdown(portfolio_card_html(row, index + 1), unsafe_allow_html=True)
 
 
 def market_size_ranking_chart(markets: pd.DataFrame) -> None:
@@ -3025,17 +3283,26 @@ def market_size_ranking_chart(markets: pd.DataFrame) -> None:
     st.altair_chart(dark_chart(chart), use_container_width=True)
 
 
-def portfolio_metric_note() -> None:
-    st.caption(
-        "**Note**\n\n"
-        "- Coverage = % of discovered child segments.\n"
-        "- Expansion Potential = remaining expansion opportunity.\n"
-        "- Low Coverage + High Expansion Potential = continue researching this market."
+def portfolio_metric_legend() -> None:
+    st.markdown(
+        """
+        <div class="mrd-portfolio-legend">
+            <strong>How to read</strong>
+            <ul>
+                <li>Detected Segment Coverage = % of discovered child segments.</li>
+                <li>Expansion Potential = Remaining opportunity to expand this parent market.</li>
+                <li>Best targets = Low Coverage + High Expansion Potential.</li>
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
 
 
 def compact_market_opportunity_cards(markets: pd.DataFrame, title: str, mode: str, limit: int = 6) -> None:
     st.subheader(title)
+    if mode == "expansion":
+        portfolio_metric_legend()
     if markets.empty:
         st.info("No markets are available for this section.")
         return
@@ -3046,23 +3313,19 @@ def compact_market_opportunity_cards(markets: pd.DataFrame, title: str, mode: st
             if mode == "risk":
                 note = f"Risk score {format_score(row.get('Risk Score'))}. Action: {market_recommended_action(row)}"
                 badge = "Review"
-            else:
-                badge = clean_text(row.get("Investment")) or "Expand"
             with column:
-                with st.container(border=True):
-                    st.caption(badge)
-                    st.markdown(f"**{clean_text(row.get('Parent Market'))}**")
-                    st.caption(
-                        f"{clean_text(row.get('Market Size'))} | "
-                        f"{clean_text(row.get('Growth'))} | "
-                        f"{clean_text(row.get('Competition'))}"
-                    )
-                    if mode == "risk":
+                if mode == "risk":
+                    with st.container(border=True):
+                        st.caption(badge)
+                        st.markdown(f"**{clean_text(row.get('Parent Market'))}**")
+                        st.caption(
+                            f"{clean_text(row.get('Market Size'))} | "
+                            f"{clean_text(row.get('Growth'))} | "
+                            f"{clean_text(row.get('Competition'))}"
+                        )
                         st.markdown(note)
-                    else:
-                        st.markdown(f"**Expansion Potential:** {format_score(row.get('Expansion Potential'))} / 100")
-                        st.markdown(f"**Detected Segment Coverage:** {format_score(row.get('Coverage'))}%")
-                        portfolio_metric_note()
+                else:
+                    st.markdown(portfolio_card_html(row, default_investment="Expand"), unsafe_allow_html=True)
 
 
 def weekly_research_focus(queue: pd.DataFrame, limit: int = 10) -> None:
