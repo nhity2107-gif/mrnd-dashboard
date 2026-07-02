@@ -3083,6 +3083,34 @@ def weekly_research_focus(queue: pd.DataFrame, limit: int = 10) -> None:
 def child_detail_expander(row: pd.Series, key_prefix: str) -> None:
     child = clean_text(row.get("child_segment")) or key_prefix
     with st.expander(f"View detail: {child}", expanded=False):
+        keywords = split_pipe_values(row.get("evidence_keywords"))
+        st.markdown("#### Evidence Summary")
+        card_grid(
+            [
+                (
+                    "Evidence Count",
+                    count_share_label(row.get("evidence_example_count", len(keywords)), row.get("evidence_example_denominator", len(keywords)), "evidence keywords"),
+                    f"Estimated share {format_score(row.get('estimated_share'))}%",
+                ),
+                (
+                    "Product",
+                    selected_product_label(row),
+                    f"Fit score {format_score(score_for_label(row, PRODUCT_SCORE_COLUMNS, selected_product_label(row)))}",
+                ),
+                (
+                    "Customization",
+                    selected_customization_label(row),
+                    f"Fit score {format_score(score_for_label(row, CUSTOMIZATION_SCORE_COLUMNS, selected_customization_label(row)))}",
+                ),
+                (
+                    "Opportunity",
+                    f"{format_score(row.get('opportunity_score', row.get('total_score')))}",
+                    f"Priority {first_existing_value(row, ['priority', 'recommended_priority'], 'unavailable')}",
+                ),
+            ],
+            4,
+        )
+
         st.markdown("#### Score Breakdown")
         score_breakdown_cards(row)
 
@@ -3109,39 +3137,566 @@ def child_detail_expander(row: pd.Series, key_prefix: str) -> None:
             ("Opportunities", "opportunities"),
             ("Next Step", "recommended_next_step"),
         ]:
-            st.markdown(f"#### {label}")
-            st.write(clean_text(row.get(field)) or "No detail available.")
+            value = clean_text(row.get(field))
+            if value:
+                st.markdown(f"#### {label}")
+                st.write(value)
+
+        if keywords:
+            st.markdown("#### Keywords")
+            display_table(pd.DataFrame({"keyword": keywords}), ["keyword"], height=220)
 
 
 def demand_evidence_cards(demand_name: str, demand_segments: pd.DataFrame, composite_demands: pd.DataFrame) -> None:
-    keywords: list[str] = []
-    if not demand_segments.empty and "parent_demand" in demand_segments.columns and "evidence_keywords" in demand_segments.columns:
-        rows = demand_segments[demand_segments["parent_demand"].astype(str) == demand_name].head(12)
-        for value in rows["evidence_keywords"].dropna():
-            keywords.extend(split_pipe_values(value))
-    if not composite_demands.empty and "demand_name" in composite_demands.columns and "evidence_keywords" in composite_demands.columns:
-        rows = composite_demands[composite_demands["demand_name"].astype(str) == demand_name].head(3)
-        for value in rows["evidence_keywords"].dropna():
-            keywords.extend(split_pipe_values(value))
-
-    theme_terms = ["funny", "vintage", "retro", "floral", "watercolor", "boho", "faith", "patriotic", "minimalist", "country"]
-    product_terms = ["blanket", "mug", "tumbler", "shirt", "ornament", "canvas", "doormat", "poster", "sign", "pillow"]
-    occasion_terms = ["christmas", "birthday", "anniversary", "wedding", "retirement", "memorial", "graduation", "mother", "father"]
+    keywords = demand_evidence_keywords(demand_name, demand_segments, composite_demands)
     confidence = evidence_confidence(len(keywords))
     card_grid(
         [
             ("Evidence Confidence", confidence, f"{len(keywords)} summarized keywords"),
-            ("Theme Signal", keyword_category_counts(keywords, theme_terms), "Common style/theme words"),
-            ("Product Signal", keyword_category_counts(keywords, product_terms), "Common product words"),
-            ("Occasion Signal", keyword_category_counts(keywords, occasion_terms), "Common event words"),
+            ("Theme", evidence_summary_text(keywords, THEME_TERMS), f"Share of {len(keywords)} evidence keywords"),
+            ("Product Mention", evidence_summary_text(keywords, PRODUCT_TERMS), f"Share of {len(keywords)} evidence keywords"),
+            ("Occasion", evidence_summary_text(keywords, OCCASION_TERMS), f"Share of {len(keywords)} evidence keywords"),
+            ("Customization Mention", evidence_summary_text(keywords, CUSTOMIZATION_TERMS), f"Share of {len(keywords)} evidence keywords"),
         ],
-        4,
+        3,
     )
     with st.expander("Keyword evidence details", expanded=False):
         if not keywords:
             st.info("No summarized evidence keywords are available for this demand.")
         else:
             display_table(pd.DataFrame({"keyword_order": range(1, len(keywords[:100]) + 1), "keyword": keywords[:100]}), height=320)
+
+
+THEME_TERMS = {
+    "Funny": ["funny", "gag", "joke"],
+    "Family": ["family", "mom", "dad", "mother", "father", "grandma", "grandpa", "daughter", "son"],
+    "Pet": ["dog", "cat", "pet"],
+    "Faith": ["christian", "religious", "faith", "bible"],
+    "Sports": ["soccer", "football", "baseball", "golf", "fishing", "hunting"],
+    "Wedding": ["wedding", "bride", "groom"],
+    "Seasonal": ["christmas", "halloween", "valentine", "easter", "thanksgiving"],
+}
+
+OCCASION_TERMS = {
+    "Mother": ["mother", "mom", "mother's day", "mothers day"],
+    "Father": ["father", "dad", "father's day", "fathers day"],
+    "Christmas": ["christmas", "xmas"],
+    "Birthday": ["birthday"],
+    "Wedding": ["wedding", "bride", "groom"],
+    "Anniversary": ["anniversary"],
+    "Retirement": ["retirement", "retired"],
+    "Graduation": ["graduation", "graduate"],
+    "Memorial": ["memorial", "remembrance", "in memory"],
+}
+
+PRODUCT_TERMS = {
+    "Blanket": ["blanket", "throw"],
+    "Mug": ["mug"],
+    "Tumbler": ["tumbler", "water bottle", "cup"],
+    "Shirt": ["shirt", "t-shirt", "tee", "hoodie", "sweatshirt"],
+    "Ornament": ["ornament"],
+    "Canvas": ["canvas", "poster", "print", "wall art"],
+}
+
+CUSTOMIZATION_TERMS = {
+    "Name": ["name", "personalized", "custom", "customized"],
+    "Photo": ["photo", "picture"],
+    "Multiple Names": ["multiple names", "kids names", "grandkids", "family names", "children names"],
+    "Birth Flower": ["birth flower", "birthflower"],
+    "Clipart": ["clipart", "clip art", "illustration"],
+    "Line Art": ["line art", "line drawing"],
+    "Hand Drawing": ["hand drawing", "hand drawn", "drawing"],
+}
+
+
+def percent_label(numerator: object, denominator: object, precision: int = 1) -> str:
+    denom = numeric(denominator)
+    if denom <= 0:
+        return "0.0%"
+    return f"{(numeric(numerator) / denom) * 100:.{precision}f}%"
+
+
+def count_share_label(numerator: object, denominator: object, label: str = "evidence") -> str:
+    return f"{format_int(numerator)} / {format_int(denominator)} {label}"
+
+
+def demand_evidence_keywords(demand_name: str, demand_segments: pd.DataFrame, composite_demands: pd.DataFrame) -> list[str]:
+    keywords: list[str] = []
+    if not demand_segments.empty and "parent_demand" in demand_segments.columns and "evidence_keywords" in demand_segments.columns:
+        rows = demand_segments[demand_segments["parent_demand"].astype(str) == demand_name]
+        for value in rows["evidence_keywords"].dropna():
+            keywords.extend(split_pipe_values(value))
+    if not composite_demands.empty and "demand_name" in composite_demands.columns and "evidence_keywords" in composite_demands.columns:
+        rows = composite_demands[composite_demands["demand_name"].astype(str) == demand_name]
+        for value in rows["evidence_keywords"].dropna():
+            keywords.extend(split_pipe_values(value))
+    return keywords
+
+
+def term_count(keywords: list[str], terms: list[str]) -> int:
+    lowered_terms = [term.lower() for term in terms]
+    count = 0
+    for keyword in keywords:
+        lower = keyword.lower()
+        if any(term in lower for term in lowered_terms):
+            count += 1
+    return count
+
+
+def term_distribution(keywords: list[str], mapping: dict[str, list[str]]) -> pd.DataFrame:
+    denominator = len(keywords)
+    rows = []
+    for label, terms in mapping.items():
+        count = term_count(keywords, terms)
+        rows.append(
+            {
+                "item": label,
+                "count": count,
+                "denominator": denominator,
+                "share": (count / denominator * 100) if denominator else 0,
+            }
+        )
+    return pd.DataFrame(rows).sort_values(["share", "count"], ascending=False)
+
+
+def evidence_summary_text(keywords: list[str], mapping: dict[str, list[str]], limit: int = 4) -> str:
+    distribution = term_distribution(keywords, mapping)
+    if distribution.empty or numeric(distribution["count"].sum()) <= 0:
+        return "0.0% matched"
+    rows = distribution[distribution["count"] > 0].head(limit)
+    return " | ".join(
+        f"{clean_text(row.get('item'))} {percent_label(row.get('count'), row.get('denominator'))}"
+        for _, row in rows.iterrows()
+    )
+
+
+def portfolio_capacity(summary_row: pd.Series, market_row: pd.Series) -> dict[str, float]:
+    current = numeric(first_existing_value(summary_row, ["current_child_segments"], market_row.get("Child Segment Count", 0)))
+    estimated = numeric(first_existing_value(summary_row, ["estimated_total_segments"], current))
+    coverage = numeric(first_existing_value(summary_row, ["coverage_percent"], market_row.get("Coverage", 0)))
+    if estimated <= 0 and current > 0:
+        estimated = current
+    remaining = max(estimated - current, 0)
+    return {
+        "current": current,
+        "estimated": estimated,
+        "remaining": remaining,
+        "coverage": coverage,
+    }
+
+
+def build_child_niche_rows(demand_name: str, queue_rows: pd.DataFrame, demand_segments: pd.DataFrame) -> pd.DataFrame:
+    segment_columns = [
+        "parent_demand",
+        "segment_name",
+        "keyword_count",
+        "best_rank",
+        "median_rank",
+        "active_months",
+        "trend",
+        "segment_strength",
+        "evidence_keywords",
+    ]
+    if not demand_segments.empty and {"parent_demand", "segment_name"}.issubset(demand_segments.columns):
+        segment_rows = demand_segments[demand_segments["parent_demand"].astype(str) == demand_name]
+        segment_rows = segment_rows[existing_columns(segment_rows, segment_columns)].rename(columns={"segment_name": "child_segment"})
+    else:
+        segment_rows = pd.DataFrame(columns=["child_segment"])
+
+    if queue_rows.empty:
+        children = segment_rows.copy()
+    elif segment_rows.empty:
+        children = queue_rows.copy()
+    else:
+        children = queue_rows.merge(segment_rows, on="child_segment", how="outer", suffixes=("", "_segment"))
+
+    if children.empty:
+        return children
+
+    if "keyword_count" not in children.columns:
+        children["keyword_count"] = 0
+    if "opportunity_score" not in children.columns and "total_score" in children.columns:
+        children["opportunity_score"] = children["total_score"]
+    if "opportunity_score" not in children.columns:
+        children["opportunity_score"] = 0
+
+    keyword_counts = pd.to_numeric(children["keyword_count"], errors="coerce").fillna(0)
+    opportunity_scores = pd.to_numeric(children["opportunity_score"], errors="coerce").fillna(0)
+    keyword_total = numeric(keyword_counts.sum())
+    score_total = numeric(opportunity_scores.sum())
+    if keyword_total > 0:
+        children["estimated_share"] = keyword_counts / keyword_total * 100
+        children["share_basis"] = "keyword_count"
+        children["share_denominator"] = keyword_total
+    elif score_total > 0:
+        children["estimated_share"] = opportunity_scores / score_total * 100
+        children["share_basis"] = "opportunity_score"
+        children["share_denominator"] = score_total
+    else:
+        children["estimated_share"] = 0
+        children["share_basis"] = "unavailable"
+        children["share_denominator"] = 0
+    if "evidence_keywords" in children.columns:
+        children["evidence_example_count"] = children["evidence_keywords"].apply(lambda value: len(split_pipe_values(value)))
+        children["evidence_example_denominator"] = numeric(children["evidence_example_count"].sum())
+    else:
+        children["evidence_example_count"] = 0
+        children["evidence_example_denominator"] = 0
+    return sort_by_available(children, ["opportunity_score", "estimated_share"], [False, False])
+
+
+def distribution_from_fit_and_evidence(
+    fit: pd.DataFrame,
+    child_segments: list[str],
+    score_columns: dict[str, str],
+    evidence_keywords: list[str],
+    term_map: dict[str, list[str]],
+) -> pd.DataFrame:
+    if child_segments and not fit.empty and "child_segment" in fit.columns:
+        subset = fit[fit["child_segment"].astype(str).isin(child_segments)].copy()
+    else:
+        subset = pd.DataFrame()
+
+    evidence_denominator = len(evidence_keywords)
+    evidence_counts = {
+        label: term_count(evidence_keywords, term_map.get(label, []))
+        for label in score_columns.values()
+    }
+    evidence_total = sum(evidence_counts.values())
+
+    rows = []
+    for column, label in score_columns.items():
+        fit_score = 0.0
+        if not subset.empty and column in subset.columns:
+            fit_score = numeric(pd.to_numeric(subset[column], errors="coerce").mean())
+        evidence_count = evidence_counts.get(label, 0)
+        rows.append(
+            {
+                "item": label,
+                "fit_score": fit_score,
+                "evidence_count": evidence_count,
+                "evidence_denominator": evidence_denominator,
+            }
+        )
+
+    frame = pd.DataFrame(rows)
+    if frame.empty:
+        return frame
+
+    if evidence_total > 0:
+        frame["estimated_share"] = frame["evidence_count"] / evidence_total * 100
+        frame["share_basis"] = "evidence mentions"
+    else:
+        fit_total = numeric(frame["fit_score"].sum())
+        frame["estimated_share"] = frame["fit_score"] / fit_total * 100 if fit_total > 0 else 0
+        frame["share_basis"] = "fit scores"
+    frame["reason"] = frame.apply(
+        lambda row: (
+            f"Fit score {format_score(row.get('fit_score'))}; "
+            f"evidence {count_share_label(row.get('evidence_count'), row.get('evidence_denominator'))}; "
+            f"share {format_score(row.get('estimated_share'))}% from {clean_text(row.get('share_basis'))}."
+        ),
+        axis=1,
+    )
+    return frame.sort_values(["estimated_share", "fit_score"], ascending=False)
+
+
+def selected_product_label(row: pd.Series) -> str:
+    return first_existing_value(row, ["recommended_product", "best_product", "primary_product", "product_recommendation"])
+
+
+def selected_customization_label(row: pd.Series) -> str:
+    return first_existing_value(row, ["recommended_customization", "best_customization", "primary_customization", "customization_recommendation"])
+
+
+def score_for_label(row: pd.Series, score_columns: dict[str, str], label: str) -> float:
+    for column, display in score_columns.items():
+        if display == label and column in row.index:
+            return numeric(row.get(column))
+    return 0.0
+
+
+def render_market_snapshot(market_row: pd.Series, summary_row: pd.Series) -> None:
+    capacity = portfolio_capacity(summary_row, market_row)
+    growth_score = numeric(market_row.get("Growth Score"))
+    card_grid(
+        [
+            (
+                "Market Size",
+                first_existing_value(market_row, ["Market Size"], "Unknown"),
+                f"Score {format_score(market_row.get('Market Size Score'))}",
+            ),
+            (
+                "Growth",
+                first_existing_value(market_row, ["Growth"], "Unknown"),
+                f"Momentum score {format_score(growth_score)}" if growth_score else "Momentum metric unavailable",
+            ),
+            (
+                "Competition",
+                first_existing_value(market_row, ["Competition"], "Unknown"),
+                f"Score {format_score(market_row.get('Competition Fit Score'))}",
+            ),
+            (
+                "Seasonality",
+                first_existing_value(market_row, ["Seasonality"], "Unknown"),
+                f"Score {format_score(market_row.get('Seasonality Score'))}",
+            ),
+            (
+                "Portfolio Stage",
+                first_existing_value(market_row, ["Portfolio Stage"], "Unknown"),
+                "Loaded from portfolio/market intelligence",
+            ),
+            (
+                "Coverage",
+                f"{capacity['coverage']:.1f}%",
+                f"{format_int(capacity['current'])} researched | {format_int(capacity['estimated'])} estimated | {format_int(capacity['remaining'])} remaining",
+            ),
+            (
+                "Expansion Potential",
+                f"{numeric(market_row.get('Expansion Potential')):.1f}",
+                "Loaded expansion score",
+            ),
+            (
+                "Research Priority",
+                first_existing_value(market_row, ["Investment"], "Monitor"),
+                market_recommended_action(market_row),
+            ),
+        ],
+        4,
+    )
+
+
+def metric_list_card(title: str, items: list[str]) -> None:
+    if not items:
+        return
+    st.markdown(
+        f"""
+        <div class="mrd-card" style="min-height:190px;">
+            <div class="mrd-card-label">{safe(title)}</div>
+            {''.join(f'<div class="mrd-research-line">- {safe(item)}</div>' for item in items)}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def render_executive_insight(
+    demand_name: str,
+    market_row: pd.Series,
+    summary_row: pd.Series,
+    child_rows: pd.DataFrame,
+    product_distribution: pd.DataFrame,
+) -> None:
+    capacity = portfolio_capacity(summary_row, market_row)
+    top_child = child_rows.iloc[0] if not child_rows.empty else pd.Series(dtype=object)
+    top_product = product_distribution.iloc[0] if not product_distribution.empty else pd.Series(dtype=object)
+    strengths = [
+        f"Market size {first_existing_value(market_row, ['Market Size'], 'Unknown')} with size score {format_score(market_row.get('Market Size Score'))}.",
+        f"Expansion potential {format_score(market_row.get('Expansion Potential'))} with coverage {capacity['coverage']:.1f}%.",
+    ]
+    if not top_child.empty:
+        strengths.append(
+            f"Top child niche {clean_text(top_child.get('child_segment'))} has opportunity score {format_score(top_child.get('opportunity_score', top_child.get('total_score')))} and estimated share {format_score(top_child.get('estimated_share'))}%."
+        )
+    if numeric(market_row.get("Seasonality Score")):
+        strengths.append(f"Seasonality score {format_score(market_row.get('Seasonality Score'))}.")
+
+    risks = [
+        f"Competition {first_existing_value(market_row, ['Competition'], 'Unknown')} with score {format_score(market_row.get('Competition Fit Score'))}."
+    ]
+    if not top_product.empty and numeric(top_product.get("estimated_share")) >= 50:
+        risks.append(
+            f"Product concentration: {clean_text(top_product.get('item'))} represents {format_score(top_product.get('estimated_share'))}% of product distribution."
+        )
+    if capacity["remaining"] <= 0 and capacity["estimated"] > 0:
+        risks.append(f"No remaining capacity shown: {format_int(capacity['current'])} / {format_int(capacity['estimated'])} niches covered.")
+    if numeric(market_row.get("Average Opportunity")) < 60:
+        risks.append(f"Average opportunity score is {format_score(market_row.get('Average Opportunity'))}.")
+
+    opportunity = [
+        f"{demand_name} has {format_int(capacity['remaining'])} / {format_int(capacity['estimated'])} estimated child niches remaining.",
+        f"Best child score {format_score(market_row.get('Best Child Score'))}; average opportunity {format_score(market_row.get('Average Opportunity'))}.",
+    ]
+    gap = [
+        f"Current portfolio covers {format_int(capacity['current'])} / {format_int(capacity['estimated'])} child niches.",
+        f"Remaining capacity is {format_int(capacity['remaining'])} niches; coverage is {capacity['coverage']:.1f}%.",
+    ]
+
+    columns = st.columns(4)
+    for column, title, items in zip(columns, ["Opportunity", "Top Strengths", "Top Risks", "Current Gap"], [opportunity, strengths, risks, gap]):
+        with column:
+            metric_list_card(title, items)
+
+
+def preparation_window(timeline: dict[str, str]) -> str:
+    research_month = month_position(timeline.get("Research Month"), timeline.get("Peak Month"))
+    peak_month = month_position(timeline.get("Peak Month"))
+    if research_month is None or peak_month is None:
+        return "Rolling / evergreen"
+    if peak_month < research_month:
+        peak_month += 12
+    months = max(peak_month - research_month, 0)
+    return f"{months} month preparation window"
+
+
+def render_demand_timeline(timeline: dict[str, str]) -> None:
+    labels = [
+        ("Research", timeline.get("Research Month", "")),
+        ("Listing", timeline.get("Listing / Upload", "")),
+        ("Ads", timeline.get("Ads Month", "")),
+        ("Peak Season", timeline.get("Peak Month", "")),
+    ]
+    st.markdown(
+        f"""
+        <div class="mrd-card" style="min-height:130px;">
+            <div class="mrd-card-label">Preparation Window</div>
+            <div class="mrd-card-value" style="font-size:1.35rem;">{safe(preparation_window(timeline))}</div>
+            <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.75rem;margin-top:1rem;">
+                {''.join(f'<div style="border:1px solid rgba(148,163,184,0.22);border-radius:10px;padding:0.8rem;background:#0b1220;"><div class="mrd-card-label">{safe(label)}</div><div class="mrd-research-title">{safe(value)}</div></div>' for label, value in labels)}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def render_distribution_cards(rows: pd.DataFrame, title: str, item_label: str, limit: int = 6) -> None:
+    st.subheader(title)
+    if rows.empty:
+        st.info(f"No {item_label.lower()} distribution data is available.")
+        return
+    top = rows.head(limit).reset_index(drop=True)
+    for start in range(0, len(top), 3):
+        columns = st.columns(3)
+        for column, (_, row) in zip(columns, top.iloc[start : start + 3].iterrows()):
+            with column:
+                st.markdown(
+                    f"""
+                    <div class="mrd-card" style="min-height:205px;">
+                        <div class="mrd-card-label">{safe(item_label)}</div>
+                        <div class="mrd-card-value" style="font-size:1.35rem;">{safe(row.get("item"))}</div>
+                        <div class="mrd-research-line"><b>Fit Score:</b> {format_score(row.get("fit_score"))}</div>
+                        <div class="mrd-research-line"><b>Estimated Share:</b> {format_score(row.get("estimated_share"))}%</div>
+                        <div class="mrd-research-line"><b>Evidence Count:</b> {safe(count_share_label(row.get("evidence_count"), row.get("evidence_denominator")))}</div>
+                        <div class="mrd-research-line"><b>Reason:</b> {safe(row.get("reason"))}</div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+
+
+def render_market_distribution(child_rows: pd.DataFrame) -> None:
+    st.subheader("Market Distribution")
+    if child_rows.empty or "estimated_share" not in child_rows.columns:
+        st.info("No child-niche market distribution data is available.")
+        return
+    chart_data = child_rows.head(10).copy()
+    chart_data["estimated_share"] = pd.to_numeric(chart_data["estimated_share"], errors="coerce").fillna(0)
+    chart = (
+        alt.Chart(chart_data)
+        .mark_bar(color="#38bdf8")
+        .encode(
+            x=alt.X("estimated_share:Q", title="Estimated demand share (%)"),
+            y=alt.Y("child_segment:N", sort="-x", title=None),
+            tooltip=[
+                "child_segment",
+                alt.Tooltip("estimated_share:Q", format=".1f"),
+                alt.Tooltip("keyword_count:Q", format=".0f"),
+                alt.Tooltip("opportunity_score:Q", format=".1f"),
+            ],
+        )
+        .properties(height=360, title="Top 10 Child Niches by Estimated Share")
+    )
+    st.altair_chart(dark_chart(chart), use_container_width=True)
+
+
+def render_whitespace_capacity(summary_row: pd.Series, market_row: pd.Series) -> None:
+    capacity = portfolio_capacity(summary_row, market_row)
+    card_grid(
+        [
+            ("Current", format_int(capacity["current"]), "Researched child niches"),
+            ("Estimated", format_int(capacity["estimated"]), "Estimated total capacity"),
+            ("Remaining", format_int(capacity["remaining"]), "Uncovered child niches"),
+            ("Coverage", f"{capacity['coverage']:.1f}%", f"{format_int(capacity['current'])} / {format_int(capacity['estimated'])} covered"),
+        ],
+        4,
+    )
+
+
+def render_decision_recommendation(
+    demand_name: str,
+    market_row: pd.Series,
+    summary_row: pd.Series,
+    child_rows: pd.DataFrame,
+    product_distribution: pd.DataFrame,
+    customization_distribution: pd.DataFrame,
+) -> None:
+    capacity = portfolio_capacity(summary_row, market_row)
+    top_child = child_rows.iloc[0] if not child_rows.empty else pd.Series(dtype=object)
+    top_product = product_distribution.iloc[0] if not product_distribution.empty else pd.Series(dtype=object)
+    top_customization = customization_distribution.iloc[0] if not customization_distribution.empty else pd.Series(dtype=object)
+    top_score = numeric(top_child.get("opportunity_score", top_child.get("total_score")))
+    expansion = numeric(market_row.get("Expansion Potential"))
+    average_opportunity = numeric(market_row.get("Average Opportunity"))
+    if top_score >= 80 or (expansion >= 70 and capacity["remaining"] > 0):
+        decision = "INVEST"
+    elif top_score >= 70 or average_opportunity >= 65:
+        decision = "VALIDATE"
+    else:
+        decision = "MONITOR"
+    confidence = confidence_from_score(top_score or average_opportunity, market_row.get("Investment"))
+    why = (
+        f"Expansion {format_score(expansion)}, coverage {capacity['coverage']:.1f}% "
+        f"({format_int(capacity['current'])} / {format_int(capacity['estimated'])}), "
+        f"top child score {format_score(top_score)}."
+    )
+    payoff = (
+        f"Remaining capacity {format_int(capacity['remaining'])} / {format_int(capacity['estimated'])} niches; "
+        f"best child score {format_score(top_score)}; average opportunity {format_score(average_opportunity)}."
+    )
+    card_grid(
+        [
+            ("Decision", decision, why),
+            ("Confidence", confidence, f"Based on top score {format_score(top_score)} and priority {clean_text(market_row.get('Investment'))}"),
+            ("Research First", clean_text(top_child.get("child_segment")), f"Estimated share {format_score(top_child.get('estimated_share'))}%"),
+            ("Product", clean_text(top_product.get("item")), f"Fit {format_score(top_product.get('fit_score'))}; share {format_score(top_product.get('estimated_share'))}%"),
+            ("Customization", clean_text(top_customization.get("item")), f"Fit {format_score(top_customization.get('fit_score'))}; share {format_score(top_customization.get('estimated_share'))}%"),
+            ("Expected Payoff", demand_name, payoff),
+        ],
+        3,
+    )
+
+
+def render_grouped_child_evidence(child_rows: pd.DataFrame, limit: int = 10) -> None:
+    if child_rows.empty:
+        st.info("No child evidence is available.")
+        return
+    rows = child_rows.head(limit).reset_index(drop=True)
+    for _, row in rows.iterrows():
+        child = clean_text(row.get("child_segment"))
+        keywords = split_pipe_values(row.get("evidence_keywords"))
+        with st.expander(f"{child} evidence", expanded=False):
+            st.markdown("#### Evidence Summary")
+            card_grid(
+                [
+                    (
+                        "Evidence Count",
+                        count_share_label(row.get("evidence_example_count", len(keywords)), row.get("evidence_example_denominator", len(keywords)), "evidence keywords"),
+                        f"Share {format_score(row.get('estimated_share'))}%",
+                    ),
+                    ("Product Fit", selected_product_label(row), f"Score {format_score(score_for_label(row, PRODUCT_SCORE_COLUMNS, selected_product_label(row)))}"),
+                    ("Customization Fit", selected_customization_label(row), f"Score {format_score(score_for_label(row, CUSTOMIZATION_SCORE_COLUMNS, selected_customization_label(row)))}"),
+                    ("Opportunity", f"{format_score(row.get('opportunity_score', row.get('total_score')))}", "Total score from scorecard"),
+                ],
+                4,
+            )
+            if keywords:
+                st.markdown("#### Keywords")
+                display_table(pd.DataFrame({"keyword": keywords}), ["keyword"], height=220)
+            st.markdown("#### Opportunity Components")
+            score_breakdown_cards(row)
+            st.markdown("#### Supporting Row")
+            display_table(pd.DataFrame([row]), height=220)
 
 
 def top_child_niche_cards(rows: pd.DataFrame, limit: int = 10, show_detail: bool = True) -> None:
@@ -3154,19 +3709,29 @@ def top_child_niche_cards(rows: pd.DataFrame, limit: int = 10, show_detail: bool
         for column, (_, row) in zip(columns, top_rows.iloc[start : start + 2].iterrows()):
             priority = first_existing_value(row, ["priority", "recommended_priority"], "Watchlist")
             score = row.get("opportunity_score", row.get("total_score"))
+            product = selected_product_label(row)
+            customization = selected_customization_label(row)
+            product_score = score_for_label(row, PRODUCT_SCORE_COLUMNS, product)
+            customization_score = score_for_label(row, CUSTOMIZATION_SCORE_COLUMNS, customization)
+            share_source = clean_text(row.get("share_basis"))
+            reason = (
+                f"Estimated share {format_score(row.get('estimated_share'))}% from {share_source}; "
+                f"opportunity score {format_score(score)}; "
+                f"{product} fit {format_score(product_score)}; "
+                f"{customization} fit {format_score(customization_score)}."
+            )
+            action = "Research first" if numeric(score) >= 80 else "Validate with manual market review" if numeric(score) >= 70 else "Monitor until stronger evidence"
             with column:
                 action_card(
                     row.get("child_segment"),
                     priority,
                     score,
                     [
-                        ("Best product", first_existing_value(row, ["recommended_product", "best_product", "primary_product"])),
-                        (
-                            "Best customization",
-                            first_existing_value(row, ["recommended_customization", "best_customization", "primary_customization"]),
-                        ),
-                        ("Why this matters", first_existing_value(row, ["reason", "why_now", "explanation"], "No reason available.")),
-                        ("Recommended action", first_existing_value(row, ["next_action", "recommended_next_step"], "Validate the niche.")),
+                        ("Estimated Share", f"{format_score(row.get('estimated_share'))}%"),
+                        ("Product", f"{product} (fit {format_score(product_score)})"),
+                        ("Customization", f"{customization} (fit {format_score(customization_score)})"),
+                        ("Reason", reason),
+                        ("Action", f"{action}; next step: {first_existing_value(row, ['next_action', 'recommended_next_step'], 'review evidence')}"),
                     ],
                 )
                 if show_detail:
@@ -3306,61 +3871,68 @@ def demand_explorer() -> None:
         key="demand_explorer_selected",
     )
     market_row = demand_market_row(selected, markets)
+    portfolio_summary = load_csv("portfolio_summary")
+    summary_row = first_matching_row(portfolio_summary, "parent_demand", selected)
     queue_rows = parent_queue_rows(queue, selected)
-    child_segments = queue_rows["child_segment"].dropna().astype(str).unique().tolist() if "child_segment" in queue_rows.columns else []
-
-    product_scores = ranked_fit_scores(product_fit, child_segments, PRODUCT_SCORE_COLUMNS)
-    if product_scores.empty:
-        product_scores = pipe_recommendation_scores(queue_rows, "product_recommendation", "Derived from queued product recommendations.")
-    customization_scores = ranked_fit_scores(customization_fit, child_segments, CUSTOMIZATION_SCORE_COLUMNS)
-    if customization_scores.empty:
-        customization_scores = pipe_recommendation_scores(queue_rows, "customization_recommendation", "Derived from queued customization recommendations.")
-
-    section_break()
-    st.subheader("A. Market Snapshot")
-    card_grid(
-        [
-            ("Market Size", first_existing_value(market_row, ["Market Size"], "Unknown"), "Demand scale"),
-            ("Growth Stage", first_existing_value(market_row, ["Growth"], "Unknown"), "Momentum signal"),
-            ("Competition", first_existing_value(market_row, ["Competition"], "Unknown"), "Difficulty signal"),
-            ("Seasonality", first_existing_value(market_row, ["Seasonality"], "Unknown"), "Timing signal"),
-            ("Portfolio Stage", first_existing_value(market_row, ["Portfolio Stage"], "Unknown"), "Current maturity"),
-            ("Coverage", f"{numeric(market_row.get('Coverage')):.1f}%", "Current portfolio coverage"),
-            ("Expansion Potential", f"{numeric(market_row.get('Expansion Potential')):.1f}", "Child-niche room"),
-            ("Research Priority", first_existing_value(market_row, ["Investment"], "Monitor"), "Investment direction"),
-        ],
-        4,
+    child_rows = build_child_niche_rows(selected, queue_rows, demand_segments)
+    child_segments = child_rows["child_segment"].dropna().astype(str).unique().tolist() if "child_segment" in child_rows.columns else []
+    evidence_keywords = demand_evidence_keywords(selected, demand_segments, composite_demands)
+    product_distribution = distribution_from_fit_and_evidence(
+        product_fit,
+        child_segments,
+        PRODUCT_SCORE_COLUMNS,
+        evidence_keywords,
+        PRODUCT_TERMS,
+    )
+    customization_distribution = distribution_from_fit_and_evidence(
+        customization_fit,
+        child_segments,
+        CUSTOMIZATION_SCORE_COLUMNS,
+        evidence_keywords,
+        CUSTOMIZATION_TERMS,
     )
 
     section_break()
+    st.subheader("A. Market Snapshot")
+    render_market_snapshot(market_row, summary_row)
+
+    section_break()
     st.subheader("B. Executive Insight")
-    insight_box("So What", demand_executive_insight(selected, market_row, queue_rows))
+    render_executive_insight(selected, market_row, summary_row, child_rows, product_distribution)
 
     section_break()
     st.subheader("C. Demand Timeline")
     timeline = inferred_timeline(selected, market_row.get("Seasonality"))
-    card_grid([(label, value, "Execution timing") for label, value in timeline.items()], 4)
+    render_demand_timeline(timeline)
 
     section_break()
     st.subheader("D. Top Child Niches")
-    top_child_niche_cards(queue_rows, 10, show_detail=True)
+    top_child_niche_cards(child_rows, 10, show_detail=True)
 
     section_break()
-    render_direction_summary(product_scores, "E. Top Product Direction", "Product", 6)
+    render_market_distribution(child_rows)
 
     section_break()
-    render_direction_summary(customization_scores, "F. Top Customization Direction", "Customization", 7)
+    render_distribution_cards(product_distribution, "Product Distribution", "Product", 6)
 
     section_break()
-    st.subheader("G. Evidence")
+    render_distribution_cards(customization_distribution, "Customization Distribution", "Customization", 7)
+
+    section_break()
+    st.subheader("Evidence Summary")
     demand_evidence_cards(selected, demand_segments, composite_demands)
 
     section_break()
-    st.subheader("H. Research Recommendation")
-    insight_box("Next Decision", demand_research_recommendation(selected, market_row, queue_rows, product_scores, customization_scores))
+    st.subheader("Whitespace")
+    render_whitespace_capacity(summary_row, market_row)
 
-    with st.expander("Expandable Details", expanded=False):
-        display_table(queue_rows, height=360)
+    section_break()
+    st.subheader("Decision Recommendation")
+    render_decision_recommendation(selected, market_row, summary_row, child_rows, product_distribution, customization_distribution)
+
+    section_break()
+    st.subheader("Expandable Evidence")
+    render_grouped_child_evidence(child_rows, 10)
 
 
 def research_center() -> None:

@@ -1,12 +1,15 @@
-# Large raw/detail files
-data/output/intent_layer/intent_keywords.csv
-data/output/*/*keywords*.csv
-data/output/*/*evidence*.csv
+# Runtime data
+data/
+output/
 
 # Python
 .venv/
 __pycache__/
 *.pyc
+
+# Large database/files
+*.duckdb
+*.parquet
 
 # OS
 .DS_Store
