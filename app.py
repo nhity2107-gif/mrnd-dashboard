@@ -3299,10 +3299,8 @@ def portfolio_metric_legend() -> None:
     )
 
 
-def compact_market_opportunity_cards(markets: pd.DataFrame, title: str, mode: str, limit: int = 6) -> None:
+def compact_market_risk_cards(markets: pd.DataFrame, title: str, limit: int = 6) -> None:
     st.subheader(title)
-    if mode == "expansion":
-        portfolio_metric_legend()
     if markets.empty:
         st.info("No markets are available for this section.")
         return
@@ -3310,22 +3308,17 @@ def compact_market_opportunity_cards(markets: pd.DataFrame, title: str, mode: st
     for start in range(0, len(rows), 3):
         columns = st.columns(3)
         for column, (_, row) in zip(columns, rows.iloc[start : start + 3].iterrows()):
-            if mode == "risk":
-                note = f"Risk score {format_score(row.get('Risk Score'))}. Action: {market_recommended_action(row)}"
-                badge = "Review"
+            note = f"Risk score {format_score(row.get('Risk Score'))}. Action: {market_recommended_action(row)}"
             with column:
-                if mode == "risk":
-                    with st.container(border=True):
-                        st.caption(badge)
-                        st.markdown(f"**{clean_text(row.get('Parent Market'))}**")
-                        st.caption(
-                            f"{clean_text(row.get('Market Size'))} | "
-                            f"{clean_text(row.get('Growth'))} | "
-                            f"{clean_text(row.get('Competition'))}"
-                        )
-                        st.markdown(note)
-                else:
-                    st.markdown(portfolio_card_html(row, default_investment="Expand"), unsafe_allow_html=True)
+                with st.container(border=True):
+                    st.caption("Review")
+                    st.markdown(f"**{clean_text(row.get('Parent Market'))}**")
+                    st.caption(
+                        f"{clean_text(row.get('Market Size'))} | "
+                        f"{clean_text(row.get('Growth'))} | "
+                        f"{clean_text(row.get('Competition'))}"
+                    )
+                    st.markdown(note)
 
 
 def weekly_research_focus(queue: pd.DataFrame, limit: int = 10) -> None:
@@ -4082,21 +4075,6 @@ def demand_explorer() -> None:
     market_size_ranking_chart(ranked_markets)
 
     section_break()
-    expansion_candidates = ranked_markets[
-        (pd.to_numeric(ranked_markets["Expansion Potential"], errors="coerce").fillna(0) >= 65)
-        & (pd.to_numeric(ranked_markets["Coverage"], errors="coerce").fillna(0) <= 65)
-        & (pd.to_numeric(ranked_markets["Child Segment Count"], errors="coerce").fillna(0) >= 3)
-    ].copy()
-    if expansion_candidates.empty:
-        expansion_candidates = ranked_markets.copy()
-    expansion_candidates = sort_by_available(
-        expansion_candidates,
-        ["Expansion Opportunity Score", "Expansion Potential"],
-        [False, False],
-    )
-    compact_market_opportunity_cards(expansion_candidates, "Biggest Expansion Opportunities", "expansion", 6)
-
-    section_break()
     weak_investment = ranked_markets.get("Investment", pd.Series("", index=ranked_markets.index)).astype(str).isin(
         ["Monitor", "Avoid", "Exit", "Archive", "Watchlist"]
     )
@@ -4108,7 +4086,7 @@ def demand_explorer() -> None:
     if risk_candidates.empty:
         risk_candidates = ranked_markets.tail(6).copy()
     risk_candidates = sort_by_available(risk_candidates, ["Risk Score", "Market Rank Score"], [False, True])
-    compact_market_opportunity_cards(risk_candidates, "Biggest Risks / Avoid", "risk", 6)
+    compact_market_risk_cards(risk_candidates, "Biggest Risks / Avoid", 6)
 
     section_break()
     weekly_research_focus(queue, 10)
@@ -4275,80 +4253,6 @@ def research_center() -> None:
                 st.write(clean_text(detail.get(column)) or "No detail available.")
     with st.expander("Filtered research rows", expanded=False):
         display_table(data, height=360)
-
-
-def roadmap_cards(roadmap: pd.DataFrame, limit: int = 24) -> None:
-    if roadmap.empty:
-        st.info("No roadmap rows are available.")
-        return
-    rows = sort_by_available(roadmap, ["priority", "week"], [True, True]).head(limit).reset_index(drop=True)
-    for start in range(0, len(rows), 3):
-        columns = st.columns(3)
-        for column, (_, row) in zip(columns, rows.iloc[start : start + 3].iterrows()):
-            with column:
-                action_card(
-                    f"Week {clean_text(row.get('week'))}",
-                    first_existing_value(row, ["priority"], "Plan"),
-                    "",
-                    [
-                        ("Parent demand", row.get("parent_demand")),
-                        ("Child segment", row.get("child_segment")),
-                        ("Product", row.get("product")),
-                        ("Customization", row.get("customization")),
-                        ("Reason", row.get("reason")),
-                    ],
-                    "mrd-badge-p2",
-                )
-
-
-def portfolio_explorer() -> None:
-    page_header(
-        "Portfolio Explorer",
-        "Portfolio health, investment direction, and weekly roadmap.",
-    )
-    master = load_csv("portfolio_master")
-    summary = load_csv("portfolio_summary")
-    roadmap = load_csv("portfolio_roadmap")
-    if master.empty and summary.empty and roadmap.empty:
-        st.info("Portfolio data is missing or empty.")
-        return
-
-    st.subheader("A. Portfolio Health")
-    investment = master.get("investment_recommendation", pd.Series(dtype=str)).astype(str)
-    metric_cards(
-        [
-            ("Total Portfolios", len(master), "Parent markets"),
-            ("Average Coverage", f"{numeric(master['coverage_score'].mean() if 'coverage_score' in master.columns else 0):.1f}%", "Portfolio coverage"),
-            ("Invest Aggressively", int((investment == "Invest Aggressively").sum()), "Highest investment tier"),
-            ("Expand", int((investment == "Expand").sum()), "Expansion candidates"),
-            ("Monitor", int((investment == "Monitor").sum()), "Watchlist portfolios"),
-        ]
-    )
-
-    section_break()
-    st.subheader("B. Parent Portfolio")
-    options = clean_options(master["parent_demand"]) if not master.empty and "parent_demand" in master.columns else []
-    if options:
-        selected = st.selectbox("Select parent portfolio", options, key="portfolio_explorer_selected")
-        master_row = first_matching_row(master, "parent_demand", selected)
-        summary_row = first_matching_row(summary, "parent_demand", selected)
-        card_grid(
-            [
-                ("Coverage", f"{numeric(first_existing_value(summary_row, ['coverage_percent'], master_row.get('coverage_score'))):.1f}%", "Current coverage"),
-                ("Current Segments", first_existing_value(summary_row, ["current_child_segments"], master_row.get("child_segment_count", 0)), "Built child niches"),
-                ("Estimated Total", first_existing_value(summary_row, ["estimated_total_segments"], ""), "Potential segment count"),
-                ("Portfolio Stage", first_existing_value(master_row, ["portfolio_stage"], "Unknown"), "Lifecycle"),
-                ("Investment", first_existing_value(master_row, ["investment_recommendation"], "Monitor"), "Action tier"),
-                ("Next Recommendation", first_existing_value(summary_row, ["next_recommendation"], "Review next import"), "Next portfolio move"),
-            ],
-            3,
-        )
-
-    section_break()
-    st.subheader("C. Roadmap")
-    roadmap_cards(roadmap, 24)
-    with st.expander("Roadmap details", expanded=False):
-        display_table(roadmap, ["week", "parent_demand", "child_segment", "product", "customization", "priority", "reason"], height=360)
 
 
 def score_breakdown_cards(row: pd.Series) -> None:
@@ -4633,7 +4537,6 @@ def render_sidebar() -> str:
         [
             "Demand Explorer",
             "Research Center",
-            "Portfolio Explorer",
             "Decision Center",
             "Product Intelligence",
             "Market Evidence",
@@ -4660,8 +4563,6 @@ def main() -> None:
         demand_explorer()
     elif page == "Research Center":
         research_center()
-    elif page == "Portfolio Explorer":
-        portfolio_explorer()
     elif page == "Decision Center":
         decision_center()
     elif page == "Product Intelligence":
