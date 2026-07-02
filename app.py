@@ -1121,7 +1121,7 @@ def market_landscape_data(
     view["Parent Market"] = first_available_series(view, ["parent_demand", "demand_name"])
     view["Market Size"] = first_available_series(view, ["market_size", "market_size_market"])
     if "market_size_market" in view.columns:
-        view["Market Size"] = view["Market Size"].where(view["Market Size"].astype(str).str.strip() != "", view["market_size_market"])
+        view["Market Size"] = view["market_size_market"].where(view["market_size_market"].astype(str).str.strip() != "", view["Market Size"])
     view["Growth"] = series_or_default(view, "growth_stage")
     view["Coverage"] = numeric_market_series(view, ["coverage_score"])
     view["Competition"] = series_or_default(view, "competition_level")
@@ -1132,6 +1132,8 @@ def market_landscape_data(
     view["Market Stage"] = first_available_series(view, ["market_stage", "portfolio_stage"])
     view["Average Opportunity"] = numeric_market_series(view, ["average_opportunity_score"])
     view["Best Child Score"] = numeric_market_series(view, ["best_child_score"])
+    view["Child Segment Count"] = numeric_market_series(view, ["child_segment_count"])
+    view["Recommendation"] = first_available_series(view, ["recommendation", "investment_recommendation", "research_priority"])
     view["Market Size Score"] = view["Market Size"].apply(market_size_score)
     view["Growth Axis"] = view["Growth"].apply(growth_axis_score)
     view["Competition Axis"] = view["Competition"].apply(competition_axis_score)
@@ -1196,6 +1198,8 @@ def market_landscape_data(
         "Market Stage",
         "Average Opportunity",
         "Best Child Score",
+        "Child Segment Count",
+        "Recommendation",
         "Market Size Score",
         "Growth Axis",
         "Competition Axis",
@@ -2898,11 +2902,253 @@ def demand_executive_insight(demand_name: str, row: pd.Series, queue_rows: pd.Da
     return f"{invest_text} It is currently {clean_text(growth).lower()} with {clean_text(competition).lower()} competition and a {clean_text(stage).lower()} portfolio stage. {research_text} {risk}"
 
 
-def top_child_niche_cards(rows: pd.DataFrame, limit: int = 10) -> None:
+def prepare_market_rankings(markets: pd.DataFrame) -> pd.DataFrame:
+    if markets.empty:
+        return markets
+    ranked = markets.copy()
+    market_size = numeric_market_series(ranked, ["Market Size Score"])
+    expansion = numeric_market_series(ranked, ["Expansion Potential"])
+    average_opportunity = numeric_market_series(ranked, ["Average Opportunity"])
+    growth = numeric_market_series(ranked, ["Growth Score"])
+    best_child = numeric_market_series(ranked, ["Best Child Score"])
+    coverage = numeric_market_series(ranked, ["Coverage"])
+    child_count = numeric_market_series(ranked, ["Child Segment Count"])
+    ranked["Market Rank Score"] = (
+        market_size * 0.25
+        + expansion * 0.25
+        + average_opportunity * 0.20
+        + growth * 0.15
+        + best_child * 0.10
+        + (100 - coverage).clip(lower=0) * 0.05
+    )
+    ranked["Expansion Opportunity Score"] = (
+        expansion * 0.45
+        + average_opportunity * 0.25
+        + child_count.clip(upper=20) * 2
+        + (100 - coverage).clip(lower=0) * 0.10
+    )
+    ranked["Risk Score"] = (
+        (100 - ranked["Market Rank Score"]).clip(lower=0) * 0.45
+        + (100 - average_opportunity).clip(lower=0) * 0.25
+        + coverage.where(coverage < 20, 0) * 0.20
+    )
+    return ranked
+
+
+def market_recommended_action(row: pd.Series) -> str:
+    investment = first_existing_value(row, ["Investment"], "Monitor")
+    expansion = numeric(row.get("Expansion Potential"))
+    coverage = numeric(row.get("Coverage"))
+    opportunity = numeric(row.get("Average Opportunity"))
+    competition = clean_text(row.get("Competition"))
+    recommendation = first_existing_value(row, ["Recommendation"])
+    if investment == "Invest Aggressively" or (expansion >= 75 and opportunity >= 70):
+        return "Research child niches now."
+    if investment == "Expand" or (expansion >= 65 and coverage < 60):
+        return "Expand with focused child tests."
+    if competition == "High" and opportunity < 65:
+        return "Validate before design work."
+    if recommendation:
+        return recommendation
+    return "Monitor until stronger evidence appears."
+
+
+def executive_market_overview(markets: pd.DataFrame, queue: pd.DataFrame) -> None:
+    total_demands = len(markets)
+    sizes = markets.get("Market Size", pd.Series(dtype=str)).astype(str)
+    investment = markets.get("Investment", pd.Series(dtype=str)).astype(str)
+    total_child_niches = (
+        queue["child_segment"].nunique()
+        if not queue.empty and "child_segment" in queue.columns
+        else int(markets.get("Child Segment Count", pd.Series(dtype=float)).sum())
+    )
+    metric_cards(
+        [
+            ("Total Demands", total_demands, "Parent markets ranked"),
+            ("Mega Markets", int((sizes == "Mega").sum()), "Largest market tier"),
+            ("Large Markets", int((sizes == "Large").sum()), "Large market tier"),
+            ("P1 Markets", int(((investment == "P1") | (investment == "Invest Aggressively")).sum()), "Highest priority"),
+            ("Total Child Niches", total_child_niches, "Known child opportunities"),
+            ("Average Coverage", f"{numeric(markets['Coverage'].mean() if 'Coverage' in markets.columns else 0):.1f}%", "Portfolio coverage"),
+        ]
+    )
+
+
+def market_investment_cards(markets: pd.DataFrame, limit: int = 15) -> None:
+    if markets.empty:
+        st.info("No market ranking data is available.")
+        return
+    top = markets.head(limit).reset_index(drop=True)
+    for start in range(0, len(top), 3):
+        columns = st.columns(3)
+        for column, (index, row) in zip(columns, top.iloc[start : start + 3].iterrows()):
+            with column:
+                st.markdown(
+                    f"""
+                    <div class="mrd-card" style="min-height:245px;">
+                        <span class="mrd-badge {confidence_badge_class(confidence_from_score(row.get("Market Rank Score"), row.get("Investment")))}">#{index + 1}</span>
+                        <div class="mrd-card-value" style="font-size:1.35rem;margin-top:0.7rem;">{safe(row.get("Parent Market"))}</div>
+                        <div class="mrd-card-note">{safe(row.get("Market Size"))} | {safe(row.get("Growth"))} | {safe(row.get("Competition"))}</div>
+                        <div class="mrd-research-line"><b>Coverage:</b> {format_score(row.get("Coverage"))}%</div>
+                        <div class="mrd-research-line"><b>Expansion:</b> {format_score(row.get("Expansion Potential"))}</div>
+                        <div class="mrd-research-line"><b>Priority:</b> {safe(row.get("Investment"))}</div>
+                        <div class="mrd-research-line"><b>Action:</b> {safe(market_recommended_action(row))}</div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+
+
+def market_size_ranking_chart(markets: pd.DataFrame) -> None:
+    if markets.empty or "Market Rank Score" not in markets.columns:
+        st.info("No market-size ranking data is available.")
+        return
+    chart_data = markets.head(25).copy()
+    chart = (
+        alt.Chart(chart_data)
+        .mark_bar()
+        .encode(
+            x=alt.X("Market Rank Score:Q", title="Overall market score"),
+            y=alt.Y("Parent Market:N", sort="-x", title=None),
+            color=alt.Color("Market Size:N", title="Market Size"),
+            tooltip=[
+                "Parent Market",
+                "Market Size",
+                "Growth",
+                "Competition",
+                alt.Tooltip("Coverage:Q", format=".1f"),
+                alt.Tooltip("Expansion Potential:Q", format=".1f"),
+                alt.Tooltip("Market Rank Score:Q", format=".1f"),
+            ],
+        )
+        .properties(height=520, title="Market Size Ranking")
+    )
+    st.altair_chart(dark_chart(chart), use_container_width=True)
+
+
+def compact_market_opportunity_cards(markets: pd.DataFrame, title: str, mode: str, limit: int = 6) -> None:
+    st.subheader(title)
+    if markets.empty:
+        st.info("No markets are available for this section.")
+        return
+    rows = markets.head(limit).reset_index(drop=True)
+    for start in range(0, len(rows), 3):
+        columns = st.columns(3)
+        for column, (_, row) in zip(columns, rows.iloc[start : start + 3].iterrows()):
+            if mode == "risk":
+                note = f"Risk score {format_score(row.get('Risk Score'))}. Action: {market_recommended_action(row)}"
+                badge = "Review"
+                badge_style = "mrd-badge-watch"
+            else:
+                note = f"Expansion {format_score(row.get('Expansion Potential'))}; coverage {format_score(row.get('Coverage'))}%."
+                badge = clean_text(row.get("Investment")) or "Expand"
+                badge_style = badge_class(badge)
+            with column:
+                st.markdown(
+                    f"""
+                    <div class="mrd-card" style="min-height:185px;">
+                        <span class="mrd-badge {badge_style}">{safe(badge)}</span>
+                        <div class="mrd-card-value" style="font-size:1.25rem;margin-top:0.7rem;">{safe(row.get("Parent Market"))}</div>
+                        <div class="mrd-card-note">{safe(row.get("Market Size"))} | {safe(row.get("Growth"))} | {safe(row.get("Competition"))}</div>
+                        <div class="mrd-research-line">{safe(note)}</div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+
+
+def weekly_research_focus(queue: pd.DataFrame, limit: int = 10) -> None:
+    st.subheader("Weekly Research Focus")
+    if queue.empty:
+        st.info("No research candidates are available.")
+        return
+    rows = sort_by_available(queue, ["priority", "opportunity_score"], [True, False]).head(limit).reset_index(drop=True)
+    for start in range(0, len(rows), 2):
+        columns = st.columns(2)
+        for column, (_, row) in zip(columns, rows.iloc[start : start + 2].iterrows()):
+            with column:
+                action_card(
+                    row.get("child_segment"),
+                    first_existing_value(row, ["priority", "recommended_priority"], "Watchlist"),
+                    row.get("opportunity_score", row.get("total_score")),
+                    [
+                        ("Parent demand", row.get("parent_demand")),
+                        ("Product", first_existing_value(row, ["recommended_product", "best_product", "primary_product"])),
+                        ("Customization", first_existing_value(row, ["recommended_customization", "best_customization", "primary_customization"])),
+                        ("Next action", first_existing_value(row, ["next_action", "recommended_next_step", "reason"], "Validate market evidence.")),
+                    ],
+                )
+
+
+def child_detail_expander(row: pd.Series, key_prefix: str) -> None:
+    child = clean_text(row.get("child_segment")) or key_prefix
+    with st.expander(f"View detail: {child}", expanded=False):
+        st.markdown("#### Score Breakdown")
+        score_breakdown_cards(row)
+
+        product_rows = segment_fit_scores(row, PRODUCT_SCORE_COLUMNS)
+        customization_rows = segment_fit_scores(row, CUSTOMIZATION_SCORE_COLUMNS)
+        product_col, custom_col = st.columns(2)
+        with product_col:
+            st.markdown("#### Product Fit")
+            if product_rows.empty:
+                st.write("No product fit scores available.")
+            else:
+                display_table(product_rows, ["item", "score", "fit_level"], height=220)
+        with custom_col:
+            st.markdown("#### Customization Fit")
+            if customization_rows.empty:
+                st.write("No customization fit scores available.")
+            else:
+                display_table(customization_rows, ["item", "score", "fit_level"], height=220)
+
+        for label, field in [
+            ("Strengths", "strengths"),
+            ("Weaknesses", "weaknesses"),
+            ("Risks", "risks"),
+            ("Opportunities", "opportunities"),
+            ("Next Step", "recommended_next_step"),
+        ]:
+            st.markdown(f"#### {label}")
+            st.write(clean_text(row.get(field)) or "No detail available.")
+
+
+def demand_evidence_cards(demand_name: str, demand_segments: pd.DataFrame, composite_demands: pd.DataFrame) -> None:
+    keywords: list[str] = []
+    if not demand_segments.empty and "parent_demand" in demand_segments.columns and "evidence_keywords" in demand_segments.columns:
+        rows = demand_segments[demand_segments["parent_demand"].astype(str) == demand_name].head(12)
+        for value in rows["evidence_keywords"].dropna():
+            keywords.extend(split_pipe_values(value))
+    if not composite_demands.empty and "demand_name" in composite_demands.columns and "evidence_keywords" in composite_demands.columns:
+        rows = composite_demands[composite_demands["demand_name"].astype(str) == demand_name].head(3)
+        for value in rows["evidence_keywords"].dropna():
+            keywords.extend(split_pipe_values(value))
+
+    theme_terms = ["funny", "vintage", "retro", "floral", "watercolor", "boho", "faith", "patriotic", "minimalist", "country"]
+    product_terms = ["blanket", "mug", "tumbler", "shirt", "ornament", "canvas", "doormat", "poster", "sign", "pillow"]
+    occasion_terms = ["christmas", "birthday", "anniversary", "wedding", "retirement", "memorial", "graduation", "mother", "father"]
+    confidence = evidence_confidence(len(keywords))
+    card_grid(
+        [
+            ("Evidence Confidence", confidence, f"{len(keywords)} summarized keywords"),
+            ("Theme Signal", keyword_category_counts(keywords, theme_terms), "Common style/theme words"),
+            ("Product Signal", keyword_category_counts(keywords, product_terms), "Common product words"),
+            ("Occasion Signal", keyword_category_counts(keywords, occasion_terms), "Common event words"),
+        ],
+        4,
+    )
+    with st.expander("Keyword evidence details", expanded=False):
+        if not keywords:
+            st.info("No summarized evidence keywords are available for this demand.")
+        else:
+            display_table(pd.DataFrame({"keyword_order": range(1, len(keywords[:100]) + 1), "keyword": keywords[:100]}), height=320)
+
+
+def top_child_niche_cards(rows: pd.DataFrame, limit: int = 10, show_detail: bool = True) -> None:
     if rows.empty:
         st.info("No child-niche research candidates are available for this demand.")
         return
-    top_rows = rows.head(limit).reset_index(drop=True)
+    top_rows = sort_by_available(rows, ["opportunity_score", "total_score"], [False, False]).head(limit).reset_index(drop=True)
     for start in range(0, len(top_rows), 2):
         columns = st.columns(2)
         for column, (_, row) in zip(columns, top_rows.iloc[start : start + 2].iterrows()):
@@ -2919,10 +3165,12 @@ def top_child_niche_cards(rows: pd.DataFrame, limit: int = 10) -> None:
                             "Best customization",
                             first_existing_value(row, ["recommended_customization", "best_customization", "primary_customization"]),
                         ),
-                        ("Reason", first_existing_value(row, ["reason", "explanation"], "No reason available.")),
-                        ("Action", first_existing_value(row, ["next_action", "recommended_next_step"], "Validate the niche.")),
+                        ("Why this matters", first_existing_value(row, ["reason", "why_now", "explanation"], "No reason available.")),
+                        ("Recommended action", first_existing_value(row, ["next_action", "recommended_next_step"], "Validate the niche.")),
                     ],
                 )
+                if show_detail:
+                    child_detail_expander(row, f"child_{start}")
 
 
 def render_direction_summary(rows: pd.DataFrame, title: str, item_label: str, limit: int = 6) -> None:
@@ -2965,19 +3213,98 @@ def demand_research_recommendation(
 def demand_explorer() -> None:
     page_header(
         "Demand Explorer",
-        "Insight-first home page for deciding what matters, why it matters, and what to do next.",
+        "Executive market home for deciding which demands to inspect and research first.",
     )
     queue = decision_data()
     scorecard = load_csv("opportunity_scorecard")
     product_fit = load_csv("product_fit_matrix")
     customization_fit = load_csv("customization_fit_matrix")
+    demand_segments = load_csv("demand_segments")
+    composite_demands = load_csv("composite_demands")
     markets = market_landscape_data(load_csv("portfolio_master"), load_csv("market_intelligence"), scorecard, customization_fit)
+    ranked_markets = prepare_market_rankings(markets)
     options = parent_market_options(load_csv("portfolio_master"), load_csv("market_intelligence"), queue)
     if not options:
         st.info("No demand data is available.")
         return
 
-    selected = st.selectbox("Select Demand", options, key="demand_explorer_selected")
+    ranked_markets = sort_by_available(
+        ranked_markets,
+        ["Market Rank Score", "Expansion Potential", "Average Opportunity"],
+        [False, False, False],
+    )
+
+    st.subheader("Executive Market Overview")
+    executive_market_overview(ranked_markets, queue)
+
+    section_break()
+    st.subheader("Top Markets to Invest")
+    market_investment_cards(ranked_markets, 15)
+
+    section_break()
+    st.subheader("Market Size Ranking")
+    market_size_ranking_chart(ranked_markets)
+
+    section_break()
+    expansion_candidates = ranked_markets[
+        (pd.to_numeric(ranked_markets["Expansion Potential"], errors="coerce").fillna(0) >= 65)
+        & (pd.to_numeric(ranked_markets["Coverage"], errors="coerce").fillna(0) <= 65)
+        & (pd.to_numeric(ranked_markets["Child Segment Count"], errors="coerce").fillna(0) >= 3)
+    ].copy()
+    if expansion_candidates.empty:
+        expansion_candidates = ranked_markets.copy()
+    expansion_candidates = sort_by_available(
+        expansion_candidates,
+        ["Expansion Opportunity Score", "Expansion Potential"],
+        [False, False],
+    )
+    compact_market_opportunity_cards(expansion_candidates, "Biggest Expansion Opportunities", "expansion", 6)
+
+    section_break()
+    weak_investment = ranked_markets.get("Investment", pd.Series("", index=ranked_markets.index)).astype(str).isin(
+        ["Monitor", "Avoid", "Exit", "Archive", "Watchlist"]
+    )
+    risk_candidates = ranked_markets[
+        weak_investment
+        | (pd.to_numeric(ranked_markets["Market Rank Score"], errors="coerce").fillna(0) < 60)
+        | (pd.to_numeric(ranked_markets["Average Opportunity"], errors="coerce").fillna(0) < 60)
+    ].copy()
+    if risk_candidates.empty:
+        risk_candidates = ranked_markets.tail(6).copy()
+    risk_candidates = sort_by_available(risk_candidates, ["Risk Score", "Market Rank Score"], [False, True])
+    compact_market_opportunity_cards(risk_candidates, "Biggest Risks / Avoid", "risk", 6)
+
+    section_break()
+    weekly_research_focus(queue, 10)
+
+    with st.expander("Market ranking details", expanded=False):
+        display_table(
+            ranked_markets,
+            [
+                "Parent Market",
+                "Market Size",
+                "Growth",
+                "Competition",
+                "Coverage",
+                "Expansion Potential",
+                "Average Opportunity",
+                "Child Segment Count",
+                "Investment",
+                "Market Rank Score",
+                "Recommendation",
+            ],
+            height=360,
+        )
+
+    section_break()
+    st.subheader("Inspect a Demand")
+    ranked_options = ranked_markets["Parent Market"].dropna().astype(str).tolist()
+    remaining_options = [option for option in options if option not in ranked_options]
+    selected = st.selectbox(
+        "Select demand after reviewing the market ranking",
+        ranked_options + remaining_options,
+        key="demand_explorer_selected",
+    )
     market_row = demand_market_row(selected, markets)
     queue_rows = parent_queue_rows(queue, selected)
     child_segments = queue_rows["child_segment"].dropna().astype(str).unique().tolist() if "child_segment" in queue_rows.columns else []
@@ -2989,6 +3316,7 @@ def demand_explorer() -> None:
     if customization_scores.empty:
         customization_scores = pipe_recommendation_scores(queue_rows, "customization_recommendation", "Derived from queued customization recommendations.")
 
+    section_break()
     st.subheader("A. Market Snapshot")
     card_grid(
         [
@@ -3015,7 +3343,7 @@ def demand_explorer() -> None:
 
     section_break()
     st.subheader("D. Top Child Niches")
-    top_child_niche_cards(queue_rows, 10)
+    top_child_niche_cards(queue_rows, 10, show_detail=True)
 
     section_break()
     render_direction_summary(product_scores, "E. Top Product Direction", "Product", 6)
@@ -3024,7 +3352,11 @@ def demand_explorer() -> None:
     render_direction_summary(customization_scores, "F. Top Customization Direction", "Customization", 7)
 
     section_break()
-    st.subheader("G. Research Recommendation")
+    st.subheader("G. Evidence")
+    demand_evidence_cards(selected, demand_segments, composite_demands)
+
+    section_break()
+    st.subheader("H. Research Recommendation")
     insight_box("Next Decision", demand_research_recommendation(selected, market_row, queue_rows, product_scores, customization_scores))
 
     with st.expander("Expandable Details", expanded=False):
