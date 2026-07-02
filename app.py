@@ -3039,18 +3039,32 @@ def compact_market_opportunity_cards(markets: pd.DataFrame, title: str, mode: st
                 note = f"Risk score {format_score(row.get('Risk Score'))}. Action: {market_recommended_action(row)}"
                 badge = "Review"
                 badge_style = "mrd-badge-watch"
+                metrics_html = f'<div class="mrd-research-line">{safe(note)}</div>'
+                min_height = 185
             else:
-                note = f"Expansion {format_score(row.get('Expansion Potential'))}; coverage {format_score(row.get('Coverage'))}%."
                 badge = clean_text(row.get("Investment")) or "Expand"
                 badge_style = badge_class(badge)
+                metrics_html = f"""
+                        <div class="mrd-research-line"><b>Expansion Potential:</b> {safe(format_score(row.get('Expansion Potential')))} / 100</div>
+                        <div class="mrd-research-line"><b>Detected Segment Coverage:</b> {safe(format_score(row.get('Coverage')))}%</div>
+                        <div class="mrd-card-note" style="font-size:0.76rem;line-height:1.35;margin-top:0.7rem;">
+                            <b>Detected Segment Coverage</b> = percentage of discovered child segments versus the estimated total segment capacity for this parent demand. Higher means this market has been researched more thoroughly.<br><br>
+                            <b>Expansion Potential</b> = composite score calculated from:<br>
+                            - parent market expansion score<br>
+                            - remaining uncovered segment space<br>
+                            - best child opportunity score<br><br>
+                            Higher Expansion Potential means more high-value opportunities remain.
+                        </div>
+                """
+                min_height = 330
             with column:
                 st.markdown(
                     f"""
-                    <div class="mrd-card" style="min-height:185px;">
+                    <div class="mrd-card" style="min-height:{min_height}px;">
                         <span class="mrd-badge {badge_style}">{safe(badge)}</span>
                         <div class="mrd-card-value" style="font-size:1.25rem;margin-top:0.7rem;">{safe(row.get("Parent Market"))}</div>
                         <div class="mrd-card-note">{safe(row.get("Market Size"))} | {safe(row.get("Growth"))} | {safe(row.get("Competition"))}</div>
-                        <div class="mrd-research-line">{safe(note)}</div>
+                        {metrics_html}
                     </div>
                     """,
                     unsafe_allow_html=True,
