@@ -1,0 +1,198 @@
+intent,niche_type,niche_value,keyword_count,distinct_keyword_count,best_rank,p25_rank,top100_count,top1000_count,active_months,example_keywords
+unknown,interest,coffee,30755,10572,45,325973.0,4.0,42.0,4,coffee maker | espresso machine | coffee | keurig coffee machine | coffee table
+unknown,interest,gaming,9193,3571,48,344093.0,2.0,25.0,4,gaming chair | gaming laptop | gaming pc | gaming desk | gaming monitor
+unknown,interest,yoga,4581,1515,188,316937.0,0.0,9.0,4,crz yoga | yoga mat | crz yoga leggings | yoga pants women | yoga pants
+unknown,theme,floral,10536,3977,277,389047.25,0.0,2.0,4,lego flowers | flowers | flowers for delivery prime | fake flowers | lego flower
+unknown,theme,boho,3275,1108,303,375384.5,0.0,4.0,4,boho maxi dress | boho tops for women | boho dresses for women | boho tops | boho fashion
+gift,theme,funny,1431,841,714,381817.5,0.0,2.0,4,gag gift | funny gift | gag gift funny adult | funny white elephant gift | gag gift for men
+unknown,interest,soccer,10913,4757,830,341415.0,0.0,2.0,4,football | soccer ball | football cards | football gloves | soccer
+unknown,interest,pickleball,2097,729,838,370702.0,0.0,1.0,4,pickleball paddles | paddle board | pickleball balls | pickleball | pickleball bag
+unknown,interest,camping,5386,1932,948,356151.0,0.0,1.0,4,camping essentials | camping chairs | camping deals | tents for camping | camping
+unknown,interest,reading,4918,1632,955,341818.0,0.0,1.0,4,reading glasses for women | sd card reader | reading glasses men | reading light | reading glasses
+unknown,interest,gardening,5393,2037,1013,350959.0,0.0,0.0,4,garden clearance deals | garden hose | 100 ft garden hose | over the garden wall | fall garden flag
+unknown,interest,hunting,5979,2294,1048,353279.0,0.0,0.0,4,hunting essentials | kpop demon hunter costume | hunting | hunting gear | hunting deals
+unknown,theme,american,2791,1107,1295,373257.0,0.0,0.0,4,american girl dolls | american horror story | american flags for outside | the american revolution | american cheese
+decor,theme,boho,281,86,1358,268793.0,0.0,0.0,4,best boho chic decor | best boho decor | boho wall decor | boho decor | boho decor deals
+gift,theme,faith,417,188,1404,348426.0,0.0,0.0,4,christian gift for women | christian gift | gift for christian women | religious gift for women | christian gift for men
+unknown,theme,funny,4615,2346,1430,352527.5,0.0,0.0,4,funny halloween costumes | funny socks | funny slippers | funny socks for men | funny calendar 2026
+unknown,theme,retro,2590,1120,1670,402221.25,0.0,0.0,4,retro gaming console | 70s outfits for women | retro snap | retro game console | retro snap game console
+unknown,lifestyle,cowgirl,1092,452,1731,345252.0,0.0,0.0,4,cowgirl boots | cowgirl outfits for women | white cowgirl boots | cowgirl costume for girls | cowgirl costume for women
+unknown,lifestyle,book lover,1530,507,1881,315483.5,0.0,0.0,4,sd card reader | sd card reader for iphone | square card reader | sd card reader usb c | micro sd card reader
+unknown,interest,fishing,4794,1851,2202,373632.25,0.0,0.0,4,fishing | fishing gear | fishing line | fishing advent calendar 2025 | fishing lures
+gift,interest,hunting,100,48,2648,277843.5,0.0,0.0,4,demon hunter gift | hunting gift for men | hunting gift | gift for hunter who has everything | mens hunting gift
+christmas,theme,vintage,627,339,2763,366919.5,0.0,0.0,4,vintage christmas decor | vintage christmas ornament | vintage christmas wrapping paper | vintage christmas lights | vintage christmas
+unknown,theme,patriotic,2160,922,2830,372485.5,0.0,0.0,4,american flag | turning point usa merch | turning point usa | amazon usa | captain america costume kids
+apparel,theme,patriotic,320,146,3046,350386.5,0.0,0.0,4,turning point usa shirt | turning point usa hat | make america great again hat | usa shirt | patriotic shirt for women
+unknown,theme,watercolor,1823,654,3105,347963.5,0.0,0.0,4,watercolor workbook | watercolor paint set | watercolor paper | tobios watercolor kit | emily lex watercolor workbook
+apparel,lifestyle,cowgirl,256,107,3479,312265.0,0.0,0.0,4,cowgirl hat | pink cowgirl hat | cowgirl hats women | cowgirl shirt for women | cowgirl shirt
+christmas,theme,funny,736,413,3717,337972.25,0.0,0.0,4,funny christmas shirt | funny christmas sweater | funny christmas ornament | funny christmas cards | funny christmas wrapping paper
+gift,lifestyle,book lover,158,64,3820,234129.5,0.0,0.0,4,book lovers gift | gift for book lovers | book lover gift for women | gift for book lovers women | book lover gift
+unknown,theme,minimalist,2226,809,4027,400280.0,0.0,0.0,4,simple modern water bottle | clean simple eats protein powder | simple mills | simple modern | simple human trash can
+apparel,theme,funny,921,339,4200,418736.0,0.0,0.0,4,funny shirt | funny shirt for men | funny thanksgiving shirt | funny halloween shirt | funny golf shirt for men
+unknown,theme,faith,5755,2343,4403,407252.0,0.0,0.0,4,separation of church and hate | little jesus figures | bible verse jar | nacimiento de jesus para navidad | jesus
+gift,interest,fishing,92,55,6082,377151.75,0.0,0.0,4,fishing gift for men | fishing gift | fishing gift for boys | funny fishing gift | gift for fishing lovers
+christmas,interest,gardening,94,61,6131,384519.25,0.0,0.0,4,christmas garden flag | christmas garden flags for outside | christmas solar kettle lights garden lawn decorative lights | christmas garden flags | garden flag christmas
+gift,interest,gaming,130,73,6253,380070.25,0.0,0.0,4,gamer gift | gamer gift for men | gaming gift | gaming gift for men | gamer gift for boys
+apparel,theme,american,142,60,7033,313495.75,0.0,0.0,4,american girl doll clothes | american doll clothes | american eagle clothes | american girl clothes | american apparel shirt
+gift,interest,coffee,236,134,7133,300063.5,0.0,0.0,4,coffee gift | espresso martini gift | coffee lover gift | coffee gift set | coffee gift basket
+decor,theme,vintage,294,105,7176,474542.0,0.0,0.0,4,vintage halloween decor | amazon vintage home decor | vintage decor | vintage wall decor | vintage wall art
+decor,interest,soccer,213,88,7291,285612.0,0.0,0.0,4,football party decorations | football decor | football decorations | soccer party decorations | football decorations for party
+gift,interest,gardening,113,60,7527,288313.0,0.0,0.0,4,olive garden gift card | gardening gift | gardening gift for women | garden gift | plant lover gift
+apparel,theme,faith,854,284,7861,345794.75,0.0,0.0,4,christian shirt for women | jesus shirt | faith over fear hoodie | christian shirt for men | jesus hoodie
+decor,theme,floral,269,97,8354,351532.0,0.0,0.0,4,fall flowers artificial for decoration | flowers for decoration | edible flowers cake decorations | flower wall decor | botanical wall art
+gift,interest,reading,94,36,10421,279612.0,0.0,0.0,4,book lover gift for women | book lover gift | unique gift for book lover | book reader gift | reading gift
+gift,interest,pickleball,39,17,10568,167544.0,0.0,0.0,4,pickleball gift | pickleball gift for women | pickleball gift for men | cool gift for pickleball players | gift for pickleball lovers
+decor,interest,gardening,126,56,10732,335086.25,0.0,0.0,4,garden decor | garden decor for outside | solar watering can with cascading lights outdoor garden decor | solar garden decor | outdoor garden decor
+decor,interest,coffee,189,61,11241,370702.0,0.0,0.0,4,coffee table decor | coffee bar decor | coffee bar sign | coffee decor | coffee sign
+gift,interest,soccer,291,138,11357,356753.0,0.0,0.0,4,soccer gift | soccer gift for boys | football gift | soccer gift for boys 8 12 | football gift for boys 8 12
+apparel,theme,boho,106,34,11516,273041.5,0.0,0.0,4,boho womens clothing winter | boho chic clothing | boho clothes for women | bohemian clothes for women | boho shirt for women
+birthday,theme,funny,170,61,11704,584110.75,0.0,0.0,4,funny birthday cards for women | funny birthday cards for men | funny birthday card | funny birthday cards | birthday card funny
+apparel,interest,soccer,338,182,13304,432978.75,0.0,0.0,4,football shirt for women | soccer mom shirt | football mom shirt | football shirt | football kicking shirt
+gift,lifestyle,cat lover,93,35,13410,155552.0,0.0,0.0,4,gift for cat lovers | cat lover gift for women | cat lover gift | cat mom gift | cat dad gift
+christmas,interest,coffee,249,130,14124,372971.0,0.0,0.0,4,christmas coffee mug | christmas coffee cups | christmas coffee cups disposable | christmas coffee | christmas coffee table book
+gift,lifestyle,dog lover,69,27,14161,147045.0,0.0,0.0,4,dog mom gift for women | dog mom gift | gift for dog lovers | dog lovers gift for women | dog lover gift
+christmas,theme,floral,299,171,14203,376295.0,0.0,0.0,4,christmas flowers | christmas flowers artificial | artificial christmas flowers | poinsettias artificial christmas flowers | christmas floral picks
+apparel,interest,fishing,263,85,14556,331298.5,0.0,0.0,4,fishing shirt for men | fishing shirt | fishing hat | mens fishing shirt | huk fishing shirt for men
+matching,interest,coffee,21,11,15041,412653.0,0.0,0.0,4,espresso brown matching set | coffee brown matching set | his and hers coffee mug set | his and hers coffee mug | couples coffee mug set
+unknown,theme,vintage,3937,1501,17518,446144.0,0.0,0.0,4,vintage furniture deals | vintage ornament | vintage | star wars vintage collection | vintage lamp
+gift,theme,american,49,23,17727,462655.0,0.0,0.0,4,american eagle gift card | american eagle gift card 50 | native american gift | american girl gift card | american express gift cards
+gift,interest,camping,43,24,17729,410419.0,0.0,0.0,4,camping gift | camping gift for men | camping gift for women | camper gift | camping gift ideas
+gift,lifestyle,coffee lover,51,21,18646,223508.0,0.0,0.0,4,coffee lover gift | gift for coffee lovers | coffee lover gift for women | coffee lovers gift | gift for coffee lovers women
+matching,theme,funny,138,89,20094,423177.75,0.0,0.0,4,funny couples halloween costumes | funny couple costumes | couples halloween costumes 2025 funny | funny couples costumes | couple costumes for adults funny
+anniversary,theme,patriotic,69,28,21635,356577.0,0.0,0.0,4,250 anniversary usa hat | 250th anniversary usa hat | 250th anniversary hat made in usa | america 250th anniversary hat | usa 250th anniversary hat
+unknown,lifestyle,dog lover,51,34,22596,512568.5,0.0,0.0,4,dog mom | dog dad | dog mom mug | dog lover | dog mom socks
+christmas,theme,faith,413,235,22778,425271.0,0.0,0.0,4,religious christmas cards | christian christmas cards | christmas cards religious | religious christmas cards with envelopes | christian christmas decor
+apparel,interest,hunting,426,151,23026,405974.75,0.0,0.0,4,hunting clothes for men | hunting clothes | orange hunting hat | tidewe hunting clothes | womens hunting clothes
+personalized,interest,coffee,92,39,24216,278186.25,0.0,0.0,4,custom coffee mug | personalized coffee mug | personalized coffee tumbler | custom coffee tumbler | customized coffee mug
+decor,theme,faith,246,96,24253,279766.0,0.0,0.0,4,christian wall art | jesus wall art | christian trunk or treat car decorations kit | christian decor | christian wall decor
+apparel,interest,coffee,46,19,30781,484259.75,0.0,0.0,4,espresso brown clothes | coffee brown clothes | coffee weather sweatshirt | espresso martini shirt | espresso martini sweatshirt
+decor,theme,funny,192,82,31058,404542.0,0.0,0.0,4,funny bathroom wall art | funny desk decor | funny bathroom decor | funny office decor | funny desk signs
+decor,interest,gaming,135,55,31267,346294.5,0.0,0.0,4,gaming room decor | gamer room decor for boys | gaming decor | gamer room decor | gaming wall decor
+christmas,theme,boho,62,38,31623,423385.0,0.0,0.0,4,boho christmas decor | boho christmas ornament | boho christmas | boho christmas stockings | boho christmas tree skirt
+unknown,lifestyle,cat lover,76,46,33754,307582.75,0.0,0.0,4,cat dad | cat mom | cat lover | cat mug for cat lovers | cat lovers
+christmas,theme,retro,90,50,40310,380051.0,0.0,0.0,4,retro christmas decor | retro christmas ornament | retro christmas lights | retro christmas wrapping paper | old school christmas lights
+apparel,lifestyle,cat lover,22,10,44026,398612.5,0.0,0.0,4,cat dad shirt | cat mom shirt | cat dad club shirt | cat mom sweatshirt | cat dad hat
+wedding,interest,coffee,3,1,47895,148649.5,0.0,0.0,2,espresso brown wedding guest dress
+personalized,interest,soccer,69,30,47943,358357.0,0.0,0.0,4,custom football jersey | custom jersey football | custom soccer jersey | custom football shirt | personalized football ornament
+christmas,theme,american,43,21,49833,335126.0,0.0,0.0,4,african american christmas decorations | african american christmas cards | an american christmas carol | african american christmas wrapping paper | black christmas cards african american
+birthday,interest,soccer,64,21,50897,461600.25,0.0,0.0,4,football birthday party decorations | soccer birthday party decorations | football birthday decorations | soccer birthday decorations | football birthday banner
+unknown,lifestyle,lake life,17,6,51020,132423.0,0.0,0.0,4,the lake house | meet me at the lake | lake house | lake life | meet me at the lake carley fortune
+wedding,theme,boho,43,21,51581,322300.5,0.0,0.0,4,boho wedding dress | boho wedding guest dresses | boho wedding dresses for bride | boho wedding guest dress | bohemian wedding dresses
+apparel,interest,yoga,86,23,53698,219673.25,0.0,0.0,4,alo yoga inspired clothes | crz yoga sweatshirt | yoga shirt for women | crz yoga clothes | yoga clothes for women
+wedding,theme,floral,113,54,54399,419114.0,0.0,0.0,4,wedding arch flowers | flower girl dresses for wedding | floral wedding guest dresses | wedding flowers | floral dress for women wedding guest
+gift,theme,floral,43,16,59369,392034.5,0.0,0.0,4,flower girl gift | floral gift bags | flower gift | flower girl proposal gift | sun flower gift for women
+decor,theme,retro,67,23,63471,333728.5,0.0,0.0,4,retro decor | retro halloween decor | 70s party decorations | groovy party decorations | retro wall art
+birthday,theme,faith,56,32,64750,458007.75,0.0,0.0,4,happy birthday jesus | happy birthday jesus cake topper | happy birthday jesus party supplies | go jesus its your birthday sweater | happy birthday jesus banner
+gift,lifestyle,wine lover,27,15,65162,362069.5,0.0,0.0,4,gift for wine lovers | wine lovers gift for women | wine lover gift | gift for wine lovers for women | wine gift for wine lovers
+unknown,lifestyle,wine lover,13,6,71078,460729.0,0.0,0.0,4,wine accessories for wine lovers | wine enthusiast wine refrigerator | wine lovers | wine enthusiast | wine lover
+wedding,theme,vintage,28,11,74082,576882.75,0.0,0.0,4,vintage wedding dresses | vintage wedding rings for women | vintage wedding dress | vintage wedding decor | vintage wedding ring set
+apparel,lifestyle,dog lover,30,11,75186,294952.0,0.0,0.0,4,dog mom sweatshirt | dog mom shirt | dog mom hat | dog dad shirt | dog dad hat
+anniversary,theme,american,11,4,75630,224093.5,0.0,0.0,4,250 year american anniversary hat | 250 year american anniversary flag | american test kitchen 25th anniversary cookbook | american 250th anniversary hat
+personalized,theme,patriotic,26,7,76696,116189.75,0.0,0.0,4,pink american flag custom | custom american flag | american flag custom | custom pink american flag | custom american flag with picture
+gift,theme,vintage,32,16,77775,368903.25,0.0,0.0,4,vintage gift | vintage gift for women | vintage gift for men | vintage christmas gift tags | vintage christmas gift bags
+gift,interest,yoga,22,10,78009,453734.5,0.0,0.0,4,yoga gift | yoga gift for women | gift for yoga lovers | yoga gift for women unique | yoga instructor gift
+birthday,lifestyle,cowgirl,13,4,83009,237321.0,0.0,0.0,4,cowgirl birthday party decorations | cowgirl birthday decorations | cowgirl birthday | birthday cowgirl hat
+christmas,theme,watercolor,26,13,90339,449260.75,0.0,0.0,4,christmas watercolor workbook | watercolor christmas cards | hand painted christmas ornament | watercolor workbook christmas | christmas watercolor book
+birthday,interest,hunting,33,13,92802,261328.0,0.0,0.0,4,kpop demon hunter birthday decorations | k pop demon hunter birthday decorations | hunting birthday party decorations | kpop demon hunter birthday | demon hunter birthday decorations
+decor,theme,minimalist,29,14,93097,281923.0,0.0,0.0,4,minimalist wall art | minimalist home decor | minimalist decor | minimalist shelf decor | minimalist wall decor
+decor,lifestyle,cowgirl,50,16,94460,423147.5,0.0,0.0,4,cowgirl party decorations | disco cowgirl party decorations | cowgirl decor | coastal cowgirl room decor | cowgirl themed party decorations
+birthday,interest,fishing,11,4,96138,314240.5,0.0,0.0,4,fishing birthday party decorations | fishing birthday decorations | fishing birthday card | fishing birthday
+apparel,theme,vintage,322,118,96699,416342.5,0.0,0.0,4,vintage shirt for men | vintage clothes | vintage halloween shirt | vintage santa sweatshirt | vintage clothes for women
+gift,theme,retro,22,14,98459,704953.5,0.0,0.0,4,retro gift | gift for parents in their 70s | retro gift for men | retro gift for women | best gift for women in their 70s
+birthday,interest,gaming,18,5,98867,283634.25,0.0,0.0,4,gamer birthday party decorations | gaming birthday party decorations | gamer birthday decorations | gamer birthday party favors | gaming birthday decorations
+wedding,theme,american,5,2,103400,309462.0,0.0,0.0,4,american wedding | american pie wedding
+decor,theme,american,38,11,104794,483044.75,0.0,0.0,4,native american decor | african american wall art | native american wall art | american sign language for beginners | native american heritage month decorations
+gift,theme,boho,16,8,106175,443561.5,0.0,0.0,4,boho gift for women | boho gift | boho gift for women unique | earthy gift for women | earthy gift
+christmas,theme,minimalist,49,32,107400,517740.0,0.0,0.0,3,simple modern christmas tumbler | minimalist christmas decor | simple modern christmas | minimalist christmas tree | simple christmas decor
+birthday,theme,floral,37,11,109622,251260.0,0.0,0.0,4,birthday flowers for women | birthday flowers | flower birthday decorations | floral birthday decorations | birthday flowers for delivery prime
+birthday,interest,camping,10,4,118005,215109.5,0.0,0.0,4,one happy camper birthday decorations | camping birthday party decorations | camping birthday | camping birthday decorations
+apparel,interest,gaming,45,17,121989,334595.0,0.0,0.0,4,gaming apparel | gaming hats | gamer shirt | gamer shirt for men | gamer hoodie
+decor,lifestyle,lake life,10,3,124201,157100.5,0.0,0.0,4,lake house decor | lake life decor | lake house wall art
+gift,lifestyle,cowgirl,15,6,128687,501434.5,0.0,0.0,4,cowgirl gift | cowgirl gift for women | western girl gift | cowgirl gift for girls | cowgirl gift bag
+christmas,interest,soccer,54,25,129665,384173.0,0.0,0.0,4,football christmas ornament | soccer christmas ornament | soccer ornament for christmas tree | football ornament for christmas tree | football christmas wrapping paper
+apparel,interest,pickleball,68,23,133348,335256.25,0.0,0.0,4,pickleball shirt for men | pickleball shirt | pickleball shirt women | pickleball hat | pickleball clothes for women
+apparel,theme,floral,83,31,133351,503001.5,0.0,0.0,4,flower hat | flower hoodie | floral shirt for women | flower shirt | flower girl shirt
+decor,interest,camping,49,20,134159,435256.0,0.0,0.0,4,camper decor | camping decor | camping party decorations | camper decor for inside | rv decorations for inside camper
+matching,interest,hunting,3,2,138615,247273.0,0.0,0.0,2,deer and hunter costume couple | hunter and deer couple costume
+apparel,theme,retro,112,45,143680,601309.75,0.0,0.0,4,70s shirt women | 70s shirt for men | mens 70s shirt | 70s shirt | retro santa sweatshirt
+christmas,interest,fishing,21,11,143811,525468.0,0.0,0.0,3,fishing ornament for christmas tree | fishing christmas ornament | fishing christmas wrapping paper | fishing wrapping paper christmas | fishing christmas calendar
+gift,lifestyle,country girl,5,2,147111,288665.0,0.0,0.0,4,country girl gift | country girl gift for women
+matching,theme,american,21,11,156700,419816.0,0.0,0.0,4,american girl doll matching outfits | bow dream girl dress cartoon cute and matching american girl doll clothes | american girl doll matching pajamas | american girl matching outfits | american girl doll clothes matching sets
+apparel,interest,reading,40,18,160403,596344.5,0.0,0.0,4,reading is my favorite sport sweatshirt | reading rainbow shirt | reading sweatshirt | book lover sweatshirt | reading is my favorite sport shirt
+anniversary,theme,funny,21,7,163893,442304.0,0.0,0.0,4,funny anniversary cards for him | funny anniversary cards | anniversary card funny | funny anniversary cards for wife | funny anniversary card
+wedding,theme,funny,13,5,166244,297763.0,0.0,0.0,3,funny wedding card | wedding card funny | funny wedding cake toppers | wedding cake toppers funny | funny wedding cards
+gift,lifestyle,lake life,7,3,171130,478074.0,0.0,0.0,4,lake house gift | lake life gift | gift for lake house
+wedding,theme,minimalist,20,8,175502,328175.0,0.0,0.0,4,simple wedding dresses for bride | simple wedding dress | simple wedding guest dress | simple white wedding dress | minimalist wedding dresses
+unknown,lifestyle,rv life,64,28,177135,495299.5,0.0,0.0,4,short queen mattress for rv camper | sewer hose for rv camper | water pressure regulator for rv camper | rhino sewer hose for rv camper | rv camper accessories
+unknown,lifestyle,coffee lover,13,9,177514,551224.0,0.0,0.0,4,coffee lover | coffee lovers | coffee accessories for coffee lovers | stocking stuffers for coffee lovers | coffee gadgets for coffee lovers
+decor,interest,hunting,89,28,180597,443762.0,0.0,0.0,4,hunting decor | kpop demon hunter poster | kpop demon hunter party decorations | hunter x hunter poster | kpop demon hunter decorations
+decor,interest,fishing,54,21,181337,480515.5,0.0,0.0,4,fishing net decor | fishing decor | fishing party decorations | clear fishing line for hanging decorations | fishing cake decorations
+gift,theme,patriotic,25,17,185084,622746.0,0.0,0.0,4,patriotic gift for men | patriotic gift | made in america christmas gift | made in usa christmas gift | american flag gift
+christmas,interest,pickleball,12,7,193072,261422.0,0.0,0.0,3,a pickleball christmas | pickleball ornament for christmas tree | pickleball christmas ornament | pickleball christmas | pickleball christmas shirt
+christmas,interest,hunting,22,15,201289,475219.5,0.0,0.0,3,hunter green christmas ornament | hunting christmas ornament | hunting ornament for christmas tree | hunter green ornament for christmas tree | kpop demon hunter christmas ornament
+wedding,interest,gardening,9,4,227165,326051.0,0.0,0.0,3,pretty garden wedding guest dresses | garden wedding guest dress | garden party wedding guest dress | garden formal dresses for wedding guest
+wedding,lifestyle,cowgirl,5,2,232062,480658.0,0.0,0.0,4,bride cowgirl hat | western cowboy boots with comfortable calf black cowgirl boot women sparkly rhinestone wedding boots
+decor,theme,patriotic,39,14,235202,579153.5,0.0,0.0,4,patriotic decorations | 4th of july decorations | no kings in america sign | usa decorations | american flag wall decor
+apparel,interest,camping,19,7,250232,633250.0,0.0,0.0,4,camping clothes women | camping hat | camping clothes | camping shirt for women | womens camping clothes
+birthday,theme,retro,12,4,254058,533050.5,0.0,0.0,4,two groovy birthday decorations | groovy one birthday decorations | groovy birthday decorations | two groovy birthday outfit
+decor,lifestyle,cat lover,4,1,259294,402800.5,0.0,0.0,4,cat decor for cat lovers
+matching,interest,camping,3,2,262364,506857.5,0.0,0.0,2,camping gift for couples | camper gift for couples
+decor,interest,reading,26,10,265283,503787.75,0.0,0.0,4,reading nook decor | reading offic decor | reading corner decor for classroom | reading corner decor | reading posters for classroom
+sympathy,theme,floral,8,2,270810,289963.0,0.0,0.0,4,sympathy flowers for delivery prime | sympathy flowers
+gift,theme,minimalist,14,12,277730,594098.5,0.0,0.0,2,simple gift for women | simple gift | minimalist modern christmas gift wrap | simple gift for men | gift for minimalist women
+personalized,theme,floral,5,2,285059,301682.0,0.0,0.0,4,dancing flower with custom face | snblk 6 pack floral engraved apple watch bands
+christmas,theme,patriotic,15,9,293031,660623.5,0.0,0.0,3,patriotic christmas ornament | patriotic christmas cards | american flag christmas lights | patriotic christmas decorations | christmas cards made in usa
+birthday,theme,boho,4,1,301612,441511.0,0.0,0.0,4,boho birthday decorations
+appreciation,theme,funny,5,2,310484,316272.0,0.0,0.0,4,funny thank you cards | funny thank you cards with envelopes
+matching,theme,minimalist,4,4,315941,536941.25,0.0,0.0,1,simple couples costumes | simple halloween costumes for couples | simple couple halloween costume | simple couples halloween costumes
+christmas,lifestyle,book lover,10,5,323846,691456.0,0.0,0.0,3,book lover christmas ornament | book lover ornament for christmas tree | book lovers ornament for christmas tree | book lovers christmas ornament | christmas ornament for book lovers
+christmas,interest,reading,7,3,323846,386225.0,0.0,0.0,3,book lover christmas ornament | christmas reading glasses | book lover ornament for christmas tree
+apparel,interest,gardening,39,16,335510,480567.5,0.0,0.0,4,gardening hat | pretty garden clothing | pretty garden sweatshirt | over the garden wall shirt | garden gnome hat
+memorial,interest,gardening,6,3,338421,494201.0,0.0,0.0,4,memorial garden stones | dog memorial garden stones | memorial garden stone
+unknown,lifestyle,country girl,35,10,347757,569534.0,0.0,0.0,4,country girl | country life calcium magnesium | country girl outfits for women | country life vitamin d3 | country girl stuff
+gift,theme,watercolor,7,4,359055,517909.5,0.0,0.0,2,gift for watercolor painters | watercolor gift | gift for watercolor artists | watercolor gift tags
+matching,theme,faith,5,3,364011,641000.0,0.0,0.0,2,christian gift for couples | christian couple gift | religious gift for couples
+birthday,theme,minimalist,5,2,382071,547045.0,0.0,0.0,4,super simple songs birthday decorations | simple birthday decorations
+christmas,interest,yoga,9,6,382441,530917.0,0.0,0.0,2,christmas yoga pants for women | christmas yoga pants | yoga christmas ornament | yoga ornament christmas | yoga ornament for christmas tree
+matching,interest,gaming,6,2,389274,445158.25,0.0,0.0,4,sex gaming cards for married couples | couples gaming desk
+christmas,interest,gaming,15,9,394725,502627.5,0.0,0.0,2,gamer christmas ornament | gaming ornament for christmas tree | gamer ornament for christmas tree | gaming christmas ornament | gaming christmas wrapping paper
+birthday,interest,gardening,6,4,409553,722119.75,0.0,0.0,2,grow a garden roblox birthday decorations | happy birthday garden flag | garden birthday party decorations | birthday garden flag
+matching,interest,yoga,9,3,411473,938394.0,0.0,0.0,4,alo yoga matching set | crz yoga matching set | matching yoga sets for women
+personalized,interest,gardening,17,7,427164,629035.0,0.0,0.0,4,custom garden flag | personalized garden signs | custom garden sign | personalized garden flag | grandmas garden personalized
+birthday,interest,coffee,9,3,446144,671022.0,0.0,0.0,4,a tini bit older birthday espresso | coffee birthday decorations | espresso martini birthday decorations
+unknown,lifestyle,beach life,4,1,497861,633768.5,0.0,0.0,4,beach vibes
+christmas,interest,camping,10,4,508569,684036.75,0.0,0.0,2,camping ornament for christmas tree | camping christmas ornament | camper christmas ornament | camper ornament for christmas tree
+decor,interest,pickleball,3,2,513700,699449.0,0.0,0.0,2,pickleball party decorations | pickleball decorations
+birthday,theme,patriotic,5,2,517544,813258.0,0.0,0.0,4,captain america birthday decorations | america 250th birthday
+appreciation,theme,faith,19,8,519597,768000.0,0.0,0.0,4,christian thank you cards | religious thank you cards | christian thank you cards with envelopes | religious thank you cards with envelopes | thank you jesus for the blood
+apparel,lifestyle,book lover,10,4,523215,798073.5,0.0,0.0,4,book lover sweatshirt | bookworm sweatshirt | book lover shirt | book lovers sweatshirt
+appreciation,interest,soccer,5,3,566707,735788.0,0.0,0.0,3,football thank you cards | soccer thank you cards | soccer coach thank you card
+retirement,theme,funny,11,4,611160,738881.0,0.0,0.0,4,funny retirement cards | funny retirement card | retirement card funny | funny retirement cards for men
+birthday,theme,vintage,4,1,633683,730483.25,0.0,0.0,4,vintage birthday decorations
+unknown,lifestyle,farm life,5,2,642115,811800.0,0.0,0.0,4,pretty farm girl | pretty farm girl tallow
+apparel,theme,minimalist,7,5,642530,831976.5,0.0,0.0,3,simple man hat | simple plan shirt | simple man hats for men | minimalist hoodie women | simple southern shirt for women
+gift,lifestyle,beach life,2,2,686420,799272.0,0.0,0.0,1,beach lover gift | beach lover gift for women
+personalized,interest,pickleball,7,4,700872,911518.0,0.0,0.0,4,custom pickleball paddle | custom ping pong paddle | custom pickleball paddle cover | personalized ping pong paddle
+matching,theme,retro,2,1,703287,797698.0,0.0,0.0,2,70s costumes for couples
+christmas,lifestyle,cowgirl,17,9,705815,889520.0,0.0,0.0,2,cowgirl christmas | cowgirl christmas ornament | christmas cowgirl hat | cowgirl ornament for christmas tree | cowgirl christmas shirt
+sympathy,theme,faith,9,4,735788,1007366.0,0.0,0.0,4,sympathy cards religious | religious sympathy cards | christian sympathy cards | religious sympathy cards with envelopes
+appreciation,theme,floral,3,2,747949,771632.0,0.0,0.0,2,floral thank you cards | floral thank you cards with envelopes
+decor,interest,yoga,12,5,752151,806878.0,0.0,0.0,4,yoga decor | yoga poses poster | chair yoga poster | yoga room decor | yoga poster
+gift,lifestyle,farm life,1,1,807972,807972.0,0.0,0.0,1,farm girl gift
+birthday,interest,pickleball,4,2,811800,855468.0,0.0,0.0,3,pickleball birthday card | pickleball birthday decorations
+retirement,interest,coffee,3,2,835276,942150.0,0.0,0.0,2,retirement coffee mug | retirement coffee mug for women
+appreciation,theme,patriotic,1,1,837075,837075.0,0.0,0.0,1,usa thanks god clothing
+personalized,lifestyle,cowgirl,1,1,854582,854582.0,0.0,0.0,1,cowgirl custom for women
+decor,lifestyle,book lover,3,1,872670,886956.5,0.0,0.0,3,book lover decor
+wedding,interest,hunting,1,1,937048,937048.0,0.0,0.0,1,hunter green wedding guest dress
+decor,theme,watercolor,5,2,943242,996065.0,0.0,0.0,4,hand painted wall art | watercolor wall art
+appreciation,interest,gardening,1,1,948963,948963.0,0.0,0.0,1,give thanks garden flag
+wedding,theme,faith,6,5,966088,989766.5,0.0,0.0,2,christian wedding card | religious wedding card | church pew wedding decorations | church wedding guest dress | wedding card religious
+personalized,interest,reading,3,2,981755,1062336.0,0.0,0.0,2,personalized reading blanket | personalized reading pillow
+apparel,lifestyle,country girl,1,1,1044429,1044429.0,0.0,0.0,1,country girl shirt
+personalized,interest,fishing,3,2,1116840,1231501.0,0.0,0.0,2,personalized fishing ornament | custom fishing lure
+graduation,theme,funny,2,2,1260180,1294039.5,0.0,0.0,1,funny graduation card | graduation card funny
+wedding,theme,retro,1,1,1264194,1264194.0,0.0,0.0,1,sissyaki women's retro v neck velvet maxi dress wedding guest formal party long dresses
+memorial,theme,faith,1,1,1294984,1294984.0,0.0,0.0,1,kneeling covenant religious memorial figurine
+personalized,interest,gaming,1,1,1350896,1350896.0,0.0,0.0,1,custom gaming mouse pad
+personalized,interest,camping,1,1,1454564,1454564.0,0.0,0.0,1,personalized camping signs

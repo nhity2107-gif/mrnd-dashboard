@@ -1,0 +1,25 @@
+week,parent_demand,child_segment,product,customization,priority,reason
+Week 1,Mom Gift,Fishing Mom Gift,Tumbler,Clipart,P2,Moderate Evidence; expected value 76.69. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 2,Teacher Gift,Back To School Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 76.29. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 3,Teacher Gift,Kindergarten Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 76.29. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 4,Teacher Gift,Math Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 76.29. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 5,Teacher Gift,Music Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 76.29. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 6,Teacher Gift,Preschool Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 76.29. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 7,Teacher Gift,Science Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 76.29. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 8,Mom Gift,Camping Mom Gift,Tumbler,Clipart,P2,Moderate Evidence; expected value 76.19. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 9,Mom Gift,Coffee Lover Mom Gift,Mug,Name,P2,Moderate Evidence; expected value 76.19. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 10,Dad Gift,Golf Dad Gift,Tumbler,Clipart,P2,Moderate Evidence; expected value 75.92. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 11,Dad Gift,Coffee Lover Dad Gift,Mug,Name,P2,Moderate Evidence; expected value 75.42. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 12,Teacher Gift,Teacher Retirement Gift,Mug,Name,P2,Moderate Evidence; expected value 74.79. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 13,Grandma Gift,Grandma Memorial Gift,Blanket,Photo,P2,Moderate Evidence; expected value 74.04. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 14,Dog Gift,Dog Memorial Gift,Blanket,Photo,P2,Moderate Evidence; expected value 73.04. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 15,Dog Gift,Personalized Dog Gift,Blanket,Photo,P2,Moderate Evidence; expected value 73.04. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 16,Girl Gift,Girl Wedding Gift,Blanket,Multiple Names,P2,Strong Evidence; expected value 72.88. Accepted because the exact child segment already exists in demand_segments.csv.
+Week 17,Grandpa Gift,Golf Grandpa Gift,Tumbler,Clipart,P2,Moderate Evidence; expected value 72.77. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 18,Grandpa Gift,Hunting Grandpa Gift,Tumbler,Clipart,P2,Moderate Evidence; expected value 72.77. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 19,Grandma Gift,Grandma Mother's Day Gift,Mug,Name,P2,Moderate Evidence; expected value 72.04. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 20,Grandma Gift,Grandma Wedding Gift,Blanket,Multiple Names,P2,Strong Evidence; expected value 71.54. Accepted because the exact child segment already exists in demand_segments.csv.
+Week 21,Grandpa Gift,Retired Grandpa Gift,Mug,Name,P2,Moderate Evidence; expected value 71.27. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 22,Cat Gift,Cat Memorial Gift,Blanket,Photo,P2,Moderate Evidence; expected value 71.19. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 23,Cat Gift,Personalized Cat Gift,Blanket,Photo,P2,Moderate Evidence; expected value 71.19. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 24,Dog Gift,Dog Wedding Gift,Blanket,Multiple Names,P2,Strong Evidence; expected value 70.54. Accepted because the exact child segment already exists in demand_segments.csv.

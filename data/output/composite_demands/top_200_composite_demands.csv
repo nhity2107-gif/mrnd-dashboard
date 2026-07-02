@@ -1,0 +1,201 @@
+demand_name,intent,recipient,profession,interest,occasion,holiday,keyword_count,best_rank,p25_rank,median_rank,active_months,trend
+Mom Gift,gift,mom,,,,,901,65,308544.0,696879.0,4,growing
+Dad Gift,gift,dad,,,,,628,154,317505.5,625066.0,4,growing
+Girl Gift,gift,girl,,,,,4388,455,299089.25,647903.0,4,growing
+Grandma Gift,gift,grandma,,,,,314,666,253611.5,619034.0,4,growing
+Boy Gift,gift,boy,,,,,3512,744,296380.25,649849.0,4,growing
+Teacher Gift,gift,,teacher,,,,274,1015,377051.25,756851.0,4,growing
+Mom Wedding,wedding,mom,,,,,360,1077,390911.75,702840.0,4,declining
+Christmas Mom Gift,gift,mom,,,christmas,christmas,239,1231,238703.0,597290.0,4,growing
+Boy Apparel,apparel,boy,,,,,5548,1323,382813.5,711458.5,4,declining
+Girl Apparel,apparel,girl,,,,,5555,1586,359776.0,696879.0,4,declining
+Grandpa Gift,gift,grandpa,,,,,89,2236,353193.0,604181.0,4,growing
+Christmas Dad Gift,gift,dad,,,christmas,christmas,151,2483,257673.0,509588.0,4,growing
+Wife Gift,gift,wife,,,,,162,2513,272730.5,665615.5,4,growing
+Hunting Gift,gift,,,hunting,,,76,2648,230443.75,568028.5,4,stable
+Husband Gift,gift,husband,,,,,164,2778,278317.75,656501.5,4,growing
+Christmas Dog Gift,gift,dog,,,christmas,christmas,72,2843,318693.25,579829.5,4,growing
+Personalized Dog,personalized,dog,,,,,350,3197,335475.25,678545.0,4,declining
+Christmas Girl,christmas,girl,,,christmas,christmas,1718,3240,404375.25,772226.5,4,growing
+Christmas Dog,christmas,dog,,,christmas,christmas,1065,3294,335850.0,701758.0,4,growing
+Christmas Teacher Gift,gift,,teacher,,christmas,christmas,84,3609,270246.0,567961.0,4,growing
+Chef Apparel,apparel,,chef,,,,160,3657,259822.25,644045.0,4,declining
+Christmas Boy,christmas,boy,,,christmas,christmas,1101,3723,412941.0,759947.0,4,growing
+Dog Gift,gift,dog,,,,,304,3977,366785.5,694003.5,4,growing
+Dog Apparel,apparel,dog,,,,,855,4162,363746.0,679358.0,4,growing
+Nurse Gift,gift,,nurse,,,,118,5255,251481.0,616029.5,4,growing
+Cat Gift,gift,cat,,,,,183,5328,308695.5,596373.0,4,growing
+Fishing Gift,gift,,,fishing,,,63,6082,348553.0,677515.0,4,growing
+Christmas Gardening,christmas,,,gardening,christmas,christmas,88,6131,351407.0,874916.5,4,growing
+Gaming Gift,gift,,,gaming,,,90,6253,369897.25,689193.5,4,growing
+Christmas Wife Gift,gift,wife,,,christmas,christmas,82,6604,245638.0,610843.5,4,growing
+Birthday Girl Gift,gift,girl,,,birthday,,886,6660,288874.75,607183.0,4,declining
+Christmas Cat,christmas,cat,,,christmas,christmas,748,6711,313764.25,618371.5,4,growing
+Girl Apparel,apparel,girl,,,,,39,7033,227638.0,834935.0,4,growing
+Coffee Gift,gift,,,coffee,,,173,7133,372199.0,741631.0,4,growing
+Soccer Decor,decor,,,soccer,,,183,7291,273553.5,475389.0,4,declining
+Truck Driver Apparel,apparel,,truck driver,,,,323,7307,359385.0,689355.0,4,declining
+Mom Apparel,apparel,mom,,,,,339,7388,359965.5,654726.0,4,growing
+Gardening Gift,gift,,,gardening,,,105,7527,271099.0,602158.0,4,growing
+Teacher Apparel,apparel,,teacher,,,,233,7592,410205.0,659796.0,4,declining
+Birthday Mom Gift,gift,mom,,,birthday,,108,8392,139133.25,530365.5,4,declining
+Cat Apparel,apparel,cat,,,,,543,8407,336132.0,655740.0,4,growing
+Birthday Boy Gift,gift,boy,,,birthday,,565,9142,349605.0,679888.0,4,declining
+Christmas Grandma Gift,gift,grandma,,,christmas,christmas,73,9464,258642.0,579049.0,4,growing
+Chef Gift,gift,,chef,,,,64,10245,356724.5,744872.5,4,growing
+Reading Book Lover Gift,gift,,,reading,,,73,10421,207382.0,564758.0,4,growing
+Pickleball Gift,gift,,,pickleball,,,34,10568,150665.0,462458.5,4,growing
+Gardening Decor,decor,,,gardening,,,116,10732,327099.5,656815.0,4,growing
+Girl Decor,decor,girl,,,,,824,10826,355450.75,664835.0,4,growing
+Christmas Girl Gift,gift,girl,,,christmas,christmas,895,10897,308671.0,648112.0,4,growing
+Christmas Husband Gift,gift,husband,,,christmas,christmas,71,11179,173239.0,509987.0,4,growing
+Coffee Decor,decor,,,coffee,,,183,11241,365146.0,609840.0,4,declining
+Soccer Gift,gift,,,soccer,,,200,11357,404638.5,699097.5,4,growing
+Dog Birthday,birthday,dog,,,birthday,,192,11398,365309.25,626365.0,4,declining
+Christmas Boy Gift,gift,boy,,,christmas,christmas,704,11627,338586.5,659820.0,4,growing
+Birthday Dad Gift,gift,dad,,,birthday,,70,12360,142271.25,365640.5,4,declining
+Firefighter Apparel,apparel,,firefighter,,,,67,12949,409259.5,630319.0,4,declining
+Grandma Apparel,apparel,grandma,,,,,139,13048,295062.0,648112.0,4,growing
+Soccer Apparel,apparel,,,soccer,,,240,13304,422303.75,689290.5,4,declining
+Cat Cat Lover Gift,gift,cat,,,,,67,13410,145839.0,397101.0,4,growing
+Daughter Gift,gift,daughter,,,,,134,14014,309447.5,653972.0,4,growing
+Christmas Coffee,christmas,,,coffee,christmas,christmas,247,14124,370481.5,678545.0,4,growing
+Dog Mom Dog Lover Gift,gift,dog mom,,,,,16,14161,92462.0,275110.0,4,growing
+Fishing Apparel,apparel,,,fishing,,,235,14556,328797.5,682685.0,4,growing
+Coffee Matching,matching,,,coffee,,,21,15041,412653.0,775942.0,4,declining
+Teacher Appreciation,appreciation,,teacher,,appreciation,,36,15075,378194.25,734151.0,4,growing
+Girl Birthday,birthday,girl,,,birthday,,1169,16064,358322.0,674247.0,4,declining
+Husband Anniversary,anniversary,husband,,,anniversary,,23,16207,129058.0,383082.0,4,declining
+Dad Wedding,wedding,dad,,,,,22,16341,404617.25,748836.0,4,stable
+Dad Apparel,apparel,dad,,,,,317,16906,348669.0,678793.0,4,growing
+Daughter Apparel,apparel,daughter,,,,,37,17322,200174.0,414082.0,4,growing
+Camping Gift,gift,,,camping,,,40,17729,362755.75,609895.0,4,growing
+Boy Apparel,apparel,boy,,,halloween,halloween,62,18179,374919.5,628698.0,2,growing
+Coffee Coffee Lover Gift,gift,,,coffee,,,50,18646,219310.5,431538.0,4,growing
+Boy Soccer Gift,gift,boy,,soccer,,,58,19843,193319.25,596787.0,4,growing
+Firefighter Gift,gift,,firefighter,,,,33,19863,277774.0,595380.0,4,growing
+Girl Apparel,apparel,girl,,,halloween,halloween,65,20007,408914.0,745955.0,2,growing
+Husband Birthday,birthday,husband,,,birthday,,63,20284,262009.5,492370.0,4,declining
+Boy Birthday,birthday,boy,,,birthday,,768,20432,427316.75,733608.5,4,declining
+Christmas Cat Gift,gift,cat,,,christmas,christmas,27,20998,324040.5,525886.0,3,growing
+Boy Decor,decor,boy,,,,,591,21353,394473.0,708725.0,4,growing
+Mom Matching,matching,mom,,,,,329,22027,379626.0,739530.0,4,growing
+Mom Soccer Apparel,apparel,mom,,soccer,,,36,22664,248721.5,475270.5,4,declining
+Hunting Apparel,apparel,,,hunting,,,384,23026,380516.0,701726.5,4,declining
+Wife Anniversary,anniversary,wife,,,anniversary,,14,23034,135696.75,298408.5,4,declining
+Teacher Apparel,apparel,,teacher,,halloween,halloween,18,23520,138735.5,367596.0,2,growing
+Personalized Coffee,personalized,,,coffee,,,92,24216,278186.25,570335.5,4,growing
+Boy Apparel,apparel,boy,,,thanksgiving,thanksgiving,27,25312,269966.0,575007.0,3,growing
+Wedding Mom Gift,gift,mom,,,wedding,,35,25638,215325.5,488144.0,4,declining
+Mom Matching,matching,mom,,,christmas,christmas,47,25687,386230.0,689041.0,4,growing
+Dog Memorial,memorial,dog,,,,,129,25738,290738.0,721485.0,4,stable
+Police Officer Apparel,apparel,,police officer,,,,64,26051,479965.25,770546.0,4,declining
+Christmas Husband,christmas,husband,,,christmas,christmas,110,27239,347289.25,594056.0,4,growing
+Son Gift,gift,son,,,,,75,27364,272965.5,597865.0,4,growing
+Cat Mom Cat Lover Gift,gift,cat mom,,,,,12,28148,161998.75,322143.5,4,growing
+Dad Cat Lover Gift,gift,dad,,,,,6,28520,145548.75,293769.0,4,growing
+Dog Dog Lover Gift,gift,dog,,,,,38,28541,161969.5,334038.0,4,growing
+Wife Birthday,birthday,wife,,,birthday,,29,29553,167138.0,259294.0,4,declining
+Dog Decor,decor,dog,,,,,193,29729,387005.0,682048.0,4,declining
+Christmas Wife,christmas,wife,,,christmas,christmas,56,29822,542846.0,784225.0,3,growing
+Birthday Husband Gift,gift,husband,,,birthday,,52,30054,199405.25,478154.5,4,declining
+Coffee Apparel,apparel,,,coffee,,,44,30781,478994.5,613687.5,4,declining
+Gaming Decor,decor,,,gaming,,,97,31267,312701.0,558403.0,4,growing
+Nurse Apparel,apparel,,nurse,,,,158,33643,475316.0,776272.5,4,growing
+Dad Apparel,apparel,dad,,,,,37,33825,421408.0,775658.0,4,growing
+Grandpa Apparel,apparel,grandpa,,,,,54,33831,339750.0,691747.0,4,growing
+Personalized Dog,personalized,dog,,,halloween,halloween,7,34049,185223.0,540063.0,2,growing
+Police Officer Gift,gift,,police officer,,,,44,34280,279628.75,628691.0,4,growing
+Dad Funny Gift,gift,dad,,,,,35,34369,349721.5,567213.0,4,growing
+Cat Decor,decor,cat,,,,,179,35231,409189.5,713250.0,4,growing
+Birthday Grandma Gift,gift,grandma,,,birthday,,37,36922,193394.0,357652.0,4,declining
+Christmas Mom,christmas,mom,,,christmas,christmas,126,38361,483364.0,768016.5,3,growing
+Christmas Grandpa Gift,gift,grandpa,,,christmas,christmas,19,41264,148437.5,440662.0,3,growing
+Mom Birthday,birthday,mom,,,birthday,,80,41812,208629.75,540469.0,4,declining
+Dad Apparel,apparel,dad,,,,,13,44026,463230.0,487497.0,4,growing
+Cat Birthday,birthday,cat,,,birthday,,84,47068,349836.75,782500.0,4,declining
+Grandma Wedding,wedding,grandma,,,,,37,47110,482134.0,692746.0,4,declining
+Wife Decor,decor,wife,,,,,16,47375,317089.0,728711.0,4,declining
+Christmas Dad,christmas,dad,,,christmas,christmas,126,47648,486057.75,812422.0,4,growing
+Coffee Wedding,wedding,,,coffee,wedding,,3,47895,148649.5,249404.0,2,declining
+Birthday Wife Gift,gift,wife,,,birthday,,36,47933,160235.0,336689.5,4,declining
+Personalized Soccer,personalized,,,soccer,,,67,47943,353513.0,645468.0,4,declining
+Girl Matching,matching,girl,,,,,95,48024,530353.0,847386.0,4,declining
+Dog Apparel,apparel,dog,,,thanksgiving,thanksgiving,11,50601,293417.5,457537.0,2,growing
+Dad Birthday,birthday,dad,,,birthday,,63,50872,248486.0,467251.0,4,declining
+Cat Funny Gift,gift,cat,,,,,10,50894,330533.0,474874.0,4,growing
+Soccer Birthday,birthday,,,soccer,birthday,,61,50897,456792.0,648735.0,4,declining
+Girl Apparel,apparel,girl,,,thanksgiving,thanksgiving,20,51099,352795.75,605891.5,2,growing
+Dog Matching,matching,dog,,,,,87,51277,397853.0,731467.0,4,growing
+Cat Decor,decor,cat,,,halloween,halloween,33,51352,466774.0,581397.0,2,stable
+Boy Gaming Decor,decor,boy,,gaming,,,33,51678,400460.0,658351.0,4,growing
+Grandma Decor,decor,grandma,,,,,18,51727,406866.0,571556.5,4,declining
+Yoga Apparel,apparel,,,yoga,,,86,53698,219673.25,483931.5,4,declining
+Wedding Dad Gift,gift,dad,,,wedding,,17,54515,162594.0,609840.0,4,declining
+Dad Dog Lover Gift,gift,dad,,,,,11,56121,262026.0,507886.0,4,growing
+Girl Wedding,wedding,girl,,,wedding,,17,56578,310842.0,952883.0,4,declining
+Nurse Apparel,apparel,,nurse,,halloween,halloween,20,58790,216857.75,578614.5,2,growing
+Dog Wedding,wedding,dog,,,,,42,59324,455714.0,680928.5,4,declining
+Girl Floral Gift,gift,girl,,,,,14,59369,150442.5,371342.5,4,declining
+Truck Driver Gift,gift,,truck driver,,,,17,59395,232577.0,549945.0,4,growing
+Daughter Birthday,birthday,daughter,,,birthday,,58,59616,281124.25,649190.5,4,declining
+Christmas Nurse,christmas,,nurse,,christmas,christmas,46,59826,275295.5,680673.0,3,growing
+Girl Soccer Gift,gift,girl,,soccer,,,21,60592,335510.0,574199.0,4,growing
+Christmas Teacher,christmas,,teacher,,christmas,christmas,51,62233,266821.5,609428.0,3,growing
+Reading Gift,gift,,,reading,,,18,63497,388877.0,833975.5,4,growing
+Mom Memorial,memorial,mom,,,,,30,64152,653429.5,839773.0,4,growing
+Cat Apparel,apparel,cat,,,,,20,64730,275692.25,557167.0,4,growing
+Girl Apparel,apparel,girl,,,,,32,65930,209124.75,618954.5,4,declining
+Cat Memorial,memorial,cat,,,,,30,66093,206499.75,387507.0,4,declining
+Hairstylist Gift,gift,,hairstylist,,,,25,66404,287375.0,599280.0,4,growing
+Boy Gaming Gift,gift,boy,,gaming,,,26,69216,393964.5,560858.5,4,growing
+Wife Apparel,apparel,wife,,,,,97,69865,355931.0,557631.0,4,declining
+Mom Matching,matching,mom,,,halloween,halloween,8,72280,204400.75,336740.0,2,growing
+Christmas Son,christmas,son,,,christmas,christmas,24,73428,392923.25,726689.5,2,growing
+Dog Mom Apparel,apparel,dog mom,,,,,22,75186,216490.75,465700.0,4,growing
+Dog Apparel,apparel,dog,,,halloween,halloween,31,76490,422208.5,712704.0,2,growing
+Chef Decor,decor,,chef,,,,9,76578,180805.0,996065.0,4,declining
+Yoga Gift,gift,,,yoga,,,21,78009,452911.0,531678.0,4,growing
+Christmas Daughter,christmas,daughter,,,christmas,christmas,44,78603,261767.0,547365.5,2,growing
+Mom Funny Gift,gift,mom,,,,,19,78682,423374.5,771020.0,4,growing
+Teacher Funny Gift,gift,,teacher,,,,9,79237,601410.0,746123.0,4,growing
+Son Birthday,birthday,son,,,birthday,,51,79273,282754.0,524218.0,4,declining
+Electrician Gift,gift,,electrician,,,,18,81075,278207.75,694656.0,4,growing
+Halloween Teacher Gift,gift,,teacher,,halloween,halloween,7,82132,165165.5,357593.0,2,growing
+Realtor Decor,decor,,realtor,,,,15,84786,253980.5,642115.0,4,declining
+Teacher Apparel,apparel,,teacher,,thanksgiving,thanksgiving,12,91017,409392.0,629571.0,2,growing
+Valentine Husband Gift,gift,husband,,,valentine's day,valentine,2,92549,100674.25,108799.5,1,emerging
+Hunting Birthday,birthday,,,hunting,birthday,,33,92802,261328.0,463778.0,4,declining
+Mom Apparel,apparel,mom,,,halloween,halloween,16,92938,301145.75,651401.5,2,growing
+Christmas Daughter Gift,gift,daughter,,,christmas,christmas,28,94163,336225.0,535614.0,3,growing
+Personalized Cat,personalized,cat,,,,,93,95059,336465.0,703287.0,4,declining
+Boy Fishing Gift,gift,boy,,fishing,,,10,95456,282333.5,413771.0,4,growing
+Fishing Birthday,birthday,,,fishing,birthday,,11,96138,314240.5,604791.0,4,declining
+Dad Memorial,memorial,dad,,,,,20,97879,478771.75,670720.5,4,growing
+Christmas Truck Driver,christmas,,truck driver,,christmas,christmas,6,98820,274000.75,798450.5,3,growing
+Gaming Birthday,birthday,,,gaming,birthday,,18,98867,283634.25,600964.0,4,declining
+Birthday Daughter Gift,gift,daughter,,,birthday,,34,99214,319369.0,577576.5,4,declining
+Realtor Gift,gift,,realtor,,,,17,100536,302492.0,540499.0,4,growing
+Anniversary Husband Gift,gift,husband,,,anniversary,,63,101514,227845.5,609840.0,4,declining
+Personalized Girl,personalized,girl,,,,,99,104794,583684.0,840867.0,4,growing
+Nurse Apparel,apparel,,nurse,,thanksgiving,thanksgiving,8,109712,283048.25,752472.0,2,growing
+Anniversary Wife Gift,gift,wife,,,anniversary,,27,113658,295004.0,654420.0,4,declining
+Girl Wedding,wedding,girl,,,wedding,,34,114321,611499.25,770080.0,4,declining
+Camping Birthday,birthday,,,camping,birthday,,10,118005,215109.5,321258.5,4,declining
+Truck Driver Apparel,apparel,,truck driver,,,,21,118999,296266.0,541404.0,4,growing
+Gaming Apparel,apparel,,,gaming,,,41,121989,316382.0,677515.0,4,growing
+Fishing Apparel,apparel,,,fishing,,,12,124153,421838.25,609504.0,4,growing
+Christmas Nurse Gift,gift,,nurse,,christmas,christmas,5,129194,301402.0,887193.0,2,growing
+Christmas Soccer,christmas,,,soccer,christmas,christmas,53,129665,344822.0,728616.0,4,growing
+Pickleball Apparel,apparel,,,pickleball,,,61,133348,327210.0,565316.0,4,growing
+Camping Decor,decor,,,camping,,,41,134159,394321.0,718592.0,4,declining
+Accountant Gift,gift,,accountant,,,,7,138517,541702.5,794075.0,4,growing
+Hunting Matching,matching,,,hunting,,,3,138615,247273.0,355931.0,2,growing
+Girl Decor,decor,girl,,,halloween,halloween,12,138882,340001.5,765747.0,2,growing
+Birthday Grandpa Gift,gift,grandpa,,,birthday,,16,143641,507108.25,811198.0,4,declining
+Christmas Fishing,christmas,,,fishing,christmas,christmas,21,143811,525468.0,896529.0,3,growing
+Girl Country Girl Gift,gift,girl,,,,,5,147111,288665.0,709644.0,4,growing
+Nurse Funny Gift,gift,,nurse,,,,6,150053,480047.25,861450.0,4,growing
+Christmas Son Gift,gift,son,,,christmas,christmas,26,150174,431401.5,824155.5,2,growing
+Mom Wedding,wedding,mom,,,wedding,,22,152991,410648.75,565029.5,4,declining
+Fishing Funny Gift,gift,,,fishing,,,8,153878,603480.0,830945.5,4,growing

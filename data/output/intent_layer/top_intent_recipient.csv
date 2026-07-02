@@ -1,0 +1,121 @@
+intent,recipient,keyword_count,distinct_keyword_count,best_rank,p25_rank,top100_count,top1000_count,active_months,example_keywords
+gift,mom,1327,629,65,287566.5,1.0,3.0,4,gift for mom | mom gift | christmas gift for mom | mom christmas gift | gift for mom christmas
+unknown,boy,38021,16146,111,382441.0,0.0,8.0,4,the boys | stocking stuffers for teen boys | legos for boys age 8 12 | boys halloween costume | advent calendar for boys
+gift,dad,946,470,154,290021.25,0.0,2.0,4,gift for dad | dad gift | dad christmas gift | christmas gift for dad | papa gift
+unknown,girl,60373,25556,240,365351.0,0.0,6.0,4,stocking stuffers for teen girls | nobody's girl virginia giuffre | girls halloween costume | advent calendar for girls | american girl dolls
+gift,girl,6277,2436,455,299235.0,0.0,4.0,4,teen girl gift trendy stuff | gift for teenage girls | stitch gift for girls | teen girl gift | 3 year old girl gift
+gift,grandma,438,213,666,252961.0,0.0,2.0,4,grandma gift | gift for grandma | nana gift | grandma christmas gift | great grandma gift
+gift,boy,4908,1963,744,307287.0,0.0,3.0,4,gift for teen boys | teen boys gift ideas | 1 year old boy gift | teen boy gift | 10 year old boy gift
+gift,teacher,395,226,1015,360624.0,0.0,0.0,4,teacher gift | teacher christmas gift | teacher gift for women | teacher gift bulk | teacher gift for christmas
+wedding,mom,385,170,1077,391504.0,0.0,0.0,4,mother of bride dresses | mother of the bride dresses | mother of the bride dresses for women | mother of the groom dresses | mother of the bride dress
+unknown,dad,2307,1081,1149,354583.0,0.0,0.0,4,scrub daddy sponges | scrub daddy | battery daddy | rich dad poor dad | dad i want to hear your story
+apparel,boy,5748,2214,1323,385349.0,0.0,0.0,4,baby boy clothes | toddler boy clothes | boys clothes | 2t boys clothes | newborn boy clothes
+apparel,girl,5796,2207,1586,363295.25,0.0,0.0,4,baby girl clothes | girls clothes | toddler girl clothes | american girl doll clothes | newborn girl clothes
+gift,grandpa,130,67,2236,304482.5,0.0,0.0,4,grandpa gift | gift for grandpa | grandpa christmas gift | christmas gift for grandpa | best grandpa gift
+gift,wife,318,151,2513,256882.0,0.0,0.0,4,gift for wife | wife christmas gift ideas | christmas gift for wife | wife gift | practical gift for wife
+gift,husband,370,157,2778,241981.5,0.0,0.0,4,gift for husband | husband gift | gift for husband christmas | husband christmas gift | christmas gift for husband
+christmas,girl,1721,932,3240,405255.0,0.0,0.0,4,girls christmas dress | girls christmas pajamas | christmas dresses for girls | girls christmas sweater | girls christmas outfit
+christmas,boy,1104,622,3723,413334.0,0.0,0.0,4,boys christmas pajamas | boys christmas sweater | babys first christmas ornament 2025 boy | boys christmas shirt | my first christmas baby boy outfit
+unknown,nurse,1252,493,3830,332813.25,0.0,0.0,4,nurse costume | nurse essentials | nurse costume woman | nurse jackie | silent hill nurse costume
+unknown,husband,2689,970,3899,362368.0,0.0,0.0,4,mr clean magic erasers | mr beast toys | mr potato head | mr beast | marry my husband
+unknown,mom,4192,1776,4469,355989.0,0.0,0.0,4,frida mom postpartum | scrub mommy | mom | mom i want to hear your story | stocking stuffers for mom
+unknown,wife,2204,881,4870,338283.0,0.0,0.0,4,mrs meyers hand soap | stocking stuffers for wife | mr and mrs smith | mrs meyers multi surface cleaner | marvelous mrs maisel
+gift,nurse,140,63,5255,265460.5,0.0,0.0,4,nurse gift | nurse gift for women | nurse practitioner gift for women | nurse practitioner gift | rn gift for nurses
+unknown,teacher,1184,513,5532,308084.0,0.0,0.0,4,teacher outfits for women | teacher lanyard | teacher supplies | teacher deals | teacher shoes
+apparel,mom,422,185,7388,356219.25,0.0,0.0,4,mama sweatshirt | soccer mom shirt | football mom shirt | mama shirt | mom sweatshirt
+apparel,teacher,279,127,7592,379299.5,0.0,0.0,4,teacher shirt | teacher clothes | teacher halloween shirt | halloween teacher shirt | teacher shirt for women
+unknown,son,442,195,7864,388180.5,0.0,0.0,4,the son | son | the good son | son in law | a mother's son
+decor,girl,862,284,10826,360399.0,0.0,0.0,4,room decor for teen girls | girls room decor | teen girl room decor | girls bedroom decor | girl room decor
+unknown,grandma,1130,590,11271,387152.0,0.0,0.0,4,grandma | granny pants yard game | granny smith apples | grandma costume | grandma got run over by a reindeer
+unknown,grandpa,309,166,12323,403164.0,0.0,0.0,4,grandpa gus mouse repellent pouches | grandpa | grandpa gus | grandpa mug | grandpa sweater
+apparel,grandma,144,59,13048,300242.75,0.0,0.0,4,grandma sweatshirt | nana sweatshirt | grandma shirt | nana shirt | coastal grandma clothes
+gift,daughter,202,90,14014,327115.5,0.0,0.0,4,daughter in law gift | gift for daughter | daughter gift | gift for daughter in law | bonus daughter gift
+gift,dog mom,18,8,14161,102495.25,0.0,0.0,4,dog mom gift for women | dog mom gift | gift for dog mom | best dog mom gift | dog mama gift
+appreciation,teacher,36,16,15075,378194.25,0.0,0.0,4,teacher appreciation gift | teacher appreciation gift in bulk | teacher appreciation gift bulk | daycare teacher appreciation gift | teacher thank you cards
+birthday,girl,1169,381,16064,358322.0,0.0,0.0,4,18th birthday decorations for girls | birthday girl shirt | 13th birthday decorations for girls | birthday girl | 10th birthday decorations for girl
+anniversary,husband,27,9,16207,203091.5,0.0,0.0,4,anniversary card to husband | anniversary card for husband | anniversary cards for husband | husband anniversary card | funny anniversary cards for husband
+wedding,dad,22,10,16341,404617.25,0.0,0.0,4,father of the bride | father of the bride 2 | father of the bride dvd | father of the groom | father of the bride socks
+apparel,dad,391,162,16906,360809.5,0.0,0.0,4,dad hat | dad shirt | funny dad shirt | cat dad shirt | papa shirt
+apparel,daughter,37,18,17322,200174.0,0.0,0.0,4,awesome like my daughter shirt | favorite daughter sweatshirt | awesome like my youngest daughter shirt | favorite daughter hat | favorite daughter shirt
+unknown,daughter,681,299,18192,378857.0,0.0,0.0,4,daughter of no worlds | first daughter | the poison daughter | to my daughter necklace | carols daughter shampoo and conditioner for curly natural monoi
+birthday,husband,79,25,20284,318798.0,0.0,0.0,4,husband birthday card | birthday card for husband | birthday cards for husband | birthday card husband | husband birthday card from wife
+birthday,boy,774,239,20432,429595.75,0.0,0.0,4,18th birthday decorations for boys | 16th birthday decorations for boys | 13th birthday decorations for boys | 10th birthday decorations for boys | birthday boy shirt
+decor,boy,663,233,21353,399158.5,0.0,0.0,4,boys room decor | teen boy room decor | baby shower decorations boy | baby boy shower decorations | gamer room decor for boys
+matching,mom,390,165,22027,376617.0,0.0,0.0,4,mommy and me outfits | mommy and me pajamas | mommy and me christmas pajamas | mommy and me dresses | mom and daughter matching outfits
+unknown,dog mom,34,23,22596,526768.5,0.0,0.0,4,dog mom | dog mom mug | dog mom socks | dog mom cup | dog mom coffee mug
+anniversary,wife,17,5,23034,144171.0,0.0,0.0,4,anniversary cards for wife | anniversary card for wife | funny anniversary cards for wife | wife anniversary card | anniversary card wife
+christmas,husband,114,63,27239,351167.75,0.0,0.0,4,christmas card for husband | finding mr christmas | husband christmas card | mr christmas | mr willowbys christmas tree
+gift,son,126,56,27364,389848.0,0.0,0.0,4,gift for son | son in law gift | gift for adult son | gift for son in law | son gift
+gift,cat mom,12,4,28148,161998.75,0.0,0.0,4,cat mom gift | cat mom gift for women | gift for cat mom | best cat mom gift
+birthday,wife,37,12,29553,210077.0,0.0,0.0,4,birthday card for wife | wife birthday card | mrs rachel birthday decorations | birthday cards for wife | birthday card wife
+christmas,wife,60,44,29822,546481.75,0.0,0.0,3,christmas card for wife | wife christmas card | christmas card wife | christmas for wife | christmas cards for wife
+apparel,nurse,187,67,33643,405538.5,0.0,0.0,4,nurse hat | nurse sweatshirt | nurse halloween shirt | halloween nurse shirt | nurse shirt
+apparel,grandpa,60,27,33831,346320.0,0.0,0.0,4,grandpa shirt | grandpa hat | grandpa sweatshirt | grandpa shirt for men | funny grandpa shirt
+christmas,mom,127,85,38361,486366.0,0.0,0.0,3,christmas for mom | christmas card for mom | mom christmas card | christmas card mom | mom christmas
+unknown,cat mom,16,11,39375,234488.25,0.0,0.0,4,cat mom | cat mom mug | cat mom socks | cat mom blanket | best cat mom
+birthday,mom,92,29,41812,239933.75,0.0,0.0,4,mom birthday card | birthday card for mom | mom birthday | happy birthday mom | happy birthday mom card
+wedding,grandma,42,17,47110,490753.0,0.0,0.0,4,grandmother of the bride dresses | grandmother of the groom dresses | grandmother of the bride pant suits | grandmother of bride pant suits | dresses for grandmother of the bride
+decor,wife,16,8,47375,317089.0,0.0,0.0,4,mr and mrs sign | mr mrs sign | miss to mrs sign | mr and mrs decorations | mr and mrs table decor
+christmas,dad,126,78,47648,486057.75,0.0,0.0,4,letters from father christmas by j r r tolkien | christmas for dad | christmas scrub daddy | letters from father christmas | accidental christmas daddy
+matching,girl,119,52,48024,524343.0,0.0,0.0,4,mommy and me hospital outfits baby girl | matching doll and girl clothes | american girl doll matching outfits | girls matching sets | girl and doll matching outfits
+birthday,dad,76,24,50872,323146.0,0.0,0.0,4,dad birthday card | birthday card for dad | happy birthday dad | happy birthday dad card | dad birthday
+decor,grandma,18,6,51727,406866.0,0.0,0.0,4,coastal grandma decor | nana poster | grandma core decor | nana anime poster | grandma decor
+wedding,girl,58,30,56578,542376.25,0.0,0.0,4,flower girl dresses for wedding | girls wedding guest dress | zombie bride costume for girls | flower girl shoes for wedding | corpse bride costume girls
+birthday,daughter,58,17,59616,281124.25,0.0,0.0,4,daughter birthday card | birthday card for daughter | daughter in law birthday card | birthday card daughter | birthday cards for daughter
+christmas,nurse,46,20,59826,275295.5,0.0,0.0,3,nurse christmas shirt | nurse christmas sweatshirt | christmas nurse shirt | christmas nurse sweatshirt | nurse christmas ornament
+christmas,teacher,51,26,62233,266821.5,0.0,0.0,3,teacher christmas shirt | teacher christmas ornament | christmas teacher shirt | teacher christmas cards | teacher christmas sweatshirt
+memorial,mom,30,11,64152,653429.5,0.0,0.0,4,memorial gift for loss of mom | bereavement gift for loss of mother | in memory of mom | mom memorial gift for loss of mother | mom memorial gift
+apparel,wife,99,40,69865,361553.5,0.0,0.0,4,wifey sweatshirt | let me ask my wife shirt | the man who mistook his wife for a hat | let me ask my wife hat | my wife is psychotic shirt
+christmas,son,24,18,73428,392923.25,0.0,0.0,2,christmas card for son | son christmas card | christmas card son | christmas cards for son | son in law christmas card
+apparel,dog mom,24,8,75186,230942.25,0.0,0.0,4,dog mom sweatshirt | dog mom shirt | dog mom hat | dog mom sweatshirt women | dog mama sweatshirt
+christmas,daughter,44,27,78603,261767.0,0.0,0.0,2,christmas card for daughter | son and daughter in law christmas card | daughter christmas card | christmas card for son and daughter in law | christmas card daughter
+birthday,son,53,15,79273,293853.0,0.0,0.0,4,birthday card for son | son birthday card | son in law birthday card | birthday card son | birthday cards for son
+memorial,dad,20,8,97879,478771.75,0.0,0.0,4,memorial gift for loss of dad | bereavement gift for loss of father | dad memorial gift | in memory of dad | dad memorial ornament
+personalized,girl,109,57,104794,572936.0,0.0,0.0,4,personalized blanket for girls | halloween custom for girls | cat custom for girls | personalized necklaces for girls | personalized baby blanket for girls
+decor,son,4,1,111114,153156.75,0.0,0.0,4,here comes the son baby shower decor
+matching,dad,73,36,162833,630094.0,0.0,0.0,4,dad and son matching shirt | father son matching shirt | dad and baby matching outfits | daddy and me matching outfits | dad and son matching outfits
+matching,grandma,2,1,166719,273647.5,0.0,0.0,2,grandma and me matching outfits
+decor,teacher,23,9,173365,496763.5,0.0,0.0,4,teacher desk decor | please sign and return stamp teacher | sign and return stamp teacher | teacher decor | teacher classroom decor
+apparel,cat mom,9,4,180134,393300.0,0.0,0.0,4,cat mom shirt | cat mom sweatshirt | cat mom hat | cat mom shirt for women
+apparel,husband,62,22,182253,465419.75,0.0,0.0,4,sorry about my husband hat | trophy husband shirt | mr potato head shirt | emotional support husband shirt | mr incredible shirt
+matching,boy,30,11,184334,627882.75,0.0,0.0,4,mommy and me hospital outfits baby boy | raven and beast boy couple costume | mom and baby boy matching outfits | boys matching sets | boys matching christmas pajamas
+anniversary,grandma,4,2,187132,274465.0,0.0,0.0,3,nana 25th anniversary edition | nana anniversary edition
+decor,mom,8,4,193750,437965.75,0.0,0.0,4,mama mia party decorations | mum decorations homecoming | homecoming mum decorations | how i met your mother poster
+birthday,grandma,25,7,198597,537077.0,0.0,0.0,4,grandma birthday card | happy birthday grandma | birthday card for grandma | nana birthday card | grandma birthday
+appreciation,wife,9,4,203185,397857.0,0.0,0.0,4,pastor wife appreciation gift | pastors wife appreciation gift | pastor and wife appreciation cards | pastor and wife appreciation gift
+personalized,boy,50,24,208422,680731.0,0.0,0.0,4,ninja custom for boys | boys custom halloween | personalized blanket for boys | personalized baby blanket for boys | boy custom halloween
+wedding,boy,19,9,217692,372526.5,0.0,0.0,3,toddler wedding outfit boy | baby wedding outfit boy | boys wedding guest outfit | baby boy wedding guest outfit | boys wedding outfit
+apparel,son,18,7,221926,589493.75,0.0,0.0,4,favorite son in law shirt | my son in law is my favorite child shirt | favorite son shirt | son of a nutcracker shirt | sanford and son shirt
+memorial,husband,4,1,231051,310450.5,0.0,0.0,4,memorial gift for loss of husband
+christmas,grandma,27,19,258141,554367.0,0.0,0.0,2,grandma christmas ornament | christmas for grandma | grandma christmas card | christmas card for grandma | grandma christmas
+matching,husband,15,8,297995,524235.5,0.0,0.0,4,husband and wife matching pajamas | wife and husband matching pjs | husband and wife matching outfits | husband and wife matching christmas pajamas | husband and wife christmas pajamas matching sets
+decor,nurse,14,5,299174,707405.5,0.0,0.0,4,school nurse office decor | nurse office decor | nurse party decorations | nurse decor | nurse cake decorations
+memorial,son,4,1,316382,410967.5,0.0,0.0,4,memorial gift for loss of son
+personalized,grandma,17,11,335510,669004.0,0.0,0.0,3,custom grandma sweatshirt | personalized grandma sweatshirt | grandma sweatshirt personalized | personalized blanket for grandma | custom grandma shirt
+wedding,husband,7,2,340961,462089.5,0.0,0.0,4,wedding anniversary card for husband | to my husband on our wedding day card
+birthday,grandpa,8,3,351863,571670.25,0.0,0.0,4,grandpa birthday card | happy birthday grandpa | birthday card for grandpa
+graduation,nurse,13,5,390687,581397.0,0.0,0.0,4,nurse graduation party decorations | nurse graduation card | new grad nurse essentials | rn graduation party decorations | nurse graduation decorations
+christmas,grandpa,7,5,406735,713217.0,0.0,0.0,3,a grandpa for christmas | grandpa christmas card | christmas for grandpa | grandpa christmas ornament | christmas card for grandpa
+appreciation,girl,11,7,426248,732680.5,0.0,0.0,3,thanks giving outfit baby girl | thanks giving outfits for girls | baby shower thank you cards girl | thanks giving outfit toddler girl | baby girl thank you cards
+sympathy,mom,11,4,443762,538293.5,0.0,0.0,4,sympathy cards for loss of mother | sympathy card for loss of mother | loss of mother sympathy card | sympathy card loss of mother
+appreciation,nurse,8,2,477805,566898.0,0.0,0.0,4,nurse appreciation gift | nurse appreciation gift bulk
+matching,nurse,2,2,487386,576389.25,0.0,0.0,1,doctor and nurse costumes for couples | nurse and patient couples costume
+personalized,nurse,1,1,499818,499818.0,0.0,0.0,1,nurse custom for women
+anniversary,daughter,4,2,506961,589154.25,0.0,0.0,2,anniversary card for daughter and son in law | anniversary card for son and daughter in law
+wedding,wife,5,2,509828,680558.0,0.0,0.0,3,wedding anniversary card for wife | mr and mrs sign for wedding table
+personalized,mom,19,14,512922,809122.0,0.0,0.0,3,custom blanket for mom | personalized necklace for mom | custom mama sweatshirt | custom mom sweatshirt | personalized mama sweatshirt
+decor,dad,4,1,521547,703810.5,0.0,0.0,4,our father prayer wall decor
+appreciation,boy,9,4,645652,771121.0,0.0,0.0,4,baby boy thank you cards | baby shower thank you cards boy | thank you cards baby shower boy | thanks giving baby boy outfits
+decor,husband,4,1,653524,680161.75,0.0,0.0,4,fantastic mr fox poster
+personalized,teacher,9,5,656663,775942.0,0.0,0.0,4,personalized teacher stamp | personalized teacher ornament | personalized teacher notepad | teacher ornament personalized | personalized teacher lanyard
+wedding,daughter,6,4,674247,740105.25,0.0,0.0,2,wedding card for son and daughter in law | wedding card for daughter | wedding card for daughter and son in law | daughter of the bride
+sympathy,dad,4,1,717630,774183.75,0.0,0.0,4,sympathy card loss of father
+birthday,teacher,3,1,720191,808938.5,0.0,0.0,3,teacher birthday card
+memorial,daughter,4,1,766218,921152.25,0.0,0.0,4,memorial gift for loss of daughter
+sympathy,husband,5,2,836136,979495.0,0.0,0.0,4,sympathy card loss of husband | sympathy card for loss of husband
+appreciation,husband,2,1,878227,988361.5,0.0,0.0,2,thank you mr falker
+memorial,grandma,1,1,1015115,1015115.0,0.0,0.0,1,grandma memorial gift
+wedding,son,1,1,1048334,1048334.0,0.0,0.0,1,wedding card for son
+personalized,dad,2,2,1134310,1183670.25,0.0,0.0,1,custom dad shirt | custom dad hat
+appreciation,mom,1,1,1170163,1170163.0,0.0,0.0,1,thank you mom
+personalized,grandpa,1,1,1336556,1336556.0,0.0,0.0,1,custom grandpa shirt

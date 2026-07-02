@@ -1,0 +1,307 @@
+demand_id,demand_name,market_size,growth_stage,competition_level,expansion_score,seasonality,maturity,overall_score,research_priority,recommended_action
+CD000001,Mom Gift,Mega,Growing,High,100.0,Evergreen,Scale Market,86.96,P1,Research Immediately
+CD000002,Dad Gift,Mega,Growing,High,100.0,Evergreen,Scale Market,85.45,P1,Research Immediately
+CD000003,Girl Gift,Mega,Growing,High,100.0,Evergreen,Scale Market,83.54,P1,Research Immediately
+CD000005,Boy Gift,Mega,Growing,High,96.71,Evergreen,Scale Market,82.02,P1,Research Immediately
+CD000004,Grandma Gift,Mega,Growing,High,75.33,Evergreen,Established Market,77.94,P2,Expand Existing Portfolio
+CD000006,Teacher Gift,Large,Growing,Medium,92.17,Evergreen,Scale Market,76.06,P2,Expand Existing Portfolio
+CD000015,Husband Gift,Large,Growing,Medium,87.59,Evergreen,Scale Market,73.38,P2,Expand Existing Portfolio
+CD000011,Grandpa Gift,Large,Growing,Medium,66.77,Evergreen,Established Market,69.6,P2,Expand Existing Portfolio
+CD000013,Wife Gift,Large,Growing,Medium,66.37,Evergreen,Established Market,69.31,P2,Expand Existing Portfolio
+CD000023,Dog Gift,Large,Growing,Medium,49.29,Evergreen,Established Market,65.09,P2,Monitor
+CD000034,Coffee Gift,Mid,Growing,Low-Medium,58.64,Evergreen,Growth Market,60.93,P3,Monitor
+CD000008,Christmas Mom Gift,Large,Growing,Medium,0.0,Q4 Seasonal,Established Market,59.69,P3,Seasonal Preparation
+CD000080,Boy Decor,Mid,Growing,Low-Medium,61.94,Evergreen,Growth Market,59.66,P3,Monitor
+CD000026,Cat Gift,Mid,Growing,Medium,47.91,Evergreen,Growth Market,59.3,P3,Monitor
+CD000048,Girl Decor,Mid,Growing,Low-Medium,53.37,Evergreen,Growth Market,59.14,P3,Monitor
+CD000012,Christmas Dad Gift,Large,Growing,Medium,0.0,Q4 Seasonal,Established Market,58.46,P3,Seasonal Preparation
+CD000025,Nurse Gift,Mid,Growing,Medium,43.12,Evergreen,Growth Market,58.36,P3,Monitor
+CD000060,Daughter Gift,Mid,Growing,Low-Medium,51.29,Evergreen,Growth Market,58.27,P3,Monitor
+CD000016,Christmas Dog Gift,Large,Growing,Medium,0.0,Q4 Seasonal,Established Market,58.22,P3,Seasonal Preparation
+CD000018,Christmas Girl,Large,Growing,Medium,0.0,Q4 Seasonal,Established Market,57.99,P3,Seasonal Preparation
+CD000019,Christmas Dog,Large,Growing,Medium,0.0,Q4 Seasonal,Established Market,57.96,P3,Seasonal Preparation
+CD000020,Christmas Teacher Gift,Large,Growing,Medium,0.0,Q4 Seasonal,Established Market,57.8,P3,Seasonal Preparation
+CD000022,Christmas Boy,Large,Growing,Medium,0.0,Q4 Seasonal,Established Market,57.75,P3,Seasonal Preparation
+CD000014,Hunting Gift,Large,Established,Medium,27.37,Evergreen,Established Market,57.22,P3,Monitor
+CD000052,Soccer Gift,Mid,Growing,Low-Medium,41.16,Evergreen,Growth Market,56.62,P3,Monitor
+CD000093,Son Gift,Mid,Growing,Low-Medium,45.76,Evergreen,Growth Market,55.99,P3,Monitor
+CD000027,Fishing Gift,Mid,Growing,Low-Medium,31.89,Evergreen,Growth Market,55.86,P3,Monitor
+CD000047,Gardening Decor,Mid,Growing,Low-Medium,35.63,Evergreen,Growth Market,55.61,P3,Monitor
+CD000007,Mom Wedding,Large,Declining,Medium,31.95,Holiday Seasonal,Mature / Declining,55.37,P3,Seasonal Preparation
+CD000024,Dog Apparel,Large,Growing,Medium,0.0,Evergreen,Established Market,55.15,P3,Monitor
+CD000029,Gaming Gift,Mid,Growing,Low-Medium,27.57,Evergreen,Growth Market,54.95,P3,Monitor
+CD000081,Mom Matching,Mid,Growing,Low-Medium,38.0,Evergreen,Growth Market,54.82,P3,Monitor
+CD000038,Gardening Gift,Mid,Growing,Low-Medium,27.93,Evergreen,Growth Market,54.69,P3,Monitor
+CD000046,Pickleball Gift,Mid,Growing,Medium,28.0,Evergreen,Growth Market,54.11,P3,Monitor
+CD000044,Chef Gift,Mid,Growing,Low-Medium,23.03,Evergreen,Growth Market,53.17,P3,Monitor
+CD000071,Camping Gift,Mid,Growing,Low-Medium,25.96,Evergreen,Growth Market,52.79,P3,Monitor
+CD000075,Firefighter Gift,Mid,Growing,Low-Medium,23.79,Evergreen,Growth Market,52.16,P3,Monitor
+CD000028,Christmas Gardening,Mid,Growing,Low-Medium,0.0,Q4 Seasonal,Growth Market,51.87,P3,Seasonal Preparation
+CD000030,Christmas Wife Gift,Mid,Growing,Medium,0.0,Q4 Seasonal,Growth Market,51.74,P3,Seasonal Preparation
+CD000032,Christmas Cat,Mid,Growing,Medium,0.0,Q4 Seasonal,Growth Market,51.71,P3,Seasonal Preparation
+CD000043,Christmas Grandma Gift,Mid,Growing,Low-Medium,0.0,Q4 Seasonal,Growth Market,51.11,P3,Seasonal Preparation
+CD000049,Christmas Girl Gift,Mid,Growing,Low-Medium,0.0,Q4 Seasonal,Growth Market,50.86,P3,Seasonal Preparation
+CD000050,Christmas Husband Gift,Mid,Growing,Low-Medium,0.0,Q4 Seasonal,Growth Market,50.81,P3,Seasonal Preparation
+CD000054,Christmas Boy Gift,Mid,Growing,Low-Medium,0.0,Q4 Seasonal,Growth Market,50.74,P3,Seasonal Preparation
+CD000061,Christmas Coffee,Mid,Growing,Low-Medium,0.0,Q4 Seasonal,Growth Market,50.4,P3,Seasonal Preparation
+CD000079,Christmas Cat Gift,Mid,Growing,Low-Medium,0.0,Q4 Seasonal,Growth Market,49.7,Watchlist,Monitor
+CD000033,Girl Apparel,Mid,Growing,Medium,0.0,Evergreen,Growth Market,49.23,Watchlist,Monitor
+CD000037,Mom Apparel,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,49.14,Watchlist,Monitor
+CD000065,Teacher Appreciation,Mid,Growing,Low-Medium,0.0,Holiday Seasonal,Growth Market,49.09,Watchlist,Monitor
+CD000139,Truck Driver Gift,Mid,Growing,Low-Medium,17.85,Evergreen,Growth Market,49.05,Watchlist,Monitor
+CD000109,Cat Decor,Small,Growing,Low-Medium,37.8,Evergreen,Growth Market,48.95,Watchlist,Monitor
+CD000041,Cat Apparel,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,48.91,Watchlist,Monitor
+CD000045,Reading Book Lover Gift,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,48.54,Watchlist,Monitor
+CD000112,Christmas Grandpa Gift,Mid,Growing,Low-Medium,0.0,Q4 Seasonal,Growth Market,48.52,Watchlist,Monitor
+CD000057,Grandma Apparel,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,48.14,Watchlist,Monitor
+CD000107,Police Officer Gift,Small,Growing,Low,33.46,Evergreen,Growth Market,48.13,Watchlist,Monitor
+CD000059,Cat Cat Lover Gift,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,48.09,Watchlist,Monitor
+CD000062,Dog Mom Dog Lover Gift,Mid,Growing,Medium,0.0,Evergreen,Growth Market,48.0,Watchlist,Monitor
+CD000063,Fishing Apparel,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,47.95,Watchlist,Monitor
+CD000069,Dad Apparel,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,47.69,Watchlist,Monitor
+CD000070,Daughter Apparel,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,47.64,Watchlist,Monitor
+CD000072,Boy Apparel,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,47.56,Watchlist,Monitor
+CD000073,Coffee Coffee Lover Gift,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,47.51,Watchlist,Monitor
+CD000074,Boy Soccer Gift,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,47.4,Watchlist,Monitor
+CD000158,Christmas Daughter,Mid,Growing,Low-Medium,0.0,Q4 Seasonal,Growth Market,47.38,Watchlist,Monitor
+CD000163,Halloween Teacher Gift,Mid,Growing,Low-Medium,0.0,Q4 Seasonal,Growth Market,47.31,Watchlist,Monitor
+CD000249,Dog Matching,Mid,Growing,Low-Medium,20.57,Evergreen,Growth Market,47.13,Watchlist,Monitor
+CD000085,Teacher Apparel,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,47.11,Watchlist,Monitor
+CD000169,Christmas Daughter Gift,Mid,Growing,Low-Medium,0.0,Q4 Seasonal,Growth Market,47.07,Watchlist,Monitor
+CD000086,Personalized Coffee,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,47.05,Watchlist,Monitor
+CD000094,Cat Mom Cat Lover Gift,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,46.79,Watchlist,Monitor
+CD000095,Dad Cat Lover Gift,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,46.77,Watchlist,Monitor
+CD000096,Dog Dog Lover Gift,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,46.76,Watchlist,Monitor
+CD000106,Personalized Dog,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,46.45,Watchlist,Monitor
+CD000090,Dog Memorial,Mid,Established,Low-Medium,16.37,Evergreen,Validation Market,46.02,Watchlist,Monitor
+CD000225,Christmas Pickleball,Mid,Growing,Low-Medium,0.0,Q4 Seasonal,Growth Market,45.8,Watchlist,Monitor
+CD000125,Cat Funny Gift,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,45.75,Watchlist,Monitor
+CD000144,Reading Gift,Small,Growing,Low,26.92,Evergreen,Growth Market,45.74,Watchlist,Monitor
+CD000134,Dad Dog Lover Gift,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,45.58,Watchlist,Monitor
+CD000154,Dog Mom Apparel,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,45.06,Watchlist,Monitor
+CD000157,Yoga Gift,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,45.0,Watchlist,Monitor
+CD000068,Dad Wedding,Mid,Established,Low-Medium,0.0,Holiday Seasonal,Validation Market,44.75,Watchlist,Monitor
+CD000202,Girl Matching,Small,Growing,Low,29.36,Evergreen,Growth Market,44.64,Watchlist,Monitor
+CD000171,Boy Fishing Gift,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,44.64,Watchlist,Monitor
+CD000177,Realtor Gift,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,44.55,Watchlist,Monitor
+CD000102,Gaming Decor,Small,Growing,Low,14.52,Evergreen,Growth Market,44.51,Watchlist,Monitor
+CD000092,Christmas Husband,Small,Growing,Low,0.0,Q4 Seasonal,Growth Market,44.25,Watchlist,Monitor
+CD000184,Truck Driver Apparel,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,44.25,Watchlist,Monitor
+CD000099,Christmas Wife,Small,Growing,Low,0.0,Q4 Seasonal,Growth Market,44.09,Watchlist,Monitor
+CD000192,Hunting Matching,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,43.99,Watchlist,Monitor
+CD000111,Christmas Mom,Small,Growing,Low,0.0,Q4 Seasonal,Growth Market,43.65,Watchlist,Monitor
+CD000215,Cat Mom Apparel,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,43.53,Watchlist,Monitor
+CD000224,Police Officer Matching,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,43.41,Watchlist,Monitor
+CD000118,Christmas Dad,Small,Growing,Low,0.0,Q4 Seasonal,Growth Market,43.26,Watchlist,Monitor
+CD000239,Boy Fishing Apparel,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,43.2,Watchlist,Monitor
+CD000242,Grandpa Funny Gift,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,43.15,Watchlist,Monitor
+CD000256,Boy Soccer Decor,Mid,Growing,Low-Medium,0.0,Evergreen,Growth Market,42.86,Watchlist,Monitor
+CD000141,Christmas Nurse,Small,Growing,Low,0.0,Q4 Seasonal,Growth Market,42.86,Watchlist,Monitor
+CD000143,Christmas Teacher,Small,Growing,Low,0.0,Q4 Seasonal,Growth Market,42.79,Watchlist,Monitor
+CD000149,Hairstylist Gift,Small,Growing,Low,12.38,Evergreen,Growth Market,42.76,Watchlist,Monitor
+CD000153,Christmas Son,Small,Growing,Low,0.0,Q4 Seasonal,Growth Market,42.5,Watchlist,Monitor
+CD000162,Electrician Gift,Small,Growing,Low,12.59,Evergreen,Growth Market,42.45,Watchlist,Monitor
+CD000174,Christmas Truck Driver,Small,Growing,Low,0.0,Q4 Seasonal,Growth Market,41.98,Watchlist,Monitor
+CD000191,Accountant Gift,Small,Growing,Low,13.38,Evergreen,Growth Market,41.66,Watchlist,Monitor
+CD000206,Girl Wedding,Micro,Growing,Low,33.38,Holiday Seasonal,Growth Market,41.6,Watchlist,Monitor
+CD000188,Christmas Soccer,Small,Growing,Low,0.0,Q4 Seasonal,Growth Market,41.5,Watchlist,Monitor
+CD000103,Nurse Apparel,Small,Growing,Low,0.0,Evergreen,Growth Market,41.48,Watchlist,Monitor
+CD000105,Grandpa Apparel,Small,Growing,Low,0.0,Evergreen,Growth Market,41.47,Watchlist,Monitor
+CD000108,Dad Funny Gift,Small,Growing,Low,0.0,Evergreen,Growth Market,41.44,Watchlist,Monitor
+CD000130,Boy Gaming Decor,Small,Growing,Low,0.0,Evergreen,Growth Market,40.72,Watchlist,Monitor
+CD000142,Girl Soccer Gift,Small,Growing,Low,0.0,Evergreen,Growth Market,40.44,Watchlist,Monitor
+CD000145,Mom Memorial,Small,Growing,Low,0.0,Evergreen,Growth Market,40.34,Watchlist,Monitor
+CD000150,Boy Gaming Gift,Small,Growing,Low,0.0,Evergreen,Growth Market,40.21,Watchlist,Monitor
+CD000159,Mom Funny Gift,Small,Growing,Low,0.0,Evergreen,Growth Market,39.98,Watchlist,Monitor
+CD000160,Teacher Funny Gift,Small,Growing,Low,0.0,Evergreen,Growth Market,39.97,Watchlist,Monitor
+CD000173,Dad Memorial,Small,Growing,Low,0.0,Evergreen,Growth Market,39.6,Watchlist,Monitor
+CD000179,Personalized Girl,Small,Growing,Low,0.0,Evergreen,Growth Market,39.48,Watchlist,Monitor
+CD000021,Chef Apparel,Large,Declining,Medium,0.0,Declining,Mature / Declining,39.33,Watchlist,Archive
+CD000185,Gaming Apparel,Small,Growing,Low,0.0,Evergreen,Growth Market,39.21,Watchlist,Monitor
+CD000189,Pickleball Apparel,Small,Growing,Low,0.0,Evergreen,Growth Market,39.05,Watchlist,Monitor
+CD000196,Girl Country Girl Gift,Small,Growing,Low,0.0,Evergreen,Growth Market,38.88,Watchlist,Monitor
+CD000197,Nurse Funny Gift,Small,Growing,Low,0.0,Evergreen,Growth Market,38.85,Watchlist,Monitor
+CD000217,Hunting Decor,Small,Growing,Low,0.0,Evergreen,Growth Market,38.52,Watchlist,Monitor
+CD000088,Wedding Mom Gift,Mid,Declining,Low-Medium,0.0,Holiday Seasonal,Mature / Declining,38.4,Watchlist,Archive
+CD000119,Coffee Wedding,Mid,Declining,Low-Medium,0.0,Holiday Seasonal,Mature / Declining,37.3,Watchlist,Archive
+CD000207,Dad Matching,Micro,Growing,Low,14.12,Evergreen,Growth Market,36.53,Watchlist,Monitor
+CD000187,Christmas Nurse Gift,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,36.51,Watchlist,Monitor
+CD000166,Valentine Husband Gift,Mid,Emerging,Low-Medium,0.0,Insufficient Data,Early Signal,36.45,Watchlist,Monitor
+CD000195,Christmas Fishing,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,36.32,Watchlist,Monitor
+CD000137,Dog Wedding,Small,Declining,Low,21.66,Holiday Seasonal,Mature / Declining,36.26,Watchlist,Archive
+CD000198,Christmas Son Gift,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,36.25,Watchlist,Monitor
+CD000051,Coffee Decor,Mid,Declining,Low-Medium,18.72,Declining,Mature / Declining,36.1,Watchlist,Archive
+CD000214,Halloween Girl Gift,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,35.96,Watchlist,Monitor
+CD000116,Grandma Wedding,Small,Declining,Low,17.64,Holiday Seasonal,Mature / Declining,35.86,Watchlist,Archive
+CD000230,Christmas Hunting,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,35.73,Watchlist,Monitor
+CD000261,Husband Matching,Micro,Growing,Low,14.15,Evergreen,Growth Market,35.47,Watchlist,Monitor
+CD000251,Halloween Boy Gift,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,35.38,Watchlist,Monitor
+CD000254,Christmas Grandma,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,35.29,Watchlist,Monitor
+CD000264,Christmas Electrician,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,35.03,Watchlist,Monitor
+CD000272,Christmas Reading,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,34.89,Watchlist,Monitor
+CD000279,Christmas Hairstylist,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,34.79,Watchlist,Monitor
+CD000216,Graduation Nurse Gift,Micro,Growing,Low,0.0,Holiday Seasonal,Growth Market,34.72,Watchlist,Monitor
+CD000284,Christmas Firefighter,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,34.68,Watchlist,Monitor
+CD000240,Boy Wedding,Mid,Declining,Low-Medium,0.0,Holiday Seasonal,Mature / Declining,34.64,Watchlist,Archive
+CD000286,Christmas Yoga,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,34.6,Watchlist,Monitor
+CD000290,Christmas Coffee Gift,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,34.56,Watchlist,Monitor
+CD000292,Christmas Grandpa,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,34.49,Watchlist,Monitor
+CD000322,Christmas Camping,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,34.1,Watchlist,Monitor
+CD000344,Christmas Soccer Gift,Micro,Growing,Low,0.0,Q4 Seasonal,Growth Market,33.83,Watchlist,Monitor
+CD000200,Fishing Funny Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,33.8,Watchlist,Monitor
+CD000204,Mom Faith Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,33.76,Watchlist,Monitor
+CD000205,Reading Apparel,Micro,Growing,Low,0.0,Evergreen,Growth Market,33.73,Watchlist,Monitor
+CD000210,Boy Soccer Apparel,Micro,Growing,Low,0.0,Evergreen,Growth Market,33.6,Watchlist,Monitor
+CD000289,Nurse Graduation,Micro,Growing,Low,0.0,Holiday Seasonal,Growth Market,33.37,Watchlist,Monitor
+CD000232,Girl Faith Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,33.3,Watchlist,Monitor
+CD000233,Husband Funny Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,33.29,Watchlist,Monitor
+CD000031,Birthday Girl Gift,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,33.27,Watchlist,Archive
+CD000234,Personalized Boy,Micro,Growing,Low,0.0,Evergreen,Growth Market,33.27,Watchlist,Monitor
+CD000235,Boy Hunting Apparel,Micro,Growing,Low,0.0,Evergreen,Growth Market,33.25,Watchlist,Monitor
+CD000236,Girl American Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,33.23,Watchlist,Monitor
+CD000296,Girl Appreciation,Micro,Growing,Low,0.0,Holiday Seasonal,Growth Market,33.21,Watchlist,Monitor
+CD000241,Son Apparel,Micro,Growing,Low,0.0,Evergreen,Growth Market,33.16,Watchlist,Monitor
+CD000035,Soccer Decor,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,33.11,Watchlist,Archive
+CD000245,Girl Hunting Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,33.09,Watchlist,Monitor
+CD000247,Girl Gaming Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,33.06,Watchlist,Monitor
+CD000246,Grandma Funny Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,33.06,Watchlist,Monitor
+CD000252,Boy Funny Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,32.95,Watchlist,Monitor
+CD000040,Birthday Mom Gift,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,32.87,Watchlist,Archive
+CD000255,Camping Matching,Micro,Growing,Low,0.0,Evergreen,Growth Market,32.86,Watchlist,Monitor
+CD000258,Boy Hunting Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,32.8,Watchlist,Monitor
+CD000042,Birthday Boy Gift,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,32.72,Watchlist,Archive
+CD000259,Wife Funny Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,32.72,Watchlist,Monitor
+CD000269,Hunting Apparel,Micro,Growing,Low,0.0,Evergreen,Growth Market,32.57,Watchlist,Monitor
+CD000275,Personalized Grandma,Micro,Growing,Low,0.0,Evergreen,Growth Market,32.43,Watchlist,Monitor
+CD000280,Dad Fishing Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,32.37,Watchlist,Monitor
+CD000053,Dog Birthday,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,32.33,Watchlist,Archive
+CD000366,Mother's Day Mom Gift,Micro,Growing,Low,0.0,Holiday Seasonal,Growth Market,32.27,Watchlist,Monitor
+CD000257,Reading Decor,Micro,Established,Low,17.89,Evergreen,Validation Market,32.22,Watchlist,Monitor
+CD000055,Birthday Dad Gift,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,32.19,Watchlist,Archive
+CD000287,Dog Funny Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,32.18,Watchlist,Monitor
+CD000288,Gaming Matching,Micro,Growing,Low,0.0,Evergreen,Growth Market,32.17,Watchlist,Monitor
+CD000056,Firefighter Apparel,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,32.1,Watchlist,Archive
+CD000293,Pickleball Funny Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,32.09,Watchlist,Monitor
+CD000221,Boy Matching,Micro,Established,Low,13.97,Evergreen,Validation Market,32.08,Watchlist,Monitor
+CD000133,Wedding Dad Gift,Small,Declining,Low,0.0,Holiday Seasonal,Mature / Declining,32.08,Watchlist,Archive
+CD000058,Soccer Apparel,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,32.06,Watchlist,Archive
+CD000297,Boy Faith Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,32.01,Watchlist,Monitor
+CD000302,Mom Soccer Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,31.95,Watchlist,Monitor
+CD000064,Coffee Matching,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,31.84,Watchlist,Archive
+CD000316,Dad Faith Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,31.75,Watchlist,Monitor
+CD000315,Husband Gaming Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,31.75,Watchlist,Monitor
+CD000066,Girl Birthday,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,31.73,Watchlist,Archive
+CD000319,Son Funny Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,31.73,Watchlist,Monitor
+CD000250,Thanksgiving Teacher Gift,Mid,Unproven,Low-Medium,0.0,Insufficient Data,Early Signal,31.73,Watchlist,Monitor
+CD000067,Husband Anniversary,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,31.71,Watchlist,Archive
+CD000323,Hunting Funny Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,31.7,Watchlist,Monitor
+CD000325,Personalized Mom,Micro,Growing,Low,0.0,Evergreen,Growth Market,31.69,Watchlist,Monitor
+CD000332,Dad Hunting Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,31.58,Watchlist,Monitor
+CD000267,Truck Driver Appreciation,Mid,Unproven,Low-Medium,0.0,Insufficient Data,Early Signal,31.34,Watchlist,Monitor
+CD000077,Husband Birthday,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,31.32,Watchlist,Archive
+CD000078,Boy Birthday,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,31.3,Watchlist,Archive
+CD000356,Electrician Apparel,Micro,Growing,Low,0.0,Evergreen,Growth Market,31.19,Watchlist,Monitor
+CD000360,Girl Cowgirl Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,31.18,Watchlist,Monitor
+CD000361,Cat Matching,Micro,Growing,Low,0.0,Evergreen,Growth Market,31.17,Watchlist,Monitor
+CD000363,Girl Funny Gift,Micro,Growing,Low,0.0,Evergreen,Growth Market,31.14,Watchlist,Monitor
+CD000364,Personalized Pickleball,Micro,Growing,Low,0.0,Evergreen,Growth Market,31.14,Watchlist,Monitor
+CD000082,Mom Soccer Apparel,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,31.12,Watchlist,Archive
+CD000084,Wife Anniversary,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,31.09,Watchlist,Archive
+CD000380,Coffee Retirement,Micro,Growing,Low,0.0,Evergreen,Growth Market,30.83,Watchlist,Monitor
+CD000097,Wife Birthday,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,30.65,Watchlist,Archive
+CD000100,Birthday Husband Gift,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,30.62,Watchlist,Archive
+CD000393,Personalized Reading,Micro,Growing,Low,0.0,Evergreen,Growth Market,30.55,Watchlist,Monitor
+CD000395,Personalized Chef,Micro,Growing,Low,0.0,Evergreen,Growth Market,30.5,Watchlist,Monitor
+CD000110,Birthday Grandma Gift,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,30.26,Watchlist,Archive
+CD000113,Mom Birthday,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,30.04,Watchlist,Archive
+CD000120,Birthday Wife Gift,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,29.8,Watchlist,Archive
+CD000231,Wife Appreciation,Small,Declining,Low,0.0,Holiday Seasonal,Mature / Declining,29.76,Watchlist,Archive
+CD000124,Dad Birthday,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,29.7,Watchlist,Archive
+CD000132,Yoga Apparel,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,29.6,Watchlist,Archive
+CD000138,Girl Floral Gift,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,29.43,Watchlist,Archive
+CD000218,Fishing Decor,Micro,Established,Low,0.0,Evergreen,Validation Market,29.31,Watchlist,Monitor
+CD000219,Husband Apparel,Micro,Established,Low,0.0,Evergreen,Validation Market,29.31,Watchlist,Monitor
+CD000148,Cat Memorial,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,29.24,Watchlist,Archive
+CD000098,Dog Decor,Small,Declining,Low,16.98,Declining,Mature / Declining,29.04,Watchlist,Archive
+CD000161,Son Birthday,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,28.92,Watchlist,Archive
+CD000311,Nurse Appreciation,Micro,Established,Low,0.0,Holiday Seasonal,Validation Market,28.81,Watchlist,Monitor
+CD000167,Hunting Birthday,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,28.64,Watchlist,Archive
+CD000274,Gardening Apparel,Micro,Established,Low,0.0,Evergreen,Validation Market,28.23,Watchlist,Monitor
+CD000183,Camping Birthday,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,28.22,Watchlist,Archive
+CD000306,Girl Hunting Apparel,Micro,Established,Low,0.0,Evergreen,Validation Market,27.69,Watchlist,Monitor
+CD000211,Birthday Dog Gift,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,27.55,Watchlist,Archive
+CD000223,Grandma Anniversary,Mid,Declining,Low-Medium,0.0,Declining,Mature / Declining,27.41,Watchlist,Archive
+CD000369,Yoga Decor,Micro,Established,Low,0.0,Evergreen,Validation Market,26.81,Watchlist,Monitor
+CD000190,Camping Decor,Small,Declining,Low,17.81,Declining,Mature / Declining,26.56,Watchlist,Archive
+CD000390,Boy Hunting Decor,Micro,Unproven,Low,0.0,Evergreen,Validation Market,26.46,Watchlist,Monitor
+CD000091,Police Officer Apparel,Small,Declining,Low,0.0,Declining,Mature / Declining,25.88,Watchlist,Archive
+CD000101,Coffee Apparel,Small,Declining,Low,0.0,Declining,Mature / Declining,25.58,Watchlist,Archive
+CD000278,Christmas Chef,Micro,Declining,Low,0.0,Q4 Seasonal,Mature / Declining,25.04,Watchlist,Archive
+CD000115,Cat Birthday,Small,Declining,Low,0.0,Declining,Mature / Declining,24.84,Watchlist,Archive
+CD000117,Wife Decor,Small,Declining,Low,0.0,Declining,Mature / Declining,24.82,Watchlist,Archive
+CD000291,Christmas Gaming,Micro,Declining,Low,0.0,Q4 Seasonal,Mature / Declining,24.8,Watchlist,Archive
+CD000121,Personalized Soccer,Small,Declining,Low,0.0,Declining,Mature / Declining,24.8,Watchlist,Archive
+CD000126,Soccer Birthday,Small,Declining,Low,0.0,Declining,Mature / Declining,24.7,Watchlist,Archive
+CD000131,Grandma Decor,Small,Declining,Low,0.0,Declining,Mature / Declining,24.67,Watchlist,Archive
+CD000243,Gardening Wedding,Micro,Declining,Low,0.0,Holiday Seasonal,Mature / Declining,24.57,Watchlist,Archive
+CD000140,Daughter Birthday,Small,Declining,Low,0.0,Declining,Mature / Declining,24.42,Watchlist,Archive
+CD000324,Christmas Police Officer,Micro,Declining,Low,0.0,Q4 Seasonal,Mature / Declining,24.34,Watchlist,Archive
+CD000151,Wife Apparel,Small,Declining,Low,0.0,Declining,Mature / Declining,24.14,Watchlist,Archive
+CD000156,Chef Decor,Small,Declining,Low,0.0,Declining,Mature / Declining,23.98,Watchlist,Archive
+CD000164,Realtor Decor,Small,Declining,Low,0.0,Declining,Mature / Declining,23.8,Watchlist,Archive
+CD000170,Personalized Cat,Small,Declining,Low,0.0,Declining,Mature / Declining,23.6,Watchlist,Archive
+CD000172,Fishing Birthday,Small,Declining,Low,0.0,Declining,Mature / Declining,23.58,Watchlist,Archive
+CD000175,Gaming Birthday,Small,Declining,Low,0.0,Declining,Mature / Declining,23.53,Watchlist,Archive
+CD000176,Birthday Daughter Gift,Small,Declining,Low,0.0,Declining,Mature / Declining,23.52,Watchlist,Archive
+CD000178,Anniversary Husband Gift,Small,Declining,Low,0.0,Declining,Mature / Declining,23.48,Watchlist,Archive
+CD000301,Wedding Daughter Gift,Micro,Declining,Low,0.0,Holiday Seasonal,Mature / Declining,23.41,Watchlist,Archive
+CD000328,Grandma Faith Gift,Micro,Emerging,Low,0.0,Insufficient Data,Early Signal,23.4,Watchlist,Monitor
+CD000181,Anniversary Wife Gift,Small,Declining,Low,0.0,Declining,Mature / Declining,23.29,Watchlist,Archive
+CD000337,Mom Gardening Gift,Micro,Emerging,Low,0.0,Insufficient Data,Early Signal,23.28,Watchlist,Monitor
+CD000341,Police Officer Funny Gift,Micro,Emerging,Low,0.0,Insufficient Data,Early Signal,23.21,Watchlist,Monitor
+CD000342,Grandma Gardening Gift,Micro,Emerging,Low,0.0,Insufficient Data,Early Signal,23.2,Watchlist,Monitor
+CD000347,Dad Soccer Gift,Micro,Emerging,Low,0.0,Insufficient Data,Early Signal,23.1,Watchlist,Monitor
+CD000353,Boy Gaming Apparel,Micro,Emerging,Low,0.0,Insufficient Data,Early Signal,22.97,Watchlist,Monitor
+CD000338,Gardening Appreciation,Micro,Declining,Low,0.0,Holiday Seasonal,Mature / Declining,22.96,Watchlist,Archive
+CD000194,Birthday Grandpa Gift,Small,Declining,Low,0.0,Declining,Mature / Declining,22.87,Watchlist,Archive
+CD000370,Grandpa Fishing Gift,Micro,Emerging,Low,0.0,Insufficient Data,Early Signal,22.76,Watchlist,Monitor
+CD000350,Boy Appreciation,Micro,Declining,Low,0.0,Holiday Seasonal,Mature / Declining,22.73,Watchlist,Archive
+CD000354,Daughter Wedding,Micro,Declining,Low,0.0,Holiday Seasonal,Mature / Declining,22.66,Watchlist,Archive
+CD000358,Dog Graduation,Micro,Declining,Low,0.0,Holiday Seasonal,Mature / Declining,22.64,Watchlist,Archive
+CD000220,Personalized Truck Driver,Small,Declining,Low,0.0,Declining,Mature / Declining,22.44,Watchlist,Archive
+CD000391,Coffee Funny Gift,Micro,Emerging,Low,0.0,Insufficient Data,Early Signal,22.41,Watchlist,Monitor
+CD000226,Mom Decor,Small,Declining,Low,0.0,Declining,Mature / Declining,22.35,Watchlist,Archive
+CD000386,Dog Appreciation,Micro,Declining,Low,0.0,Holiday Seasonal,Mature / Declining,22.17,Watchlist,Archive
+CD000398,Personalized Dad,Micro,Emerging,Low,0.0,Insufficient Data,Early Signal,22.04,Watchlist,Monitor
+CD000392,Wedding Son Gift,Micro,Declining,Low,0.0,Holiday Seasonal,Mature / Declining,22.01,Watchlist,Archive
+CD000394,Wedding Husband Gift,Micro,Declining,Low,0.0,Holiday Seasonal,Mature / Declining,21.97,Watchlist,Archive
+CD000399,Daughter Funny Gift,Micro,Emerging,Low,0.0,Insufficient Data,Early Signal,21.9,Watchlist,Monitor
+CD000400,Chef Matching,Micro,Emerging,Low,0.0,Insufficient Data,Early Signal,21.89,Watchlist,Monitor
+CD000268,Personalized Police Officer,Micro,Unproven,Low,0.0,Insufficient Data,Early Signal,21.33,Watchlist,Monitor
+CD000313,Nurse Matching,Micro,Unproven,Low,0.0,Insufficient Data,Early Signal,20.53,Watchlist,Monitor
+CD000343,Truck Driver Soccer Apparel,Micro,Unproven,Low,0.0,Insufficient Data,Early Signal,20.19,Watchlist,Monitor
+CD000379,Personalized Mom Soccer,Micro,Unproven,Low,0.0,Insufficient Data,Early Signal,19.6,Watchlist,Monitor
+CD000385,Christmas Cat Gardening,Micro,Unproven,Low,0.0,Insufficient Data,Early Signal,19.53,Watchlist,Monitor
+CD000213,Teacher Decor,Micro,Declining,Low,0.0,Declining,Mature / Declining,17.54,Watchlist,Archive
+CD000228,Grandma Birthday,Micro,Declining,Low,0.0,Declining,Mature / Declining,17.3,Watchlist,Archive
+CD000238,Birthday Teacher Gift,Micro,Declining,Low,0.0,Declining,Mature / Declining,17.16,Watchlist,Archive
+CD000253,Camping Apparel,Micro,Declining,Low,0.0,Declining,Mature / Declining,16.9,Watchlist,Archive
+CD000262,Birthday Son Gift,Micro,Declining,Low,0.0,Declining,Mature / Declining,16.59,Watchlist,Archive
+CD000263,Nurse Decor,Micro,Declining,Low,0.0,Declining,Mature / Declining,16.58,Watchlist,Archive
+CD000276,Gardening Memorial,Micro,Declining,Low,0.0,Declining,Mature / Declining,16.37,Watchlist,Archive
+CD000281,Grandpa Birthday,Micro,Declining,Low,0.0,Declining,Mature / Declining,16.3,Watchlist,Archive
+CD000282,Dog Sympathy,Micro,Declining,Low,0.0,Declining,Mature / Declining,16.27,Watchlist,Archive
+CD000294,Gardening Birthday,Micro,Declining,Low,0.0,Declining,Mature / Declining,16.03,Watchlist,Archive
+CD000295,Yoga Matching,Micro,Declining,Low,0.0,Declining,Mature / Declining,16.02,Watchlist,Archive
+CD000298,Personalized Gardening,Micro,Declining,Low,0.0,Declining,Mature / Declining,15.96,Watchlist,Archive
+CD000299,Dad Soccer Apparel,Micro,Declining,Low,0.0,Declining,Mature / Declining,15.95,Watchlist,Archive
+CD000300,Girl Soccer Apparel,Micro,Declining,Low,0.0,Declining,Mature / Declining,15.92,Watchlist,Archive
+CD000303,Mom Sympathy,Micro,Declining,Low,0.0,Declining,Mature / Declining,15.89,Watchlist,Archive
+CD000304,Coffee Birthday,Micro,Declining,Low,0.0,Declining,Mature / Declining,15.88,Watchlist,Archive
+CD000321,Daughter Anniversary,Micro,Declining,Low,0.0,Declining,Mature / Declining,15.66,Watchlist,Archive
+CD000326,Pickleball Decor,Micro,Declining,Low,0.0,Declining,Mature / Declining,15.63,Watchlist,Archive
+CD000351,Personalized Teacher,Micro,Declining,Low,0.0,Declining,Mature / Declining,15.2,Watchlist,Archive
+CD000374,Firefighter Decor,Micro,Declining,Low,0.0,Declining,Mature / Declining,14.91,Watchlist,Archive
+CD000378,Pickleball Birthday,Micro,Declining,Low,0.0,Declining,Mature / Declining,14.83,Watchlist,Archive
+CD000381,Husband Sympathy,Micro,Declining,Low,0.0,Declining,Mature / Declining,14.78,Watchlist,Archive
+CD000397,Personalized Fishing,Micro,Declining,Low,0.0,Declining,Mature / Declining,14.27,Watchlist,Archive

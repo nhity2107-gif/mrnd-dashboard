@@ -1,0 +1,11 @@
+market_node_id,demand,niche,recipient,profession,pet,interest,theme,lifestyle,holiday,occasion,best_rank,p25_rank,median_rank,top100,top500,top1000,active_months,strength_score,trend
+MN000001,Boy Gift,soccer,boy,,,soccer,,,,,19843,193319.25,596787.0,0.0,0.0,0.0,4,20.33,growing
+MN000002,Husband Demand,coffee,husband,,,coffee,,,,,19111,375327.0,814765.0,0.0,0.0,0.0,4,19.31,growing
+MN000003,Electrician Demand,soccer,,electrician,,soccer,,,,,30810,334006.75,587959.5,0.0,0.0,0.0,4,17.67,declining
+MN000004,Dad Gift,funny,dad,,,,funny,,christmas,christmas,34369,384908.5,617752.0,0.0,0.0,0.0,4,17.0,growing
+MN000005,Boy Gift,gaming,boy,,,gaming,,,,,69216,393964.5,560858.5,0.0,0.0,0.0,4,14.25,growing
+MN000006,Dad Demand,coffee,dad,,,coffee,,,,,83087,389752.25,626520.5,0.0,0.0,0.0,4,13.56,growing
+MN000007,Mom Gift,funny,mom,,,,funny,,christmas,christmas,78682,487025.0,789050.5,0.0,0.0,0.0,4,13.38,growing
+MN000008,Mom Demand,coffee,mom,,,coffee,,,,,88213,452930.0,565160.0,0.0,0.0,0.0,4,13.06,growing
+MN000009,Grandma Demand,coffee,grandma,,,coffee,,,,,91862,613811.5,800255.0,0.0,0.0,0.0,4,12.37,growing
+MN000010,Mom Demand,floral,mom,,,,floral,,,,184335,334981.0,557742.0,0.0,0.0,0.0,3,10.74,declining
