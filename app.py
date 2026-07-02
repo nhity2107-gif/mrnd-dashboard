@@ -2982,17 +2982,28 @@ def market_investment_cards(markets: pd.DataFrame, limit: int = 15) -> None:
     for start in range(0, len(top), 3):
         columns = st.columns(3)
         for column, (index, row) in zip(columns, top.iloc[start : start + 3].iterrows()):
+            metric_help = """
+                        <div class="mrd-card-note" style="font-size:0.76rem;line-height:1.35;margin-top:0.7rem;">
+                            <b>Detected Segment Coverage</b> = percentage of discovered child segments versus the estimated total segment capacity for this parent demand. Higher means this market has been researched more thoroughly.<br><br>
+                            <b>Expansion Potential</b> = composite score calculated from:<br>
+                            - parent market expansion score<br>
+                            - remaining uncovered segment space<br>
+                            - best child opportunity score<br><br>
+                            Higher Expansion Potential means more high-value opportunities remain.
+                        </div>
+            """
             with column:
                 st.markdown(
                     f"""
-                    <div class="mrd-card" style="min-height:245px;">
+                    <div class="mrd-card" style="min-height:390px;">
                         <span class="mrd-badge {confidence_badge_class(confidence_from_score(row.get("Market Rank Score"), row.get("Investment")))}">#{index + 1}</span>
                         <div class="mrd-card-value" style="font-size:1.35rem;margin-top:0.7rem;">{safe(row.get("Parent Market"))}</div>
                         <div class="mrd-card-note">{safe(row.get("Market Size"))} | {safe(row.get("Growth"))} | {safe(row.get("Competition"))}</div>
-                        <div class="mrd-research-line"><b>Coverage:</b> {format_score(row.get("Coverage"))}%</div>
-                        <div class="mrd-research-line"><b>Expansion:</b> {format_score(row.get("Expansion Potential"))}</div>
+                        <div class="mrd-research-line"><b>Detected Segment Coverage:</b> {safe(format_score(row.get("Coverage")))}%</div>
+                        <div class="mrd-research-line"><b>Expansion Potential:</b> {safe(format_score(row.get("Expansion Potential")))} / 100</div>
                         <div class="mrd-research-line"><b>Priority:</b> {safe(row.get("Investment"))}</div>
                         <div class="mrd-research-line"><b>Action:</b> {safe(market_recommended_action(row))}</div>
+                        {metric_help}
                     </div>
                     """,
                     unsafe_allow_html=True,
