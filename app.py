@@ -2982,32 +2982,20 @@ def market_investment_cards(markets: pd.DataFrame, limit: int = 15) -> None:
     for start in range(0, len(top), 3):
         columns = st.columns(3)
         for column, (index, row) in zip(columns, top.iloc[start : start + 3].iterrows()):
-            metric_help = """
-                        <div class="mrd-card-note" style="font-size:0.76rem;line-height:1.35;margin-top:0.7rem;">
-                            <b>Detected Segment Coverage</b> = percentage of discovered child segments versus the estimated total segment capacity for this parent demand. Higher means this market has been researched more thoroughly.<br><br>
-                            <b>Expansion Potential</b> = composite score calculated from:<br>
-                            - parent market expansion score<br>
-                            - remaining uncovered segment space<br>
-                            - best child opportunity score<br><br>
-                            Higher Expansion Potential means more high-value opportunities remain.
-                        </div>
-            """
             with column:
-                st.markdown(
-                    f"""
-                    <div class="mrd-card" style="min-height:390px;">
-                        <span class="mrd-badge {confidence_badge_class(confidence_from_score(row.get("Market Rank Score"), row.get("Investment")))}">#{index + 1}</span>
-                        <div class="mrd-card-value" style="font-size:1.35rem;margin-top:0.7rem;">{safe(row.get("Parent Market"))}</div>
-                        <div class="mrd-card-note">{safe(row.get("Market Size"))} | {safe(row.get("Growth"))} | {safe(row.get("Competition"))}</div>
-                        <div class="mrd-research-line"><b>Detected Segment Coverage:</b> {safe(format_score(row.get("Coverage")))}%</div>
-                        <div class="mrd-research-line"><b>Expansion Potential:</b> {safe(format_score(row.get("Expansion Potential")))} / 100</div>
-                        <div class="mrd-research-line"><b>Priority:</b> {safe(row.get("Investment"))}</div>
-                        <div class="mrd-research-line"><b>Action:</b> {safe(market_recommended_action(row))}</div>
-                        {metric_help}
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
+                with st.container(border=True):
+                    st.caption(f"#{index + 1}")
+                    st.markdown(f"**{clean_text(row.get('Parent Market'))}**")
+                    st.caption(
+                        f"{clean_text(row.get('Market Size'))} | "
+                        f"{clean_text(row.get('Growth'))} | "
+                        f"{clean_text(row.get('Competition'))}"
+                    )
+                    st.markdown(f"**Detected Segment Coverage:** {format_score(row.get('Coverage'))}%")
+                    st.markdown(f"**Expansion Potential:** {format_score(row.get('Expansion Potential'))} / 100")
+                    st.markdown(f"**Priority:** {clean_text(row.get('Investment'))}")
+                    st.markdown(f"**Action:** {market_recommended_action(row)}")
+                    portfolio_metric_note()
 
 
 def market_size_ranking_chart(markets: pd.DataFrame) -> None:
@@ -3037,6 +3025,15 @@ def market_size_ranking_chart(markets: pd.DataFrame) -> None:
     st.altair_chart(dark_chart(chart), use_container_width=True)
 
 
+def portfolio_metric_note() -> None:
+    st.caption(
+        "**Note**\n\n"
+        "- Coverage = % of discovered child segments.\n"
+        "- Expansion Potential = remaining expansion opportunity.\n"
+        "- Low Coverage + High Expansion Potential = continue researching this market."
+    )
+
+
 def compact_market_opportunity_cards(markets: pd.DataFrame, title: str, mode: str, limit: int = 6) -> None:
     st.subheader(title)
     if markets.empty:
@@ -3049,37 +3046,23 @@ def compact_market_opportunity_cards(markets: pd.DataFrame, title: str, mode: st
             if mode == "risk":
                 note = f"Risk score {format_score(row.get('Risk Score'))}. Action: {market_recommended_action(row)}"
                 badge = "Review"
-                badge_style = "mrd-badge-watch"
-                metrics_html = f'<div class="mrd-research-line">{safe(note)}</div>'
-                min_height = 185
             else:
                 badge = clean_text(row.get("Investment")) or "Expand"
-                badge_style = badge_class(badge)
-                metrics_html = f"""
-                        <div class="mrd-research-line"><b>Expansion Potential:</b> {safe(format_score(row.get('Expansion Potential')))} / 100</div>
-                        <div class="mrd-research-line"><b>Detected Segment Coverage:</b> {safe(format_score(row.get('Coverage')))}%</div>
-                        <div class="mrd-card-note" style="font-size:0.76rem;line-height:1.35;margin-top:0.7rem;">
-                            <b>Detected Segment Coverage</b> = percentage of discovered child segments versus the estimated total segment capacity for this parent demand. Higher means this market has been researched more thoroughly.<br><br>
-                            <b>Expansion Potential</b> = composite score calculated from:<br>
-                            - parent market expansion score<br>
-                            - remaining uncovered segment space<br>
-                            - best child opportunity score<br><br>
-                            Higher Expansion Potential means more high-value opportunities remain.
-                        </div>
-                """
-                min_height = 330
             with column:
-                st.markdown(
-                    f"""
-                    <div class="mrd-card" style="min-height:{min_height}px;">
-                        <span class="mrd-badge {badge_style}">{safe(badge)}</span>
-                        <div class="mrd-card-value" style="font-size:1.25rem;margin-top:0.7rem;">{safe(row.get("Parent Market"))}</div>
-                        <div class="mrd-card-note">{safe(row.get("Market Size"))} | {safe(row.get("Growth"))} | {safe(row.get("Competition"))}</div>
-                        {metrics_html}
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
+                with st.container(border=True):
+                    st.caption(badge)
+                    st.markdown(f"**{clean_text(row.get('Parent Market'))}**")
+                    st.caption(
+                        f"{clean_text(row.get('Market Size'))} | "
+                        f"{clean_text(row.get('Growth'))} | "
+                        f"{clean_text(row.get('Competition'))}"
+                    )
+                    if mode == "risk":
+                        st.markdown(note)
+                    else:
+                        st.markdown(f"**Expansion Potential:** {format_score(row.get('Expansion Potential'))} / 100")
+                        st.markdown(f"**Detected Segment Coverage:** {format_score(row.get('Coverage'))}%")
+                        portfolio_metric_note()
 
 
 def weekly_research_focus(queue: pd.DataFrame, limit: int = 10) -> None:
