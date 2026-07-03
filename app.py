@@ -1981,7 +1981,10 @@ def decision_center() -> None:
         )
         st.write(clean_text(row.get("explanation")) or "No explanation available.")
     with tab_product:
-        score_metric_row(row, ["blanket_score", "mug_score", "tumbler_score", "shirt_score", "ornament_score", "canvas_score"])
+        score_metric_row(
+            row,
+            ["card_score", "blanket_score", "mug_score", "tumbler_score", "shirt_score", "ornament_score", "canvas_score"],
+        )
         st.markdown(f"**Best product:** {clean_text(row.get('best_product'))}")
         st.write(clean_text(row.get("explanation_product_fit")))
     with tab_custom:
@@ -2398,6 +2401,7 @@ def research_workspace() -> None:
         product_fit,
         child_segments,
         {
+            "card_score": "Card",
             "blanket_score": "Blanket",
             "mug_score": "Mug",
             "tumbler_score": "Tumbler",
@@ -2768,6 +2772,7 @@ def product_customization_fit() -> None:
                 "child_segment",
                 "best_product",
                 "best_customization",
+                "card_score",
                 "blanket_score",
                 "mug_score",
                 "tumbler_score",
@@ -2790,6 +2795,7 @@ def product_customization_fit() -> None:
             [
                 "child_segment",
                 "best_product",
+                "card_score",
                 "blanket_score",
                 "mug_score",
                 "tumbler_score",
@@ -3019,6 +3025,7 @@ def market_evidence() -> None:
 # Sprint 30 decision dashboard pages. These functions intentionally keep raw
 # dataframes inside expanders and use existing compact CSV outputs only.
 PRODUCT_SCORE_COLUMNS = {
+    "card_score": "Card",
     "blanket_score": "Blanket",
     "mug_score": "Mug",
     "tumbler_score": "Tumbler",
@@ -4371,6 +4378,38 @@ def render_fit_score_cards(rows: pd.DataFrame, reason: str) -> None:
                 )
 
 
+def product_intelligence_segments(product_fit: pd.DataFrame, customization_fit: pd.DataFrame) -> pd.DataFrame:
+    frames = []
+    metadata_columns = ["child_segment", "segment_label_source", "canonical_evidence_phrase", "observed_products"]
+    for frame in [product_fit, customization_fit]:
+        if frame.empty or "child_segment" not in frame.columns:
+            continue
+        available = [column for column in metadata_columns if column in frame.columns]
+        subset = frame[available].copy()
+        if "segment_label_source" not in subset.columns:
+            subset["segment_label_source"] = "observed_phrase"
+        if "canonical_evidence_phrase" not in subset.columns:
+            subset["canonical_evidence_phrase"] = ""
+        if "observed_products" not in subset.columns:
+            subset["observed_products"] = ""
+        frames.append(subset)
+
+    if not frames:
+        return pd.DataFrame(columns=metadata_columns)
+
+    segments = pd.concat(frames, ignore_index=True).drop_duplicates("child_segment")
+    segments["child_segment"] = segments["child_segment"].map(clean_text)
+    segments = segments[segments["child_segment"] != ""].copy()
+    source_order = {
+        "observed_phrase": 0,
+        "semantic_relabel": 1,
+        "expansion_candidate": 2,
+        "unsupported_semantic_relabel": 3,
+    }
+    segments["_source_order"] = segments["segment_label_source"].map(source_order).fillna(1)
+    return segments.sort_values(["_source_order", "child_segment"]).drop(columns=["_source_order"]).reset_index(drop=True)
+
+
 def product_intelligence() -> None:
     page_header(
         "Product Intelligence",
@@ -4381,14 +4420,38 @@ def product_intelligence() -> None:
     if product_fit.empty and customization_fit.empty:
         st.info("Product and customization fit data is missing or empty.")
         return
-    segments = sorted(
-        set(clean_options(product_fit["child_segment"]) if "child_segment" in product_fit.columns else [])
-        | set(clean_options(customization_fit["child_segment"]) if "child_segment" in customization_fit.columns else [])
-    )
-    if not segments:
+    segment_frame = product_intelligence_segments(product_fit, customization_fit)
+    if segment_frame.empty:
         st.info("No child segments are available for product intelligence.")
         return
-    selected = st.selectbox("Select child segment", segments, key="product_intelligence_segment")
+
+    validated = segment_frame[
+        ~segment_frame["segment_label_source"].isin(["expansion_candidate", "unsupported_semantic_relabel"])
+    ].copy()
+    expansion = segment_frame[segment_frame["segment_label_source"].isin(["expansion_candidate"])].copy()
+    if not expansion.empty:
+        segment_group = st.radio(
+            "Segment group",
+            ["Evidence-backed Segments", "Expansion Candidates"],
+            horizontal=True,
+            key="product_intelligence_segment_group",
+        )
+        segment_options = expansion if segment_group == "Expansion Candidates" else validated
+        if segment_group == "Expansion Candidates":
+            st.caption("Expansion candidates are generated ideas and are not validated observed child segments.")
+    else:
+        segment_options = validated
+
+    segments = segment_options["child_segment"].dropna().astype(str).tolist()
+    if not segments:
+        st.info("No evidence-backed child segments are available for Product Intelligence.")
+        return
+
+    selected = st.selectbox(
+        "Select child segment",
+        segments,
+        key="product_intelligence_segment",
+    )
     product_row = first_matching_row(product_fit, "child_segment", selected)
     custom_row = first_matching_row(customization_fit, "child_segment", selected)
     product_rows = segment_fit_scores(product_row, PRODUCT_SCORE_COLUMNS)

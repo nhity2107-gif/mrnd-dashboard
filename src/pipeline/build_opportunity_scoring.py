@@ -105,6 +105,10 @@ OPPORTUNITY_COLUMNS = [
 
 PRODUCT_COLUMNS = [
     "child_segment",
+    "segment_label_source",
+    "canonical_evidence_phrase",
+    "observed_products",
+    "card_score",
     "blanket_score",
     "mug_score",
     "tumbler_score",
@@ -117,6 +121,9 @@ PRODUCT_COLUMNS = [
 
 CUSTOMIZATION_COLUMNS = [
     "child_segment",
+    "segment_label_source",
+    "canonical_evidence_phrase",
+    "observed_products",
     "photo",
     "name",
     "multiple_names",
@@ -319,6 +326,8 @@ def context_text(segment: pd.Series) -> str:
         "theme",
         "lifestyle",
         "evidence_keywords",
+        "canonical_evidence_phrase",
+        "observed_products",
     ]
     return " ".join(lower_text(segment.get(field)) for field in fields)
 
@@ -366,6 +375,7 @@ def score_product_fit(
     segment_name = clean_text(segment["segment_name"])
     text = context_text(segment)
     scores = {
+        "card": 42,
         "blanket": 44,
         "mug": 48,
         "tumbler": 46,
@@ -376,6 +386,7 @@ def score_product_fit(
     reasons: list[str] = []
 
     if has_any(text, ["gift", "present"]):
+        scores["card"] += 6
         scores["blanket"] += 8
         scores["mug"] += 8
         scores["tumbler"] += 6
@@ -384,10 +395,17 @@ def score_product_fit(
 
     if has_any(text, ["christmas", "holiday", "halloween", "thanksgiving", "valentine"]):
         scores["ornament"] += 34
+        scores["card"] += 12
         scores["blanket"] += 14
         scores["mug"] += 10
         scores["canvas"] += 7
         reasons.append("seasonal language increases keepsake and ornament fit")
+
+    if has_any(text, ["card", "cards", "thank you", "thanks", "appreciation"]):
+        scores["card"] += 34
+        scores["mug"] += 6
+        scores["canvas"] += 6
+        reasons.append("observed card or thank-you language supports greeting-card formats")
 
     if has_any(text, ["mom", "dad", "grandma", "grandpa", "wife", "husband", "daughter", "son", "family"]):
         scores["blanket"] += 20
@@ -408,6 +426,14 @@ def score_product_fit(
         scores["mug"] += 16
         scores["canvas"] += 14
         reasons.append("pet and memorial language supports photo and keepsake products")
+
+    observed_products = lower_text(segment.get("observed_products"))
+    if "card" in observed_products:
+        scores["card"] += 26
+    if "ornament" in observed_products:
+        scores["ornament"] += 26
+    if "canvas" in observed_products:
+        scores["canvas"] += 22
 
     if has_any(text, ["fishing", "hunting", "camping", "golf", "soccer", "baseball", "gaming"]):
         scores["tumbler"] += 25
@@ -441,6 +467,10 @@ def score_product_fit(
     explanation = "; ".join(reasons[:3]) if reasons else "General gift language creates moderate product fit."
     return {
         "child_segment": segment_name,
+        "segment_label_source": clean_text(segment.get("segment_label_source")) or "observed_phrase",
+        "canonical_evidence_phrase": clean_text(segment.get("canonical_evidence_phrase")),
+        "observed_products": clean_text(segment.get("observed_products")),
+        "card_score": capped["card"],
         "blanket_score": capped["blanket"],
         "mug_score": capped["mug"],
         "tumbler_score": capped["tumbler"],
@@ -523,7 +553,13 @@ def score_customization_fit(
     capped = {item: int(round(clamp(score))) for item, score in scores.items()}
     best_customization = max(capped, key=lambda item: (capped[item], item))
     explanation = "; ".join(reasons[:3]) if reasons else "Name customization is the broadest deterministic fit."
-    output = {"child_segment": segment_name, **capped}
+    output = {
+        "child_segment": segment_name,
+        "segment_label_source": clean_text(segment.get("segment_label_source")) or "observed_phrase",
+        "canonical_evidence_phrase": clean_text(segment.get("canonical_evidence_phrase")),
+        "observed_products": clean_text(segment.get("observed_products")),
+        **capped,
+    }
     output["best_customization"] = best_customization.replace("_", " ").title()
     output["explanation"] = explanation
     return output
@@ -554,6 +590,7 @@ def parent_lookup(scorecard: pd.DataFrame) -> pd.DataFrame:
 
 def product_score_lookup(product_fit: pd.DataFrame) -> dict[str, float]:
     score_columns = [
+        "card_score",
         "blanket_score",
         "mug_score",
         "tumbler_score",
@@ -819,6 +856,7 @@ def print_top_sections(
     product_display = product_fit.copy()
     product_display["best_product_score"] = product_display[
         [
+            "card_score",
             "blanket_score",
             "mug_score",
             "tumbler_score",

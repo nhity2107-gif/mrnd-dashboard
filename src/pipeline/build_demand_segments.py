@@ -106,6 +106,9 @@ SEGMENT_COLUMNS = [
     "parent_demand_id",
     "parent_demand",
     "segment_name",
+    "segment_label_source",
+    "canonical_evidence_phrase",
+    "observed_products",
     "intent",
     "recipient",
     "profession",
@@ -132,6 +135,73 @@ TREND_ORDER = {
     "stable": 3,
     "declining": 4,
     "unknown": 5,
+}
+PRODUCT_TOKEN_MAP = {
+    "blanket": "Blanket",
+    "blankets": "Blanket",
+    "card": "Card",
+    "cards": "Card",
+    "canvas": "Canvas",
+    "canvases": "Canvas",
+    "cup": "Cup",
+    "cups": "Cup",
+    "decal": "Decal",
+    "decals": "Decal",
+    "doormat": "Doormat",
+    "doormats": "Doormat",
+    "frame": "Frame",
+    "frames": "Frame",
+    "hoodie": "Hoodie",
+    "hoodies": "Hoodie",
+    "keychain": "Keychain",
+    "keychains": "Keychain",
+    "mug": "Mug",
+    "mugs": "Mug",
+    "ornament": "Ornament",
+    "ornaments": "Ornament",
+    "pillow": "Pillow",
+    "pillows": "Pillow",
+    "plaque": "Plaque",
+    "plaques": "Plaque",
+    "poster": "Poster",
+    "posters": "Poster",
+    "shirt": "Shirt",
+    "shirts": "Shirt",
+    "sign": "Sign",
+    "signs": "Sign",
+    "sticker": "Sticker",
+    "stickers": "Sticker",
+    "sweatshirt": "Sweatshirt",
+    "sweatshirts": "Sweatshirt",
+    "tee": "Shirt",
+    "tees": "Shirt",
+    "tote": "Tote Bag",
+    "totes": "Tote Bag",
+    "tumbler": "Tumbler",
+    "tumblers": "Tumbler",
+}
+MARKET_LABEL_STOP_WORDS = {
+    "a",
+    "an",
+    "and",
+    "for",
+    "from",
+    "gift",
+    "gifts",
+    "present",
+    "presents",
+    "the",
+    "to",
+    "who",
+    "with",
+}
+OCCASION_RELABEL_VALUES = {
+    "appreciation",
+    "anniversary",
+    "birthday",
+    "graduation",
+    "retirement",
+    "wedding",
 }
 
 logger = logging.getLogger(__name__)
@@ -874,6 +944,13 @@ def create_segment_metric_frame(connection: duckdb.DuckDBPyConnection) -> pd.Dat
             WHERE example_position <= 8
             GROUP BY segment_key
         ),
+        best_examples AS (
+            SELECT
+                segment_key,
+                normalized_keyword AS canonical_evidence_phrase
+            FROM ranked_examples
+            WHERE example_position = 1
+        ),
         max_rank AS (
             SELECT greatest(coalesce(max(search_frequency_rank), 1), 2) AS value
             FROM segment_candidate_evidence_stage
@@ -903,6 +980,7 @@ def create_segment_metric_frame(connection: duckdb.DuckDBPyConnection) -> pd.Dat
                     ELSE 'stable'
                 END AS trend,
                 coalesce(examples.evidence_keywords, '') AS evidence_keywords,
+                coalesce(best_examples.canonical_evidence_phrase, '') AS canonical_evidence_phrase,
                 least(
                     100.0,
                     greatest(
@@ -951,6 +1029,8 @@ def create_segment_metric_frame(connection: duckdb.DuckDBPyConnection) -> pd.Dat
               ON metrics.segment_key = first_last.segment_key
             LEFT JOIN examples
               ON metrics.segment_key = examples.segment_key
+            LEFT JOIN best_examples
+              ON metrics.segment_key = best_examples.segment_key
             CROSS JOIN latest_month
             CROSS JOIN max_rank
             WHERE metrics.distinct_keyword_count >= 1
@@ -980,7 +1060,8 @@ def create_segment_metric_frame(connection: duckdb.DuckDBPyConnection) -> pd.Dat
                 + (active_month_score * 0.10),
                 2
             ) AS segment_strength,
-            evidence_keywords
+            evidence_keywords,
+            canonical_evidence_phrase
         FROM scored
         """
     ).df()
@@ -997,13 +1078,49 @@ def title_case(value: object) -> str:
     return string.capwords(text) if text else ""
 
 
-def strip_suffix(text: str, suffix: str) -> str:
-    if text.lower().endswith(suffix.lower()):
-        return text[: -len(suffix)].strip()
-    return text
+def phrase_tokens(value: object) -> list[str]:
+    text = clean_text(value).lower()
+    text = text.translate(str.maketrans({character: " " for character in string.punctuation}))
+    return [token for token in text.split() if token]
 
 
-def segment_name(row: pd.Series) -> str:
+def normalize_label_key(value: object) -> str:
+    return " ".join(phrase_tokens(value))
+
+
+def observed_products(value: object) -> list[str]:
+    products: list[str] = []
+    for token in phrase_tokens(value):
+        product = PRODUCT_TOKEN_MAP.get(token)
+        if product and product not in products:
+            products.append(product)
+    return products
+
+
+def market_phrase_from_observed(value: object) -> str:
+    tokens = [
+        token
+        for token in phrase_tokens(value)
+        if token not in PRODUCT_TOKEN_MAP and token not in MARKET_LABEL_STOP_WORDS
+    ]
+    return " ".join(tokens)
+
+
+def evidence_phrases(row: pd.Series) -> list[str]:
+    phrases = [clean_text(row.get("canonical_evidence_phrase"))]
+    phrases.extend(part.strip() for part in clean_text(row.get("evidence_keywords")).split("|"))
+
+    output: list[str] = []
+    seen: set[str] = set()
+    for phrase in phrases:
+        key = normalize_label_key(phrase)
+        if phrase and key and key not in seen:
+            output.append(phrase)
+            seen.add(key)
+    return output
+
+
+def semantic_segment_name(row: pd.Series) -> str:
     parent_demand = clean_text(row["parent_demand"])
     dimension = clean_text(row["segment_dimension"])
     value = title_case(row["segment_value"])
@@ -1028,6 +1145,72 @@ def segment_name(row: pd.Series) -> str:
         return f"{value} {parent_demand}"
 
     return f"{value} {parent_demand}"
+
+
+def observed_segment_label(row: pd.Series) -> tuple[str, str]:
+    parent_key = normalize_label_key(row.get("parent_demand"))
+    parent_base_key = normalize_label_key(strip_suffix(clean_text(row.get("parent_demand")), " Gift"))
+
+    for phrase in evidence_phrases(row):
+        market_phrase = market_phrase_from_observed(phrase)
+        label_key = normalize_label_key(market_phrase)
+        if not label_key or label_key in {parent_key, parent_base_key}:
+            continue
+        if len(label_key.split()) < 2:
+            continue
+        return title_case(market_phrase), clean_text(phrase)
+
+    return "", ""
+
+
+def semantic_label_supported(row: pd.Series, candidate: str) -> bool:
+    candidate_key = normalize_label_key(candidate)
+    if not candidate_key:
+        return False
+    return any(normalize_label_key(phrase) == candidate_key for phrase in evidence_phrases(row))
+
+
+def segment_label_details(row: pd.Series) -> pd.Series:
+    observed_label, evidence_phrase = observed_segment_label(row)
+    if observed_label:
+        return pd.Series(
+            {
+                "segment_name": observed_label,
+                "segment_label_source": "observed_phrase",
+                "canonical_evidence_phrase": evidence_phrase,
+                "observed_products": " | ".join(observed_products(clean_text(row.get("evidence_keywords")))),
+            }
+        )
+
+    semantic_label = semantic_segment_name(row)
+    if semantic_label_supported(row, semantic_label):
+        return pd.Series(
+            {
+                "segment_name": semantic_label,
+                "segment_label_source": "semantic_relabel",
+                "canonical_evidence_phrase": clean_text(row.get("canonical_evidence_phrase")),
+                "observed_products": " | ".join(observed_products(clean_text(row.get("evidence_keywords")))),
+            }
+        )
+
+    return pd.Series(
+        {
+            "segment_name": clean_text(row.get("parent_demand")),
+            "segment_label_source": "unsupported_semantic_relabel",
+            "canonical_evidence_phrase": clean_text(row.get("canonical_evidence_phrase")),
+            "observed_products": " | ".join(observed_products(clean_text(row.get("evidence_keywords")))),
+        }
+    )
+
+
+def strip_suffix(text: str, suffix: str) -> str:
+    if text.lower().endswith(suffix.lower()):
+        return text[: -len(suffix)].strip()
+    return text
+
+
+def segment_name(row: pd.Series) -> str:
+    return clean_text(segment_label_details(row).get("segment_name"))
 
 
 def segment_dimension_values(row: pd.Series) -> dict[str, str | None]:
@@ -1076,7 +1259,8 @@ def build_demand_segments(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame
     if metrics.empty:
         raise RuntimeError("No demand segments were produced from the available evidence")
 
-    metrics["segment_name"] = metrics.apply(segment_name, axis=1)
+    label_frame = metrics.apply(segment_label_details, axis=1)
+    metrics = pd.concat([metrics.drop(columns=["canonical_evidence_phrase"], errors="ignore"), label_frame], axis=1)
     dimension_frame = pd.DataFrame(
         [segment_dimension_values(row) for _, row in metrics.iterrows()],
         index=metrics.index,
@@ -1113,6 +1297,9 @@ def build_demand_segments(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame
             "parent_demand_id",
             "parent_demand",
             "segment_name",
+            "segment_label_source",
+            "canonical_evidence_phrase",
+            "observed_products",
             "intent",
             "recipient",
             "profession",
@@ -1142,6 +1329,9 @@ def build_demand_segments(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame
                 "parent_demand_id",
                 "parent_demand",
                 "segment_name",
+                "segment_label_source",
+                "canonical_evidence_phrase",
+                "observed_products",
                 "segment_dimension",
                 "segment_value",
                 "intent",

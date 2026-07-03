@@ -129,6 +129,7 @@ PORTFOLIO_TREE_COLUMNS = [
 WHITESPACE_COLUMNS = [
     "parent_demand",
     "missing_child_segment",
+    "candidate_source",
     "evidence_level",
     "match_type",
     "confidence_reason",
@@ -654,6 +655,19 @@ def classify_whitespace_candidate(
     )
 
 
+def generated_occasion_label_requires_exact_evidence(candidate: str) -> bool:
+    key = normalize_segment_key(candidate)
+    occasion_tokens = {
+        "appreciation",
+        "anniversary",
+        "birthday",
+        "graduation",
+        "retirement",
+        "wedding",
+    }
+    return bool(occasion_tokens.intersection(key.split()))
+
+
 def blocked_unless_exact(parent_demand: str, candidate: str, match_type: str) -> bool:
     if match_type == "Existing Segment Gap":
         return False
@@ -686,6 +700,7 @@ def merge_scoring_context(
     product_cols = [
         "child_segment",
         "best_product",
+        "card_score",
         "blanket_score",
         "mug_score",
         "tumbler_score",
@@ -717,6 +732,7 @@ def merge_scoring_context(
         "theme",
         "lifestyle",
     ]
+    product_cols = [column for column in product_cols if column in product_fit.columns]
     context = opportunity_scorecard.merge(product_fit[product_cols], on="child_segment", how="left")
     context = context.merge(customization_fit[customization_cols], on="child_segment", how="left")
     context = context.merge(reasoning[["child_segment", "recommended_next_step"]], on="child_segment", how="left")
@@ -907,6 +923,8 @@ def build_whitespace_analysis(
                 candidate,
                 evidence_index,
             )
+            if generated_occasion_label_requires_exact_evidence(candidate) and match_type != "Existing Segment Gap":
+                continue
             if blocked_unless_exact(parent, candidate, match_type):
                 continue
             expected_value = round(
@@ -942,6 +960,7 @@ def build_whitespace_analysis(
                 {
                     "parent_demand": parent,
                     "missing_child_segment": candidate,
+                    "candidate_source": "expansion_candidate",
                     "evidence_level": evidence_level,
                     "match_type": match_type,
                     "confidence_reason": confidence_reason,
@@ -1053,7 +1072,19 @@ def build_portfolio_summary(
         best_products = top_unique_values(
             group,
             "best_product",
-            ["blanket_score", "mug_score", "tumbler_score", "shirt_score", "ornament_score", "canvas_score"],
+            [
+                column
+                for column in [
+                    "card_score",
+                    "blanket_score",
+                    "mug_score",
+                    "tumbler_score",
+                    "shirt_score",
+                    "ornament_score",
+                    "canvas_score",
+                ]
+                if column in group.columns
+            ],
         )
         strongest_customization = top_unique_values(
             group,
