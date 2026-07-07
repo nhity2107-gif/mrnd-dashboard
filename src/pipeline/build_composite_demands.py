@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import re
 import string
 from pathlib import Path
 
@@ -27,6 +28,7 @@ KEYWORD_ENTITY_EDGES_TABLE = "keyword_entity_edges"
 COMPOSITE_DEMANDS_TABLE = "composite_demands"
 COMPOSITE_KEYWORDS_TABLE = "composite_keywords"
 DEMAND_STRENGTH_V3_TABLE = "demand_strength_v3"
+PARENT_LABEL_AUDIT_TABLE = "parent_label_audit"
 
 INPUT_TABLES = [
     INTENT_KEYWORDS_TABLE,
@@ -40,6 +42,7 @@ OUTPUT_TABLES = [
     DEMAND_STRENGTH_V3_TABLE,
     COMPOSITE_KEYWORDS_TABLE,
     COMPOSITE_DEMANDS_TABLE,
+    PARENT_LABEL_AUDIT_TABLE,
 ]
 
 REQUIRED_COLUMNS = {
@@ -86,6 +89,10 @@ REQUIRED_COLUMNS = {
 COMPOSITE_COLUMNS = [
     "demand_id",
     "demand_name",
+    "parent_entity_type",
+    "parent_label_source",
+    "canonical_evidence_phrase",
+    "is_parent_market",
     "intent",
     "recipient",
     "profession",
@@ -105,6 +112,113 @@ COMPOSITE_COLUMNS = [
 ]
 
 logger = logging.getLogger(__name__)
+
+SMALL_TITLE_WORDS = {
+    "a",
+    "an",
+    "and",
+    "as",
+    "at",
+    "but",
+    "by",
+    "for",
+    "from",
+    "in",
+    "of",
+    "on",
+    "or",
+    "the",
+    "to",
+    "with",
+}
+
+DISPLAY_SINGULAR_SUFFIXES = {
+    "accessories": "accessory",
+    "blankets": "blanket",
+    "bottles": "bottle",
+    "boxes": "box",
+    "cards": "card",
+    "cups": "cup",
+    "decorations": "decoration",
+    "dresses": "dress",
+    "frames": "frame",
+    "gifts": "gift",
+    "ideas": "idea",
+    "mugs": "mug",
+    "ornaments": "ornament",
+    "pictures": "picture",
+    "pillows": "pillow",
+    "plaques": "plaque",
+    "posters": "poster",
+    "printables": "printable",
+    "prints": "print",
+    "shirts": "shirt",
+    "signs": "sign",
+    "stickers": "sticker",
+    "tumblers": "tumbler",
+}
+
+CLUSTER_TOKEN_NORMALIZATIONS = {
+    **DISPLAY_SINGULAR_SUFFIXES,
+    "lovers": "lover",
+    "presents": "gift",
+    "present": "gift",
+}
+
+GIFT_TERMS = {"gift", "gifts", "present", "presents"}
+CLUSTER_SUFFIX_NOISE = {"idea", "ideas"}
+
+MARKET_INTENTS = {
+    "gift",
+    "memorial",
+    "appreciation",
+    "retirement",
+    "graduation",
+    "anniversary",
+    "housewarming",
+    "sympathy",
+}
+OCCASION_ONLY_INTENTS = {"birthday", "christmas", "wedding"}
+INTENT_ROLE_TOKENS = {
+    "gift": {"gift", "gifts", "present", "presents"},
+    "memorial": {"memorial", "remembrance", "loss"},
+    "appreciation": {"appreciation", "thank", "thanks", "you", "gift", "gifts"},
+    "retirement": {"retirement", "retired", "gift", "gifts"},
+    "graduation": {"graduation", "graduate", "gift", "gifts"},
+    "anniversary": {"anniversary", "gift", "gifts"},
+    "housewarming": {"housewarming", "gift", "gifts"},
+    "sympathy": {"sympathy", "gift", "gifts"},
+    "birthday": {"birthday"},
+    "christmas": {"christmas", "xmas"},
+    "wedding": {"wedding", "bride", "groom"},
+    "personalized": {"personalized", "custom"},
+}
+ENTITY_VALUE_TOKEN_ALIASES = {
+    "mom": {"mom", "mother", "mama", "mum"},
+    "dad": {"dad", "father", "papa"},
+    "grandma": {"grandma", "grandmother"},
+    "grandpa": {"grandpa", "grandfather"},
+}
+CONNECTOR_TOKENS = SMALL_TITLE_WORDS | {"who", "has", "have", "everything"}
+MARKET_DIMENSION_COLUMNS = [
+    "recipient",
+    "profession",
+    "pet",
+    "interest",
+    "composite_recipient",
+    "composite_profession",
+    "composite_interest",
+    "composite_occasion",
+    "composite_holiday",
+    "age_group",
+    "gender",
+    "composite_lifestyle",
+    "composite_theme",
+]
+AUDIENCE_ENTITY_TYPES = {"recipient", "profession", "pet", "interest", "lifestyle"}
+OCCASION_ENTITY_TYPES = {"occasion", "holiday"}
+PRODUCT_ENTITY_TYPES = {"product"}
+FORMAT_ENTITY_TYPES = {"customization", "style", "modifier"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -169,6 +283,16 @@ def table_columns(connection: duckdb.DuckDBPyConnection, table_name: str) -> set
     return {row[1] for row in connection.execute(f"PRAGMA table_info({table_name})").fetchall()}
 
 
+def optional_column_select(
+    connection: duckdb.DuckDBPyConnection,
+    table_name: str,
+    column_name: str,
+) -> str:
+    if column_name in table_columns(connection, table_name):
+        return column_name
+    return f"NULL AS {column_name}"
+
+
 def validate_inputs(connection: duckdb.DuckDBPyConnection) -> None:
     missing_tables = [table_name for table_name in INPUT_TABLES if not table_exists(connection, table_name)]
     if missing_tables:
@@ -217,6 +341,292 @@ def clean_text(value: object) -> str:
     if pd.isna(value):
         return ""
     return str(value or "").strip()
+
+
+def phrase_tokens(value: object) -> list[str]:
+    text = clean_text(value).lower()
+    return re.findall(r"[a-z0-9']+", text)
+
+
+def normalize_cluster_token(token: str) -> str:
+    return CLUSTER_TOKEN_NORMALIZATIONS.get(token, token)
+
+
+def normalize_cluster_tokens(tokens: list[str]) -> list[str]:
+    normalized = [normalize_cluster_token(token) for token in tokens if token]
+    while normalized and normalized[-1] in CLUSTER_SUFFIX_NOISE:
+        normalized.pop()
+    return normalized
+
+
+def cluster_key_from_phrase(value: object) -> str:
+    tokens = phrase_tokens(value)
+    if not tokens:
+        return ""
+
+    if len(tokens) > 2 and tokens[0] in GIFT_TERMS and tokens[1] == "for":
+        tail = tokens[2:]
+        if tail:
+            return " ".join(normalize_cluster_tokens(tail + ["gift"]))
+
+    return " ".join(normalize_cluster_tokens(tokens))
+
+
+def singularize_display_tail(tokens: list[str]) -> list[str]:
+    if not tokens:
+        return tokens
+    normalized = list(tokens)
+    normalized[-1] = DISPLAY_SINGULAR_SUFFIXES.get(normalized[-1], normalized[-1])
+    return normalized
+
+
+def smart_title_case(value: object) -> str:
+    tokens = phrase_tokens(value)
+    if not tokens:
+        return ""
+    titled: list[str] = []
+    for index, token in enumerate(tokens):
+        if 0 < index < len(tokens) - 1 and token in SMALL_TITLE_WORDS:
+            titled.append(token)
+        else:
+            titled.append(token[:1].upper() + token[1:])
+    return " ".join(titled)
+
+
+def canonical_display_phrase(value: object) -> str:
+    tokens = singularize_display_tail(phrase_tokens(value))
+    return smart_title_case(" ".join(tokens))
+
+
+def first_clean_value(values: pd.Series) -> str:
+    for value in values:
+        text = clean_text(value)
+        if text:
+            return text
+    return ""
+
+
+def clean_values(values: pd.Series) -> list[str]:
+    return [text for text in (clean_text(value) for value in values) if text]
+
+
+def dominant_clean_value(frame: pd.DataFrame, column: str) -> str:
+    values = frame[[column, "search_frequency_rank"]].copy()
+    values[column] = values[column].map(clean_text)
+    values = values[values[column] != ""]
+    if values.empty:
+        return ""
+
+    ranked = (
+        values.groupby(column, dropna=False)
+        .agg(count=(column, "size"), best_rank=("search_frequency_rank", "min"))
+        .reset_index()
+        .sort_values(["count", "best_rank", column], ascending=[False, True, True])
+    )
+    return clean_text(ranked.iloc[0][column])
+
+
+def nonempty_rate(frame: pd.DataFrame, column: str) -> float:
+    if frame.empty:
+        return 0.0
+    return sum(1 for value in frame[column] if clean_text(value)) / len(frame)
+
+
+def positive_rate(frame: pd.DataFrame, column: str) -> float:
+    if frame.empty or column not in frame:
+        return 0.0
+    return sum(1 for value in frame[column] if pd.notna(value) and float(value or 0) > 0) / len(frame)
+
+
+def distinct_clean_count(frame: pd.DataFrame, column: str) -> int:
+    return len(set(clean_values(frame[column])))
+
+
+def pipe_values(values: pd.Series) -> list[str]:
+    output: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        for part in clean_text(value).split("|"):
+            text = clean_text(part)
+            if text and text not in seen:
+                output.append(text)
+                seen.add(text)
+    return output
+
+
+def covered_tokens_from_values(values: list[str]) -> set[str]:
+    covered: set[str] = set()
+    for value in values:
+        covered.update(phrase_tokens(value))
+    return covered
+
+
+def semantic_alias_tokens(value: object) -> set[str]:
+    text = clean_text(value).lower()
+    return INTENT_ROLE_TOKENS.get(text, set()) | ENTITY_VALUE_TOKEN_ALIASES.get(text, set())
+
+
+def ontology_unmapped_tokens(phrase: object, profile: pd.Series) -> list[str]:
+    tokens = set(phrase_tokens(phrase))
+    covered = set(CONNECTOR_TOKENS)
+    intent = clean_text(profile.get("dominant_intent"))
+    covered.update(covered_tokens_from_values(clean_text(profile.get("ontology_entity_values")).split("|")))
+    semantic_values = [
+        intent,
+        clean_text(profile.get("dominant_audience_value")),
+        clean_text(profile.get("dominant_recipient")),
+        clean_text(profile.get("dominant_profession")),
+        clean_text(profile.get("dominant_interest")),
+        clean_text(profile.get("dominant_occasion")),
+        clean_text(profile.get("dominant_holiday")),
+        clean_text(profile.get("dominant_age_group")),
+        clean_text(profile.get("dominant_gender")),
+        clean_text(profile.get("dominant_lifestyle")),
+        clean_text(profile.get("dominant_theme")),
+        clean_text(profile.get("dominant_product")),
+        clean_text(profile.get("dominant_customization")),
+        clean_text(profile.get("dominant_style")),
+        clean_text(profile.get("dominant_modifier")),
+    ]
+    covered.update(covered_tokens_from_values(semantic_values))
+    for value in semantic_values:
+        covered.update(semantic_alias_tokens(value))
+    return sorted(token for token in tokens if token not in covered)
+
+
+def semantic_cluster_profile(frame: pd.DataFrame) -> pd.Series:
+    keyword_count = len(frame)
+    market_dimension_count = sum(
+        1 for column in MARKET_DIMENSION_COLUMNS if column in frame and distinct_clean_count(frame, column)
+    )
+    product_rate = nonempty_rate(frame, "product")
+    customization_rate = nonempty_rate(frame, "customization")
+    style_rate = nonempty_rate(frame, "style")
+    modifier_rate = nonempty_rate(frame, "modifier")
+    edge_product_rate = positive_rate(frame, "ontology_product_roles")
+    edge_format_rate = positive_rate(frame, "ontology_format_roles")
+    edge_audience_rate = positive_rate(frame, "ontology_audience_roles")
+    edge_occasion_rate = positive_rate(frame, "ontology_occasion_roles")
+    product_role_rate = max(product_rate, edge_product_rate)
+    product_format_rate = max(
+        product_rate,
+        customization_rate,
+        style_rate,
+        modifier_rate,
+        edge_product_rate,
+        edge_format_rate,
+    )
+    audience_role_rate = max(
+        edge_audience_rate,
+        nonempty_rate(frame, "primary_audience_value"),
+        nonempty_rate(frame, "composite_recipient"),
+        nonempty_rate(frame, "composite_profession"),
+        nonempty_rate(frame, "composite_interest"),
+        nonempty_rate(frame, "age_group"),
+        nonempty_rate(frame, "gender"),
+    )
+    occasion_role_rate = max(
+        edge_occasion_rate,
+        nonempty_rate(frame, "composite_occasion"),
+        nonempty_rate(frame, "composite_holiday"),
+    )
+    ontology_entity_values = " | ".join(pipe_values(frame["ontology_entity_values"]))
+
+    return pd.Series(
+        {
+            "dominant_intent": dominant_clean_value(frame, "intent"),
+            "dominant_audience_type": dominant_clean_value(frame, "primary_audience_type"),
+            "dominant_audience_value": dominant_clean_value(frame, "primary_audience_value"),
+            "dominant_recipient": dominant_clean_value(frame, "composite_recipient"),
+            "dominant_profession": dominant_clean_value(frame, "composite_profession"),
+            "dominant_interest": dominant_clean_value(frame, "composite_interest"),
+            "dominant_occasion": dominant_clean_value(frame, "composite_occasion"),
+            "dominant_holiday": dominant_clean_value(frame, "composite_holiday"),
+            "dominant_age_group": dominant_clean_value(frame, "age_group"),
+            "dominant_gender": dominant_clean_value(frame, "gender"),
+            "dominant_lifestyle": dominant_clean_value(frame, "composite_lifestyle"),
+            "dominant_theme": dominant_clean_value(frame, "composite_theme"),
+            "dominant_product": dominant_clean_value(frame, "product"),
+            "dominant_customization": dominant_clean_value(frame, "customization"),
+            "dominant_style": dominant_clean_value(frame, "style"),
+            "dominant_modifier": dominant_clean_value(frame, "modifier"),
+            "product_evidence_rate": round(product_rate, 4),
+            "customization_evidence_rate": round(customization_rate, 4),
+            "product_format_rate": round(product_format_rate, 4),
+            "product_role_rate": round(product_role_rate, 4),
+            "audience_role_rate": round(audience_role_rate, 4),
+            "occasion_role_rate": round(occasion_role_rate, 4),
+            "ontology_product_rate": round(edge_product_rate, 4),
+            "ontology_format_rate": round(edge_format_rate, 4),
+            "ontology_audience_rate": round(edge_audience_rate, 4),
+            "ontology_occasion_rate": round(edge_occasion_rate, 4),
+            "ontology_entity_values": ontology_entity_values,
+            "distinct_product_count": distinct_clean_count(frame, "product"),
+            "market_dimension_count": market_dimension_count,
+            "keyword_count_for_profile": keyword_count,
+        }
+    )
+
+
+def classify_parent_entity_type(profile: pd.Series, phrase: object) -> tuple[str, bool, str]:
+    intent = clean_text(profile.get("dominant_intent"))
+    product_role_rate = float(profile.get("product_role_rate") or 0.0)
+    product_format_rate = float(profile.get("product_format_rate") or 0.0)
+    audience_role_rate = float(profile.get("audience_role_rate") or 0.0)
+    occasion_role_rate = float(profile.get("occasion_role_rate") or 0.0)
+    market_dimension_count = int(profile.get("market_dimension_count") or 0)
+    unmapped_tokens = ontology_unmapped_tokens(phrase, profile)
+    has_audience = audience_role_rate > 0.0 or market_dimension_count >= 1
+    has_occasion = occasion_role_rate > 0.0 or intent in OCCASION_ONLY_INTENTS
+    has_market_intent = intent in MARKET_INTENTS
+    has_product_role = product_role_rate > 0.0
+    has_format_role = product_format_rate > 0.0
+
+    if intent == "decor":
+        return "decor_category", False, "excluded_decor_intent_from_ontology_metadata"
+
+    if intent == "apparel":
+        return "apparel", False, "excluded_apparel_intent_from_ontology_metadata"
+
+    if has_product_role:
+        return "product_type", False, "excluded_product_role_composition"
+    if has_format_role:
+        return "fulfillment_modifier", False, "excluded_format_role_composition"
+
+    if intent in OCCASION_ONLY_INTENTS and not has_market_intent:
+        return "occasion", False, "excluded_occasion_composition_without_market_intent"
+
+    if has_market_intent and has_audience and has_occasion and not unmapped_tokens:
+        return "market", True, "accepted_audience_occasion_market_intent_composition"
+    if has_market_intent and has_audience and not unmapped_tokens:
+        return "market", True, "accepted_audience_market_intent_composition"
+
+    if has_market_intent and has_audience and unmapped_tokens:
+        return "unknown", False, "excluded_unmapped_ontology_terms_in_market_phrase"
+
+    if market_dimension_count == 1 and intent in {"unknown", ""}:
+        return "audience", False, "excluded_audience_only_cluster"
+    if market_dimension_count == 0:
+        return "unknown", False, "excluded_insufficient_market_semantics"
+
+    return "unknown", False, "excluded_ambiguous_parent_semantics"
+
+
+def semantic_parent_name_from_evidence(row: pd.Series) -> str:
+    return composite_name(
+        pd.Series(
+            {
+                "intent": row.get("intent"),
+                "audience_type": row.get("primary_audience_type"),
+                "audience_value": row.get("primary_audience_value"),
+                "interest": row.get("composite_interest"),
+                "holiday": row.get("composite_holiday"),
+                "occasion": row.get("composite_occasion"),
+                "lifestyle": row.get("composite_lifestyle"),
+                "theme": row.get("composite_theme"),
+            }
+        )
+    )
 
 
 def composite_name(row: pd.Series) -> str:
@@ -277,34 +687,68 @@ def composite_name(row: pd.Series) -> str:
 
 def create_composite_evidence_stage(connection: duckdb.DuckDBPyConnection) -> None:
     logger.info("Creating composite demand evidence stage")
+    customization_select = optional_column_select(connection, INTENT_KEYWORDS_TABLE, "customization")
+    style_select = optional_column_select(connection, INTENT_KEYWORDS_TABLE, "style")
+    modifier_select = optional_column_select(connection, INTENT_KEYWORDS_TABLE, "modifier")
+    age_group_select = optional_column_select(connection, INTENT_KEYWORDS_TABLE, "age_group")
+    gender_select = optional_column_select(connection, INTENT_KEYWORDS_TABLE, "gender")
     connection.execute(
         f"""
         CREATE OR REPLACE TEMP TABLE composite_evidence_stage AS
-        WITH usable_keywords AS (
+        WITH edge_rollup AS (
             SELECT
                 keyword_id,
-                raw_keyword,
-                normalized_keyword,
-                month,
-                search_frequency_rank,
-                intent,
-                primary_audience_type,
-                primary_audience_value,
-                niche_type,
-                niche_value,
-                recipient,
-                profession,
-                pet,
-                interest,
-                occasion,
-                holiday,
-                lifestyle,
-                theme,
-                product
-            FROM {INTENT_KEYWORDS_TABLE}
-            WHERE intent <> 'unknown'
-              AND primary_audience_type IS NOT NULL
-              AND primary_audience_value IS NOT NULL
+                string_agg(DISTINCT entity_type, '|') AS ontology_entity_types,
+                string_agg(DISTINCT entity_value, '|') AS ontology_entity_values,
+                sum(CASE WHEN entity_type IN ('recipient', 'profession', 'pet', 'interest', 'lifestyle')
+                    THEN 1 ELSE 0 END) AS ontology_audience_roles,
+                sum(CASE WHEN entity_type IN ('occasion', 'holiday')
+                    THEN 1 ELSE 0 END) AS ontology_occasion_roles,
+                sum(CASE WHEN entity_type = 'product'
+                    THEN 1 ELSE 0 END) AS ontology_product_roles,
+                sum(CASE WHEN entity_type IN ('customization', 'style', 'modifier')
+                    THEN 1 ELSE 0 END) AS ontology_format_roles
+            FROM {KEYWORD_ENTITY_EDGES_TABLE}
+            GROUP BY keyword_id
+        ),
+        usable_keywords AS (
+            SELECT
+                keywords.keyword_id,
+                keywords.raw_keyword,
+                keywords.normalized_keyword,
+                keywords.month,
+                keywords.search_frequency_rank,
+                keywords.intent,
+                keywords.primary_audience_type,
+                keywords.primary_audience_value,
+                keywords.niche_type,
+                keywords.niche_value,
+                keywords.recipient,
+                keywords.profession,
+                keywords.pet,
+                keywords.interest,
+                keywords.occasion,
+                keywords.holiday,
+                keywords.lifestyle,
+                keywords.theme,
+                keywords.product,
+                {customization_select},
+                {style_select},
+                {modifier_select},
+                {age_group_select},
+                {gender_select},
+                coalesce(edge_rollup.ontology_entity_types, '') AS ontology_entity_types,
+                coalesce(edge_rollup.ontology_entity_values, '') AS ontology_entity_values,
+                coalesce(edge_rollup.ontology_audience_roles, 0) AS ontology_audience_roles,
+                coalesce(edge_rollup.ontology_occasion_roles, 0) AS ontology_occasion_roles,
+                coalesce(edge_rollup.ontology_product_roles, 0) AS ontology_product_roles,
+                coalesce(edge_rollup.ontology_format_roles, 0) AS ontology_format_roles
+            FROM {INTENT_KEYWORDS_TABLE} AS keywords
+            LEFT JOIN edge_rollup
+              ON keywords.keyword_id = edge_rollup.keyword_id
+            WHERE keywords.intent <> 'unknown'
+              AND keywords.primary_audience_type IS NOT NULL
+              AND keywords.primary_audience_value IS NOT NULL
         ),
         normalized AS (
             SELECT
@@ -366,114 +810,363 @@ def create_composite_evidence_stage(connection: duckdb.DuckDBPyConnection) -> No
     logger.info("Composite evidence stage: %s rows", f"{row_count:,}")
 
 
-def create_composite_metric_stage(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame:
+def count_distinct_clean(values: pd.Series) -> int:
+    cleaned = {clean_text(value) for value in values}
+    cleaned.discard("")
+    return len(cleaned)
+
+
+def trend_label(row: pd.Series, latest_month: object) -> str:
+    first_rank = row.get("first_best_rank")
+    last_rank = row.get("last_best_rank")
+    if row.get("active_months") == 1 and row.get("last_month") == latest_month:
+        return "emerging"
+    if pd.isna(first_rank) or float(first_rank) == 0:
+        return "stable"
+
+    rank_delta_pct = (float(first_rank) - float(last_rank)) * 100.0 / float(first_rank)
+    if rank_delta_pct >= 10:
+        return "growing"
+    if rank_delta_pct <= -10:
+        return "declining"
+    return "stable"
+
+
+def create_composite_metric_stage(
+    connection: duckdb.DuckDBPyConnection,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     logger.info("Creating composite demand metric stage")
-    return connection.execute(
-        """
-        WITH metrics AS (
-            SELECT
-                composite_key,
-                min(intent) AS intent,
-                min(primary_audience_type) AS audience_type,
-                min(primary_audience_value) AS audience_value,
-                min(composite_recipient) AS recipient,
-                min(composite_profession) AS profession,
-                min(composite_interest) AS interest,
-                min(composite_occasion) AS occasion,
-                min(composite_holiday) AS holiday,
-                min(composite_lifestyle) AS lifestyle,
-                min(composite_theme) AS theme,
-                count(DISTINCT product) AS product_count,
-                count(*) AS keyword_count,
-                min(search_frequency_rank) AS best_rank,
-                quantile_cont(CAST(search_frequency_rank AS DOUBLE), 0.25) AS p25_rank,
-                median(CAST(search_frequency_rank AS DOUBLE)) AS median_rank,
-                avg(search_frequency_rank) AS average_rank,
-                count(DISTINCT month) AS active_months,
-                count(DISTINCT normalized_keyword) AS distinct_keyword_count,
-                min(month) AS first_month,
-                max(month) AS last_month
-            FROM composite_evidence_stage
-            GROUP BY composite_key
-        ),
-        first_last AS (
-            SELECT
-                metrics.composite_key,
-                first_month.best_rank AS first_best_rank,
-                last_month.best_rank AS last_best_rank
-            FROM metrics
-            LEFT JOIN (
-                SELECT composite_key, month, min(search_frequency_rank) AS best_rank
-                FROM composite_evidence_stage
-                GROUP BY composite_key, month
-            ) AS first_month
-              ON metrics.composite_key = first_month.composite_key
-             AND metrics.first_month = first_month.month
-            LEFT JOIN (
-                SELECT composite_key, month, min(search_frequency_rank) AS best_rank
-                FROM composite_evidence_stage
-                GROUP BY composite_key, month
-            ) AS last_month
-              ON metrics.composite_key = last_month.composite_key
-             AND metrics.last_month = last_month.month
-        ),
-        latest_month AS (
-            SELECT max(month) AS value
-            FROM composite_evidence_stage
+    evidence = connection.execute("SELECT * FROM composite_evidence_stage").df()
+    if evidence.empty:
+        return pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
+
+    evidence["search_frequency_rank"] = pd.to_numeric(
+        evidence["search_frequency_rank"], errors="coerce"
+    )
+    evidence["parent_cluster_key"] = evidence["normalized_keyword"].map(cluster_key_from_phrase)
+    evidence["label_candidate"] = evidence["normalized_keyword"].map(canonical_display_phrase)
+    evidence["old_parent"] = evidence.apply(semantic_parent_name_from_evidence, axis=1)
+    evidence = evidence[
+        (evidence["parent_cluster_key"] != "") & (evidence["label_candidate"] != "")
+    ].copy()
+
+    candidate_stats = (
+        evidence.groupby(["parent_cluster_key", "label_candidate"], dropna=False)
+        .agg(
+            candidate_best_rank=("search_frequency_rank", "min"),
+            candidate_frequency=("normalized_keyword", "size"),
         )
-        SELECT
-            metrics.*,
-            CASE
-                WHEN metrics.active_months = 1
-                 AND metrics.last_month = latest_month.value
-                THEN 'emerging'
-                WHEN first_last.first_best_rank IS NULL
-                  OR first_last.first_best_rank = 0
-                THEN 'stable'
-                WHEN (
-                    (first_last.first_best_rank - first_last.last_best_rank)
-                    * 100.0
-                    / first_last.first_best_rank
-                ) >= 10
-                THEN 'growing'
-                WHEN (
-                    (first_last.first_best_rank - first_last.last_best_rank)
-                    * 100.0
-                    / first_last.first_best_rank
-                ) <= -10
-                THEN 'declining'
-                ELSE 'stable'
-            END AS trend
-        FROM metrics
-        LEFT JOIN first_last
-          ON metrics.composite_key = first_last.composite_key
-        CROSS JOIN latest_month
-        WHERE metrics.distinct_keyword_count >= 2
-           OR metrics.best_rank <= 100000
-        """
-    ).df()
+        .reset_index()
+    )
+    candidate_stats["candidate_token_count"] = candidate_stats["label_candidate"].map(
+        lambda value: len(phrase_tokens(value))
+    )
+    candidate_stats["candidate_char_count"] = candidate_stats["label_candidate"].map(
+        lambda value: len(clean_text(value))
+    )
+    candidate_sources = (
+        evidence.sort_values(
+            ["parent_cluster_key", "label_candidate", "search_frequency_rank", "normalized_keyword"],
+            ascending=[True, True, True, True],
+            na_position="last",
+        )
+        .drop_duplicates(["parent_cluster_key", "label_candidate"])
+        [["parent_cluster_key", "label_candidate", "normalized_keyword"]]
+        .rename(columns={"normalized_keyword": "evidence_phrase"})
+    )
+    canonical_labels = (
+        candidate_stats.sort_values(
+            [
+                "parent_cluster_key",
+                "candidate_best_rank",
+                "candidate_frequency",
+                "candidate_token_count",
+                "candidate_char_count",
+                "label_candidate",
+            ],
+            ascending=[True, True, False, True, True, True],
+            na_position="last",
+        )
+        .drop_duplicates("parent_cluster_key")
+        .merge(candidate_sources, on=["parent_cluster_key", "label_candidate"], how="left")
+        .rename(columns={"label_candidate": "demand_name"})
+    )
+
+    evidence = evidence.merge(
+        canonical_labels[["parent_cluster_key", "demand_name", "evidence_phrase"]],
+        on="parent_cluster_key",
+        how="left",
+    )
+
+    grouped = evidence.groupby("parent_cluster_key", dropna=False)
+    metrics = grouped.agg(
+        product_count=("product", count_distinct_clean),
+        keyword_count=("normalized_keyword", "size"),
+        best_rank=("search_frequency_rank", "min"),
+        p25_rank=("search_frequency_rank", lambda values: values.quantile(0.25)),
+        median_rank=("search_frequency_rank", "median"),
+        average_rank=("search_frequency_rank", "mean"),
+        active_months=("month", count_distinct_clean),
+        distinct_keyword_count=("normalized_keyword", count_distinct_clean),
+        first_month=("month", "min"),
+        last_month=("month", "max"),
+    ).reset_index()
+
+    metrics = metrics[
+        (metrics["distinct_keyword_count"] >= 2) | (metrics["best_rank"] <= 100000)
+    ].copy()
+    valid_cluster_keys = set(metrics["parent_cluster_key"])
+    evidence = evidence[evidence["parent_cluster_key"].isin(valid_cluster_keys)].copy()
+
+    if evidence.empty:
+        return pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
+
+    canonical_labels = canonical_labels[
+        canonical_labels["parent_cluster_key"].isin(valid_cluster_keys)
+    ].copy()
+    cluster_profiles = (
+        evidence.groupby("parent_cluster_key", dropna=False)
+        .apply(semantic_cluster_profile)
+        .reset_index()
+        .merge(
+            canonical_labels[["parent_cluster_key", "evidence_phrase"]],
+            on="parent_cluster_key",
+            how="left",
+        )
+        .rename(columns={"evidence_phrase": "canonical_evidence_phrase"})
+    )
+    classifications = cluster_profiles.apply(
+        lambda row: classify_parent_entity_type(row, row.get("canonical_evidence_phrase")),
+        axis=1,
+        result_type="expand",
+    )
+    classifications.columns = ["parent_entity_type", "is_parent_market", "classification_reason"]
+    cluster_profiles = pd.concat([cluster_profiles, classifications], axis=1)
+    cluster_profiles["parent_label_source"] = "observed_cluster_canonical"
+
+    representative = (
+        evidence.sort_values(
+            ["parent_cluster_key", "search_frequency_rank", "month", "normalized_keyword"],
+            ascending=[True, True, True, True],
+            na_position="last",
+        )
+        .drop_duplicates("parent_cluster_key")
+        [
+            [
+                "parent_cluster_key",
+                "intent",
+                "primary_audience_type",
+                "primary_audience_value",
+                "composite_recipient",
+                "composite_profession",
+                "composite_interest",
+                "composite_occasion",
+                "composite_holiday",
+                "composite_lifestyle",
+                "composite_theme",
+                "customization",
+                "style",
+                "modifier",
+            ]
+        ]
+        .rename(
+            columns={
+                "primary_audience_type": "audience_type",
+                "primary_audience_value": "audience_value",
+                "composite_recipient": "recipient",
+                "composite_profession": "profession",
+                "composite_interest": "interest",
+                "composite_occasion": "occasion",
+                "composite_holiday": "holiday",
+                "composite_lifestyle": "lifestyle",
+                "composite_theme": "theme",
+            }
+        )
+    )
+
+    month_best = (
+        evidence.groupby(["parent_cluster_key", "month"], dropna=False)["search_frequency_rank"]
+        .min()
+        .reset_index(name="month_best_rank")
+    )
+    first_best = (
+        metrics[["parent_cluster_key", "first_month"]]
+        .merge(
+            month_best,
+            left_on=["parent_cluster_key", "first_month"],
+            right_on=["parent_cluster_key", "month"],
+            how="left",
+        )
+        [["parent_cluster_key", "month_best_rank"]]
+        .rename(columns={"month_best_rank": "first_best_rank"})
+    )
+    last_best = (
+        metrics[["parent_cluster_key", "last_month"]]
+        .merge(
+            month_best,
+            left_on=["parent_cluster_key", "last_month"],
+            right_on=["parent_cluster_key", "month"],
+            how="left",
+        )
+        [["parent_cluster_key", "month_best_rank"]]
+        .rename(columns={"month_best_rank": "last_best_rank"})
+    )
+
+    metrics = (
+        metrics.merge(canonical_labels[["parent_cluster_key", "demand_name"]], on="parent_cluster_key")
+        .merge(representative, on="parent_cluster_key")
+        .merge(first_best, on="parent_cluster_key", how="left")
+        .merge(last_best, on="parent_cluster_key", how="left")
+        .merge(
+            cluster_profiles[
+                [
+                    "parent_cluster_key",
+                    "parent_entity_type",
+                    "parent_label_source",
+                    "canonical_evidence_phrase",
+                    "is_parent_market",
+                    "classification_reason",
+                ]
+            ],
+            on="parent_cluster_key",
+            how="left",
+        )
+    )
+    latest_month = evidence["month"].max()
+    metrics["trend"] = metrics.apply(lambda row: trend_label(row, latest_month), axis=1)
+    evidence = evidence.merge(
+        cluster_profiles[
+            [
+                "parent_cluster_key",
+                "parent_entity_type",
+                "parent_label_source",
+                "canonical_evidence_phrase",
+                "is_parent_market",
+                "classification_reason",
+            ]
+        ],
+        on="parent_cluster_key",
+        how="left",
+    )
+
+    cluster_sizes = (
+        evidence.groupby("parent_cluster_key", dropna=False)["normalized_keyword"]
+        .nunique()
+        .reset_index(name="cluster_size")
+    )
+    audit = (
+        evidence.groupby(
+            [
+                "old_parent",
+                "demand_name",
+                "parent_cluster_key",
+                "parent_entity_type",
+                "is_parent_market",
+                "classification_reason",
+            ],
+            dropna=False,
+        )
+        .agg(evidence_phrase=("evidence_phrase", first_clean_value))
+        .reset_index()
+        .merge(cluster_sizes, on="parent_cluster_key", how="left")
+        .rename(columns={"demand_name": "new_parent"})
+    )
+    split_counts = audit.groupby("old_parent", dropna=False)["new_parent"].nunique().to_dict()
+    audit["mapping_reason"] = audit.apply(
+        lambda row: (
+            "unchanged_canonical_observed_label"
+            if row["old_parent"] == row["new_parent"]
+            else (
+                "split_semantic_parent_into_observed_phrase_clusters"
+                if split_counts.get(row["old_parent"], 0) > 1
+                else "replaced_semantic_reconstruction_with_observed_cluster_label"
+            )
+        ),
+        axis=1,
+    )
+    audit["reason"] = audit.apply(
+        lambda row: (
+            f"{row['classification_reason']}; {row['mapping_reason']}"
+            if bool(row["is_parent_market"])
+            else row["classification_reason"]
+        ),
+        axis=1,
+    )
+    audit = audit[
+        [
+            "old_parent",
+            "new_parent",
+            "parent_entity_type",
+            "is_parent_market",
+            "reason",
+            "evidence_phrase",
+            "cluster_size",
+        ]
+    ]
+
+    metrics = metrics[metrics["is_parent_market"] == True].copy()
+    evidence = evidence[evidence["is_parent_market"] == True].copy()
+
+    metrics = metrics[
+        [
+            "parent_cluster_key",
+            "demand_name",
+            "parent_entity_type",
+            "parent_label_source",
+            "canonical_evidence_phrase",
+            "is_parent_market",
+            "intent",
+            "audience_type",
+            "audience_value",
+            "recipient",
+            "profession",
+            "interest",
+            "occasion",
+            "holiday",
+            "lifestyle",
+            "theme",
+            "product_count",
+            "keyword_count",
+            "best_rank",
+            "p25_rank",
+            "median_rank",
+            "average_rank",
+            "active_months",
+            "distinct_keyword_count",
+            "first_month",
+            "last_month",
+            "trend",
+        ]
+    ]
+    logger.info("Composite phrase clusters: %s rows", f"{len(metrics):,}")
+    return metrics, evidence, audit
 
 
 def build_composite_demands(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame:
-    metrics = create_composite_metric_stage(connection)
+    metrics, clustered_evidence, audit = create_composite_metric_stage(connection)
     if metrics.empty:
         raise RuntimeError("No composite demands were produced from intent_keywords")
 
-    metrics["demand_name"] = metrics.apply(composite_name, axis=1)
     metrics = metrics.sort_values(
-        ["best_rank", "p25_rank", "keyword_count", "composite_key"],
+        ["best_rank", "p25_rank", "keyword_count", "parent_cluster_key"],
         ascending=[True, True, False, True],
         na_position="last",
     ).reset_index(drop=True)
     metrics.insert(0, "demand_id", [f"CD{index:06d}" for index in range(1, len(metrics) + 1)])
 
     connection.register("composite_metric_frame", metrics)
+    connection.register("composite_clustered_evidence_frame", clustered_evidence)
+    connection.register("parent_label_audit_frame", audit)
     connection.execute(
         f"""
         CREATE TABLE {COMPOSITE_DEMANDS_TABLE} AS
         SELECT
             demand_id,
             demand_name,
+            parent_entity_type,
+            parent_label_source,
+            canonical_evidence_phrase,
+            is_parent_market,
             intent,
             recipient,
             profession,
@@ -497,12 +1190,36 @@ def build_composite_demands(connection: duckdb.DuckDBPyConnection) -> pd.DataFra
     connection.execute(
         """
         CREATE OR REPLACE TEMP TABLE composite_id_map AS
-        SELECT composite_key, demand_id
+        SELECT parent_cluster_key, demand_id
         FROM composite_metric_frame
+        """
+    )
+    connection.execute(
+        """
+        CREATE OR REPLACE TEMP TABLE composite_clustered_evidence_stage AS
+        SELECT *
+        FROM composite_clustered_evidence_frame
+        """
+    )
+    connection.execute(
+        f"""
+        CREATE TABLE {PARENT_LABEL_AUDIT_TABLE} AS
+        SELECT
+            old_parent,
+            new_parent,
+            parent_entity_type,
+            is_parent_market,
+            reason,
+            evidence_phrase,
+            cluster_size
+        FROM parent_label_audit_frame
+        ORDER BY old_parent, new_parent, evidence_phrase
         """
     )
     row_count = connection.execute(f"SELECT count(*) FROM {COMPOSITE_DEMANDS_TABLE}").fetchone()[0]
     logger.info("Built %s with %s rows", COMPOSITE_DEMANDS_TABLE, f"{row_count:,}")
+    audit_count = connection.execute(f"SELECT count(*) FROM {PARENT_LABEL_AUDIT_TABLE}").fetchone()[0]
+    logger.info("Built %s with %s rows", PARENT_LABEL_AUDIT_TABLE, f"{audit_count:,}")
     return metrics
 
 
@@ -517,9 +1234,9 @@ def build_composite_keywords(connection: duckdb.DuckDBPyConnection) -> int:
             evidence.normalized_keyword,
             evidence.month,
             evidence.search_frequency_rank
-        FROM composite_evidence_stage AS evidence
+        FROM composite_clustered_evidence_stage AS evidence
         JOIN composite_id_map AS id_map
-          ON evidence.composite_key = id_map.composite_key
+          ON evidence.parent_cluster_key = id_map.parent_cluster_key
         ORDER BY
             id_map.demand_id,
             evidence.search_frequency_rank ASC NULLS LAST,
@@ -539,7 +1256,7 @@ def build_demand_strength_v3(connection: duckdb.DuckDBPyConnection) -> int:
         CREATE TABLE {DEMAND_STRENGTH_V3_TABLE} AS
         WITH max_rank AS (
             SELECT greatest(coalesce(max(search_frequency_rank), 1), 2) AS value
-            FROM composite_evidence_stage
+            FROM composite_clustered_evidence_stage
         ),
         scored AS (
             SELECT
@@ -593,6 +1310,10 @@ def build_demand_strength_v3(connection: duckdb.DuckDBPyConnection) -> int:
         SELECT
             demand_id,
             demand_name,
+            parent_entity_type,
+            parent_label_source,
+            canonical_evidence_phrase,
+            is_parent_market,
             intent,
             recipient,
             profession,
@@ -689,6 +1410,18 @@ def export_reports(connection: duckdb.DuckDBPyConnection, output_dir: Path) -> N
                 p25_rank ASC NULLS LAST,
                 demand_id
         """,
+        "parent_label_audit.csv": f"""
+            SELECT
+                old_parent,
+                new_parent,
+                parent_entity_type,
+                is_parent_market,
+                reason,
+                evidence_phrase,
+                cluster_size
+            FROM {PARENT_LABEL_AUDIT_TABLE}
+            ORDER BY old_parent, new_parent, evidence_phrase
+        """,
     }
 
     for file_name, query in exports.items():
@@ -698,7 +1431,12 @@ def export_reports(connection: duckdb.DuckDBPyConnection, output_dir: Path) -> N
 
 def log_summary(connection: duckdb.DuckDBPyConnection) -> None:
     logger.info("Composite Demand summary")
-    for table_name in [COMPOSITE_DEMANDS_TABLE, COMPOSITE_KEYWORDS_TABLE, DEMAND_STRENGTH_V3_TABLE]:
+    for table_name in [
+        COMPOSITE_DEMANDS_TABLE,
+        COMPOSITE_KEYWORDS_TABLE,
+        DEMAND_STRENGTH_V3_TABLE,
+        PARENT_LABEL_AUDIT_TABLE,
+    ]:
         row_count = connection.execute(f"SELECT count(*) FROM {table_name}").fetchone()[0]
         logger.info("  %s: %s rows", table_name, f"{row_count:,}")
 

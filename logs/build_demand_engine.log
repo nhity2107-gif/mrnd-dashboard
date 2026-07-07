@@ -1,0 +1,20 @@
+2026-07-03 12:55:01 INFO Starting Demand Engine build
+2026-07-03 12:55:45 INFO Starting Demand Engine build
+2026-07-03 12:55:45 INFO Dropping demand_monthly if it exists
+2026-07-03 12:55:45 INFO Dropping demand_keywords if it exists
+2026-07-03 12:55:45 INFO Dropping demand_master if it exists
+2026-07-03 12:55:45 INFO Creating demand keyword stage
+2026-07-03 12:55:46 INFO Creating demand monthly stage
+2026-07-03 12:55:46 INFO Aggregating demand master stage
+2026-07-03 12:55:48 INFO Built demand_master with 171 rows
+2026-07-03 12:55:48 INFO Building demand_keywords
+2026-07-03 12:55:52 INFO Built demand_keywords with 5,291,320 rows
+2026-07-03 12:55:52 INFO Building demand_monthly
+2026-07-03 12:55:52 INFO Built demand_monthly with 563 rows
+2026-07-03 12:55:52 INFO Exporting demand reports to data\output\demand
+2026-07-03 12:55:52 INFO Exported demand_master.csv with 171 rows
+2026-07-03 12:56:03 INFO Exported demand_keywords.csv with 5,291,320 rows
+2026-07-03 12:56:03 INFO Exported demand_monthly.csv with 563 rows
+2026-07-03 12:56:03 INFO Exported top_demands.csv with 171 rows
+2026-07-03 12:56:03 INFO Demand Engine build complete
+2026-07-03 12:56:03 INFO Build log: logs\build_demand_engine.log

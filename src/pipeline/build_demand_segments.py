@@ -108,6 +108,7 @@ SEGMENT_COLUMNS = [
     "segment_name",
     "segment_label_source",
     "canonical_evidence_phrase",
+    "is_evidence_backed",
     "observed_products",
     "intent",
     "recipient",
@@ -1120,33 +1121,6 @@ def evidence_phrases(row: pd.Series) -> list[str]:
     return output
 
 
-def semantic_segment_name(row: pd.Series) -> str:
-    parent_demand = clean_text(row["parent_demand"])
-    dimension = clean_text(row["segment_dimension"])
-    value = title_case(row["segment_value"])
-    if not parent_demand or not value:
-        return parent_demand
-
-    if dimension == "recipient_refinement":
-        parent_suffix = ""
-        for suffix in [" Gift", " Memorial", " Decor", " Matching", " Wedding"]:
-            if parent_demand.lower().endswith(suffix.lower()):
-                parent_suffix = suffix.strip()
-                break
-        return f"{value} {parent_suffix}".strip() if parent_suffix else value
-
-    if dimension == "holiday":
-        return f"{value} {parent_demand}"
-
-    if dimension == "occasion":
-        base = strip_suffix(parent_demand, " Gift")
-        if parent_demand != base:
-            return f"{base} {value} Gift"
-        return f"{value} {parent_demand}"
-
-    return f"{value} {parent_demand}"
-
-
 def observed_segment_label(row: pd.Series) -> tuple[str, str]:
     parent_key = normalize_label_key(row.get("parent_demand"))
     parent_base_key = normalize_label_key(strip_suffix(clean_text(row.get("parent_demand")), " Gift"))
@@ -1163,13 +1137,6 @@ def observed_segment_label(row: pd.Series) -> tuple[str, str]:
     return "", ""
 
 
-def semantic_label_supported(row: pd.Series, candidate: str) -> bool:
-    candidate_key = normalize_label_key(candidate)
-    if not candidate_key:
-        return False
-    return any(normalize_label_key(phrase) == candidate_key for phrase in evidence_phrases(row))
-
-
 def segment_label_details(row: pd.Series) -> pd.Series:
     observed_label, evidence_phrase = observed_segment_label(row)
     if observed_label:
@@ -1178,17 +1145,7 @@ def segment_label_details(row: pd.Series) -> pd.Series:
                 "segment_name": observed_label,
                 "segment_label_source": "observed_phrase",
                 "canonical_evidence_phrase": evidence_phrase,
-                "observed_products": " | ".join(observed_products(clean_text(row.get("evidence_keywords")))),
-            }
-        )
-
-    semantic_label = semantic_segment_name(row)
-    if semantic_label_supported(row, semantic_label):
-        return pd.Series(
-            {
-                "segment_name": semantic_label,
-                "segment_label_source": "semantic_relabel",
-                "canonical_evidence_phrase": clean_text(row.get("canonical_evidence_phrase")),
+                "is_evidence_backed": True,
                 "observed_products": " | ".join(observed_products(clean_text(row.get("evidence_keywords")))),
             }
         )
@@ -1198,6 +1155,7 @@ def segment_label_details(row: pd.Series) -> pd.Series:
             "segment_name": clean_text(row.get("parent_demand")),
             "segment_label_source": "unsupported_semantic_relabel",
             "canonical_evidence_phrase": clean_text(row.get("canonical_evidence_phrase")),
+            "is_evidence_backed": False,
             "observed_products": " | ".join(observed_products(clean_text(row.get("evidence_keywords")))),
         }
     )
@@ -1207,10 +1165,6 @@ def strip_suffix(text: str, suffix: str) -> str:
     if text.lower().endswith(suffix.lower()):
         return text[: -len(suffix)].strip()
     return text
-
-
-def segment_name(row: pd.Series) -> str:
-    return clean_text(segment_label_details(row).get("segment_name"))
 
 
 def segment_dimension_values(row: pd.Series) -> dict[str, str | None]:
@@ -1274,6 +1228,7 @@ def build_demand_segments(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame
         metrics["segment_name_key"].notna()
         & (metrics["segment_name_key"] != "")
         & (metrics["segment_name_key"] != metrics["parent_demand"].str.lower().str.strip())
+        & metrics["is_evidence_backed"].astype(bool)
     ].copy()
 
     metrics = metrics.sort_values(
@@ -1299,6 +1254,7 @@ def build_demand_segments(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame
             "segment_name",
             "segment_label_source",
             "canonical_evidence_phrase",
+            "is_evidence_backed",
             "observed_products",
             "intent",
             "recipient",
@@ -1331,6 +1287,7 @@ def build_demand_segments(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame
                 "segment_name",
                 "segment_label_source",
                 "canonical_evidence_phrase",
+                "is_evidence_backed",
                 "observed_products",
                 "segment_dimension",
                 "segment_value",

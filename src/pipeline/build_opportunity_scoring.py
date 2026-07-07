@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import math
+import string
 import sys
 from pathlib import Path
 
@@ -92,6 +93,9 @@ OUTPUT_FILES = {
 OPPORTUNITY_COLUMNS = [
     "parent_demand",
     "child_segment",
+    "segment_label_source",
+    "canonical_evidence_phrase",
+    "is_evidence_backed",
     "market_size_score",
     "growth_score",
     "competition_score",
@@ -107,6 +111,7 @@ PRODUCT_COLUMNS = [
     "child_segment",
     "segment_label_source",
     "canonical_evidence_phrase",
+    "is_evidence_backed",
     "observed_products",
     "card_score",
     "blanket_score",
@@ -123,6 +128,7 @@ CUSTOMIZATION_COLUMNS = [
     "child_segment",
     "segment_label_source",
     "canonical_evidence_phrase",
+    "is_evidence_backed",
     "observed_products",
     "photo",
     "name",
@@ -198,6 +204,67 @@ MONTHS = [
     "November",
     "December",
 ]
+PRODUCT_TOKEN_MAP = {
+    "blanket": "Blanket",
+    "blankets": "Blanket",
+    "card": "Card",
+    "cards": "Card",
+    "canvas": "Canvas",
+    "canvases": "Canvas",
+    "cup": "Cup",
+    "cups": "Cup",
+    "decal": "Decal",
+    "decals": "Decal",
+    "doormat": "Doormat",
+    "doormats": "Doormat",
+    "frame": "Frame",
+    "frames": "Frame",
+    "hoodie": "Hoodie",
+    "hoodies": "Hoodie",
+    "keychain": "Keychain",
+    "keychains": "Keychain",
+    "mug": "Mug",
+    "mugs": "Mug",
+    "ornament": "Ornament",
+    "ornaments": "Ornament",
+    "outfit": "Outfit",
+    "outfits": "Outfit",
+    "pillow": "Pillow",
+    "pillows": "Pillow",
+    "plaque": "Plaque",
+    "plaques": "Plaque",
+    "poster": "Poster",
+    "posters": "Poster",
+    "shirt": "Shirt",
+    "shirts": "Shirt",
+    "sign": "Sign",
+    "signs": "Sign",
+    "sticker": "Sticker",
+    "stickers": "Sticker",
+    "sweatshirt": "Sweatshirt",
+    "sweatshirts": "Sweatshirt",
+    "tee": "Shirt",
+    "tees": "Shirt",
+    "tote": "Tote Bag",
+    "totes": "Tote Bag",
+    "tumbler": "Tumbler",
+    "tumblers": "Tumbler",
+}
+MARKET_LABEL_STOP_WORDS = {
+    "a",
+    "an",
+    "and",
+    "for",
+    "from",
+    "gift",
+    "gifts",
+    "present",
+    "presents",
+    "the",
+    "to",
+    "who",
+    "with",
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -238,6 +305,113 @@ def clean_text(value: object) -> str:
 
 def lower_text(value: object) -> str:
     return clean_text(value).lower()
+
+
+def parse_bool(value: object, default: bool = False) -> bool:
+    text = lower_text(value)
+    if text in {"1", "true", "yes", "y"}:
+        return True
+    if text in {"0", "false", "no", "n"}:
+        return False
+    return default
+
+
+def phrase_tokens(value: object) -> list[str]:
+    text = lower_text(value)
+    text = text.translate(str.maketrans({character: " " for character in string.punctuation}))
+    return [token for token in text.split() if token]
+
+
+def market_phrase_key(value: object) -> str:
+    tokens = [
+        token
+        for token in phrase_tokens(value)
+        if token not in PRODUCT_TOKEN_MAP and token not in MARKET_LABEL_STOP_WORDS
+    ]
+    return " ".join(tokens)
+
+
+def evidence_phrases(segment: pd.Series) -> list[str]:
+    values = [clean_text(segment.get("canonical_evidence_phrase"))]
+    values.extend(part.strip() for part in clean_text(segment.get("evidence_keywords")).split("|"))
+    output: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        key = market_phrase_key(value)
+        if value and key and key not in seen:
+            output.append(value)
+            seen.add(key)
+    return output
+
+
+def phrase_contains_key(evidence_key: str, label_key: str) -> bool:
+    evidence_tokens = evidence_key.split()
+    label_tokens = label_key.split()
+    if not label_tokens or len(label_tokens) < 2 or len(label_tokens) > len(evidence_tokens):
+        return False
+    return any(
+        evidence_tokens[index : index + len(label_tokens)] == label_tokens
+        for index in range(0, len(evidence_tokens) - len(label_tokens) + 1)
+    )
+
+
+def label_has_observed_support(segment: pd.Series) -> bool:
+    label_key = market_phrase_key(segment.get("segment_name", segment.get("child_segment")))
+    if not label_key or len(label_key.split()) < 2:
+        return False
+    for phrase in evidence_phrases(segment):
+        evidence_key = market_phrase_key(phrase)
+        if label_key == evidence_key or phrase_contains_key(evidence_key, label_key):
+            return True
+    return False
+
+
+def segment_is_evidence_backed(segment: pd.Series) -> bool:
+    if clean_text(segment.get("segment_label_source")) in {"unsupported_semantic_relabel", "expansion_candidate"}:
+        return False
+    if "is_evidence_backed" in segment.index and clean_text(segment.get("is_evidence_backed")):
+        if not parse_bool(segment.get("is_evidence_backed")):
+            return False
+    return label_has_observed_support(segment)
+
+
+def segment_label_source(segment: pd.Series) -> str:
+    source = clean_text(segment.get("segment_label_source"))
+    if source == "expansion_candidate":
+        return source
+    return "observed_phrase" if segment_is_evidence_backed(segment) else "unsupported_semantic_relabel"
+
+
+def canonical_evidence_phrase(segment: pd.Series) -> str:
+    value = clean_text(segment.get("canonical_evidence_phrase"))
+    if value:
+        return value
+    phrases = evidence_phrases(segment)
+    return clean_text(phrases[0]) if phrases else ""
+
+
+def observed_products(segment: pd.Series) -> str:
+    value = clean_text(segment.get("observed_products"))
+    if value:
+        return value
+    products: list[str] = []
+    for phrase in evidence_phrases(segment):
+        for token in phrase_tokens(phrase):
+            product = PRODUCT_TOKEN_MAP.get(token)
+            if product and product not in products:
+                products.append(product)
+    return " | ".join(products)
+
+
+def evidence_backed_segments(segments: pd.DataFrame) -> pd.DataFrame:
+    if segments.empty:
+        return segments.copy()
+    output = segments.copy()
+    output["is_evidence_backed"] = output.apply(segment_is_evidence_backed, axis=1)
+    output["segment_label_source"] = output.apply(segment_label_source, axis=1)
+    output["canonical_evidence_phrase"] = output.apply(canonical_evidence_phrase, axis=1)
+    output["observed_products"] = output.apply(observed_products, axis=1)
+    return output[output["is_evidence_backed"]].copy()
 
 
 def numeric(value: object, default: float = 0.0) -> float:
@@ -427,12 +601,12 @@ def score_product_fit(
         scores["canvas"] += 14
         reasons.append("pet and memorial language supports photo and keepsake products")
 
-    observed_products = lower_text(segment.get("observed_products"))
-    if "card" in observed_products:
+    observed_product_text = lower_text(segment.get("observed_products"))
+    if "card" in observed_product_text:
         scores["card"] += 26
-    if "ornament" in observed_products:
+    if "ornament" in observed_product_text:
         scores["ornament"] += 26
-    if "canvas" in observed_products:
+    if "canvas" in observed_product_text:
         scores["canvas"] += 22
 
     if has_any(text, ["fishing", "hunting", "camping", "golf", "soccer", "baseball", "gaming"]):
@@ -467,9 +641,10 @@ def score_product_fit(
     explanation = "; ".join(reasons[:3]) if reasons else "General gift language creates moderate product fit."
     return {
         "child_segment": segment_name,
-        "segment_label_source": clean_text(segment.get("segment_label_source")) or "observed_phrase",
-        "canonical_evidence_phrase": clean_text(segment.get("canonical_evidence_phrase")),
-        "observed_products": clean_text(segment.get("observed_products")),
+        "segment_label_source": segment_label_source(segment),
+        "canonical_evidence_phrase": canonical_evidence_phrase(segment),
+        "is_evidence_backed": segment_is_evidence_backed(segment),
+        "observed_products": observed_products(segment),
         "card_score": capped["card"],
         "blanket_score": capped["blanket"],
         "mug_score": capped["mug"],
@@ -555,9 +730,10 @@ def score_customization_fit(
     explanation = "; ".join(reasons[:3]) if reasons else "Name customization is the broadest deterministic fit."
     output = {
         "child_segment": segment_name,
-        "segment_label_source": clean_text(segment.get("segment_label_source")) or "observed_phrase",
-        "canonical_evidence_phrase": clean_text(segment.get("canonical_evidence_phrase")),
-        "observed_products": clean_text(segment.get("observed_products")),
+        "segment_label_source": segment_label_source(segment),
+        "canonical_evidence_phrase": canonical_evidence_phrase(segment),
+        "is_evidence_backed": segment_is_evidence_backed(segment),
+        "observed_products": observed_products(segment),
         **capped,
     }
     output["best_customization"] = best_customization.replace("_", " ").title()
@@ -718,6 +894,9 @@ def build_opportunity_scorecard(
         row = {
             "parent_demand": parent_name,
             "child_segment": child_segment,
+            "segment_label_source": segment_label_source(segment),
+            "canonical_evidence_phrase": canonical_evidence_phrase(segment),
+            "is_evidence_backed": segment_is_evidence_backed(segment),
             "market_size_score": market_size_score,
             "growth_score": growth_score,
             "competition_score": competition_score,
@@ -927,7 +1106,7 @@ def build_opportunity_scoring(output_dir: Path, rebuild: bool) -> None:
     if rebuild:
         remove_scoring_outputs(output_dir)
 
-    segments = read_required_csv("segments")
+    segments = evidence_backed_segments(read_required_csv("segments"))
     market_scorecard = read_required_csv("market_scorecard")
     research_candidates = read_required_csv("research_candidates")
     product_recommendations = read_required_csv("product_recommendation")

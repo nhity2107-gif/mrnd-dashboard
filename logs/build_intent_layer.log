@@ -1,0 +1,51 @@
+2026-07-03 12:57:00 INFO Starting Intent Layer build
+2026-07-03 12:57:00 INFO Input demand_objects: 5,291,320 rows
+2026-07-03 12:57:00 INFO Input demand_master_v2: 103 rows
+2026-07-03 12:57:00 INFO Input market_nodes: 10 rows
+2026-07-03 12:57:00 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-03 12:57:00 INFO Dropping intent_market_nodes if it exists
+2026-07-03 12:57:00 INFO Dropping intent_summary if it exists
+2026-07-03 12:57:00 INFO Dropping intent_keywords if it exists
+2026-07-03 12:57:00 INFO Building intent_keywords
+2026-07-03 12:57:04 INFO Built intent_keywords with 5,291,320 rows
+2026-07-03 12:57:04 INFO Building intent_summary
+2026-07-03 12:57:05 INFO Built intent_summary with 16 rows
+2026-07-03 12:57:05 INFO Building intent_market_nodes
+2026-07-03 12:57:05 INFO Creating intent market node evidence stage
+2026-07-03 12:57:06 INFO Intent node evidence stage: 342,412 rows
+2026-07-03 12:57:06 INFO Built intent_market_nodes with 594 rows
+2026-07-03 12:57:06 INFO Exporting intent layer CSVs to data\output\intent_layer
+2026-07-03 12:57:33 INFO Exported intent_keywords.csv with 5,291,320 rows
+2026-07-03 12:57:33 INFO Exported intent_summary.csv with 16 rows
+2026-07-03 12:57:33 INFO Exported intent_market_nodes.csv with 594 rows
+2026-07-03 12:57:33 INFO Exported top_intent_recipient.csv with 120 rows
+2026-07-03 12:57:33 INFO Exported top_intent_niche.csv with 197 rows
+2026-07-03 12:57:34 INFO Exported top_intent_product.csv with 92 rows
+2026-07-03 12:57:34 INFO Intent layer summary
+2026-07-03 12:57:34 INFO   intent_keywords: 5,291,320 rows
+2026-07-03 12:57:34 INFO   intent_summary: 16 rows
+2026-07-03 12:57:34 INFO   intent_market_nodes: 594 rows
+2026-07-03 12:57:34 INFO Top intents:
+2026-07-03 12:57:34 INFO   unknown | keywords=4888926 | best=1 | top1000=3746
+2026-07-03 12:57:34 INFO   gift | keywords=77074 | best=2 | top1000=83
+2026-07-03 12:57:34 INFO   christmas | keywords=101381 | best=2 | top1000=78
+2026-07-03 12:57:34 INFO   decor | keywords=45857 | best=10 | top1000=37
+2026-07-03 12:57:34 INFO   wedding | keywords=10485 | best=14 | top1000=6
+2026-07-03 12:57:34 INFO   apparel | keywords=131176 | best=53 | top1000=44
+2026-07-03 12:57:34 INFO   matching | keywords=7011 | best=159 | top1000=5
+2026-07-03 12:57:34 INFO   personalized | keywords=10395 | best=797 | top1000=1
+2026-07-03 12:57:34 INFO   birthday | keywords=14902 | best=1217 | top1000=0
+2026-07-03 12:57:34 INFO   appreciation | keywords=1513 | best=1648 | top1000=0
+2026-07-03 12:57:34 INFO Top intent market nodes:
+2026-07-03 12:57:34 INFO   IMN000001 | unknown + interest=coffee + None=None | best=45 | strength=46.65 | stable
+2026-07-03 12:57:34 INFO   IMN000002 | unknown + pet=dog + None=None | best=45 | strength=46.6 | growing
+2026-07-03 12:57:34 INFO   IMN000003 | unknown + interest=gaming + None=None | best=48 | strength=46.31 | growing
+2026-07-03 12:57:34 INFO   IMN000004 | gift + recipient=mom + None=None | best=65 | strength=45.37 | growing
+2026-07-03 12:57:34 INFO   IMN000005 | unknown + pet=cat + None=None | best=77 | strength=44.37 | growing
+2026-07-03 12:57:34 INFO   IMN000006 | unknown + recipient=boy + None=None | best=111 | strength=42.54 | declining
+2026-07-03 12:57:34 INFO   IMN000007 | gift + recipient=dad + None=None | best=154 | strength=41.76 | growing
+2026-07-03 12:57:34 INFO   IMN000008 | unknown + interest=yoga + None=None | best=188 | strength=40.67 | declining
+2026-07-03 12:57:34 INFO   IMN000009 | unknown + recipient=girl + None=None | best=240 | strength=39.37 | growing
+2026-07-03 12:57:34 INFO   IMN000010 | gift + recipient=girl + None=None | best=455 | strength=37.03 | growing
+2026-07-03 12:57:34 INFO Intent Layer build complete
+2026-07-03 12:57:34 INFO Build log: logs\build_intent_layer.log

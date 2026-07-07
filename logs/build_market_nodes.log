@@ -1,0 +1,44 @@
+2026-07-03 12:56:58 INFO Starting Market Node build
+2026-07-03 12:56:58 INFO Input semantic_relationships: 483 rows
+2026-07-03 12:56:58 INFO Input demand_master_v2: 103 rows
+2026-07-03 12:56:58 INFO Input demand_profile_v2: 1,349 rows
+2026-07-03 12:56:58 INFO Input demand_keywords_v2: 5,291,320 rows
+2026-07-03 12:56:58 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-03 12:56:58 INFO Dropping market_node_evidence if it exists
+2026-07-03 12:56:58 INFO Dropping market_node_monthly if it exists
+2026-07-03 12:56:58 INFO Dropping market_nodes if it exists
+2026-07-03 12:56:58 INFO Creating market node candidate stage
+2026-07-03 12:56:58 INFO Candidate market nodes: 122 rows
+2026-07-03 12:56:58 INFO Creating market node evidence stage
+2026-07-03 12:56:59 INFO Candidate evidence rows: 1,159
+2026-07-03 12:56:59 INFO Creating market node monthly stage
+2026-07-03 12:56:59 INFO Creating qualified market node stage
+2026-07-03 12:56:59 INFO Qualified market nodes: 10
+2026-07-03 12:56:59 INFO Building market_nodes
+2026-07-03 12:56:59 INFO Built market_nodes with 10 rows
+2026-07-03 12:56:59 INFO Building market_node_monthly
+2026-07-03 12:56:59 INFO Built market_node_monthly with 39 rows
+2026-07-03 12:56:59 INFO Building market_node_evidence
+2026-07-03 12:56:59 INFO Built market_node_evidence with 453 rows
+2026-07-03 12:56:59 INFO Exporting market node CSVs to data\output\market_nodes
+2026-07-03 12:56:59 INFO Exported market_nodes.csv with 10 rows
+2026-07-03 12:56:59 INFO Exported market_node_monthly.csv with 39 rows
+2026-07-03 12:56:59 INFO Exported market_node_evidence.csv with 453 rows
+2026-07-03 12:56:59 INFO Exported top_market_nodes.csv with 10 rows
+2026-07-03 12:56:59 INFO Market Node summary
+2026-07-03 12:56:59 INFO   market_nodes: 10 rows
+2026-07-03 12:56:59 INFO   market_node_monthly: 39 rows
+2026-07-03 12:56:59 INFO   market_node_evidence: 453 rows
+2026-07-03 12:56:59 INFO Top market nodes:
+2026-07-03 12:56:59 INFO   MN000001 | Boy Gift + soccer | best=19843 | p25=193319.25 | top1000=0 | strength=20.33 | growing
+2026-07-03 12:56:59 INFO   MN000002 | Husband Demand + coffee | best=19111 | p25=375327.0 | top1000=0 | strength=19.31 | growing
+2026-07-03 12:56:59 INFO   MN000003 | Electrician Demand + soccer | best=30810 | p25=334006.75 | top1000=0 | strength=17.67 | declining
+2026-07-03 12:56:59 INFO   MN000004 | Dad Gift + funny | best=34369 | p25=384908.5 | top1000=0 | strength=17.0 | growing
+2026-07-03 12:56:59 INFO   MN000005 | Boy Gift + gaming | best=69216 | p25=393964.5 | top1000=0 | strength=14.25 | growing
+2026-07-03 12:56:59 INFO   MN000006 | Dad Demand + coffee | best=83087 | p25=389752.25 | top1000=0 | strength=13.56 | growing
+2026-07-03 12:56:59 INFO   MN000007 | Mom Gift + funny | best=78682 | p25=487025.0 | top1000=0 | strength=13.38 | growing
+2026-07-03 12:56:59 INFO   MN000008 | Mom Demand + coffee | best=88213 | p25=452930.0 | top1000=0 | strength=13.06 | growing
+2026-07-03 12:56:59 INFO   MN000009 | Grandma Demand + coffee | best=91862 | p25=613811.5 | top1000=0 | strength=12.37 | growing
+2026-07-03 12:56:59 INFO   MN000010 | Mom Demand + floral | best=184335 | p25=334981.0 | top1000=0 | strength=10.74 | declining
+2026-07-03 12:56:59 INFO Market Node build complete
+2026-07-03 12:56:59 INFO Build log: logs\build_market_nodes.log

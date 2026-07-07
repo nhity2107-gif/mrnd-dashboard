@@ -1,202 +1,157 @@
 parent_demand,child_segment,recommended_product,recommended_customization,opportunity_score
-Accountant Gift,Funny Accountant Gift,Mug,Name,57.86
-Boy Decor,Gaming Boy Decor,Tumbler,Name,69.46
-Boy Decor,Soccer Boy Decor,Tumbler,Name,67.63
-Boy Decor,Fishing Boy Decor,Tumbler,Name,61.16
-Boy Decor,Hunting Boy Decor,Tumbler,Name,59.42
-Boy Decor,Vintage Boy Decor,Mug,Name,59.13
-Boy Decor,Halloween Boy Decor,Ornament,Name,58.62
-Boy Gift,Christmas Boy Gift,Ornament,Name,77.75
-Boy Gift,Soccer Boy Gift,Tumbler,Name,76.9
-Boy Gift,Gaming Boy Gift,Mug,Name,75.43
-Boy Gift,Fishing Boy Gift,Mug,Name,75.19
-Boy Gift,Halloween Boy Gift,Ornament,Name,70.44
-Boy Gift,Hunting Boy Gift,Mug,Name,70.16
-Boy Gift,Faith Boy Gift,Mug,Name,69.18
-Boy Gift,Funny Boy Gift,Mug,Name,67.9
-Boy Gift,Boy Birthday Gift,Mug,Name,65.43
-Boy Gift,Boy Valentine's Day Gift,Ornament,Name,63.78
-Boy Gift,Valentine Boy Gift,Ornament,Name,63.78
-Boy Gift,Boy Appreciation Gift,Mug,Name,61.59
-Boy Matching,Christmas Boy Matching,Ornament,Name,58.81
-Camping Decor,Halloween Camping Decor,Mug,Name,55.24
-Camping Gift,Funny Camping Gift,Mug,Name,57.91
-Camping Gift,Christmas Camping Gift,Mug,Name,57.7
-Cat Decor,Cat Lover Cat Decor,Blanket,Name,62.56
-Cat Decor,Halloween Cat Decor,Ornament,Name,59.83
-Cat Decor,Gardening Cat Decor,Blanket,Name,57.94
-Cat Decor,Funny Cat Decor,Canvas,Name,54.88
-Cat Gift,Cat Lover Cat Gift,Blanket,Name,74.25
-Cat Gift,Christmas Cat Gift,Ornament,Name,72.18
-Cat Gift,Funny Cat Gift,Blanket,Name,71.85
-Cat Gift,Cat Appreciation Gift,Blanket,Name,65.0
-Cat Gift,Cat Birthday Gift,Blanket,Name,59.69
-Chef Gift,Christmas Chef Gift,Ornament,Name,56.89
-Chef Gift,Funny Chef Gift,Mug,Name,55.41
-Coffee Decor,Halloween Coffee Decor,Mug,Name,53.77
-Coffee Gift,Coffee Lover Coffee Gift,Mug,Name,72.32
-Coffee Gift,Christmas Coffee Gift,Mug,Name,65.07
-Coffee Gift,Funny Coffee Gift,Mug,Name,60.99
-Coffee Gift,Coffee Christmas Gift,Mug,Name,60.71
-Dad Gift,Christmas Dad Gift,Ornament,Name,78.98
-Dad Gift,Cat Lover Dad Gift,Blanket,Name,77.59
-Dad Gift,Cat Dad Gift,Blanket,Name,77.48
-Dad Gift,Dog Lover Dad Gift,Blanket,Name,76.47
-Dad Gift,Dog Dad Gift,Blanket,Name,76.43
-Dad Gift,Funny Dad Gift,Mug,Name,75.69
-Dad Gift,Fishing Dad Gift,Mug,Name,70.38
-Dad Gift,Hunting Dad Gift,Mug,Name,69.71
-Dad Gift,Dad Birthday Gift,Mug,Name,68.82
-Dad Gift,Faith Dad Gift,Mug,Name,67.98
-Dad Gift,Father's Day Dad Gift,Mug,Name,67.75
-Dad Gift,Gaming Dad Gift,Mug,Name,67.15
-Dad Gift,Soccer Dad Gift,Mug,Name,66.99
-Dad Gift,Dad Wedding Gift,Mug,Name,66.93
-Dad Gift,Camping Dad Gift,Mug,Name,65.75
-Dad Gift,Gardening Dad Gift,Mug,Name,64.7
-Dad Matching,Christmas Dad Matching,Ornament,Name,52.11
-Daughter Gift,Christmas Daughter Gift,Ornament,Name,67.81
-Daughter Gift,Daughter Birthday Gift,Mug,Name,59.22
-Daughter Gift,Funny Daughter Gift,Mug,Name,58.04
-Daughter Gift,Faith Daughter Gift,Mug,Name,56.98
-Daughter Gift,Daughter Wedding Gift,Mug,Name,53.89
-Dog Decor,Halloween Dog Decor,Ornament,Name,57.59
-Dog Gift,Christmas Dog Gift,Ornament,Name,77.06
-Dog Gift,Dog Lover Dog Gift,Blanket,Name,76.72
-Dog Gift,Funny Dog Gift,Blanket,Name,68.12
-Dog Gift,Dog Birthday Gift,Blanket,Name,65.22
-Dog Gift,Dog Appreciation Gift,Blanket,Name,61.16
-Dog Matching,Christmas Dog Matching,Ornament,Photo,64.36
-Dog Matching,Halloween Dog Matching,Ornament,Photo,62.52
-Dog Memorial,Gardening Dog Memorial,Blanket,Name,54.17
-Dog Wedding,Wedding Dog Wedding,Blanket,Photo,60.24
-Electrician Gift,Funny Electrician Gift,Mug,Name,57.34
-Firefighter Gift,Christmas Firefighter Gift,Ornament,Name,60.24
-Firefighter Gift,Funny Firefighter Gift,Mug,Name,55.91
-Fishing Gift,Funny Fishing Gift,Mug,Name,66.6
-Fishing Gift,Christmas Fishing Gift,Mug,Name,63.11
-Gaming Decor,Retro Gaming Decor,Tumbler,Name,58.4
-Gaming Gift,Christmas Gaming Gift,Mug,Name,61.78
-Gaming Gift,Funny Gaming Gift,Mug,Name,57.47
-Gardening Decor,Funny Gardening Decor,Canvas,Name,57.07
-Gardening Decor,Halloween Gardening Decor,Ornament,Name,55.85
-Gardening Decor,Floral Gardening Decor,Canvas,Name,55.43
-Gardening Decor,Vintage Gardening Decor,Canvas,Name,54.42
-Gardening Gift,Funny Gardening Gift,Mug,Name,55.34
-Gardening Gift,Gardening Appreciation Gift,Mug,Name,52.73
-Girl Decor,Halloween Girl Decor,Ornament,Name,65.29
-Girl Decor,Gaming Girl Decor,Tumbler,Name,65.18
-Girl Decor,Vintage Girl Decor,Mug,Name,58.08
-Girl Decor,Boho Girl Decor,Mug,Name,56.84
-Girl Decor,Cowgirl Girl Decor,Canvas,Name,54.65
-Girl Gift,Christmas Girl Gift,Ornament,Name,78.2
-Girl Gift,Soccer Girl Gift,Tumbler,Name,75.72
-Girl Gift,Cat Girl Gift,Blanket,Name,75.19
-Girl Gift,Hunting Girl Gift,Tumbler,Name,72.4
-Girl Gift,Faith Girl Gift,Mug,Name,72.01
-Girl Gift,Country Girl Girl Gift,Mug,Name,71.8
-Girl Gift,Halloween Girl Gift,Ornament,Name,71.23
-Girl Gift,American Girl Gift,Mug,Name,71.18
-Girl Gift,Gaming Girl Gift,Tumbler,Name,70.46
-Girl Gift,Cat Lover Girl Gift,Blanket,Name,69.89
-Girl Gift,Girl Appreciation Gift,Mug,Name,68.52
-Girl Gift,Book Lover Girl Gift,Mug,Name,68.29
-Girl Gift,Girl Birthday Gift,Mug,Name,66.92
-Girl Gift,Funny Girl Gift,Mug,Name,66.9
-Girl Gift,Cowgirl Girl Gift,Mug,Name,66.12
-Girl Gift,Dog Girl Gift,Blanket,Name,66.09
-Girl Gift,Floral Girl Gift,Mug,Name,65.5
-Girl Gift,Reading Girl Gift,Mug,Name,64.01
-Girl Gift,Farm Life Girl Gift,Mug,Name,63.3
-Girl Matching,American Girl Matching,Mug,Name,66.03
-Girl Matching,Christmas Girl Matching,Ornament,Name,55.57
-Girl Wedding,Floral Girl Wedding,Mug,Name,56.55
-Girl Wedding,Wedding Girl Wedding,Mug,Name,56.36
-Grandma Gift,Christmas Grandma Gift,Ornament,Name,76.66
-Grandma Gift,Dog Grandma Gift,Blanket,Name,69.38
-Grandma Gift,Funny Grandma Gift,Mug,Name,67.53
-Grandma Gift,Grandma Birthday Gift,Mug,Name,65.09
-Grandma Gift,Cat Grandma Gift,Blanket,Name,64.51
-Grandma Gift,Gardening Grandma Gift,Mug,Name,62.9
-Grandma Gift,Faith Grandma Gift,Mug,Name,62.87
-Grandma Wedding,Wedding Grandma Wedding,Mug,Multiple Names,54.25
-Grandpa Gift,Christmas Grandpa Gift,Ornament,Name,75.34
-Grandpa Gift,Funny Grandpa Gift,Mug,Name,69.62
-Grandpa Gift,Dog Grandpa Gift,Blanket,Name,66.71
-Grandpa Gift,Fishing Grandpa Gift,Mug,Name,66.18
-Grandpa Gift,Grandpa Birthday Gift,Mug,Name,64.79
-Hairstylist Gift,Christmas Hairstylist Gift,Ornament,Name,59.75
-Hunting Gift,Christmas Hunting Gift,Mug,Name,66.14
-Hunting Gift,Funny Hunting Gift,Mug,Name,65.79
-Husband Gift,Christmas Husband Gift,Ornament,Name,80.36
-Husband Gift,Funny Husband Gift,Mug,Name,71.46
-Husband Gift,Gaming Husband Gift,Mug,Name,71.36
-Husband Gift,Husband Valentine's Day Gift,Mug,Name,71.25
-Husband Gift,Valentine Husband Gift,Mug,Name,71.19
-Husband Gift,Husband Birthday Gift,Mug,Name,68.97
-Husband Gift,Husband Anniversary Gift,Mug,Name,67.46
-Husband Gift,Faith Husband Gift,Mug,Name,65.41
-Husband Gift,Husband Appreciation Gift,Mug,Name,60.83
-Husband Gift,Husband Wedding Gift,Mug,Name,60.66
-Husband Matching,Christmas Husband Matching,Ornament,Name,56.97
-Mom Gift,Christmas Mom Gift,Ornament,Name,79.84
-Mom Gift,Dog Lover Mom Gift,Ornament,Name,79.05
-Mom Gift,Cat Lover Mom Gift,Blanket,Name,77.5
-Mom Gift,Funny Mom Gift,Mug,Name,76.07
-Mom Gift,Dog Mom Gift,Ornament,Name,75.81
-Mom Gift,Cat Mom Gift,Blanket,Name,74.39
-Mom Gift,Soccer Mom Gift,Mug,Name,71.81
-Mom Gift,Faith Mom Gift,Mug,Name,71.29
-Mom Gift,Mom Birthday Gift,Mug,Name,69.25
-Mom Gift,Mother's Day Mom Gift,Mug,Name,68.0
-Mom Gift,Mom Wedding Gift,Mug,Name,67.79
-Mom Gift,Gardening Mom Gift,Mug,Name,65.35
-Mom Gift,Reading Mom Gift,Mug,Name,65.2
-Mom Gift,Mom Appreciation Gift,Mug,Name,64.14
-Mom Matching,Christmas Mom Matching,Ornament,Name,69.45
-Mom Matching,Halloween Mom Matching,Ornament,Name,65.19
-Mom Matching,Thanksgiving Mom Matching,Ornament,Name,63.87
-Mom Matching,Dog Mom Matching,Blanket,Photo,58.5
-Mom Wedding,Floral Mom Wedding,Blanket,Multiple Names,64.8
-Mom Wedding,Wedding Mom Wedding,Mug,Multiple Names,60.97
-Nurse Gift,Funny Nurse Gift,Mug,Name,70.45
-Nurse Gift,Nurse Graduation Gift,Mug,Name,70.03
-Nurse Gift,Christmas Nurse Gift,Mug,Name,67.81
-Nurse Gift,Nurse Appreciation Gift,Mug,Name,65.99
-Nurse Gift,Halloween Nurse Gift,Mug,Name,59.94
-Pickleball Gift,Funny Pickleball Gift,Mug,Name,61.65
-Pickleball Gift,Christmas Pickleball Gift,Ornament,Name,59.85
-Police Officer Gift,Police Officer Graduation Gift,Mug,Name,62.97
-Police Officer Gift,Christmas Police Officer Gift,Ornament,Name,61.02
-Police Officer Gift,Funny Police Officer Gift,Mug,Name,59.82
-Reading Decor,Book Lover Reading Decor,Canvas,Name,59.09
-Reading Gift,Book Lover Reading Gift,Mug,Name,70.62
-Soccer Gift,Christmas Soccer Gift,Mug,Name,63.0
-Soccer Gift,Funny Soccer Gift,Mug,Name,58.87
-Soccer Gift,Soccer Appreciation Gift,Tumbler,Name,56.75
-Son Gift,Christmas Son Gift,Ornament,Name,64.76
-Son Gift,Funny Son Gift,Mug,Name,61.4
-Son Gift,Son Birthday Gift,Mug,Name,57.02
-Son Gift,Son Wedding Gift,Mug,Name,52.02
-Teacher Gift,Christmas Teacher Gift,Mug,Name,80.87
-Teacher Gift,Teacher Appreciation Gift,Mug,Name,79.97
-Teacher Gift,Funny Teacher Gift,Mug,Name,78.05
-Teacher Gift,Halloween Teacher Gift,Mug,Name,75.65
-Teacher Gift,Teacher Christmas Gift,Mug,Name,72.78
-Teacher Gift,Faith Teacher Gift,Mug,Name,72.45
-Teacher Gift,Thanksgiving Teacher Gift,Mug,Name,69.6
-Teacher Gift,Teacher Valentine's Day Gift,Mug,Name,69.42
-Teacher Gift,Valentine Teacher Gift,Mug,Name,69.42
-Teacher Gift,Teacher Birthday Gift,Mug,Name,69.11
-Teacher Gift,Yoga Teacher Gift,Mug,Name,69.01
-Teacher Gift,Reading Teacher Gift,Mug,Name,68.97
-Teacher Gift,Teacher Graduation Gift,Mug,Name,68.35
-Teacher Gift,Teacher Thanksgiving Gift,Mug,Name,67.32
-Truck Driver Gift,Truck Driver Appreciation Gift,Mug,Name,53.54
-Wife Gift,Christmas Wife Gift,Ornament,Name,78.84
-Wife Gift,Funny Wife Gift,Mug,Name,68.95
-Wife Gift,Wife Birthday Gift,Mug,Name,66.62
-Wife Gift,Wife Anniversary Gift,Mug,Name,65.33
-Wife Gift,Wife Appreciation Gift,Mug,Name,64.47
-Wife Gift,Faith Wife Gift,Mug,Name,64.3
-Wife Gift,Wife Wedding Gift,Mug,Name,63.53
+Camping Gift,Funny Camping,Mug,Name,57.91
+Camping Gift,Camping Christmas,Mug,Name,57.7
+Coffee Gift,Coffee Lover,Mug,Name,77.05
+Coffee Gift,Coffee Christmas Set,Mug,Name,69.8
+Coffee Gift,Funny Coffee,Mug,Name,65.72
+Coffee Gift,Holiday Coffee Set,Mug,Name,65.44
+Daughter in Law Gift,Daughter In Law Christmas,Ornament,Name,67.81
+Daughter in Law Gift,Daughter Birthday,Mug,Name,59.22
+Daughter in Law Gift,Funny Daughter,Mug,Name,58.04
+Daughter in Law Gift,Christian Daughter,Mug,Name,56.98
+Daughter in Law Gift,Daughter In Law Wedding,Mug,Name,53.89
+Demon Hunter Gift,Hunting Christmas,Mug,Name,63.5
+Demon Hunter Gift,Funny Hunting,Mug,Name,63.16
+Dog Gift,Dog Christmas,Ornament,Name,76.78
+Dog Gift,Funny Dog,Blanket,Name,67.84
+Dog Gift,Dog Birthday,Blanket,Name,64.95
+Dog Gift,Dog Thank You,Card,Name,61.38
+Dog Memorial Gift for Loss of Dog,Dog Memorial Garden Stones,Blanket,Name,59.7
+Electrician Gift,Funny Electrician,Mug,Name,57.34
+Firefighter Gift,Firefighter Christmas,Ornament,Name,60.24
+Firefighter Gift,Funny Firefighter,Mug,Name,55.91
+Fishing Gift for Men,Funny Fishing,Mug,Name,68.69
+Fishing Gift for Men,Fishing Christmas,Mug,Name,65.2
+Gamer Gift,Gamer Christmas,Mug,Name,66.5
+Gamer Gift,Funny Gamer,Mug,Name,62.2
+Gardening Gift,Funny Gardening,Mug,Name,60.06
+Gardening Gift,Give Thanks Garden Flag,Card,Name,59.05
+Gift for Dad,Dad Christmas,Ornament,Name,78.98
+Gift for Dad,Cat Dad,Blanket,Name,77.59
+Gift for Dad,Dog Dad Men,Blanket,Name,76.47
+Gift for Dad,Funny Dad,Mug,Name,75.69
+Gift for Dad,Fishing Dad,Mug,Name,70.38
+Gift for Dad,Hunting Dad,Mug,Name,69.71
+Gift for Dad,Dad Birthday,Mug,Name,68.82
+Gift for Dad,Christian Dad,Mug,Name,67.98
+Gift for Dad,Fathers Day Dad,Mug,Name,67.75
+Gift for Dad,Gamer Dad,Mug,Name,67.15
+Gift for Dad,Soccer Dad,Mug,Name,66.99
+Gift for Dad,Father Of Bride,Mug,Name,66.93
+Gift for Dad,Camping Dad,Mug,Name,65.75
+Gift for Dad,Dad Gardening,Mug,Name,64.7
+Gift for Husband,Husband Christmas,Ornament,Name,77.44
+Gift for Husband,Funny Husband,Mug,Name,68.55
+Gift for Husband,Gamer Husband,Mug,Name,68.45
+Gift for Husband,Husband Valentines Day,Mug,Name,68.34
+Gift for Husband,Husband Birthday,Mug,Name,66.06
+Gift for Husband,Wedding Anniversary Husband,Mug,Name,64.54
+Gift for Husband,Christian Husband,Mug,Name,62.49
+Gift for Husband,Thank You Mr Falker,Mug,Name,58.52
+Gift for Husband,Husband On Wedding Day,Mug,Name,57.75
+Gift for Mom,Christmas Mom,Ornament,Name,79.84
+Gift for Mom,Dog Mom Women,Ornament,Name,79.05
+Gift for Mom,Funny Mom,Mug,Name,76.07
+Gift for Mom,Cat Mom,Blanket,Name,74.39
+Gift for Mom,Soccer Mom,Mug,Name,71.81
+Gift for Mom,Christian Mom,Mug,Name,71.29
+Gift for Mom,Mom Birthday,Mug,Name,69.25
+Gift for Mom,Mothers Day Mom,Mug,Name,68.0
+Gift for Mom,Mother Of Bride,Mug,Name,67.79
+Gift for Mom,Cat Lover Mom,Blanket,Name,65.97
+Gift for Mom,Mom Dog Women,Blanket,Name,65.77
+Gift for Mom,Gardening Mom,Mug,Name,65.35
+Gift for Mom,Reading Mom,Mug,Name,65.2
+Gift for Mom,Thank You Mom,Mug,Name,64.74
+Gift for People Who Love Cats,Cat Christmas,Ornament,Name,74.1
+Gift for People Who Love Cats,Cat Lovers,Blanket,Name,73.02
+Gift for People Who Love Cats,Funny Cat,Blanket,Name,70.62
+Gift for People Who Love Cats,Cat Thank You,Card,Name,64.28
+Gift for People Who Love Cats,Cat Birthday,Blanket,Name,61.32
+Gift for People Who Love to Cook,Chef Christmas,Ornament,Name,56.49
+Gift for People Who Love to Cook,Funny Chef,Mug,Name,51.85
+Gift for Police Officers,Police Academy Graduation,Mug,Name,59.02
+Gift for Police Officers,Christmas Police Officers,Ornament,Name,57.37
+Gift for Police Officers,Funny Cop,Mug,Name,53.02
+Gift for Son,Son In Law Christmas,Ornament,Name,64.76
+Gift for Son,Funny Son In Law,Mug,Name,61.4
+Gift for Son,Birthday Son Adult,Mug,Name,57.02
+Gift for Son,Wedding Son,Mug,Name,52.02
+Gift for Teen Boys,Boys Christmas,Ornament,Name,77.24
+Gift for Teen Boys,Soccer Boys,Mug,Name,76.6
+Gift for Teen Boys,Gamer Boys,Mug,Name,74.92
+Gift for Teen Boys,Fishing Boys,Mug,Name,74.68
+Gift for Teen Boys,Halloween Boys,Ornament,Name,69.93
+Gift for Teen Boys,Hunting Boys,Mug,Name,69.65
+Gift for Teen Boys,Christian Teen Boys,Mug,Name,68.68
+Gift for Teen Boys,Funny Teen Boys,Mug,Name,67.4
+Gift for Teen Boys,1st Birthday Boy,Mug,Name,65.72
+Gift for Teen Boys,Baby Boy Thank You,Card,Name,64.48
+Gift for Teen Boys,Boys Valentine,Mug,Name,63.97
+Gift for Wife,Wife Christmas Ideas,Ornament,Name,76.2
+Gift for Wife,Funny Wife,Mug,Name,66.31
+Gift for Wife,Wife Birthday Ideas,Mug,Name,63.98
+Gift for Wife,Pastor Wife Appreciation,Card,Name,63.84
+Gift for Wife,Anniversary Wife,Mug,Name,62.69
+Gift for Wife,Christian Wife,Mug,Name,61.67
+Gift for Wife,Mrs Mrs Wedding,Mug,Name,60.89
+Grandma Gift,Grandma Christmas,Ornament,Name,76.66
+Grandma Gift,Dog Grandma,Blanket,Name,69.38
+Grandma Gift,Funny Grandma,Mug,Name,67.53
+Grandma Gift,Grandma Birthday,Mug,Name,65.09
+Grandma Gift,Cat Grandma,Blanket,Name,64.51
+Grandma Gift,Grandma Garden,Mug,Name,62.9
+Grandma Gift,Christian Grandma,Mug,Name,62.87
+Grandpa Gift,Grandpa Christmas,Ornament,Name,72.71
+Grandpa Gift,Funny Grandpa,Mug,Name,66.98
+Grandpa Gift,Dog Grandpa,Blanket,Name,64.07
+Grandpa Gift,Grandpa Fishing,Mug,Name,63.55
+Grandpa Gift,Grandpa Birthday,Mug,Name,62.15
+Hairdresser Gift,Best Christmas Hairdresser,Ornament,Name,59.75
+Mother of the Bride Pant Suits,Floral Mother Of Bride Dresses,Blanket,Multiple Names,59.13
+Mother of the Bride Pant Suits,Mother Of Groom Dresses Wedding,Mug,Multiple Names,55.29
+Nurse Gift,Funny Nurse,Mug,Name,72.78
+Nurse Gift,Nurse Graduation,Mug,Name,72.36
+Nurse Gift,Nurse Christmas,Mug,Name,70.14
+Nurse Gift,Nurse Appreciation,Mug,Name,68.51
+Nurse Gift,Halloween Nurse,Mug,Name,62.26
+Pickleball Gift,Funny Pickleball,Mug,Name,63.97
+Pickleball Gift,Pickleball Christmas,Ornament,Name,62.18
+Reading Gift,Book Lover Women,Mug,Name,67.37
+Silent Groom Pro for Dogs,Dog Wedding Outfit,Blanket,Photo,56.2
+Soccer Gift,Soccer Christmas,Mug,Name,67.72
+Soccer Gift,Funny Football,Mug,Name,63.59
+Soccer Gift,Football Thank You,Tumbler,Name,61.47
+Teacher Gift,Teacher Christmas,Mug,Name,77.73
+Teacher Gift,Teacher Appreciation,Mug,Name,77.03
+Teacher Gift,Funny Teacher,Mug,Name,74.91
+Teacher Gift,Halloween Teacher,Mug,Name,72.5
+Teacher Gift,Holiday Teacher,Mug,Name,69.64
+Teacher Gift,Christian Teacher,Mug,Name,69.31
+Teacher Gift,Thanksgiving Teacher,Mug,Name,66.46
+Teacher Gift,Teacher Valentine,Mug,Name,66.28
+Teacher Gift,Teacher Birthday,Mug,Name,65.97
+Teacher Gift,Yoga Teacher,Mug,Name,65.87
+Teacher Gift,Reading Teacher,Mug,Name,65.83
+Teacher Gift,Teacher Graduation,Mug,Name,65.21
+Teacher Gift,Thankful Teacher,Mug,Name,64.18
+Teen Girl Gift Trendy Stuff,Girls Christmas,Ornament,Name,78.2
+Teen Girl Gift Trendy Stuff,Soccer Girls,Mug,Name,75.92
+Teen Girl Gift Trendy Stuff,Cat Girls,Blanket,Name,75.19
+Teen Girl Gift Trendy Stuff,American Girl,Card,Name,74.58
+Teen Girl Gift Trendy Stuff,Country Girl,Mug,Name,72.6
+Teen Girl Gift Trendy Stuff,Demon Hunter Girls,Mug,Name,72.6
+Teen Girl Gift Trendy Stuff,Christian Teen Girls,Mug,Name,72.01
+Teen Girl Gift Trendy Stuff,Thanks Giving Outfit Baby Girl,Card,Name,71.92
+Teen Girl Gift Trendy Stuff,Halloween Girls,Ornament,Name,71.23
+Teen Girl Gift Trendy Stuff,Gamer Girl,Mug,Name,70.66
+Teen Girl Gift Trendy Stuff,Cat Lover Girls,Blanket,Name,69.89
+Teen Girl Gift Trendy Stuff,Book Lovers Girls,Mug,Name,68.29
+Teen Girl Gift Trendy Stuff,1st Birthday Girl,Mug,Name,66.92
+Teen Girl Gift Trendy Stuff,Western Girl,Mug,Name,66.92
+Teen Girl Gift Trendy Stuff,Funny Teen Girls,Mug,Name,66.9
+Teen Girl Gift Trendy Stuff,Flower Girl,Mug,Name,66.3
+Teen Girl Gift Trendy Stuff,Girl Dog,Blanket,Name,66.09
+Teen Girl Gift Trendy Stuff,Farm Girl,Mug,Name,64.1
+Teen Girl Gift Trendy Stuff,Book Lover Teen Girls,Mug,Name,64.01
+Truck Driver Gift,Truck Driver Appreciation Week,Card,Name,55.14

@@ -1,0 +1,28 @@
+2026-07-03 12:57:34 INFO Starting Semantic Relationship build
+2026-07-03 12:57:34 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-03 12:57:34 INFO Dropping semantic_relationships if it exists
+2026-07-03 12:57:34 INFO Building semantic_relationships
+2026-07-03 12:57:35 INFO Built semantic_relationships with 483 rows
+2026-07-03 12:57:35 INFO Exporting semantic relationship CSVs to data\output\semantic_relationships
+2026-07-03 12:57:35 INFO Exported semantic_relationships.csv with 483 rows
+2026-07-03 12:57:35 INFO Exported top_niche_candidates.csv with 160 rows
+2026-07-03 12:57:35 INFO Exported top_solution_candidates.csv with 163 rows
+2026-07-03 12:57:35 INFO Semantic relationship summary
+2026-07-03 12:57:35 INFO   semantic_relationships: 483 rows
+2026-07-03 12:57:35 INFO Rows by relationship type:
+2026-07-03 12:57:35 INFO   demand_core_to_niche: 160
+2026-07-03 12:57:35 INFO   demand_core_to_seasonality: 160
+2026-07-03 12:57:35 INFO   demand_core_to_solution: 163
+2026-07-03 12:57:35 INFO Top semantic relationships:
+2026-07-03 12:57:35 INFO   pet=dog -> holiday=halloween | demand_core_to_seasonality | best=502 | top1000=1 | strength=39.43
+2026-07-03 12:57:35 INFO   recipient=girl -> holiday=halloween | demand_core_to_seasonality | best=930 | top1000=1 | strength=36.37
+2026-07-03 12:57:35 INFO   recipient=girl -> occasion=halloween | demand_core_to_seasonality | best=930 | top1000=1 | strength=36.37
+2026-07-03 12:57:35 INFO   pet=dog -> product=sweatshirt | demand_core_to_solution | best=934 | top1000=1 | strength=36.36
+2026-07-03 12:57:35 INFO   recipient=boy -> holiday=halloween | demand_core_to_seasonality | best=981 | top1000=1 | strength=36.12
+2026-07-03 12:57:35 INFO   recipient=boy -> occasion=halloween | demand_core_to_seasonality | best=981 | top1000=1 | strength=36.12
+2026-07-03 12:57:35 INFO   recipient=mom -> holiday=christmas | demand_core_to_seasonality | best=1231 | top1000=0 | strength=34.98
+2026-07-03 12:57:35 INFO   recipient=mom -> occasion=christmas | demand_core_to_seasonality | best=1231 | top1000=0 | strength=34.98
+2026-07-03 12:57:35 INFO   recipient=girl -> theme=american | demand_core_to_niche | best=1295 | top1000=0 | strength=34.73
+2026-07-03 12:57:35 INFO   recipient=dad -> holiday=christmas | demand_core_to_seasonality | best=2483 | top1000=0 | strength=31.52
+2026-07-03 12:57:35 INFO Semantic Relationship build complete
+2026-07-03 12:57:35 INFO Build log: logs\build_semantic_relationships.log

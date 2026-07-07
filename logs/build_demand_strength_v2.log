@@ -1,0 +1,44 @@
+2026-07-03 12:56:04 INFO Starting Demand Strength V2 build
+2026-07-03 12:56:04 INFO Input demand_objects: 5,291,320 rows
+2026-07-03 12:56:04 INFO Input normalized_keywords: 5,291,320 rows
+2026-07-03 12:56:04 INFO Input keyword_metrics_monthly: 5,231,177 rows
+2026-07-03 12:56:04 INFO Dropping demand_profile_v2 if it exists
+2026-07-03 12:56:04 INFO Dropping demand_monthly_v2 if it exists
+2026-07-03 12:56:04 INFO Dropping demand_keywords_v2 if it exists
+2026-07-03 12:56:04 INFO Dropping demand_master_v2 if it exists
+2026-07-03 12:56:04 INFO Creating Demand Strength V2 keyword stage
+2026-07-03 12:56:05 INFO Creating Demand Strength V2 monthly stage
+2026-07-03 12:56:06 INFO Aggregating Demand Strength V2 master metrics
+2026-07-03 12:56:07 INFO Built demand_master_v2 with 103 rows
+2026-07-03 12:56:07 INFO Building demand_keywords_v2
+2026-07-03 12:56:11 INFO Built demand_keywords_v2 with 5,291,320 rows
+2026-07-03 12:56:11 INFO Building demand_monthly_v2
+2026-07-03 12:56:11 INFO Built demand_monthly_v2 with 386 rows
+2026-07-03 12:56:11 INFO Building demand_profile_v2
+2026-07-03 12:56:11 INFO Built demand_profile_v2 with 1,349 rows
+2026-07-03 12:56:11 INFO Exporting Demand Strength V2 reports to data\output\demand_v2
+2026-07-03 12:56:11 INFO Exported demand_master_v2.csv with 103 rows
+2026-07-03 12:56:22 INFO Exported demand_keywords_v2.csv with 5,291,320 rows
+2026-07-03 12:56:22 INFO Exported demand_monthly_v2.csv with 386 rows
+2026-07-03 12:56:22 INFO Exported demand_profile_v2.csv with 1,349 rows
+2026-07-03 12:56:22 INFO Exported top_demands_by_strength.csv with 100 rows
+2026-07-03 12:56:22 INFO Exported top_demands_by_best_rank.csv with 100 rows
+2026-07-03 12:56:22 INFO Exported top_growing_demands.csv with 26 rows
+2026-07-03 12:56:22 INFO Demand Strength V2 summary
+2026-07-03 12:56:22 INFO   demand_master_v2: 103 rows
+2026-07-03 12:56:22 INFO   demand_keywords_v2: 5,291,320 rows
+2026-07-03 12:56:22 INFO   demand_monthly_v2: 386 rows
+2026-07-03 12:56:22 INFO   demand_profile_v2: 1,349 rows
+2026-07-03 12:56:22 INFO Top demands by strength:
+2026-07-03 12:56:22 INFO   DM000001 | Boy Demand | best=111 | p25=384008.0 | score=42.38 | declining
+2026-07-03 12:56:22 INFO   DM000002 | Coffee Demand | best=45 | p25=325880.75 | score=42.19 | declining
+2026-07-03 12:56:22 INFO   DM000003 | Gaming Demand | best=48 | p25=343257.0 | score=40.94 | declining
+2026-07-03 12:56:22 INFO   DM000004 | Girl Demand | best=240 | p25=365950.0 | score=39.9 | declining
+2026-07-03 12:56:22 INFO   DM000005 | Teacher Gift | best=1015 | p25=332598.5 | score=39.89 | stable
+2026-07-03 12:56:22 INFO   DM000006 | Reading Gift | best=10421 | p25=256035.5 | score=39.31 | growing
+2026-07-03 12:56:22 INFO   DM000007 | Mom Gift | best=65 | p25=284523.0 | score=39.21 | declining
+2026-07-03 12:56:22 INFO   DM000008 | Dad Gift | best=154 | p25=289953.75 | score=39.13 | declining
+2026-07-03 12:56:22 INFO   DM000009 | Chef Gift | best=10245 | p25=366988.0 | score=38.39 | growing
+2026-07-03 12:56:22 INFO   DM000010 | Husband Gift | best=2778 | p25=245656.5 | score=38.22 | stable
+2026-07-03 12:56:23 INFO Demand Strength V2 build complete
+2026-07-03 12:56:23 INFO Build log: logs\build_demand_strength_v2.log

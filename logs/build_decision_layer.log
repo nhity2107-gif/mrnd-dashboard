@@ -1,0 +1,72 @@
+2026-07-03 12:54:18 INFO Starting Decision Layer build
+2026-07-03 12:54:18 INFO Replacing data\output\decision\market_scorecard.csv
+2026-07-03 12:54:18 INFO Replacing data\output\decision\research_candidates.csv
+2026-07-03 12:54:18 INFO Replacing data\output\decision\product_recommendation.csv
+2026-07-03 12:54:18 INFO Replacing data\output\decision\customization_recommendation.csv
+2026-07-03 12:54:18 INFO Replacing data\output\decision\market_calendar.csv
+2026-07-03 12:54:18 INFO Input data\output\intelligence\market_intelligence.csv: 401 rows
+2026-07-03 12:54:18 INFO Input data\output\intelligence\expansion_tree.csv: 201 rows
+2026-07-03 12:54:18 INFO Input data\output\intelligence\market_stage.csv: 401 rows
+2026-07-03 12:54:18 INFO Input data\output\intelligence\demand_intelligence.csv: 401 rows
+2026-07-03 12:54:18 INFO Input data\output\opportunity\opportunity_master.csv: 401 rows
+2026-07-03 12:54:18 INFO Input data\output\demand_segments\demand_segments.csv: 201 rows
+2026-07-03 12:54:18 INFO Input data\output\insights\demand_size_map.csv: 401 rows
+2026-07-03 12:54:18 INFO Input data\output\insights\seasonality_map.csv: 1,003 rows
+2026-07-03 12:54:18 INFO Validated market stage with 401 rows
+2026-07-03 12:54:18 INFO Validated demand intelligence with 401 rows
+2026-07-03 12:54:18 INFO Validated expansion tree with 201 rows
+2026-07-03 12:54:18 INFO Exported data\output\decision\market_scorecard.csv with 306 rows
+2026-07-03 12:54:18 INFO Exported data\output\decision\research_candidates.csv with 201 rows
+2026-07-03 12:54:18 INFO Exported data\output\decision\product_recommendation.csv with 603 rows
+2026-07-03 12:54:18 INFO Exported data\output\decision\customization_recommendation.csv with 417 rows
+2026-07-03 12:54:18 INFO Exported data\output\decision\market_calendar.csv with 306 rows
+2026-07-03 12:54:18 INFO Decision Layer build complete
+2026-07-03 12:54:18 INFO Build log: logs\build_decision_layer.log
+2026-07-03 12:57:44 INFO Starting Decision Layer build
+2026-07-03 12:57:44 INFO Replacing data\output\decision\market_scorecard.csv
+2026-07-03 12:57:44 INFO Replacing data\output\decision\research_candidates.csv
+2026-07-03 12:57:44 INFO Replacing data\output\decision\product_recommendation.csv
+2026-07-03 12:57:44 INFO Replacing data\output\decision\customization_recommendation.csv
+2026-07-03 12:57:44 INFO Replacing data\output\decision\market_calendar.csv
+2026-07-03 12:57:44 INFO Input data\output\intelligence\market_intelligence.csv: 401 rows
+2026-07-03 12:57:44 INFO Input data\output\intelligence\expansion_tree.csv: 195 rows
+2026-07-03 12:57:44 INFO Input data\output\intelligence\market_stage.csv: 401 rows
+2026-07-03 12:57:44 INFO Input data\output\intelligence\demand_intelligence.csv: 401 rows
+2026-07-03 12:57:44 INFO Input data\output\opportunity\opportunity_master.csv: 401 rows
+2026-07-03 12:57:44 INFO Input data\output\demand_segments\demand_segments.csv: 195 rows
+2026-07-03 12:57:44 INFO Input data\output\insights\demand_size_map.csv: 401 rows
+2026-07-03 12:57:44 INFO Input data\output\insights\seasonality_map.csv: 997 rows
+2026-07-03 12:57:44 INFO Validated market stage with 401 rows
+2026-07-03 12:57:44 INFO Validated demand intelligence with 401 rows
+2026-07-03 12:57:44 INFO Validated expansion tree with 195 rows
+2026-07-03 12:57:44 INFO Exported data\output\decision\market_scorecard.csv with 306 rows
+2026-07-03 12:57:44 INFO Exported data\output\decision\research_candidates.csv with 195 rows
+2026-07-03 12:57:44 INFO Exported data\output\decision\product_recommendation.csv with 585 rows
+2026-07-03 12:57:44 INFO Exported data\output\decision\customization_recommendation.csv with 402 rows
+2026-07-03 12:57:44 INFO Exported data\output\decision\market_calendar.csv with 306 rows
+2026-07-03 12:57:44 INFO Decision Layer build complete
+2026-07-03 12:57:44 INFO Build log: logs\build_decision_layer.log
+2026-07-06 12:31:35 INFO Starting Decision Layer build
+2026-07-06 12:31:35 INFO Replacing data\output\decision\market_scorecard.csv
+2026-07-06 12:31:35 INFO Replacing data\output\decision\research_candidates.csv
+2026-07-06 12:31:35 INFO Replacing data\output\decision\product_recommendation.csv
+2026-07-06 12:31:35 INFO Replacing data\output\decision\customization_recommendation.csv
+2026-07-06 12:31:35 INFO Replacing data\output\decision\market_calendar.csv
+2026-07-06 12:31:35 INFO Input data\output\intelligence\market_intelligence.csv: 816 rows
+2026-07-06 12:31:35 INFO Input data\output\intelligence\expansion_tree.csv: 156 rows
+2026-07-06 12:31:35 INFO Input data\output\intelligence\market_stage.csv: 816 rows
+2026-07-06 12:31:35 INFO Input data\output\intelligence\demand_intelligence.csv: 816 rows
+2026-07-06 12:31:35 INFO Input data\output\opportunity\opportunity_master.csv: 816 rows
+2026-07-06 12:31:35 INFO Input data\output\demand_segments\demand_segments.csv: 156 rows
+2026-07-06 12:31:35 INFO Input data\output\insights\demand_size_map.csv: 816 rows
+2026-07-06 12:31:35 INFO Input data\output\insights\seasonality_map.csv: 1,788 rows
+2026-07-06 12:31:35 INFO Validated market stage with 816 rows
+2026-07-06 12:31:35 INFO Validated demand intelligence with 816 rows
+2026-07-06 12:31:35 INFO Validated expansion tree with 156 rows
+2026-07-06 12:31:36 INFO Exported data\output\decision\market_scorecard.csv with 816 rows
+2026-07-06 12:31:36 INFO Exported data\output\decision\research_candidates.csv with 156 rows
+2026-07-06 12:31:36 INFO Exported data\output\decision\product_recommendation.csv with 468 rows
+2026-07-06 12:31:36 INFO Exported data\output\decision\customization_recommendation.csv with 322 rows
+2026-07-06 12:31:36 INFO Exported data\output\decision\market_calendar.csv with 816 rows
+2026-07-06 12:31:36 INFO Decision Layer build complete
+2026-07-06 12:31:36 INFO Build log: logs\build_decision_layer.log

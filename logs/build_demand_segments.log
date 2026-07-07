@@ -1,0 +1,104 @@
+2026-07-03 12:57:37 INFO Starting Demand Segment build
+2026-07-03 12:57:37 INFO demand_master_v3 is not present; using demand_strength_v3 as the V3 demand source
+2026-07-03 12:57:37 INFO Input demand_strength_v3: 401 rows
+2026-07-03 12:57:37 INFO Input composite_demands: 401 rows
+2026-07-03 12:57:37 INFO Input semantic_relationships: 483 rows
+2026-07-03 12:57:37 INFO Input entity_master: 128 rows
+2026-07-03 12:57:37 INFO Input market_nodes: 10 rows
+2026-07-03 12:57:37 INFO Input intent_keywords: 5,291,320 rows
+2026-07-03 12:57:37 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-03 12:57:37 INFO Dropping segment_keywords if it exists
+2026-07-03 12:57:37 INFO Dropping demand_segments if it exists
+2026-07-03 12:57:37 INFO Creating parent demand stage from demand_strength_v3
+2026-07-03 12:57:37 INFO Parent demand stage: 82 rows
+2026-07-03 12:57:37 INFO Creating keyword base stage
+2026-07-03 12:57:37 INFO Keyword base stage: 280,514 rows
+2026-07-03 12:57:37 INFO Creating parent keyword match stage
+2026-07-03 12:57:38 INFO Parent keyword match stage: 16,851 rows
+2026-07-03 12:57:38 INFO Creating segment candidate evidence stage
+2026-07-03 12:57:38 INFO Segment candidate evidence stage: 4,274 rows
+2026-07-03 12:57:38 INFO Creating segment metric frame
+2026-07-03 12:57:38 INFO Built demand_segments with 195 rows
+2026-07-03 12:57:38 INFO Building segment_keywords
+2026-07-03 12:57:38 INFO Built segment_keywords with 4,100 rows
+2026-07-03 12:57:38 INFO Validation passed: one parent per segment, no duplicate names, no product/customization segments
+2026-07-03 12:57:38 INFO Exporting Demand Segment CSVs to data\output\demand_segments
+2026-07-03 12:57:38 INFO Exported demand_segments.csv with 195 rows
+2026-07-03 12:57:38 INFO Exported segment_keywords.csv with 4,100 rows
+2026-07-03 12:57:38 INFO Exported top_200_segments.csv with 195 rows
+2026-07-03 12:57:38 INFO Demand Segment summary
+2026-07-03 12:57:38 INFO   demand_segments: 195 rows
+2026-07-03 12:57:38 INFO   segment_keywords: 4,100 rows
+2026-07-03 12:57:38 INFO Segments by added dimension:
+2026-07-03 12:57:38 INFO   theme: 49
+2026-07-03 12:57:38 INFO   holiday: 48
+2026-07-03 12:57:38 INFO   occasion: 46
+2026-07-03 12:57:38 INFO   interest: 29
+2026-07-03 12:57:38 INFO   lifestyle: 14
+2026-07-03 12:57:38 INFO   pet: 8
+2026-07-03 12:57:38 INFO   recipient_refinement: 1
+2026-07-03 12:57:38 INFO Top demand segments:
+2026-07-03 12:57:38 INFO   SEG000001 | parent=Mom Gift | Christmas Mom | strength=37.3 | best=1231 | median=605290.5 | active=4 | growing
+2026-07-03 12:57:38 INFO   SEG000002 | parent=Dad Gift | Dad Christmas | strength=35.08 | best=2483 | median=520963.0 | active=4 | growing
+2026-07-03 12:57:38 INFO   SEG000003 | parent=Dog Gift | Dog Christmas | strength=33.98 | best=2843 | median=599478.0 | active=4 | growing
+2026-07-03 12:57:38 INFO   SEG000004 | parent=Teacher Gift | Teacher Christmas | strength=33.72 | best=3609 | median=567961.0 | active=4 | growing
+2026-07-03 12:57:38 INFO   SEG000005 | parent=Mom Gift | Mom Birthday | strength=32.52 | best=8392 | median=530365.5 | active=4 | declining
+2026-07-03 12:57:38 INFO   SEG000006 | parent=Mom Gift | Dog Mom Women | strength=32.26 | best=14161 | median=293386.0 | active=4 | growing
+2026-07-03 12:57:38 INFO   SEG000007 | parent=Wife Gift | Wife Christmas Ideas | strength=31.93 | best=6604 | median=610843.5 | active=4 | growing
+2026-07-03 12:57:38 INFO   SEG000008 | parent=Dad Gift | Dad Birthday | strength=31.68 | best=12360 | median=360840.0 | active=4 | declining
+2026-07-03 12:57:38 INFO   SEG000009 | parent=Husband Gift | Husband Christmas | strength=31.3 | best=11179 | median=493277.5 | active=4 | growing
+2026-07-03 12:57:38 INFO   SEG000010 | parent=Reading Gift | Book Lover Women | strength=30.93 | best=10421 | median=564758.0 | active=4 | growing
+2026-07-03 12:57:38 INFO Demand Segment build complete
+2026-07-03 12:57:38 INFO Build log: logs\build_demand_segments.log
+2026-07-06 12:30:05 INFO Starting Demand Segment build
+2026-07-06 12:30:05 INFO demand_master_v3 is not present; using demand_strength_v3 as the V3 demand source
+2026-07-06 12:30:05 INFO Input demand_strength_v3: 816 rows
+2026-07-06 12:30:05 INFO Input composite_demands: 816 rows
+2026-07-06 12:30:05 INFO Input semantic_relationships: 483 rows
+2026-07-06 12:30:05 INFO Input entity_master: 128 rows
+2026-07-06 12:30:05 INFO Input market_nodes: 10 rows
+2026-07-06 12:30:05 INFO Input intent_keywords: 5,291,320 rows
+2026-07-06 12:30:05 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-06 12:30:05 INFO Dropping segment_keywords if it exists
+2026-07-06 12:30:05 INFO Dropping demand_segments if it exists
+2026-07-06 12:30:05 INFO Creating parent demand stage from demand_strength_v3
+2026-07-06 12:30:05 INFO Parent demand stage: 550 rows
+2026-07-06 12:30:05 INFO Creating keyword base stage
+2026-07-06 12:30:05 INFO Keyword base stage: 280,514 rows
+2026-07-06 12:30:05 INFO Creating parent keyword match stage
+2026-07-06 12:30:06 INFO Parent keyword match stage: 1,051,290 rows
+2026-07-06 12:30:06 INFO Creating segment candidate evidence stage
+2026-07-06 12:30:06 INFO Segment candidate evidence stage: 293,948 rows
+2026-07-06 12:30:06 INFO Creating segment metric frame
+2026-07-06 12:30:08 INFO Built demand_segments with 156 rows
+2026-07-06 12:30:08 INFO Building segment_keywords
+2026-07-06 12:30:08 INFO Built segment_keywords with 3,752 rows
+2026-07-06 12:30:08 INFO Validation passed: one parent per segment, no duplicate names, no product/customization segments
+2026-07-06 12:30:08 INFO Exporting Demand Segment CSVs to data\output\demand_segments
+2026-07-06 12:30:08 INFO Exported demand_segments.csv with 156 rows
+2026-07-06 12:30:08 INFO Exported segment_keywords.csv with 3,752 rows
+2026-07-06 12:30:08 INFO Exported top_200_segments.csv with 156 rows
+2026-07-06 12:30:08 INFO Demand Segment summary
+2026-07-06 12:30:08 INFO   demand_segments: 156 rows
+2026-07-06 12:30:08 INFO   segment_keywords: 3,752 rows
+2026-07-06 12:30:08 INFO Segments by added dimension:
+2026-07-06 12:30:08 INFO   occasion: 42
+2026-07-06 12:30:08 INFO   theme: 38
+2026-07-06 12:30:08 INFO   holiday: 34
+2026-07-06 12:30:08 INFO   interest: 23
+2026-07-06 12:30:08 INFO   lifestyle: 11
+2026-07-06 12:30:08 INFO   pet: 7
+2026-07-06 12:30:08 INFO   recipient_refinement: 1
+2026-07-06 12:30:08 INFO Top demand segments:
+2026-07-06 12:30:08 INFO   SEG000001 | parent=Gift for Mom | Christmas Mom | strength=37.3 | best=1231 | median=605290.5 | active=4 | growing
+2026-07-06 12:30:08 INFO   SEG000002 | parent=Gift for Dad | Dad Christmas | strength=35.08 | best=2483 | median=520963.0 | active=4 | growing
+2026-07-06 12:30:08 INFO   SEG000003 | parent=Dog Gift | Dog Christmas | strength=33.98 | best=2843 | median=599478.0 | active=4 | growing
+2026-07-06 12:30:08 INFO   SEG000004 | parent=Teacher Gift | Teacher Christmas | strength=33.72 | best=3609 | median=567961.0 | active=4 | growing
+2026-07-06 12:30:08 INFO   SEG000005 | parent=Gift for Mom | Mom Birthday | strength=32.52 | best=8392 | median=530365.5 | active=4 | declining
+2026-07-06 12:30:08 INFO   SEG000006 | parent=Gift for Mom | Dog Mom Women | strength=32.26 | best=14161 | median=293386.0 | active=4 | growing
+2026-07-06 12:30:08 INFO   SEG000007 | parent=Gift for Wife | Wife Christmas Ideas | strength=31.93 | best=6604 | median=610843.5 | active=4 | growing
+2026-07-06 12:30:08 INFO   SEG000008 | parent=Gift for Dad | Dad Birthday | strength=31.68 | best=12360 | median=360840.0 | active=4 | declining
+2026-07-06 12:30:08 INFO   SEG000009 | parent=Gift for Husband | Husband Christmas | strength=31.3 | best=11179 | median=493277.5 | active=4 | growing
+2026-07-06 12:30:08 INFO   SEG000010 | parent=Reading Gift | Book Lover Women | strength=30.93 | best=10421 | median=564758.0 | active=4 | growing
+2026-07-06 12:30:08 INFO Demand Segment build complete
+2026-07-06 12:30:08 INFO Build log: logs\build_demand_segments.log

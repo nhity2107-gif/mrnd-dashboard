@@ -1,0 +1,357 @@
+2026-07-03 12:57:35 INFO Starting Composite Demand build
+2026-07-03 12:57:35 INFO Input intent_keywords: 5,291,320 rows
+2026-07-03 12:57:35 INFO Input intent_summary: 16 rows
+2026-07-03 12:57:35 INFO Input intent_market_nodes: 594 rows
+2026-07-03 12:57:35 INFO Input semantic_relationships: 483 rows
+2026-07-03 12:57:35 INFO Input demand_objects: 5,291,320 rows
+2026-07-03 12:57:35 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-03 12:57:35 INFO Dropping demand_strength_v3 if it exists
+2026-07-03 12:57:35 INFO Dropping composite_keywords if it exists
+2026-07-03 12:57:35 INFO Dropping composite_demands if it exists
+2026-07-03 12:57:35 INFO Creating composite demand evidence stage
+2026-07-03 12:57:36 INFO Composite evidence stage: 48,497 rows
+2026-07-03 12:57:36 INFO Creating composite demand metric stage
+2026-07-03 12:57:36 INFO Built composite_demands with 401 rows
+2026-07-03 12:57:36 INFO Building composite_keywords
+2026-07-03 12:57:36 INFO Built composite_keywords with 48,234 rows
+2026-07-03 12:57:36 INFO Building demand_strength_v3
+2026-07-03 12:57:36 INFO Built demand_strength_v3 with 401 rows
+2026-07-03 12:57:36 INFO Exporting Composite Demand CSVs to data\output\composite_demands
+2026-07-03 12:57:36 INFO Exported composite_demands.csv with 401 rows
+2026-07-03 12:57:36 INFO Exported composite_keywords.csv with 48,234 rows
+2026-07-03 12:57:36 INFO Exported top_composite_demands.csv with 401 rows
+2026-07-03 12:57:36 INFO Exported demand_strength_v3.csv with 401 rows
+2026-07-03 12:57:36 INFO Composite Demand summary
+2026-07-03 12:57:36 INFO   composite_demands: 401 rows
+2026-07-03 12:57:36 INFO   composite_keywords: 48,234 rows
+2026-07-03 12:57:36 INFO   demand_strength_v3: 401 rows
+2026-07-03 12:57:36 INFO Top composite demands:
+2026-07-03 12:57:36 INFO   CD000001 | Mom Gift | best=65 | p25=308544.0 | median=696879.0 | active=4 | strength=45.94 | growing
+2026-07-03 12:57:36 INFO   CD000002 | Dad Gift | best=154 | p25=317505.5 | median=625066.0 | active=4 | strength=43.26 | growing
+2026-07-03 12:57:36 INFO   CD000003 | Girl Gift | best=455 | p25=299089.25 | median=647903.0 | active=4 | strength=39.92 | growing
+2026-07-03 12:57:36 INFO   CD000004 | Grandma Gift | best=666 | p25=253611.5 | median=619034.0 | active=4 | strength=39.11 | growing
+2026-07-03 12:57:36 INFO   CD000005 | Boy Gift | best=744 | p25=296380.25 | median=649849.0 | active=4 | strength=38.38 | growing
+2026-07-03 12:57:36 INFO   CD000008 | Christmas Mom Gift | best=1231 | p25=238703.0 | median=597290.0 | active=4 | strength=37.33 | growing
+2026-07-03 12:57:36 INFO   CD000006 | Teacher Gift | best=1015 | p25=377051.25 | median=756851.0 | active=4 | strength=36.73 | growing
+2026-07-03 12:57:36 INFO   CD000007 | Mom Wedding | best=1077 | p25=390911.75 | median=702840.0 | active=4 | strength=36.54 | declining
+2026-07-03 12:57:36 INFO   CD000009 | Boy Apparel | best=1323 | p25=382813.5 | median=711458.5 | active=4 | strength=35.92 | declining
+2026-07-03 12:57:36 INFO   CD000010 | Girl Apparel | best=1586 | p25=359776.0 | median=696879.0 | active=4 | strength=35.5 | declining
+2026-07-03 12:57:36 INFO Composite Demand build complete
+2026-07-03 12:57:36 INFO Build log: logs\build_composite_demands.log
+2026-07-06 08:19:25 INFO Starting Composite Demand build
+2026-07-06 08:19:41 INFO Starting Composite Demand build
+2026-07-06 08:19:41 INFO Input intent_keywords: 5,291,320 rows
+2026-07-06 08:19:41 INFO Input intent_summary: 16 rows
+2026-07-06 08:19:41 INFO Input intent_market_nodes: 594 rows
+2026-07-06 08:19:41 INFO Input semantic_relationships: 483 rows
+2026-07-06 08:19:41 INFO Input demand_objects: 5,291,320 rows
+2026-07-06 08:19:41 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-06 08:19:41 INFO Dropping demand_strength_v3 if it exists
+2026-07-06 08:19:41 INFO Dropping composite_keywords if it exists
+2026-07-06 08:19:41 INFO Dropping composite_demands if it exists
+2026-07-06 08:19:41 INFO Dropping parent_label_audit if it exists
+2026-07-06 08:19:41 INFO Creating composite demand evidence stage
+2026-07-06 08:19:41 INFO Composite evidence stage: 48,497 rows
+2026-07-06 08:19:41 INFO Creating composite demand metric stage
+2026-07-06 08:19:58 INFO Composite phrase clusters: 1,709 rows
+2026-07-06 08:19:58 INFO Built composite_demands with 1,709 rows
+2026-07-06 08:19:58 INFO Built parent_label_audit with 2,242 rows
+2026-07-06 08:19:58 INFO Building composite_keywords
+2026-07-06 08:19:58 INFO Built composite_keywords with 14,532 rows
+2026-07-06 08:19:58 INFO Building demand_strength_v3
+2026-07-06 08:19:58 INFO Built demand_strength_v3 with 1,709 rows
+2026-07-06 08:19:58 INFO Exporting Composite Demand CSVs to data\output\composite_demands
+2026-07-06 08:19:58 INFO Exported composite_demands.csv with 1,709 rows
+2026-07-06 08:19:58 INFO Exported composite_keywords.csv with 14,532 rows
+2026-07-06 08:19:58 INFO Exported top_composite_demands.csv with 1,709 rows
+2026-07-06 08:19:58 INFO Exported demand_strength_v3.csv with 1,709 rows
+2026-07-06 08:19:58 INFO Exported parent_label_audit.csv with 2,242 rows
+2026-07-06 08:19:58 INFO Composite Demand summary
+2026-07-06 08:19:58 INFO   composite_demands: 1,709 rows
+2026-07-06 08:19:58 INFO   composite_keywords: 14,532 rows
+2026-07-06 08:19:58 INFO   demand_strength_v3: 1,709 rows
+2026-07-06 08:19:58 INFO   parent_label_audit: 2,242 rows
+2026-07-06 08:19:58 INFO Top composite demands:
+2026-07-06 08:19:58 INFO   CD000003 | Teen Girl Gift Trendy Stuff | best=455 | p25=692.0 | median=1700.0 | active=4 | strength=58.99 | growing
+2026-07-06 08:19:58 INFO   CD000011 | Baby Boy Clothes | best=1323 | p25=1353.75 | median=1532.5 | active=4 | strength=54.31 | declining
+2026-07-06 08:19:58 INFO   CD000012 | Baby Girl Clothes | best=1586 | p25=1766.0 | median=1854.0 | active=4 | strength=52.97 | declining
+2026-07-06 08:19:58 INFO   CD000022 | Gift for Girls 8 12 Deals | best=2684 | p25=3461.0 | median=5156.0 | active=4 | strength=48.81 | declining
+2026-07-06 08:19:58 INFO   CD000028 | Dog Tags Personalized | best=3197 | p25=4186.25 | median=4702.0 | active=4 | strength=47.95 | declining
+2026-07-06 08:19:58 INFO   CD000001 | Gift for Mom | best=65 | p25=181384.0 | median=518764.5 | active=4 | strength=47.37 | growing
+2026-07-06 08:19:58 INFO   CD000021 | Demon Hunter Gift | best=2648 | p25=5902.75 | median=7381.0 | active=4 | strength=47.35 | stable
+2026-07-06 08:19:58 INFO   CD000031 | Girls Clothes | best=3494 | p25=4391.75 | median=6865.0 | active=4 | strength=47.17 | growing
+2026-07-06 08:19:58 INFO   CD000041 | Dog Clothes | best=4162 | p25=4542.25 | median=5550.5 | active=4 | strength=46.77 | growing
+2026-07-06 08:19:58 INFO   CD000009 | Mother of Bride Dress | best=1077 | p25=12400.0 | median=102020.0 | active=4 | strength=45.86 | declining
+2026-07-06 08:19:58 INFO Composite Demand build complete
+2026-07-06 08:19:58 INFO Build log: logs\build_composite_demands.log
+2026-07-06 08:21:05 INFO Starting Composite Demand build
+2026-07-06 08:21:05 INFO Input intent_keywords: 5,291,320 rows
+2026-07-06 08:21:05 INFO Input intent_summary: 16 rows
+2026-07-06 08:21:05 INFO Input intent_market_nodes: 594 rows
+2026-07-06 08:21:05 INFO Input semantic_relationships: 483 rows
+2026-07-06 08:21:05 INFO Input demand_objects: 5,291,320 rows
+2026-07-06 08:21:05 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-06 08:21:05 INFO Dropping demand_strength_v3 if it exists
+2026-07-06 08:21:05 INFO Dropping composite_keywords if it exists
+2026-07-06 08:21:05 INFO Dropping composite_demands if it exists
+2026-07-06 08:21:05 INFO Dropping parent_label_audit if it exists
+2026-07-06 08:21:05 INFO Creating composite demand evidence stage
+2026-07-06 08:21:06 INFO Composite evidence stage: 48,497 rows
+2026-07-06 08:21:06 INFO Creating composite demand metric stage
+2026-07-06 08:21:22 INFO Composite phrase clusters: 1,776 rows
+2026-07-06 08:21:22 INFO Built composite_demands with 1,776 rows
+2026-07-06 08:21:22 INFO Built parent_label_audit with 1,777 rows
+2026-07-06 08:21:22 INFO Building composite_keywords
+2026-07-06 08:21:22 INFO Built composite_keywords with 10,528 rows
+2026-07-06 08:21:22 INFO Building demand_strength_v3
+2026-07-06 08:21:22 INFO Built demand_strength_v3 with 1,776 rows
+2026-07-06 08:21:22 INFO Exporting Composite Demand CSVs to data\output\composite_demands
+2026-07-06 08:21:22 INFO Exported composite_demands.csv with 1,776 rows
+2026-07-06 08:21:22 INFO Exported composite_keywords.csv with 10,528 rows
+2026-07-06 08:21:22 INFO Exported top_composite_demands.csv with 1,776 rows
+2026-07-06 08:21:22 INFO Exported demand_strength_v3.csv with 1,776 rows
+2026-07-06 08:21:22 INFO Exported parent_label_audit.csv with 1,777 rows
+2026-07-06 08:21:22 INFO Composite Demand summary
+2026-07-06 08:21:22 INFO   composite_demands: 1,776 rows
+2026-07-06 08:21:22 INFO   composite_keywords: 10,528 rows
+2026-07-06 08:21:22 INFO   demand_strength_v3: 1,776 rows
+2026-07-06 08:21:22 INFO   parent_label_audit: 1,777 rows
+2026-07-06 08:21:22 INFO Top composite demands:
+2026-07-06 08:21:22 INFO   CD000003 | Teen Girl Gift Trendy Stuff | best=455 | p25=692.0 | median=1700.0 | active=4 | strength=58.99 | growing
+2026-07-06 08:21:22 INFO   CD000001 | Gift for Mom | best=65 | p25=11521.25 | median=79069.0 | active=4 | strength=55.17 | growing
+2026-07-06 08:21:22 INFO   CD000012 | Baby Boy Clothes | best=1323 | p25=1353.75 | median=1532.5 | active=4 | strength=54.31 | declining
+2026-07-06 08:21:22 INFO   CD000007 | Stitch Gift for Girls | best=986 | p25=1540.25 | median=2888.0 | active=4 | strength=54.3 | growing
+2026-07-06 08:21:22 INFO   CD000013 | Baby Girl Clothes | best=1586 | p25=1766.0 | median=1854.0 | active=4 | strength=52.97 | declining
+2026-07-06 08:21:22 INFO   CD000006 | Gift for Teen Boys | best=744 | p25=1995.0 | median=51276.0 | active=4 | strength=51.61 | growing
+2026-07-06 08:21:22 INFO   CD000002 | Gift for Dad | best=154 | p25=17042.5 | median=120932.5 | active=4 | strength=51.16 | growing
+2026-07-06 08:21:22 INFO   CD000023 | Gift for Girls 8 12 Deals | best=2684 | p25=3461.0 | median=5156.0 | active=4 | strength=48.81 | declining
+2026-07-06 08:21:22 INFO   CD000029 | Dog Tags Personalized | best=3197 | p25=4186.25 | median=4702.0 | active=4 | strength=47.95 | declining
+2026-07-06 08:21:22 INFO   CD000022 | Demon Hunter Gift | best=2648 | p25=5902.75 | median=7381.0 | active=4 | strength=47.35 | stable
+2026-07-06 08:21:23 INFO Composite Demand build complete
+2026-07-06 08:21:23 INFO Build log: logs\build_composite_demands.log
+2026-07-06 12:05:44 INFO Starting Composite Demand build
+2026-07-06 12:07:24 INFO Starting Composite Demand build
+2026-07-06 12:07:24 INFO Input intent_keywords: 5,291,320 rows
+2026-07-06 12:07:24 INFO Input intent_summary: 16 rows
+2026-07-06 12:07:24 INFO Input intent_market_nodes: 594 rows
+2026-07-06 12:07:24 INFO Input semantic_relationships: 483 rows
+2026-07-06 12:07:24 INFO Input demand_objects: 5,291,320 rows
+2026-07-06 12:07:24 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-06 12:07:24 INFO Dropping demand_strength_v3 if it exists
+2026-07-06 12:07:24 INFO Dropping composite_keywords if it exists
+2026-07-06 12:07:24 INFO Dropping composite_demands if it exists
+2026-07-06 12:07:24 INFO Dropping parent_label_audit if it exists
+2026-07-06 12:07:24 INFO Creating composite demand evidence stage
+2026-07-06 12:07:24 INFO Composite evidence stage: 48,497 rows
+2026-07-06 12:07:24 INFO Creating composite demand metric stage
+2026-07-06 12:08:07 INFO Composite phrase clusters: 816 rows
+2026-07-06 12:08:07 INFO Built composite_demands with 816 rows
+2026-07-06 12:08:07 INFO Built parent_label_audit with 1,777 rows
+2026-07-06 12:08:07 INFO Building composite_keywords
+2026-07-06 12:08:07 INFO Built composite_keywords with 4,729 rows
+2026-07-06 12:08:07 INFO Building demand_strength_v3
+2026-07-06 12:08:07 INFO Built demand_strength_v3 with 816 rows
+2026-07-06 12:08:07 INFO Exporting Composite Demand CSVs to data\output\composite_demands
+2026-07-06 12:08:07 INFO Exported composite_demands.csv with 816 rows
+2026-07-06 12:08:07 INFO Exported composite_keywords.csv with 4,729 rows
+2026-07-06 12:08:08 INFO Exported top_composite_demands.csv with 816 rows
+2026-07-06 12:08:08 INFO Exported demand_strength_v3.csv with 816 rows
+2026-07-06 12:08:08 INFO Exported parent_label_audit.csv with 1,777 rows
+2026-07-06 12:08:08 INFO Composite Demand summary
+2026-07-06 12:08:08 INFO   composite_demands: 816 rows
+2026-07-06 12:08:08 INFO   composite_keywords: 4,729 rows
+2026-07-06 12:08:08 INFO   demand_strength_v3: 816 rows
+2026-07-06 12:08:08 INFO   parent_label_audit: 1,777 rows
+2026-07-06 12:08:08 INFO Top composite demands:
+2026-07-06 12:08:08 INFO   CD000003 | Teen Girl Gift Trendy Stuff | best=455 | p25=692.0 | median=1700.0 | active=4 | strength=58.99 | growing
+2026-07-06 12:08:08 INFO   CD000001 | Gift for Mom | best=65 | p25=11521.25 | median=79069.0 | active=4 | strength=55.17 | growing
+2026-07-06 12:08:08 INFO   CD000007 | Stitch Gift for Girls | best=986 | p25=1540.25 | median=2888.0 | active=4 | strength=54.3 | growing
+2026-07-06 12:08:08 INFO   CD000006 | Gift for Teen Boys | best=744 | p25=1995.0 | median=51276.0 | active=4 | strength=51.61 | growing
+2026-07-06 12:08:08 INFO   CD000002 | Gift for Dad | best=154 | p25=17042.5 | median=120932.5 | active=4 | strength=51.16 | growing
+2026-07-06 12:08:08 INFO   CD000016 | Demon Hunter Gift | best=2648 | p25=5902.75 | median=7381.0 | active=4 | strength=47.35 | stable
+2026-07-06 12:08:08 INFO   CD000005 | Grandma Gift | best=666 | p25=18554.0 | median=148212.0 | active=4 | strength=46.14 | growing
+2026-07-06 12:08:08 INFO   CD000004 | Gift for Teenage Girls | best=640 | p25=30001.0 | median=208065.0 | active=4 | strength=44.89 | growing
+2026-07-06 12:08:08 INFO   CD000027 | Lilo and Stitch Gift for Girls | best=5246 | p25=8243.0 | median=11342.0 | active=4 | strength=44.03 | growing
+2026-07-06 12:08:08 INFO   CD000009 | Christmas Gift for Mom | best=1231 | p25=26376.0 | median=105118.0 | active=4 | strength=43.81 | growing
+2026-07-06 12:08:08 INFO Composite Demand build complete
+2026-07-06 12:08:08 INFO Build log: logs\build_composite_demands.log
+2026-07-06 13:05:23 INFO Starting Composite Demand build
+2026-07-06 13:05:23 INFO Input intent_keywords: 5,291,320 rows
+2026-07-06 13:05:23 INFO Input intent_summary: 16 rows
+2026-07-06 13:05:23 INFO Input intent_market_nodes: 594 rows
+2026-07-06 13:05:23 INFO Input semantic_relationships: 483 rows
+2026-07-06 13:05:23 INFO Input demand_objects: 5,291,320 rows
+2026-07-06 13:05:23 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-06 13:05:23 INFO Dropping demand_strength_v3 if it exists
+2026-07-06 13:05:23 INFO Dropping composite_keywords if it exists
+2026-07-06 13:05:23 INFO Dropping composite_demands if it exists
+2026-07-06 13:05:23 INFO Dropping parent_label_audit if it exists
+2026-07-06 13:05:23 INFO Creating composite demand evidence stage
+2026-07-06 13:05:24 INFO Composite evidence stage: 48,497 rows
+2026-07-06 13:05:24 INFO Creating composite demand metric stage
+2026-07-06 13:06:16 INFO Composite phrase clusters: 308 rows
+2026-07-06 13:06:16 INFO Built composite_demands with 308 rows
+2026-07-06 13:06:16 INFO Built parent_label_audit with 1,777 rows
+2026-07-06 13:06:16 INFO Building composite_keywords
+2026-07-06 13:06:16 INFO Built composite_keywords with 2,368 rows
+2026-07-06 13:06:16 INFO Building demand_strength_v3
+2026-07-06 13:06:16 INFO Built demand_strength_v3 with 308 rows
+2026-07-06 13:06:16 INFO Exporting Composite Demand CSVs to data\output\composite_demands
+2026-07-06 13:06:16 INFO Exported composite_demands.csv with 308 rows
+2026-07-06 13:06:16 INFO Exported composite_keywords.csv with 2,368 rows
+2026-07-06 13:06:16 INFO Exported top_composite_demands.csv with 308 rows
+2026-07-06 13:06:16 INFO Exported demand_strength_v3.csv with 308 rows
+2026-07-06 13:06:16 INFO Exported parent_label_audit.csv with 1,777 rows
+2026-07-06 13:06:16 INFO Composite Demand summary
+2026-07-06 13:06:16 INFO   composite_demands: 308 rows
+2026-07-06 13:06:16 INFO   composite_keywords: 2,368 rows
+2026-07-06 13:06:16 INFO   demand_strength_v3: 308 rows
+2026-07-06 13:06:16 INFO   parent_label_audit: 1,777 rows
+2026-07-06 13:06:16 INFO Top composite demands:
+2026-07-06 13:06:16 INFO   CD000001 | Gift for Mom | best=65 | p25=11521.25 | median=79069.0 | active=4 | strength=55.15 | growing
+2026-07-06 13:06:16 INFO   CD000002 | Gift for Dad | best=154 | p25=17042.5 | median=120932.5 | active=4 | strength=51.15 | growing
+2026-07-06 13:06:16 INFO   CD000003 | Grandma Gift | best=666 | p25=18554.0 | median=148212.0 | active=4 | strength=46.12 | growing
+2026-07-06 13:06:16 INFO   CD000005 | Christmas Gift for Mom | best=1231 | p25=26376.0 | median=105118.0 | active=4 | strength=43.8 | growing
+2026-07-06 13:06:16 INFO   CD000004 | Teacher Gift | best=1015 | p25=32537.5 | median=127080.0 | active=4 | strength=43.77 | growing
+2026-07-06 13:06:16 INFO   CD000022 | 2 Year Old Girl Birthday Gift | best=6660 | p25=7944.75 | median=8504.5 | active=4 | strength=43.64 | declining
+2026-07-06 13:06:16 INFO   CD000006 | Teen Girl Gift | best=1296 | p25=45950.0 | median=133593.0 | active=4 | strength=42.21 | growing
+2026-07-06 13:06:16 INFO   CD000035 | 2 Year Old Boy Birthday Gift | best=9142 | p25=10795.75 | median=11772.0 | active=4 | strength=41.65 | declining
+2026-07-06 13:06:16 INFO   CD000008 | Grandpa Gift | best=2236 | p25=42921.25 | median=126673.0 | active=4 | strength=40.68 | growing
+2026-07-06 13:06:16 INFO   CD000011 | Gift for Husband | best=2778 | p25=35476.25 | median=102133.5 | active=4 | strength=40.63 | growing
+2026-07-06 13:06:16 INFO Composite Demand build complete
+2026-07-06 13:06:16 INFO Build log: logs\build_composite_demands.log
+2026-07-07 07:55:13 INFO Starting Composite Demand build
+2026-07-07 07:55:13 INFO Input intent_keywords: 5,291,320 rows
+2026-07-07 07:55:13 INFO Input intent_summary: 16 rows
+2026-07-07 07:55:13 INFO Input intent_market_nodes: 594 rows
+2026-07-07 07:55:13 INFO Input semantic_relationships: 483 rows
+2026-07-07 07:55:13 INFO Input demand_objects: 5,291,320 rows
+2026-07-07 07:55:13 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-07 07:55:13 INFO Dropping demand_strength_v3 if it exists
+2026-07-07 07:55:13 INFO Dropping composite_keywords if it exists
+2026-07-07 07:55:13 INFO Dropping composite_demands if it exists
+2026-07-07 07:55:13 INFO Dropping parent_label_audit if it exists
+2026-07-07 07:55:13 INFO Creating composite demand evidence stage
+2026-07-07 07:55:14 INFO Composite evidence stage: 48,497 rows
+2026-07-07 07:55:14 INFO Creating composite demand metric stage
+2026-07-07 07:56:37 INFO Composite phrase clusters: 124 rows
+2026-07-07 07:56:37 INFO Built composite_demands with 124 rows
+2026-07-07 07:56:37 INFO Built parent_label_audit with 1,777 rows
+2026-07-07 07:56:37 INFO Building composite_keywords
+2026-07-07 07:56:37 INFO Built composite_keywords with 1,158 rows
+2026-07-07 07:56:37 INFO Building demand_strength_v3
+2026-07-07 07:56:37 INFO Built demand_strength_v3 with 124 rows
+2026-07-07 07:56:37 INFO Exporting Composite Demand CSVs to data\output\composite_demands
+2026-07-07 07:56:37 INFO Exported composite_demands.csv with 124 rows
+2026-07-07 07:56:37 INFO Exported composite_keywords.csv with 1,158 rows
+2026-07-07 07:56:37 INFO Exported top_composite_demands.csv with 124 rows
+2026-07-07 07:56:37 INFO Exported demand_strength_v3.csv with 124 rows
+2026-07-07 07:56:37 INFO Exported parent_label_audit.csv with 1,777 rows
+2026-07-07 07:56:37 INFO Composite Demand summary
+2026-07-07 07:56:37 INFO   composite_demands: 124 rows
+2026-07-07 07:56:37 INFO   composite_keywords: 1,158 rows
+2026-07-07 07:56:37 INFO   demand_strength_v3: 124 rows
+2026-07-07 07:56:37 INFO   parent_label_audit: 1,777 rows
+2026-07-07 07:56:37 INFO Top composite demands:
+2026-07-07 07:56:37 INFO   CD000001 | Gift for Mom | best=65 | p25=11521.25 | median=79069.0 | active=4 | strength=55.14 | growing
+2026-07-07 07:56:37 INFO   CD000002 | Gift for Dad | best=154 | p25=17042.5 | median=120932.5 | active=4 | strength=51.14 | growing
+2026-07-07 07:56:37 INFO   CD000003 | Grandma Gift | best=666 | p25=18554.0 | median=148212.0 | active=4 | strength=46.11 | growing
+2026-07-07 07:56:37 INFO   CD000005 | Christmas Gift for Mom | best=1231 | p25=26376.0 | median=105118.0 | active=4 | strength=43.78 | growing
+2026-07-07 07:56:37 INFO   CD000004 | Teacher Gift | best=1015 | p25=32537.5 | median=127080.0 | active=4 | strength=43.75 | growing
+2026-07-07 07:56:37 INFO   CD000006 | Teen Girl Gift | best=1296 | p25=45950.0 | median=133593.0 | active=4 | strength=42.19 | growing
+2026-07-07 07:56:37 INFO   CD000008 | Grandpa Gift | best=2236 | p25=42921.25 | median=126673.0 | active=4 | strength=40.67 | growing
+2026-07-07 07:56:37 INFO   CD000011 | Gift for Husband | best=2778 | p25=35476.25 | median=102133.5 | active=4 | strength=40.61 | growing
+2026-07-07 07:56:37 INFO   CD000010 | Gift for Wife | best=2513 | p25=50958.5 | median=127422.0 | active=4 | strength=39.93 | growing
+2026-07-07 07:56:37 INFO   CD000007 | Mom Christmas Gift | best=2124 | p25=58344.5 | median=240875.0 | active=4 | strength=39.5 | growing
+2026-07-07 07:56:37 INFO Composite Demand build complete
+2026-07-07 07:56:37 INFO Build log: logs\build_composite_demands.log
+2026-07-07 08:08:04 INFO Starting Composite Demand build
+2026-07-07 08:08:05 INFO Input intent_keywords: 5,291,320 rows
+2026-07-07 08:08:05 INFO Input intent_summary: 16 rows
+2026-07-07 08:08:05 INFO Input intent_market_nodes: 594 rows
+2026-07-07 08:08:05 INFO Input semantic_relationships: 483 rows
+2026-07-07 08:08:05 INFO Input demand_objects: 5,291,320 rows
+2026-07-07 08:08:05 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-07 08:08:05 INFO Dropping demand_strength_v3 if it exists
+2026-07-07 08:08:05 INFO Dropping composite_keywords if it exists
+2026-07-07 08:08:05 INFO Dropping composite_demands if it exists
+2026-07-07 08:08:05 INFO Dropping parent_label_audit if it exists
+2026-07-07 08:08:05 INFO Creating composite demand evidence stage
+2026-07-07 08:08:07 INFO Composite evidence stage: 48,497 rows
+2026-07-07 08:08:07 INFO Creating composite demand metric stage
+2026-07-07 08:09:36 INFO Composite phrase clusters: 139 rows
+2026-07-07 08:09:36 INFO Built composite_demands with 139 rows
+2026-07-07 08:09:36 INFO Built parent_label_audit with 1,777 rows
+2026-07-07 08:09:36 INFO Building composite_keywords
+2026-07-07 08:09:36 INFO Built composite_keywords with 1,277 rows
+2026-07-07 08:09:36 INFO Building demand_strength_v3
+2026-07-07 08:09:36 INFO Built demand_strength_v3 with 139 rows
+2026-07-07 08:09:36 INFO Exporting Composite Demand CSVs to data\output\composite_demands
+2026-07-07 08:09:36 INFO Exported composite_demands.csv with 139 rows
+2026-07-07 08:09:36 INFO Exported composite_keywords.csv with 1,277 rows
+2026-07-07 08:09:36 INFO Exported top_composite_demands.csv with 139 rows
+2026-07-07 08:09:36 INFO Exported demand_strength_v3.csv with 139 rows
+2026-07-07 08:09:36 INFO Exported parent_label_audit.csv with 1,777 rows
+2026-07-07 08:09:36 INFO Composite Demand summary
+2026-07-07 08:09:36 INFO   composite_demands: 139 rows
+2026-07-07 08:09:36 INFO   composite_keywords: 1,277 rows
+2026-07-07 08:09:36 INFO   demand_strength_v3: 139 rows
+2026-07-07 08:09:36 INFO   parent_label_audit: 1,777 rows
+2026-07-07 08:09:36 INFO Top composite demands:
+2026-07-07 08:09:36 INFO   CD000001 | Gift for Mom | best=65 | p25=11521.25 | median=79069.0 | active=4 | strength=55.14 | growing
+2026-07-07 08:09:36 INFO   CD000002 | Gift for Dad | best=154 | p25=17042.5 | median=120932.5 | active=4 | strength=51.14 | growing
+2026-07-07 08:09:36 INFO   CD000003 | Grandma Gift | best=666 | p25=18554.0 | median=148212.0 | active=4 | strength=46.11 | growing
+2026-07-07 08:09:36 INFO   CD000005 | Christmas Gift for Mom | best=1231 | p25=26376.0 | median=105118.0 | active=4 | strength=43.78 | growing
+2026-07-07 08:09:36 INFO   CD000004 | Teacher Gift | best=1015 | p25=32537.5 | median=127080.0 | active=4 | strength=43.75 | growing
+2026-07-07 08:09:36 INFO   CD000006 | Teen Girl Gift | best=1296 | p25=45950.0 | median=133593.0 | active=4 | strength=42.19 | growing
+2026-07-07 08:09:36 INFO   CD000008 | Grandpa Gift | best=2236 | p25=42921.25 | median=126673.0 | active=4 | strength=40.67 | growing
+2026-07-07 08:09:36 INFO   CD000011 | Gift for Husband | best=2778 | p25=35476.25 | median=102133.5 | active=4 | strength=40.61 | growing
+2026-07-07 08:09:36 INFO   CD000010 | Gift for Wife | best=2513 | p25=50958.5 | median=127422.0 | active=4 | strength=39.93 | growing
+2026-07-07 08:09:36 INFO   CD000007 | Mom Christmas Gift | best=2124 | p25=58344.5 | median=240875.0 | active=4 | strength=39.5 | growing
+2026-07-07 08:09:37 INFO Composite Demand build complete
+2026-07-07 08:09:37 INFO Build log: logs\build_composite_demands.log
+2026-07-07 08:32:32 INFO Starting Composite Demand build
+2026-07-07 08:32:32 INFO Input intent_keywords: 5,291,320 rows
+2026-07-07 08:32:32 INFO Input intent_summary: 16 rows
+2026-07-07 08:32:32 INFO Input intent_market_nodes: 594 rows
+2026-07-07 08:32:32 INFO Input semantic_relationships: 483 rows
+2026-07-07 08:32:32 INFO Input demand_objects: 5,291,320 rows
+2026-07-07 08:32:32 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-07 08:32:32 INFO Dropping demand_strength_v3 if it exists
+2026-07-07 08:32:32 INFO Dropping composite_keywords if it exists
+2026-07-07 08:32:32 INFO Dropping composite_demands if it exists
+2026-07-07 08:32:32 INFO Dropping parent_label_audit if it exists
+2026-07-07 08:32:32 INFO Creating composite demand evidence stage
+2026-07-07 08:32:33 INFO Composite evidence stage: 48,497 rows
+2026-07-07 08:32:33 INFO Creating composite demand metric stage
+2026-07-07 08:34:04 INFO Composite phrase clusters: 115 rows
+2026-07-07 08:34:04 INFO Built composite_demands with 115 rows
+2026-07-07 08:34:04 INFO Built parent_label_audit with 1,777 rows
+2026-07-07 08:34:04 INFO Building composite_keywords
+2026-07-07 08:34:04 INFO Built composite_keywords with 1,172 rows
+2026-07-07 08:34:04 INFO Building demand_strength_v3
+2026-07-07 08:34:04 INFO Built demand_strength_v3 with 115 rows
+2026-07-07 08:34:04 INFO Exporting Composite Demand CSVs to data\output\composite_demands
+2026-07-07 08:34:04 INFO Exported composite_demands.csv with 115 rows
+2026-07-07 08:34:04 INFO Exported composite_keywords.csv with 1,172 rows
+2026-07-07 08:34:04 INFO Exported top_composite_demands.csv with 115 rows
+2026-07-07 08:34:04 INFO Exported demand_strength_v3.csv with 115 rows
+2026-07-07 08:34:04 INFO Exported parent_label_audit.csv with 1,777 rows
+2026-07-07 08:34:04 INFO Composite Demand summary
+2026-07-07 08:34:04 INFO   composite_demands: 115 rows
+2026-07-07 08:34:04 INFO   composite_keywords: 1,172 rows
+2026-07-07 08:34:04 INFO   demand_strength_v3: 115 rows
+2026-07-07 08:34:04 INFO   parent_label_audit: 1,777 rows
+2026-07-07 08:34:04 INFO Top composite demands:
+2026-07-07 08:34:04 INFO   CD000001 | Gift for Mom | best=65 | p25=11521.25 | median=79069.0 | active=4 | strength=55.14 | growing
+2026-07-07 08:34:04 INFO   CD000002 | Gift for Dad | best=154 | p25=17042.5 | median=120932.5 | active=4 | strength=51.14 | growing
+2026-07-07 08:34:04 INFO   CD000003 | Grandma Gift | best=666 | p25=18554.0 | median=148212.0 | active=4 | strength=46.11 | growing
+2026-07-07 08:34:04 INFO   CD000005 | Christmas Gift for Mom | best=1231 | p25=26376.0 | median=105118.0 | active=4 | strength=43.78 | growing
+2026-07-07 08:34:04 INFO   CD000004 | Teacher Gift | best=1015 | p25=32537.5 | median=127080.0 | active=4 | strength=43.75 | growing
+2026-07-07 08:34:04 INFO   CD000006 | Teen Girl Gift | best=1296 | p25=45950.0 | median=133593.0 | active=4 | strength=42.19 | growing
+2026-07-07 08:34:04 INFO   CD000008 | Grandpa Gift | best=2236 | p25=42921.25 | median=126673.0 | active=4 | strength=40.67 | growing
+2026-07-07 08:34:04 INFO   CD000011 | Gift for Husband | best=2778 | p25=35476.25 | median=102133.5 | active=4 | strength=40.61 | growing
+2026-07-07 08:34:04 INFO   CD000010 | Gift for Wife | best=2513 | p25=50958.5 | median=127422.0 | active=4 | strength=39.93 | growing
+2026-07-07 08:34:04 INFO   CD000007 | Mom Christmas Gift | best=2124 | p25=58344.5 | median=240875.0 | active=4 | strength=39.5 | growing
+2026-07-07 08:34:05 INFO Composite Demand build complete
+2026-07-07 08:34:05 INFO Build log: logs\build_composite_demands.log

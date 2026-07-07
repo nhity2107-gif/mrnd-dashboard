@@ -1,0 +1,86 @@
+2026-07-03 12:57:36 INFO Starting Opportunity Engine build
+2026-07-03 12:57:37 INFO Input composite_demands: 401 rows
+2026-07-03 12:57:37 INFO Input composite_keywords: 48,234 rows
+2026-07-03 12:57:37 INFO Input demand_strength_v3: 401 rows
+2026-07-03 12:57:37 INFO Input demand_profile_v2: 1,349 rows
+2026-07-03 12:57:37 INFO Input market_nodes: 10 rows
+2026-07-03 12:57:37 INFO Input intent_summary: 16 rows
+2026-07-03 12:57:37 INFO Dropping research_backlog if it exists
+2026-07-03 12:57:37 INFO Dropping opportunity_master if it exists
+2026-07-03 12:57:37 INFO Building opportunity keyword statistics stage
+2026-07-03 12:57:37 INFO Building opportunity keyword examples stage
+2026-07-03 12:57:37 INFO Building market node pet enrichment stage
+2026-07-03 12:57:37 INFO Building opportunity_master
+2026-07-03 12:57:37 INFO Built opportunity_master with 401 rows
+2026-07-03 12:57:37 INFO Building research_backlog
+2026-07-03 12:57:37 INFO Built research_backlog with 280 rows
+2026-07-03 12:57:37 INFO Exporting Opportunity Engine CSVs to data\output\opportunity
+2026-07-03 12:57:37 INFO Exported opportunity_master.csv with 401 rows
+2026-07-03 12:57:37 INFO Exported research_backlog.csv with 280 rows
+2026-07-03 12:57:37 INFO Exported top_100_opportunities.csv with 100 rows
+2026-07-03 12:57:37 INFO Exported top_growing_opportunities.csv with 237 rows
+2026-07-03 12:57:37 INFO Exported top_seasonal_opportunities.csv with 171 rows
+2026-07-03 12:57:37 INFO Opportunity Engine summary
+2026-07-03 12:57:37 INFO   opportunity_master: 401 rows
+2026-07-03 12:57:37 INFO   research_backlog: 280 rows
+2026-07-03 12:57:37 INFO Priority distribution:
+2026-07-03 12:57:37 INFO   P1: 4
+2026-07-03 12:57:37 INFO   P2: 22
+2026-07-03 12:57:37 INFO   P3: 100
+2026-07-03 12:57:37 INFO   Watchlist: 275
+2026-07-03 12:57:37 INFO Top opportunities:
+2026-07-03 12:57:37 INFO   OP000001 | Mom Gift | score=94.73 | P1 | best=65 | p25=308544.0 | growing
+2026-07-03 12:57:37 INFO   OP000002 | Girl Gift | score=91.4 | P1 | best=455 | p25=299089.25 | growing
+2026-07-03 12:57:37 INFO   OP000003 | Dad Gift | score=89.91 | P1 | best=154 | p25=317505.5 | growing
+2026-07-03 12:57:37 INFO   OP000004 | Boy Gift | score=85.13 | P1 | best=744 | p25=296380.25 | growing
+2026-07-03 12:57:37 INFO   OP000005 | Grandma Gift | score=83.21 | P2 | best=666 | p25=253611.5 | growing
+2026-07-03 12:57:37 INFO   OP000006 | Christmas Mom Gift | score=79.65 | P2 | best=1231 | p25=238703.0 | growing
+2026-07-03 12:57:37 INFO   OP000007 | Teacher Gift | score=78.35 | P2 | best=1015 | p25=377051.25 | growing
+2026-07-03 12:57:37 INFO   OP000008 | Christmas Dad Gift | score=75.94 | P2 | best=2483 | p25=257673.0 | growing
+2026-07-03 12:57:37 INFO   OP000009 | Grandpa Gift | score=75.14 | P2 | best=2236 | p25=353193.0 | growing
+2026-07-03 12:57:37 INFO   OP000010 | Wife Gift | score=75.06 | P2 | best=2513 | p25=272730.5 | growing
+2026-07-03 12:57:37 INFO Opportunity Engine build complete
+2026-07-03 12:57:37 INFO Build log: logs\build_opportunity_engine.log
+2026-07-06 12:30:17 INFO Starting Opportunity Engine build
+2026-07-06 12:30:17 INFO Input composite_demands: 816 rows
+2026-07-06 12:30:17 INFO Input composite_keywords: 4,729 rows
+2026-07-06 12:30:17 INFO Input demand_strength_v3: 816 rows
+2026-07-06 12:30:17 INFO Input demand_profile_v2: 1,349 rows
+2026-07-06 12:30:17 INFO Input market_nodes: 10 rows
+2026-07-06 12:30:17 INFO Input intent_summary: 16 rows
+2026-07-06 12:30:17 INFO Dropping research_backlog if it exists
+2026-07-06 12:30:17 INFO Dropping opportunity_master if it exists
+2026-07-06 12:30:17 INFO Building opportunity keyword statistics stage
+2026-07-06 12:30:17 INFO Building opportunity keyword examples stage
+2026-07-06 12:30:17 INFO Building market node pet enrichment stage
+2026-07-06 12:30:17 INFO Building opportunity_master
+2026-07-06 12:30:17 INFO Built opportunity_master with 816 rows
+2026-07-06 12:30:17 INFO Building research_backlog
+2026-07-06 12:30:17 INFO Built research_backlog with 748 rows
+2026-07-06 12:30:17 INFO Exporting Opportunity Engine CSVs to data\output\opportunity
+2026-07-06 12:30:17 INFO Exported opportunity_master.csv with 816 rows
+2026-07-06 12:30:17 INFO Exported research_backlog.csv with 748 rows
+2026-07-06 12:30:17 INFO Exported top_100_opportunities.csv with 100 rows
+2026-07-06 12:30:17 INFO Exported top_growing_opportunities.csv with 735 rows
+2026-07-06 12:30:17 INFO Exported top_seasonal_opportunities.csv with 232 rows
+2026-07-06 12:30:17 INFO Opportunity Engine summary
+2026-07-06 12:30:17 INFO   opportunity_master: 816 rows
+2026-07-06 12:30:17 INFO   research_backlog: 748 rows
+2026-07-06 12:30:17 INFO Priority distribution:
+2026-07-06 12:30:17 INFO   P1: 5
+2026-07-06 12:30:17 INFO   P2: 18
+2026-07-06 12:30:17 INFO   P3: 292
+2026-07-06 12:30:17 INFO   Watchlist: 501
+2026-07-06 12:30:17 INFO Top opportunities:
+2026-07-06 12:30:17 INFO   OP000001 | Gift for Mom | score=95.75 | P1 | best=65 | p25=11521.25 | growing
+2026-07-06 12:30:17 INFO   OP000002 | Teen Girl Gift Trendy Stuff | score=94.93 | P1 | best=455 | p25=692.0 | growing
+2026-07-06 12:30:17 INFO   OP000003 | Gift for Teen Boys | score=89.24 | P1 | best=744 | p25=1995.0 | growing
+2026-07-06 12:30:17 INFO   OP000004 | Gift for Dad | score=89.09 | P1 | best=154 | p25=17042.5 | growing
+2026-07-06 12:30:17 INFO   OP000005 | Stitch Gift for Girls | score=88.83 | P1 | best=986 | p25=1540.25 | growing
+2026-07-06 12:30:17 INFO   OP000006 | Grandma Gift | score=81.48 | P2 | best=666 | p25=18554.0 | growing
+2026-07-06 12:30:17 INFO   OP000007 | Gift for Teenage Girls | score=78.96 | P2 | best=640 | p25=30001.0 | growing
+2026-07-06 12:30:17 INFO   OP000008 | Teacher Gift | score=75.91 | P2 | best=1015 | p25=32537.5 | growing
+2026-07-06 12:30:17 INFO   OP000009 | Christmas Gift for Mom | score=75.82 | P2 | best=1231 | p25=26376.0 | growing
+2026-07-06 12:30:17 INFO   OP000010 | Lilo and Stitch Gift for Girls | score=74.48 | P2 | best=5246 | p25=8243.0 | growing
+2026-07-06 12:30:17 INFO Opportunity Engine build complete
+2026-07-06 12:30:17 INFO Build log: logs\build_opportunity_engine.log

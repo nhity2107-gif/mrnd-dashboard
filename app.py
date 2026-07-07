@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import string
 from html import escape
 from pathlib import Path
 from typing import Iterable
@@ -3033,6 +3034,67 @@ PRODUCT_SCORE_COLUMNS = {
     "ornament_score": "Ornament",
     "canvas_score": "Canvas",
 }
+PRODUCT_LABEL_TOKENS = {
+    "blanket",
+    "blankets",
+    "card",
+    "cards",
+    "canvas",
+    "canvases",
+    "cup",
+    "cups",
+    "decal",
+    "decals",
+    "doormat",
+    "doormats",
+    "frame",
+    "frames",
+    "hoodie",
+    "hoodies",
+    "keychain",
+    "keychains",
+    "mug",
+    "mugs",
+    "ornament",
+    "ornaments",
+    "outfit",
+    "outfits",
+    "pillow",
+    "pillows",
+    "plaque",
+    "plaques",
+    "poster",
+    "posters",
+    "shirt",
+    "shirts",
+    "sign",
+    "signs",
+    "sticker",
+    "stickers",
+    "sweatshirt",
+    "sweatshirts",
+    "tee",
+    "tees",
+    "tote",
+    "totes",
+    "tumbler",
+    "tumblers",
+}
+MARKET_LABEL_STOP_WORDS = {
+    "a",
+    "an",
+    "and",
+    "for",
+    "from",
+    "gift",
+    "gifts",
+    "present",
+    "presents",
+    "the",
+    "to",
+    "who",
+    "with",
+}
 
 CUSTOMIZATION_SCORE_COLUMNS = {
     "name": "Name",
@@ -4378,28 +4440,141 @@ def render_fit_score_cards(rows: pd.DataFrame, reason: str) -> None:
                 )
 
 
-def product_intelligence_segments(product_fit: pd.DataFrame, customization_fit: pd.DataFrame) -> pd.DataFrame:
+def parse_bool(value: object, default: bool = False) -> bool:
+    text = clean_text(value).lower()
+    if text in {"1", "true", "yes", "y"}:
+        return True
+    if text in {"0", "false", "no", "n"}:
+        return False
+    return default
+
+
+def label_phrase_tokens(value: object) -> list[str]:
+    text = clean_text(value).lower()
+    text = text.translate(str.maketrans({character: " " for character in string.punctuation}))
+    return [token for token in text.split() if token]
+
+
+def market_phrase_key(value: object) -> str:
+    tokens = [
+        token
+        for token in label_phrase_tokens(value)
+        if token not in PRODUCT_LABEL_TOKENS and token not in MARKET_LABEL_STOP_WORDS
+    ]
+    return " ".join(tokens)
+
+
+def evidence_phrases_for_row(row: pd.Series) -> list[str]:
+    values = [clean_text(row.get("canonical_evidence_phrase"))]
+    values.extend(part.strip() for part in clean_text(row.get("evidence_keywords")).split("|"))
+    output: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        key = market_phrase_key(value)
+        if value and key and key not in seen:
+            output.append(value)
+            seen.add(key)
+    return output
+
+
+def phrase_contains_key(evidence_key: str, label_key: str) -> bool:
+    evidence_tokens = evidence_key.split()
+    label_tokens = label_key.split()
+    if not label_tokens or len(label_tokens) < 2 or len(label_tokens) > len(evidence_tokens):
+        return False
+    return any(
+        evidence_tokens[index : index + len(label_tokens)] == label_tokens
+        for index in range(0, len(evidence_tokens) - len(label_tokens) + 1)
+    )
+
+
+def product_segment_is_evidence_backed(row: pd.Series) -> bool:
+    if clean_text(row.get("segment_label_source")) in {"expansion_candidate", "unsupported_semantic_relabel"}:
+        return False
+    if "is_evidence_backed" in row.index and clean_text(row.get("is_evidence_backed")):
+        if not parse_bool(row.get("is_evidence_backed")):
+            return False
+    label_key = market_phrase_key(row.get("child_segment"))
+    if not label_key:
+        return False
+    return any(
+        label_key == market_phrase_key(phrase) or phrase_contains_key(market_phrase_key(phrase), label_key)
+        for phrase in evidence_phrases_for_row(row)
+    )
+
+
+def first_nonempty_value(group: pd.DataFrame, column: str) -> str:
+    if column not in group.columns:
+        return ""
+    values = group[column].map(clean_text)
+    values = values[values != ""]
+    return values.iloc[0] if not values.empty else ""
+
+
+def product_intelligence_segments(
+    product_fit: pd.DataFrame,
+    customization_fit: pd.DataFrame,
+    demand_segments: pd.DataFrame,
+) -> pd.DataFrame:
     frames = []
-    metadata_columns = ["child_segment", "segment_label_source", "canonical_evidence_phrase", "observed_products"]
+    scored_children: set[str] = set()
+    metadata_columns = [
+        "child_segment",
+        "segment_label_source",
+        "canonical_evidence_phrase",
+        "is_evidence_backed",
+        "observed_products",
+        "evidence_keywords",
+    ]
     for frame in [product_fit, customization_fit]:
         if frame.empty or "child_segment" not in frame.columns:
             continue
         available = [column for column in metadata_columns if column in frame.columns]
         subset = frame[available].copy()
-        if "segment_label_source" not in subset.columns:
-            subset["segment_label_source"] = "observed_phrase"
-        if "canonical_evidence_phrase" not in subset.columns:
-            subset["canonical_evidence_phrase"] = ""
-        if "observed_products" not in subset.columns:
-            subset["observed_products"] = ""
+        for column in metadata_columns:
+            if column not in subset.columns:
+                subset[column] = ""
+        scored_children.update(subset["child_segment"].map(clean_text))
         frames.append(subset)
+
+    if not demand_segments.empty and "segment_name" in demand_segments.columns:
+        available = [column for column in metadata_columns if column in demand_segments.columns]
+        evidence = demand_segments[available + ["segment_name"]].copy()
+        evidence["child_segment"] = evidence["segment_name"].map(clean_text)
+        evidence = evidence.drop(columns=["segment_name"])
+        for column in metadata_columns:
+            if column not in evidence.columns:
+                evidence[column] = ""
+        if scored_children:
+            evidence = evidence[evidence["child_segment"].isin(scored_children)].copy()
+        frames.append(evidence[metadata_columns])
 
     if not frames:
         return pd.DataFrame(columns=metadata_columns)
 
-    segments = pd.concat(frames, ignore_index=True).drop_duplicates("child_segment")
-    segments["child_segment"] = segments["child_segment"].map(clean_text)
-    segments = segments[segments["child_segment"] != ""].copy()
+    raw_segments = pd.concat(frames, ignore_index=True)
+    raw_segments["child_segment"] = raw_segments["child_segment"].map(clean_text)
+    raw_segments = raw_segments[raw_segments["child_segment"] != ""].copy()
+    rows = []
+    for child_segment, group in raw_segments.groupby("child_segment", sort=False):
+        row = {"child_segment": child_segment}
+        for column in metadata_columns:
+            if column != "child_segment":
+                row[column] = first_nonempty_value(group, column)
+        rows.append(row)
+
+    segments = pd.DataFrame(rows, columns=metadata_columns)
+    segments["is_evidence_backed"] = segments.apply(product_segment_is_evidence_backed, axis=1)
+    segments["segment_label_source"] = segments.apply(
+        lambda row: (
+            "observed_phrase"
+            if row["is_evidence_backed"]
+            else "expansion_candidate"
+            if clean_text(row.get("segment_label_source")) == "expansion_candidate"
+            else "unsupported_semantic_relabel"
+        ),
+        axis=1,
+    )
     source_order = {
         "observed_phrase": 0,
         "semantic_relabel": 1,
@@ -4417,17 +4592,16 @@ def product_intelligence() -> None:
     )
     product_fit = load_csv("product_fit_matrix")
     customization_fit = load_csv("customization_fit_matrix")
+    demand_segments = load_csv("demand_segments")
     if product_fit.empty and customization_fit.empty:
         st.info("Product and customization fit data is missing or empty.")
         return
-    segment_frame = product_intelligence_segments(product_fit, customization_fit)
+    segment_frame = product_intelligence_segments(product_fit, customization_fit, demand_segments)
     if segment_frame.empty:
         st.info("No child segments are available for product intelligence.")
         return
 
-    validated = segment_frame[
-        ~segment_frame["segment_label_source"].isin(["expansion_candidate", "unsupported_semantic_relabel"])
-    ].copy()
+    validated = segment_frame[segment_frame["is_evidence_backed"]].copy()
     expansion = segment_frame[segment_frame["segment_label_source"].isin(["expansion_candidate"])].copy()
     if not expansion.empty:
         segment_group = st.radio(

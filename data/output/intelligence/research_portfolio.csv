@@ -1,12 +1,14 @@
 priority,demand,reason,next_action,estimated_roi
-P1,Boy Gift,Mega scale market with growing signal and child segments available.,Start with: Christmas Boy Gift | Soccer Boy Gift | Boy Birthday Gift | Gaming Boy Gift | Fishing Boy Gift.,High
-P1,Dad Gift,Mega scale market with growing signal and child segments available.,Start with: Christmas Dad Gift | Dad Birthday Gift | Cat Lover Dad Gift | Cat Dad Gift | Dad Wedding Gift.,High
-P1,Girl Gift,Mega scale market with growing signal and child segments available.,Start with: Christmas Girl Gift | Girl Birthday Gift | Floral Girl Gift | Soccer Girl Gift | Cat Girl Gift.,High
-P1,Mom Gift,Mega scale market with growing signal and child segments available.,Start with: Christmas Mom Gift | Mom Birthday Gift | Dog Lover Mom Gift | Dog Mom Gift | Cat Mom Gift.,High
-P2,Husband Gift,Large scale market with growing signal and child segments available.,Start with: Christmas Husband Gift | Husband Birthday Gift | Husband Anniversary Gift | Husband Valentine's Day Gift | Valentine Husband Gift.,Medium-High
-P2,Teacher Gift,Large scale market with growing signal and child segments available.,Start with: Christmas Teacher Gift | Teacher Appreciation Gift | Funny Teacher Gift | Halloween Teacher Gift | Teacher Birthday Gift.,Medium-High
-P3,Boy Decor,Mid growth market with growing signal and child segments available.,Validate ranking durability and research focused child niches.,Medium
-P3,Coffee Gift,Mid growth market with growing signal and child segments available.,Validate ranking durability and research focused child niches.,Medium
-P3,Grandma Gift,Mega established market with growing signal and child segments available.,Start with: Christmas Grandma Gift | Grandma Birthday Gift | Dog Grandma Gift | Funny Grandma Gift | Gardening Grandma Gift.,Medium
-P3,Grandpa Gift,Large established market with growing signal and child segments available.,Start with: Christmas Grandpa Gift | Grandpa Birthday Gift | Funny Grandpa Gift | Dog Grandpa Gift | Fishing Grandpa Gift.,Medium
-P3,Wife Gift,Large established market with growing signal and child segments available.,Start with: Christmas Wife Gift | Wife Birthday Gift | Wife Anniversary Gift | Wife Appreciation Gift | Wife Wedding Gift.,Medium
+P1,Gift for Dad,Mega scale market with growing signal and child segments available.,Start with: Dad Christmas | Dad Birthday | Cat Dad | Father Of Bride | Funny Dad.,High
+P1,Gift for Mom,Mega scale market with growing signal and child segments available.,Start with: Christmas Mom | Mom Birthday | Dog Mom Women | Cat Mom | Mother Of Bride.,High
+P1,Gift for Teen Boys,Mega scale market with growing signal and child segments available.,Start with: Boys Christmas | Soccer Boys | 1st Birthday Boy | Gamer Boys | Fishing Boys.,High
+P1,Teacher Gift,Mega scale market with growing signal and child segments available.,Start with: Teacher Christmas | Teacher Appreciation | Funny Teacher | Halloween Teacher | Teacher Birthday.,High
+P1,Teen Girl Gift Trendy Stuff,Mega scale market with growing signal and child segments available.,Start with: Girls Christmas | 1st Birthday Girl | Flower Girl | Soccer Girls | Cat Girls.,High
+P2,Grandma Gift,Mega established market with growing signal and child segments available.,Start with: Grandma Christmas | Grandma Birthday | Dog Grandma | Funny Grandma | Grandma Garden.,Medium
+P2,Gift for Husband,Mega scale market with growing signal and child segments available.,Start with: Husband Christmas | Husband Birthday | Wedding Anniversary Husband | Husband Valentines Day | Funny Husband.,Medium-High
+P3,Coffee Gift,Large established market with growing signal and child segments available.,Start with: Coffee Lover | Coffee Christmas Set | Funny Coffee | Holiday Coffee Set.,Medium
+P3,Daughter in Law Gift,Mid growth market with growing signal and child segments available.,Validate ranking durability and research focused child niches.,Medium
+P3,Dog Gift,Large established market with growing signal and child segments available.,Start with: Dog Christmas | Dog Birthday | Funny Dog | Dog Thank You.,Medium
+P3,Gift for Wife,Mega established market with growing signal and child segments available.,Start with: Wife Christmas Ideas | Wife Birthday Ideas | Anniversary Wife | Pastor Wife Appreciation | Mrs Mrs Wedding.,Medium
+P3,Grandpa Gift,Mega established market with growing signal and child segments available.,Start with: Grandpa Christmas | Grandpa Birthday | Funny Grandpa | Dog Grandpa | Grandpa Fishing.,Medium
+P3,Nurse Gift,Large established market with growing signal and child segments available.,Start with: Funny Nurse | Nurse Graduation | Nurse Christmas | Nurse Appreciation | Halloween Nurse.,Medium
