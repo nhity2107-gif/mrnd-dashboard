@@ -1,33 +1,31 @@
 portfolio_id,parent_demand,market_size,child_segment_count,average_opportunity_score,best_child_score,expansion_potential,portfolio_stage,research_priority,coverage_score,investment_recommendation
-PF000001,Gift for Mom,Mega,14,70.32,79.84,82.61,Mature,P2,41.18,Expand
-PF000002,Gift for Dad,Mega,14,70.35,78.98,82.39,Mature,P2,41.18,Expand
-PF000003,Gift for Teen Boys,Mega,11,70.3,77.24,80.36,Mature,P2,33.33,Expand
-PF000004,Gift for Husband,Mega,9,65.79,77.44,78.99,Growing,P2,28.12,Expand
-PF000005,Teen Girl Gift Trendy Stuff,Mega,19,70.23,78.2,77.79,Saturated,P2,55.88,Expand
+PF000001,Gift for Husband,Large,9,68.43,80.08,78.09,Growing,P1,33.33,Invest Aggressively
+PF000002,Gift for Mom,Mega,14,70.32,79.84,82.61,Mature,P2,41.18,Expand
+PF000003,Gift for Dad,Mega,14,70.35,78.98,82.39,Mature,P2,41.18,Expand
+PF000004,Teen Boy Gift,Mega,11,70.3,77.24,80.36,Mature,P2,33.33,Expand
+PF000005,Teen Girl Gift,Mega,19,70.23,78.2,77.79,Saturated,P2,55.88,Expand
 PF000006,Grandma Gift,Mega,7,66.99,76.66,76.5,Growing,P2,21.88,Expand
 PF000007,Teacher Gift,Mega,13,69.3,77.73,76.25,Mature,P2,40.62,Expand
 PF000008,Grandpa Gift,Mega,5,65.89,72.71,73.38,Growing,P2,16.13,Expand
-PF000009,Gift for Wife,Mega,7,65.08,76.2,72.14,Growing,P2,22.58,Expand
+PF000009,Gift for Wife,Large,7,67.72,78.84,71.5,Growing,P2,26.92,Expand
 PF000010,Coffee Gift,Large,4,69.5,77.05,70.85,Growing,P2,16.0,Expand
 PF000011,Dog Gift,Large,4,67.74,76.78,65.02,Growing,P2,16.67,Expand
-PF000012,Gift for People Who Love Cats,Large,5,68.67,74.1,63.84,Growing,P2,20.83,Expand
+PF000012,Cat Lover Gift,Large,5,71.02,76.57,64.45,Mature,P2,20.83,Expand
 PF000013,Nurse Gift,Large,5,69.21,72.78,61.35,Mature,P2,20.83,Expand
-PF000014,Reading Gift,Mid,1,67.37,67.37,57.08,Growing,P2,6.25,Expand
-PF000015,Daughter in Law Gift,Mid,5,59.19,67.81,61.7,Growing,P3,27.78,Monitor
-PF000016,Soccer Gift,Large,3,64.26,67.72,61.54,Growing,P3,13.04,Monitor
-PF000017,Gift for Son,Mid,4,58.8,64.76,59.72,Growing,P3,23.53,Monitor
-PF000018,Fishing Gift for Men,Mega,2,66.94,68.69,59.45,Growing,P3,6.9,Monitor
-PF000019,Gamer Gift,Large,2,64.35,66.5,56.3,Growing,P3,9.09,Monitor
-PF000020,Demon Hunter Gift,Mega,2,63.33,63.5,56.05,Growing,P3,7.14,Monitor
-PF000021,Pickleball Gift,Large,2,63.08,63.97,55.87,Growing,P3,9.09,Monitor
-PF000022,Gardening Gift,Large,2,59.55,60.06,54.86,Growing,P3,9.09,Monitor
-PF000023,Firefighter Gift,Mid,2,58.08,60.24,52.02,Growing,P3,12.5,Monitor
-PF000024,Dog Memorial Gift for Loss of Dog,Large,1,59.7,59.7,50.86,Growing,P3,4.76,Monitor
-PF000025,Hairdresser Gift,Small,1,59.75,59.75,47.51,Growing,P3,10.0,Monitor
-PF000026,Mother of the Bride Pant Suits,Mid,2,57.21,59.13,55.41,Emerging,Watchlist,12.5,Monitor
-PF000027,Gift for Police Officers,Mid,3,56.47,59.02,54.19,Growing,Watchlist,18.75,Monitor
-PF000028,Camping Gift,Mid,2,57.8,57.91,52.16,Emerging,Watchlist,13.33,Monitor
-PF000029,Silent Groom Pro for Dogs,Mid,1,56.2,56.2,51.8,Emerging,Watchlist,6.67,Monitor
-PF000030,Gift for People Who Love to Cook,Mid,2,54.17,56.49,50.49,Emerging,Watchlist,13.33,Monitor
-PF000031,Truck Driver Gift,Mid,1,55.14,55.14,49.82,Emerging,Watchlist,6.67,Monitor
-PF000032,Electrician Gift,Small,1,57.34,57.34,47.0,Emerging,Watchlist,10.0,Monitor
+PF000014,Fishing Gift,Large,2,69.57,71.32,59.68,Growing,P2,8.33,Expand
+PF000015,Reading Gift,Mid,1,67.37,67.37,57.08,Growing,P2,6.25,Expand
+PF000016,Gift for Daughter,Mid,5,59.17,67.79,61.69,Growing,P3,27.78,Monitor
+PF000017,Soccer Gift,Large,3,64.26,67.72,61.54,Growing,P3,13.04,Monitor
+PF000018,Gift for Son,Mid,4,58.8,64.76,59.72,Growing,P3,23.53,Monitor
+PF000019,Pickleball Gift,Large,2,63.08,63.97,55.87,Growing,P3,9.09,Monitor
+PF000020,Gardening Gift,Large,2,59.55,60.06,54.86,Growing,P3,9.09,Monitor
+PF000021,Police Officer Gift,Mid,3,58.02,59.72,54.36,Growing,P3,18.75,Monitor
+PF000022,Gaming Gift,Mid,2,59.55,61.7,54.08,Growing,P3,12.5,Monitor
+PF000023,Hunting Gift,Mid,2,61.25,61.42,53.92,Growing,P3,12.5,Monitor
+PF000024,Firefighter Gift,Mid,2,58.08,60.24,52.02,Growing,P3,12.5,Monitor
+PF000025,Chef Gift,Small,2,59.33,60.07,49.93,Growing,P3,18.18,Monitor
+PF000026,Camping Gift,Mid,2,57.8,57.91,52.16,Emerging,Watchlist,13.33,Monitor
+PF000027,Truck Driver Gift,Mid,1,55.14,55.14,49.82,Emerging,Watchlist,6.67,Monitor
+PF000028,Dog Memorial,Mid,1,50.68,50.68,48.04,Emerging,Watchlist,6.67,Exit
+PF000029,Electrician Gift,Small,1,57.34,57.34,47.0,Emerging,Watchlist,10.0,Monitor
+PF000030,Hairstylist Gift,Micro,1,56.81,56.81,45.49,Emerging,Watchlist,14.29,Monitor

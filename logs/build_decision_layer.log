@@ -70,3 +70,27 @@
 2026-07-06 12:31:36 INFO Exported data\output\decision\market_calendar.csv with 816 rows
 2026-07-06 12:31:36 INFO Decision Layer build complete
 2026-07-06 12:31:36 INFO Build log: logs\build_decision_layer.log
+2026-07-07 09:29:03 INFO Starting Decision Layer build
+2026-07-07 09:29:03 INFO Replacing data\output\decision\market_scorecard.csv
+2026-07-07 09:29:03 INFO Replacing data\output\decision\research_candidates.csv
+2026-07-07 09:29:03 INFO Replacing data\output\decision\product_recommendation.csv
+2026-07-07 09:29:03 INFO Replacing data\output\decision\customization_recommendation.csv
+2026-07-07 09:29:03 INFO Replacing data\output\decision\market_calendar.csv
+2026-07-07 09:29:03 INFO Input data\output\intelligence\market_intelligence.csv: 150 rows
+2026-07-07 09:29:03 INFO Input data\output\intelligence\expansion_tree.csv: 153 rows
+2026-07-07 09:29:03 INFO Input data\output\intelligence\market_stage.csv: 150 rows
+2026-07-07 09:29:03 INFO Input data\output\intelligence\demand_intelligence.csv: 150 rows
+2026-07-07 09:29:03 INFO Input data\output\opportunity\opportunity_master.csv: 150 rows
+2026-07-07 09:29:03 INFO Input data\output\demand_segments\demand_segments.csv: 153 rows
+2026-07-07 09:29:03 INFO Input data\output\insights\demand_size_map.csv: 150 rows
+2026-07-07 09:29:03 INFO Input data\output\insights\seasonality_map.csv: 453 rows
+2026-07-07 09:29:03 INFO Validated market stage with 150 rows
+2026-07-07 09:29:03 INFO Validated demand intelligence with 150 rows
+2026-07-07 09:29:03 INFO Validated expansion tree with 153 rows
+2026-07-07 09:29:03 INFO Exported data\output\decision\market_scorecard.csv with 150 rows
+2026-07-07 09:29:03 INFO Exported data\output\decision\research_candidates.csv with 153 rows
+2026-07-07 09:29:03 INFO Exported data\output\decision\product_recommendation.csv with 459 rows
+2026-07-07 09:29:03 INFO Exported data\output\decision\customization_recommendation.csv with 315 rows
+2026-07-07 09:29:03 INFO Exported data\output\decision\market_calendar.csv with 150 rows
+2026-07-07 09:29:03 INFO Decision Layer build complete
+2026-07-07 09:29:03 INFO Build log: logs\build_decision_layer.log

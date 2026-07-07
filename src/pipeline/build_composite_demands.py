@@ -92,6 +92,7 @@ COMPOSITE_COLUMNS = [
     "parent_entity_type",
     "parent_label_source",
     "canonical_evidence_phrase",
+    "canonical_source_phrase",
     "is_parent_market",
     "intent",
     "recipient",
@@ -167,6 +168,113 @@ CLUSTER_TOKEN_NORMALIZATIONS = {
 
 GIFT_TERMS = {"gift", "gifts", "present", "presents"}
 CLUSTER_SUFFIX_NOISE = {"idea", "ideas"}
+NON_MARKET_MODIFIER_TOKENS = {
+    "awesome",
+    "best",
+    "cool",
+    "cute",
+    "everything",
+    "good",
+    "great",
+    "has",
+    "have",
+    "idea",
+    "ideas",
+    "nothing",
+    "stuff",
+    "top",
+    "trendy",
+    "unique",
+    "want",
+    "wants",
+}
+SURFACE_CONNECTOR_TOKENS = {"a", "an", "for", "from", "of", "the", "to", "who", "whom", "with"}
+LIKE_LOVE_TOKENS = {"like", "likes", "love", "loves"}
+PERSON_REFERENCE_TOKENS = {"people", "person", "someone", "somebody"}
+MARKET_CONTEXT_TOKENS = {
+    "anniversary",
+    "appreciation",
+    "birthday",
+    "christmas",
+    "easter",
+    "father",
+    "fathers",
+    "graduation",
+    "halloween",
+    "memorial",
+    "mother",
+    "mothers",
+    "retirement",
+    "sympathy",
+    "valentine",
+    "wedding",
+    "xmas",
+}
+PLURAL_NORMALIZATION_SKIP = {
+    "christmas",
+    "his",
+    "mothers",
+    "news",
+    "this",
+    "xmas",
+}
+IRREGULAR_SINGULARS = {
+    "children": "child",
+    "men": "man",
+    "mice": "mouse",
+    "moms": "mom",
+    "dads": "dad",
+    "women": "woman",
+}
+GIFT_FOR_DISPLAY_RECIPIENTS = {
+    "daughter",
+    "dad",
+    "father",
+    "grandfather",
+    "grandmother",
+    "grandma",
+    "grandpa",
+    "husband",
+    "mama",
+    "mom",
+    "mother",
+    "papa",
+    "son",
+    "wife",
+}
+RELATIONSHIP_SOURCE_NORMALIZATIONS = {
+    "child": "kids",
+    "children": "kids",
+    "daughter": "daughter",
+    "daughters": "daughter",
+    "dad": "dad",
+    "dads": "dad",
+    "father": "dad",
+    "fathers": "dad",
+    "kid": "kids",
+    "kids": "kids",
+    "mom": "mom",
+    "moms": "mom",
+    "mother": "mom",
+    "mothers": "mom",
+    "son": "son",
+    "sons": "son",
+    "toddler": "toddler",
+    "toddlers": "toddler",
+}
+RELATIONSHIP_PREFIX_SOURCES = {"child", "children", "kid", "kids", "toddler", "toddlers"}
+RELATIONSHIP_SUFFIX_SOURCES = {
+    "child",
+    "children",
+    "daughter",
+    "daughters",
+    "kid",
+    "kids",
+    "son",
+    "sons",
+    "toddler",
+    "toddlers",
+}
 
 MARKET_INTENTS = {
     "gift",
@@ -352,6 +460,60 @@ def normalize_cluster_token(token: str) -> str:
     return CLUSTER_TOKEN_NORMALIZATIONS.get(token, token)
 
 
+def singularize_surface_token(token: str) -> str:
+    normalized = normalize_cluster_token(token)
+    if normalized in IRREGULAR_SINGULARS:
+        return IRREGULAR_SINGULARS[normalized]
+    if normalized in PLURAL_NORMALIZATION_SKIP:
+        return normalized
+    if len(normalized) > 4 and normalized.endswith("ies"):
+        return f"{normalized[:-3]}y"
+    if len(normalized) > 4 and (
+        normalized.endswith("ches")
+        or normalized.endswith("shes")
+        or normalized.endswith("xes")
+        or normalized.endswith("zes")
+    ):
+        return normalized[:-2]
+    if len(normalized) > 3 and normalized.endswith("s") and not normalized.endswith("ss"):
+        return normalized[:-1]
+    return normalized
+
+
+def remove_non_market_modifiers(tokens: list[str]) -> list[str]:
+    return [token for token in tokens if token not in NON_MARKET_MODIFIER_TOKENS]
+
+
+def rewrite_love_like_surface(tokens: list[str]) -> list[str]:
+    output: list[str] = []
+    index = 0
+    while index < len(tokens):
+        if (
+            index + 3 < len(tokens)
+            and tokens[index] in PERSON_REFERENCE_TOKENS
+            and tokens[index + 1] == "who"
+            and tokens[index + 2] in LIKE_LOVE_TOKENS
+        ):
+            subject_tokens: list[str] = []
+            index += 3
+            while index < len(tokens) and tokens[index] not in SURFACE_CONNECTOR_TOKENS:
+                subject_tokens.append(tokens[index])
+                index += 1
+            output.extend(subject_tokens)
+            output.append("lover")
+            continue
+        output.append(tokens[index])
+        index += 1
+    return output
+
+
+def normalized_observed_tokens(value: object) -> list[str]:
+    tokens = phrase_tokens(value)
+    tokens = remove_non_market_modifiers(tokens)
+    tokens = rewrite_love_like_surface(tokens)
+    return [singularize_surface_token(token) for token in tokens if token]
+
+
 def normalize_cluster_tokens(tokens: list[str]) -> list[str]:
     normalized = [normalize_cluster_token(token) for token in tokens if token]
     while normalized and normalized[-1] in CLUSTER_SUFFIX_NOISE:
@@ -359,17 +521,90 @@ def normalize_cluster_tokens(tokens: list[str]) -> list[str]:
     return normalized
 
 
+def canonical_gift_key_tokens(tokens: list[str]) -> list[str]:
+    if "gift" not in tokens:
+        return [token for token in tokens if token not in SURFACE_CONNECTOR_TOKENS]
+
+    non_gift_tokens = [
+        token for token in tokens if token != "gift" and token not in SURFACE_CONNECTOR_TOKENS
+    ]
+    context_tokens = [token for token in non_gift_tokens if token in MARKET_CONTEXT_TOKENS]
+    market_tokens = [token for token in non_gift_tokens if token not in MARKET_CONTEXT_TOKENS]
+    return market_tokens + context_tokens + ["gift"]
+
+
+def normalize_relationship_source_token(token: str) -> str:
+    return RELATIONSHIP_SOURCE_NORMALIZATIONS.get(normalize_cluster_token(token), "")
+
+
+def clean_relationship_parent_tokens(tokens: list[str]) -> list[str]:
+    cleaned = [token for token in tokens if token and token not in {"from", "to"}]
+    return cleaned if "gift" in cleaned else tokens
+
+
+def tokens_before(tokens: list[str], stop_index: int) -> list[str]:
+    return [token for token in tokens[:stop_index] if token not in SURFACE_CONNECTOR_TOKENS]
+
+
+def tokens_between(tokens: list[str], start_index: int, stop_tokens: set[str]) -> tuple[list[str], int]:
+    output: list[str] = []
+    index = start_index
+    while index < len(tokens) and tokens[index] not in stop_tokens:
+        if tokens[index] not in SURFACE_CONNECTOR_TOKENS:
+            output.append(tokens[index])
+        index += 1
+    return output, index
+
+
+def relationship_parent_tokens(tokens: list[str]) -> list[str]:
+    if "gift" not in tokens:
+        return tokens
+
+    gift_index = tokens.index("gift")
+
+    if gift_index + 3 < len(tokens) and tokens[gift_index + 1] in {"for", "to"}:
+        target, next_index = tokens_between(tokens, gift_index + 2, {"from"})
+        if next_index < len(tokens) and tokens[next_index] == "from" and target:
+            source = next((token for token in tokens[next_index + 1 :] if normalize_relationship_source_token(token)), "")
+            if source:
+                return clean_relationship_parent_tokens(tokens[: gift_index + 2] + target)
+
+    if gift_index + 4 < len(tokens) and tokens[gift_index + 1] == "from":
+        source, next_index = tokens_between(tokens, gift_index + 2, {"to", "for"})
+        if next_index < len(tokens) and tokens[next_index] in {"to", "for"} and source:
+            target, _ = tokens_between(tokens, next_index + 1, {"from", "to", "for"})
+            if target and any(normalize_relationship_source_token(token) for token in source):
+                return clean_relationship_parent_tokens(tokens[:gift_index] + ["gift", "for"] + target)
+
+    if gift_index > 0 and gift_index + 2 < len(tokens) and tokens[gift_index + 1] == "from":
+        target = tokens_before(tokens, gift_index)
+        source = next((token for token in tokens[gift_index + 2 :] if normalize_relationship_source_token(token)), "")
+        if target and source:
+            return clean_relationship_parent_tokens(target + ["gift"])
+
+    if gift_index > 1 and "from" in tokens[:gift_index]:
+        from_index = tokens.index("from")
+        target = tokens_before(tokens, from_index)
+        source = next((token for token in tokens[from_index + 1 : gift_index] if normalize_relationship_source_token(token)), "")
+        if target and source:
+            return clean_relationship_parent_tokens(target + ["gift"])
+
+    if gift_index == 2:
+        first, second = tokens[0], tokens[1]
+        if first in RELATIONSHIP_PREFIX_SOURCES and second not in SURFACE_CONNECTOR_TOKENS:
+            return clean_relationship_parent_tokens([second, "gift"])
+        if second in RELATIONSHIP_SUFFIX_SOURCES and first not in SURFACE_CONNECTOR_TOKENS:
+            return clean_relationship_parent_tokens([first, "gift"])
+
+    return tokens
+
+
 def cluster_key_from_phrase(value: object) -> str:
-    tokens = phrase_tokens(value)
+    tokens = normalized_observed_tokens(value)
     if not tokens:
         return ""
-
-    if len(tokens) > 2 and tokens[0] in GIFT_TERMS and tokens[1] == "for":
-        tail = tokens[2:]
-        if tail:
-            return " ".join(normalize_cluster_tokens(tail + ["gift"]))
-
-    return " ".join(normalize_cluster_tokens(tokens))
+    tokens = relationship_parent_tokens(tokens)
+    return " ".join(canonical_gift_key_tokens(tokens))
 
 
 def singularize_display_tail(tokens: list[str]) -> list[str]:
@@ -393,9 +628,64 @@ def smart_title_case(value: object) -> str:
     return " ".join(titled)
 
 
+def target_from_gift_for_phrase(tokens: list[str]) -> list[str]:
+    if len(tokens) < 3 or tokens[0] != "gift" or tokens[1] != "for":
+        return []
+    target: list[str] = []
+    for token in tokens[2:]:
+        if token == "for":
+            break
+        if token not in SURFACE_CONNECTOR_TOKENS:
+            target.append(token)
+    return target
+
+
+def has_plural_surface_target(value: object) -> bool:
+    tokens = rewrite_love_like_surface(remove_non_market_modifiers(phrase_tokens(value)))
+    if len(tokens) < 3:
+        return False
+    if singularize_surface_token(tokens[0]) != "gift" or tokens[1] != "for":
+        return False
+    target_tokens: list[str] = []
+    for token in tokens[2:]:
+        if token == "for":
+            break
+        if token not in SURFACE_CONNECTOR_TOKENS:
+            target_tokens.append(token)
+    return any(
+        singularize_surface_token(token) != normalize_cluster_token(token)
+        for token in target_tokens
+    )
+
+
+def display_from_gift_for_phrase(value: object, tokens: list[str]) -> str:
+    target = target_from_gift_for_phrase(tokens)
+    if not target:
+        return ""
+    context = [
+        token
+        for token in tokens[2 + len(target) :]
+        if token not in SURFACE_CONNECTOR_TOKENS and token in MARKET_CONTEXT_TOKENS
+    ]
+    last_target = target[-1]
+    if (
+        last_target in GIFT_FOR_DISPLAY_RECIPIENTS
+        and not has_plural_surface_target(value)
+        and not context
+    ):
+        return smart_title_case(" ".join(["gift", "for", *target]))
+    return smart_title_case(" ".join(target + context + ["gift"]))
+
+
 def canonical_display_phrase(value: object) -> str:
-    tokens = singularize_display_tail(phrase_tokens(value))
-    return smart_title_case(" ".join(tokens))
+    tokens = normalized_observed_tokens(value)
+    if not tokens:
+        return ""
+    tokens = relationship_parent_tokens(tokens)
+    gift_for_display = display_from_gift_for_phrase(value, tokens)
+    if gift_for_display:
+        return gift_for_display
+    return smart_title_case(" ".join(canonical_gift_key_tokens(tokens)))
 
 
 def first_clean_value(values: pd.Series) -> str:
@@ -579,8 +869,8 @@ def classify_parent_entity_type(profile: pd.Series, phrase: object) -> tuple[str
     has_audience = audience_role_rate > 0.0 or market_dimension_count >= 1
     has_occasion = occasion_role_rate > 0.0 or intent in OCCASION_ONLY_INTENTS
     has_market_intent = intent in MARKET_INTENTS
-    has_product_role = product_role_rate > 0.0
-    has_format_role = product_format_rate > 0.0
+    has_product_role = product_role_rate >= 0.5
+    has_format_role = product_format_rate >= 0.5
 
     if intent == "decor":
         return "decor_category", False, "excluded_decor_intent_from_ontology_metadata"
@@ -844,35 +1134,34 @@ def create_composite_metric_stage(
         evidence["search_frequency_rank"], errors="coerce"
     )
     evidence["parent_cluster_key"] = evidence["normalized_keyword"].map(cluster_key_from_phrase)
-    evidence["label_candidate"] = evidence["normalized_keyword"].map(canonical_display_phrase)
+    evidence["canonical_source_candidate"] = evidence["normalized_keyword"].map(clean_text)
+    evidence["display_candidate"] = evidence["normalized_keyword"].map(canonical_display_phrase)
     evidence["old_parent"] = evidence.apply(semantic_parent_name_from_evidence, axis=1)
     evidence = evidence[
-        (evidence["parent_cluster_key"] != "") & (evidence["label_candidate"] != "")
+        (evidence["parent_cluster_key"] != "")
+        & (evidence["canonical_source_candidate"] != "")
+        & (evidence["display_candidate"] != "")
     ].copy()
 
     candidate_stats = (
-        evidence.groupby(["parent_cluster_key", "label_candidate"], dropna=False)
+        evidence.groupby(
+            ["parent_cluster_key", "canonical_source_candidate", "display_candidate"],
+            dropna=False,
+        )
         .agg(
             candidate_best_rank=("search_frequency_rank", "min"),
+            candidate_average_rank=("search_frequency_rank", "mean"),
             candidate_frequency=("normalized_keyword", "size"),
+            candidate_active_months=("month", count_distinct_clean),
+            candidate_source_count=("raw_keyword", count_distinct_clean),
         )
         .reset_index()
     )
-    candidate_stats["candidate_token_count"] = candidate_stats["label_candidate"].map(
+    candidate_stats["candidate_token_count"] = candidate_stats["display_candidate"].map(
         lambda value: len(phrase_tokens(value))
     )
-    candidate_stats["candidate_char_count"] = candidate_stats["label_candidate"].map(
+    candidate_stats["candidate_char_count"] = candidate_stats["display_candidate"].map(
         lambda value: len(clean_text(value))
-    )
-    candidate_sources = (
-        evidence.sort_values(
-            ["parent_cluster_key", "label_candidate", "search_frequency_rank", "normalized_keyword"],
-            ascending=[True, True, True, True],
-            na_position="last",
-        )
-        .drop_duplicates(["parent_cluster_key", "label_candidate"])
-        [["parent_cluster_key", "label_candidate", "normalized_keyword"]]
-        .rename(columns={"normalized_keyword": "evidence_phrase"})
     )
     canonical_labels = (
         candidate_stats.sort_values(
@@ -880,23 +1169,31 @@ def create_composite_metric_stage(
                 "parent_cluster_key",
                 "candidate_best_rank",
                 "candidate_frequency",
+                "candidate_average_rank",
+                "candidate_active_months",
+                "candidate_source_count",
                 "candidate_token_count",
                 "candidate_char_count",
-                "label_candidate",
+                "canonical_source_candidate",
             ],
-            ascending=[True, True, False, True, True, True],
+            ascending=[True, True, False, True, False, False, True, True, True],
             na_position="last",
         )
         .drop_duplicates("parent_cluster_key")
-        .merge(candidate_sources, on=["parent_cluster_key", "label_candidate"], how="left")
-        .rename(columns={"label_candidate": "demand_name"})
+        .rename(
+            columns={
+                "canonical_source_candidate": "canonical_source_phrase",
+                "display_candidate": "demand_name",
+            }
+        )
     )
 
     evidence = evidence.merge(
-        canonical_labels[["parent_cluster_key", "demand_name", "evidence_phrase"]],
+        canonical_labels[["parent_cluster_key", "demand_name", "canonical_source_phrase"]],
         on="parent_cluster_key",
         how="left",
     )
+    evidence["evidence_phrase"] = evidence["canonical_source_phrase"]
 
     grouped = evidence.groupby("parent_cluster_key", dropna=False)
     metrics = grouped.agg(
@@ -929,20 +1226,20 @@ def create_composite_metric_stage(
         .apply(semantic_cluster_profile)
         .reset_index()
         .merge(
-            canonical_labels[["parent_cluster_key", "evidence_phrase"]],
+            canonical_labels[["parent_cluster_key", "demand_name", "canonical_source_phrase"]],
             on="parent_cluster_key",
             how="left",
         )
-        .rename(columns={"evidence_phrase": "canonical_evidence_phrase"})
     )
+    cluster_profiles["canonical_evidence_phrase"] = cluster_profiles["canonical_source_phrase"]
     classifications = cluster_profiles.apply(
-        lambda row: classify_parent_entity_type(row, row.get("canonical_evidence_phrase")),
+        lambda row: classify_parent_entity_type(row, row.get("demand_name")),
         axis=1,
         result_type="expand",
     )
     classifications.columns = ["parent_entity_type", "is_parent_market", "classification_reason"]
     cluster_profiles = pd.concat([cluster_profiles, classifications], axis=1)
-    cluster_profiles["parent_label_source"] = "observed_cluster_canonical"
+    cluster_profiles["parent_label_source"] = "dominant_observed_phrase"
 
     representative = (
         evidence.sort_values(
@@ -1013,7 +1310,10 @@ def create_composite_metric_stage(
     )
 
     metrics = (
-        metrics.merge(canonical_labels[["parent_cluster_key", "demand_name"]], on="parent_cluster_key")
+        metrics.merge(
+            canonical_labels[["parent_cluster_key", "demand_name", "canonical_source_phrase"]],
+            on="parent_cluster_key",
+        )
         .merge(representative, on="parent_cluster_key")
         .merge(first_best, on="parent_cluster_key", how="left")
         .merge(last_best, on="parent_cluster_key", how="left")
@@ -1059,6 +1359,7 @@ def create_composite_metric_stage(
             [
                 "old_parent",
                 "demand_name",
+                "canonical_source_phrase",
                 "parent_cluster_key",
                 "parent_entity_type",
                 "is_parent_market",
@@ -1096,6 +1397,7 @@ def create_composite_metric_stage(
         [
             "old_parent",
             "new_parent",
+            "canonical_source_phrase",
             "parent_entity_type",
             "is_parent_market",
             "reason",
@@ -1114,6 +1416,7 @@ def create_composite_metric_stage(
             "parent_entity_type",
             "parent_label_source",
             "canonical_evidence_phrase",
+            "canonical_source_phrase",
             "is_parent_market",
             "intent",
             "audience_type",
@@ -1166,6 +1469,7 @@ def build_composite_demands(connection: duckdb.DuckDBPyConnection) -> pd.DataFra
             parent_entity_type,
             parent_label_source,
             canonical_evidence_phrase,
+            canonical_source_phrase,
             is_parent_market,
             intent,
             recipient,
@@ -1207,6 +1511,7 @@ def build_composite_demands(connection: duckdb.DuckDBPyConnection) -> pd.DataFra
         SELECT
             old_parent,
             new_parent,
+            canonical_source_phrase,
             parent_entity_type,
             is_parent_market,
             reason,
@@ -1313,6 +1618,7 @@ def build_demand_strength_v3(connection: duckdb.DuckDBPyConnection) -> int:
             parent_entity_type,
             parent_label_source,
             canonical_evidence_phrase,
+            canonical_source_phrase,
             is_parent_market,
             intent,
             recipient,
@@ -1414,6 +1720,7 @@ def export_reports(connection: duckdb.DuckDBPyConnection, output_dir: Path) -> N
             SELECT
                 old_parent,
                 new_parent,
+                canonical_source_phrase,
                 parent_entity_type,
                 is_parent_market,
                 reason,

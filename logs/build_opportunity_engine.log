@@ -84,3 +84,46 @@
 2026-07-06 12:30:17 INFO   OP000010 | Lilo and Stitch Gift for Girls | score=74.48 | P2 | best=5246 | p25=8243.0 | growing
 2026-07-06 12:30:17 INFO Opportunity Engine build complete
 2026-07-06 12:30:17 INFO Build log: logs\build_opportunity_engine.log
+2026-07-07 09:26:21 INFO Starting Opportunity Engine build
+2026-07-07 09:26:21 INFO Input composite_demands: 150 rows
+2026-07-07 09:26:21 INFO Input composite_keywords: 2,764 rows
+2026-07-07 09:26:21 INFO Input demand_strength_v3: 150 rows
+2026-07-07 09:26:21 INFO Input demand_profile_v2: 1,349 rows
+2026-07-07 09:26:21 INFO Input market_nodes: 10 rows
+2026-07-07 09:26:21 INFO Input intent_summary: 16 rows
+2026-07-07 09:26:21 INFO Dropping research_backlog if it exists
+2026-07-07 09:26:21 INFO Dropping opportunity_master if it exists
+2026-07-07 09:26:21 INFO Building opportunity keyword statistics stage
+2026-07-07 09:26:21 INFO Building opportunity keyword examples stage
+2026-07-07 09:26:21 INFO Building market node pet enrichment stage
+2026-07-07 09:26:21 INFO Building opportunity_master
+2026-07-07 09:26:21 INFO Built opportunity_master with 150 rows
+2026-07-07 09:26:21 INFO Building research_backlog
+2026-07-07 09:26:21 INFO Built research_backlog with 132 rows
+2026-07-07 09:26:21 INFO Exporting Opportunity Engine CSVs to data\output\opportunity
+2026-07-07 09:26:21 INFO Exported opportunity_master.csv with 150 rows
+2026-07-07 09:26:21 INFO Exported research_backlog.csv with 132 rows
+2026-07-07 09:26:21 INFO Exported top_100_opportunities.csv with 100 rows
+2026-07-07 09:26:21 INFO Exported top_growing_opportunities.csv with 128 rows
+2026-07-07 09:26:21 INFO Exported top_seasonal_opportunities.csv with 67 rows
+2026-07-07 09:26:21 INFO Opportunity Engine summary
+2026-07-07 09:26:21 INFO   opportunity_master: 150 rows
+2026-07-07 09:26:21 INFO   research_backlog: 132 rows
+2026-07-07 09:26:21 INFO Priority distribution:
+2026-07-07 09:26:21 INFO   P1: 5
+2026-07-07 09:26:21 INFO   P2: 26
+2026-07-07 09:26:21 INFO   P3: 49
+2026-07-07 09:26:21 INFO   Watchlist: 70
+2026-07-07 09:26:21 INFO Top opportunities:
+2026-07-07 09:26:21 INFO   OP000001 | Gift for Mom | score=100.0 | P1 | best=65 | p25=115247.25 | growing
+2026-07-07 09:26:21 INFO   OP000002 | Gift for Dad | score=93.99 | P1 | best=154 | p25=120206.0 | growing
+2026-07-07 09:26:21 INFO   OP000003 | Teen Girl Gift | score=90.57 | P1 | best=455 | p25=109560.75 | growing
+2026-07-07 09:26:21 INFO   OP000004 | Teen Boy Gift | score=89.4 | P1 | best=744 | p25=78191.0 | growing
+2026-07-07 09:26:21 INFO   OP000005 | Grandma Gift | score=86.48 | P1 | best=666 | p25=103702.5 | growing
+2026-07-07 09:26:21 INFO   OP000006 | Mom Christmas Gift | score=81.78 | P2 | best=1231 | p25=110436.0 | growing
+2026-07-07 09:26:21 INFO   OP000007 | Teacher Gift | score=81.47 | P2 | best=1015 | p25=97172.0 | growing
+2026-07-07 09:26:21 INFO   OP000008 | Grandpa Gift | score=78.65 | P2 | best=2236 | p25=76920.0 | growing
+2026-07-07 09:26:21 INFO   OP000009 | Gift for Husband | score=78.06 | P2 | best=2778 | p25=80874.0 | growing
+2026-07-07 09:26:21 INFO   OP000010 | Baby Girl Gift | score=78.06 | P2 | best=4936 | p25=41787.0 | growing
+2026-07-07 09:26:21 INFO Opportunity Engine build complete
+2026-07-07 09:26:21 INFO Build log: logs\build_opportunity_engine.log

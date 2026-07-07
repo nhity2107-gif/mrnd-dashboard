@@ -93,6 +93,8 @@ OUTPUT_FILES = {
 OPPORTUNITY_COLUMNS = [
     "parent_demand",
     "child_segment",
+    "segment_type",
+    "segment_value",
     "segment_label_source",
     "canonical_evidence_phrase",
     "is_evidence_backed",
@@ -109,6 +111,8 @@ OPPORTUNITY_COLUMNS = [
 
 PRODUCT_COLUMNS = [
     "child_segment",
+    "segment_type",
+    "segment_value",
     "segment_label_source",
     "canonical_evidence_phrase",
     "is_evidence_backed",
@@ -126,6 +130,8 @@ PRODUCT_COLUMNS = [
 
 CUSTOMIZATION_COLUMNS = [
     "child_segment",
+    "segment_type",
+    "segment_value",
     "segment_label_source",
     "canonical_evidence_phrase",
     "is_evidence_backed",
@@ -143,6 +149,8 @@ CUSTOMIZATION_COLUMNS = [
 
 REASONING_COLUMNS = [
     "child_segment",
+    "segment_type",
+    "segment_value",
     "strengths",
     "weaknesses",
     "risks",
@@ -265,6 +273,14 @@ MARKET_LABEL_STOP_WORDS = {
     "who",
     "with",
 }
+RELATIONSHIP_VALUE_ALIASES = {
+    "dad": {"dad", "dads", "father", "fathers", "papa"},
+    "daughter": {"daughter", "daughters"},
+    "kids": {"child", "children", "kid", "kids"},
+    "mom": {"mom", "moms", "mother", "mothers", "mama"},
+    "son": {"son", "sons"},
+    "toddler": {"toddler", "toddlers"},
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -356,6 +372,9 @@ def phrase_contains_key(evidence_key: str, label_key: str) -> bool:
 
 
 def label_has_observed_support(segment: pd.Series) -> bool:
+    if segment_type(segment) == "relationship" and relationship_has_observed_support(segment):
+        return True
+
     label_key = market_phrase_key(segment.get("segment_name", segment.get("child_segment")))
     if not label_key or len(label_key.split()) < 2:
         return False
@@ -403,6 +422,33 @@ def observed_products(segment: pd.Series) -> str:
     return " | ".join(products)
 
 
+def segment_type(segment: pd.Series) -> str:
+    value = clean_text(segment.get("segment_type"))
+    if value:
+        return value
+    return clean_text(segment.get("segment_dimension"))
+
+
+def segment_value(segment: pd.Series) -> str:
+    return clean_text(segment.get("segment_value"))
+
+
+def relationship_value_tokens(value: object) -> set[str]:
+    normalized = lower_text(value)
+    return RELATIONSHIP_VALUE_ALIASES.get(normalized, {normalized} if normalized else set())
+
+
+def relationship_has_observed_support(segment: pd.Series) -> bool:
+    aliases = relationship_value_tokens(segment.get("segment_value"))
+    if not aliases:
+        return False
+    for phrase in evidence_phrases(segment):
+        tokens = set(phrase_tokens(phrase))
+        if aliases & tokens:
+            return True
+    return False
+
+
 def evidence_backed_segments(segments: pd.DataFrame) -> pd.DataFrame:
     if segments.empty:
         return segments.copy()
@@ -411,6 +457,8 @@ def evidence_backed_segments(segments: pd.DataFrame) -> pd.DataFrame:
     output["segment_label_source"] = output.apply(segment_label_source, axis=1)
     output["canonical_evidence_phrase"] = output.apply(canonical_evidence_phrase, axis=1)
     output["observed_products"] = output.apply(observed_products, axis=1)
+    output["segment_type"] = output.apply(segment_type, axis=1)
+    output["segment_value"] = output.apply(segment_value, axis=1)
     return output[output["is_evidence_backed"]].copy()
 
 
@@ -489,6 +537,8 @@ def remove_scoring_outputs(output_dir: Path) -> None:
 def context_text(segment: pd.Series) -> str:
     fields = [
         "segment_name",
+        "segment_type",
+        "segment_value",
         "parent_demand",
         "intent",
         "recipient",
@@ -641,6 +691,8 @@ def score_product_fit(
     explanation = "; ".join(reasons[:3]) if reasons else "General gift language creates moderate product fit."
     return {
         "child_segment": segment_name,
+        "segment_type": segment_type(segment),
+        "segment_value": segment_value(segment),
         "segment_label_source": segment_label_source(segment),
         "canonical_evidence_phrase": canonical_evidence_phrase(segment),
         "is_evidence_backed": segment_is_evidence_backed(segment),
@@ -730,6 +782,8 @@ def score_customization_fit(
     explanation = "; ".join(reasons[:3]) if reasons else "Name customization is the broadest deterministic fit."
     output = {
         "child_segment": segment_name,
+        "segment_type": segment_type(segment),
+        "segment_value": segment_value(segment),
         "segment_label_source": segment_label_source(segment),
         "canonical_evidence_phrase": canonical_evidence_phrase(segment),
         "is_evidence_backed": segment_is_evidence_backed(segment),
@@ -894,6 +948,8 @@ def build_opportunity_scorecard(
         row = {
             "parent_demand": parent_name,
             "child_segment": child_segment,
+            "segment_type": segment_type(segment),
+            "segment_value": segment_value(segment),
             "segment_label_source": segment_label_source(segment),
             "canonical_evidence_phrase": canonical_evidence_phrase(segment),
             "is_evidence_backed": segment_is_evidence_backed(segment),
@@ -988,6 +1044,8 @@ def build_research_reasoning(
         rows.append(
             {
                 "child_segment": child_segment,
+                "segment_type": segment_type(segment),
+                "segment_value": segment_value(segment),
                 "strengths": sentence_join(strengths),
                 "weaknesses": sentence_join(weaknesses),
                 "risks": sentence_join(risks),

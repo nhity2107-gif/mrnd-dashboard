@@ -106,6 +106,8 @@ SEGMENT_COLUMNS = [
     "parent_demand_id",
     "parent_demand",
     "segment_name",
+    "segment_type",
+    "segment_value",
     "segment_label_source",
     "canonical_evidence_phrase",
     "is_evidence_backed",
@@ -203,6 +205,64 @@ OCCASION_RELABEL_VALUES = {
     "graduation",
     "retirement",
     "wedding",
+}
+SEGMENT_TYPE_BY_DIMENSION = {
+    "relationship": "relationship",
+    "recipient_refinement": "audience",
+    "profession": "profession",
+    "interest": "interest",
+    "pet": "pet",
+    "holiday": "holiday",
+    "occasion": "occasion",
+    "theme": "niche",
+    "lifestyle": "lifestyle",
+}
+RELATIONSHIP_SOURCE_NORMALIZATIONS = {
+    "child": "kids",
+    "children": "kids",
+    "daughter": "daughter",
+    "daughters": "daughter",
+    "dad": "dad",
+    "dads": "dad",
+    "father": "dad",
+    "fathers": "dad",
+    "kid": "kids",
+    "kids": "kids",
+    "mom": "mom",
+    "moms": "mom",
+    "mother": "mom",
+    "mothers": "mom",
+    "son": "son",
+    "sons": "son",
+    "toddler": "toddler",
+    "toddlers": "toddler",
+}
+RELATIONSHIP_SOURCE_LABELS = {
+    "dad": "Dad",
+    "daughter": "Daughter",
+    "kids": "Kids",
+    "mom": "Mom",
+    "son": "Son",
+    "toddler": "Toddler",
+}
+RELATIONSHIP_PREFIX_SOURCES = {"child", "children", "kid", "kids", "toddler", "toddlers"}
+RELATIONSHIP_SUFFIX_SOURCES = {
+    "child",
+    "children",
+    "daughter",
+    "daughters",
+    "kid",
+    "kids",
+    "son",
+    "sons",
+    "toddler",
+    "toddlers",
+}
+ENTITY_VALUE_TOKEN_ALIASES = {
+    "dad": {"dad", "dads", "father", "fathers", "papa"},
+    "daughter": {"daughter", "daughters", "girl", "girls"},
+    "mom": {"mom", "moms", "mother", "mothers", "mama"},
+    "son": {"son", "sons", "boy", "boys"},
 }
 
 logger = logging.getLogger(__name__)
@@ -846,6 +906,16 @@ def create_segment_candidate_stage(connection: duckdb.DuckDBPyConnection) -> Non
           AND occasion IS NULL
         """
     )
+    relationship_frame = relationship_candidate_frame(connection)
+    if not relationship_frame.empty:
+        connection.register("relationship_candidate_frame", relationship_frame)
+        connection.execute(
+            """
+            INSERT INTO segment_candidate_evidence_stage
+            SELECT *
+            FROM relationship_candidate_frame
+            """
+        )
     row_count = connection.execute("SELECT count(*) FROM segment_candidate_evidence_stage").fetchone()[0]
     logger.info("Segment candidate evidence stage: %s rows", f"{row_count:,}")
 
@@ -1089,6 +1159,138 @@ def normalize_label_key(value: object) -> str:
     return " ".join(phrase_tokens(value))
 
 
+def normalize_relationship_source_token(token: str) -> str:
+    return RELATIONSHIP_SOURCE_NORMALIZATIONS.get(token.lower().strip(), "")
+
+
+def parent_value_aliases(value: object) -> set[str]:
+    normalized = clean_text(value).lower()
+    aliases = {normalized} if normalized else set()
+    aliases.update(ENTITY_VALUE_TOKEN_ALIASES.get(normalized, set()))
+    return aliases
+
+
+def target_matches_parent(target_tokens: list[str], parent_core_value: object) -> bool:
+    aliases = parent_value_aliases(parent_core_value)
+    return bool(aliases) and any(token in aliases for token in target_tokens)
+
+
+def source_from_tokens(tokens: list[str]) -> str:
+    for token in tokens:
+        source = normalize_relationship_source_token(token)
+        if source:
+            return source
+    return ""
+
+
+def tokens_between(tokens: list[str], start_index: int, stop_tokens: set[str]) -> tuple[list[str], int]:
+    output: list[str] = []
+    index = start_index
+    while index < len(tokens) and tokens[index] not in stop_tokens:
+        if token_is_segment_connector(tokens[index]):
+            index += 1
+            continue
+        output.append(tokens[index])
+        index += 1
+    return output, index
+
+
+def token_is_segment_connector(token: str) -> bool:
+    return token in MARKET_LABEL_STOP_WORDS - {"gift", "gifts", "present", "presents"}
+
+
+def gift_token_index(tokens: list[str]) -> int:
+    for index, token in enumerate(tokens):
+        if token in {"gift", "gifts", "present", "presents"}:
+            return index
+    return -1
+
+
+def relationship_segment_value_from_phrase(phrase: object, parent_core_value: object) -> str:
+    tokens = phrase_tokens(phrase)
+    gift_index = gift_token_index(tokens)
+    if gift_index < 0:
+        return ""
+
+    if gift_index + 3 < len(tokens) and tokens[gift_index + 1] in {"for", "to"}:
+        target, next_index = tokens_between(tokens, gift_index + 2, {"from"})
+        if next_index < len(tokens) and tokens[next_index] == "from" and target_matches_parent(target, parent_core_value):
+            return source_from_tokens(tokens[next_index + 1 :])
+
+    if gift_index + 4 < len(tokens) and tokens[gift_index + 1] == "from":
+        source, next_index = tokens_between(tokens, gift_index + 2, {"to", "for"})
+        if next_index < len(tokens) and tokens[next_index] in {"to", "for"}:
+            target, _ = tokens_between(tokens, next_index + 1, {"from", "to", "for"})
+            if target_matches_parent(target, parent_core_value):
+                return source_from_tokens(source)
+
+    if gift_index > 0 and gift_index + 2 < len(tokens) and tokens[gift_index + 1] == "from":
+        target = [token for token in tokens[:gift_index] if not token_is_segment_connector(token)]
+        if target_matches_parent(target, parent_core_value):
+            return source_from_tokens(tokens[gift_index + 2 :])
+
+    if gift_index > 1 and "from" in tokens[:gift_index]:
+        from_index = tokens.index("from")
+        target = [token for token in tokens[:from_index] if not token_is_segment_connector(token)]
+        if target_matches_parent(target, parent_core_value):
+            return source_from_tokens(tokens[from_index + 1 : gift_index])
+
+    if gift_index == 2:
+        first, second = tokens[0], tokens[1]
+        if first in RELATIONSHIP_PREFIX_SOURCES and target_matches_parent([second], parent_core_value):
+            return normalize_relationship_source_token(first)
+        if second in RELATIONSHIP_SUFFIX_SOURCES and target_matches_parent([first], parent_core_value):
+            return normalize_relationship_source_token(second)
+
+    return ""
+
+
+def relationship_candidate_frame(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame:
+    parent_matches = connection.execute(
+        """
+        SELECT *
+        FROM segment_parent_match_stage
+        WHERE parent_core_type = 'recipient'
+          AND parent_intent = 'gift'
+        """
+    ).df()
+    if parent_matches.empty:
+        return pd.DataFrame()
+
+    rows: list[dict[str, object]] = []
+    for _, row in parent_matches.iterrows():
+        segment_value = relationship_segment_value_from_phrase(
+            row.get("normalized_keyword"),
+            row.get("parent_core_value"),
+        )
+        if not segment_value:
+            segment_value = relationship_segment_value_from_phrase(
+                row.get("raw_keyword"),
+                row.get("parent_core_value"),
+            )
+        if not segment_value or segment_value == clean_text(row.get("parent_core_value")).lower():
+            continue
+        output = row.to_dict()
+        output["segment_dimension"] = "relationship"
+        output["segment_value"] = segment_value
+        rows.append(output)
+
+    if not rows:
+        return pd.DataFrame()
+
+    output = pd.DataFrame(rows)
+    output = output.drop_duplicates(
+        subset=["parent_demand_id", "keyword_id", "segment_dimension", "segment_value"]
+    )
+    return output.reset_index(drop=True)
+
+
+def relationship_segment_label(value: object) -> str:
+    normalized = clean_text(value).lower()
+    label = RELATIONSHIP_SOURCE_LABELS.get(normalized)
+    return f"From {label}" if label else ""
+
+
 def observed_products(value: object) -> list[str]:
     products: list[str] = []
     for token in phrase_tokens(value):
@@ -1138,6 +1340,19 @@ def observed_segment_label(row: pd.Series) -> tuple[str, str]:
 
 
 def segment_label_details(row: pd.Series) -> pd.Series:
+    if clean_text(row.get("segment_dimension")) == "relationship":
+        segment_name = relationship_segment_label(row.get("segment_value"))
+        if segment_name:
+            return pd.Series(
+                {
+                    "segment_name": segment_name,
+                    "segment_label_source": "observed_relationship",
+                    "canonical_evidence_phrase": clean_text(row.get("canonical_evidence_phrase")),
+                    "is_evidence_backed": True,
+                    "observed_products": " | ".join(observed_products(clean_text(row.get("evidence_keywords")))),
+                }
+            )
+
     observed_label, evidence_phrase = observed_segment_label(row)
     if observed_label:
         return pd.Series(
@@ -1208,6 +1423,11 @@ def segment_dimension_values(row: pd.Series) -> dict[str, str | None]:
     }
 
 
+def segment_type_from_dimension(value: object) -> str:
+    dimension = clean_text(value)
+    return SEGMENT_TYPE_BY_DIMENSION.get(dimension, dimension)
+
+
 def build_demand_segments(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame:
     metrics = create_segment_metric_frame(connection)
     if metrics.empty:
@@ -1221,6 +1441,8 @@ def build_demand_segments(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame
     )
     metrics = pd.concat([metrics, dimension_frame], axis=1)
     metrics["intent"] = metrics["parent_intent"].apply(clean_text)
+    metrics["segment_type"] = metrics["segment_dimension"].apply(segment_type_from_dimension)
+    metrics["segment_value"] = metrics["segment_value"].apply(clean_text)
     metrics["segment_name_key"] = metrics["segment_name"].str.lower().str.strip()
     metrics["trend_sort"] = metrics["trend"].map(TREND_ORDER).fillna(99)
 
@@ -1252,6 +1474,8 @@ def build_demand_segments(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame
             "parent_demand_id",
             "parent_demand",
             "segment_name",
+            "segment_type",
+            "segment_value",
             "segment_label_source",
             "canonical_evidence_phrase",
             "is_evidence_backed",
@@ -1285,6 +1509,7 @@ def build_demand_segments(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame
                 "parent_demand_id",
                 "parent_demand",
                 "segment_name",
+                "segment_type",
                 "segment_label_source",
                 "canonical_evidence_phrase",
                 "is_evidence_backed",
@@ -1331,6 +1556,7 @@ def build_segment_keywords(connection: duckdb.DuckDBPyConnection) -> int:
             id_map.segment_name,
             id_map.intent,
             id_map.segment_dimension,
+            id_map.segment_type,
             id_map.segment_value,
             evidence.raw_keyword,
             evidence.normalized_keyword,
@@ -1477,10 +1703,10 @@ def log_summary(connection: duckdb.DuckDBPyConnection) -> None:
     logger.info("Segments by added dimension:")
     for dimension, count in connection.execute(
         f"""
-        SELECT segment_dimension, count(DISTINCT segment_id)
+        SELECT segment_type, count(DISTINCT segment_id)
         FROM {SEGMENT_KEYWORDS_TABLE}
-        GROUP BY segment_dimension
-        ORDER BY count(DISTINCT segment_id) DESC, segment_dimension
+        GROUP BY segment_type
+        ORDER BY count(DISTINCT segment_id) DESC, segment_type
         """
     ).fetchall():
         logger.info("  %s: %s", dimension, f"{count:,}")

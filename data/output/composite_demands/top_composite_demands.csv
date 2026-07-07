@@ -1,116 +1,151 @@
-demand_id,demand_name,parent_entity_type,parent_label_source,canonical_evidence_phrase,is_parent_market,intent,recipient,profession,interest,occasion,holiday,lifestyle,theme,product_count,keyword_count,best_rank,p25_rank,median_rank,average_rank,active_months,trend,strength_score
-CD000001,Gift for Mom,market,observed_cluster_canonical,gift for mom,True,gift,mom,,,,,,,0,34,65,11521.25,79069.0,271473.53,4,growing,55.14
-CD000002,Gift for Dad,market,observed_cluster_canonical,gift for dad,True,gift,dad,,,,,,,0,36,154,17042.5,120932.5,339706.86,4,growing,51.14
-CD000003,Grandma Gift,market,observed_cluster_canonical,grandma gift,True,gift,grandma,,,,,,,0,29,666,18554.0,148212.0,265479.86,4,growing,46.11
-CD000005,Christmas Gift for Mom,market,observed_cluster_canonical,christmas gift for mom,True,gift,mom,,,christmas,christmas,,,0,15,1231,26376.0,105118.0,287079.47,4,growing,43.78
-CD000004,Teacher Gift,market,observed_cluster_canonical,teacher gift,True,gift,,teacher,,,,,,0,20,1015,32537.5,127080.0,311549.15,4,growing,43.75
-CD000006,Teen Girl Gift,market,observed_cluster_canonical,teen girl gift,True,gift,girl,,,,,,,0,23,1296,45950.0,133593.0,269236.57,4,growing,42.19
-CD000008,Grandpa Gift,market,observed_cluster_canonical,grandpa gift,True,gift,grandpa,,,,,,,0,22,2236,42921.25,126673.0,304727.59,4,growing,40.67
-CD000011,Gift for Husband,market,observed_cluster_canonical,gift for husband,True,gift,husband,,,,,,,0,22,2778,35476.25,102133.5,226268.0,4,growing,40.61
-CD000010,Gift for Wife,market,observed_cluster_canonical,gift for wife,True,gift,wife,,,,,,,0,26,2513,50958.5,127422.0,331583.23,4,growing,39.93
-CD000007,Mom Christmas Gift,market,observed_cluster_canonical,mom christmas gift,True,gift,mom,,,christmas,christmas,,,0,19,2124,58344.5,240875.0,373129.05,4,growing,39.5
-CD000014,Christmas Gift for Dad,market,observed_cluster_canonical,christmas gift for dad,True,gift,dad,,,christmas,christmas,,,0,12,3523,41821.25,104552.0,188921.92,4,growing,39.49
-CD000013,Teen Boy Gift,market,observed_cluster_canonical,teen boy gift,True,gift,boy,,,,,,,0,21,2875,54320.0,146254.0,318873.48,4,growing,39.22
-CD000012,Dog Christmas Gift,market,observed_cluster_canonical,dog christmas gift,True,gift,dog,,,christmas,christmas,,,0,10,2843,72257.25,159028.5,250132.9,4,growing,38.57
-CD000015,Teacher Christmas Gift,market,observed_cluster_canonical,teacher christmas gift,True,gift,,teacher,,christmas,christmas,,,0,9,3609,54835.0,173848.0,310641.78,4,growing,38.3
-CD000009,Dad Christmas Gift,market,observed_cluster_canonical,dad christmas gift,True,gift,dad,,,christmas,christmas,,,0,17,2483,80955.0,315298.0,428648.88,4,growing,38.03
-CD000028,Mom Birthday Gift,market,observed_cluster_canonical,mom birthday gift,True,gift,mom,,,birthday,,,,0,16,8392,26467.25,83444.5,130230.56,4,declining,37.94
-CD000017,Baby Girl Gift,market,observed_cluster_canonical,baby girl gift,True,gift,girl,,,,,,,0,18,4936,53362.75,111557.5,273488.17,4,growing,37.83
-CD000016,Dog Gift,market,observed_cluster_canonical,dog gift,True,gift,dog,,,,,,,0,17,3977,90768.0,127873.0,282508.12,4,growing,37.25
-CD000018,Nurse Gift,market,observed_cluster_canonical,nurse gift,True,gift,,nurse,,,,,,0,15,5255,47750.5,204968.0,311611.2,4,growing,37.23
-CD000021,Coffee Gift,market,observed_cluster_canonical,coffee gift,True,gift,,,coffee,,,,,0,10,7133,46786.25,104897.5,210029.0,4,growing,37.01
-CD000024,Baby Boy Gift,market,observed_cluster_canonical,baby boy gift,True,gift,boy,,,,,,,0,16,7566,54527.5,111551.5,184953.81,4,growing,36.44
-CD000039,Teacher Appreciation Gift,market,observed_cluster_canonical,teacher appreciation gift,True,appreciation,,teacher,,appreciation,,,,0,5,15075,36433.0,53546.0,230594.8,4,growing,35.88
-CD000027,Christmas Gift for Wife,market,observed_cluster_canonical,christmas gift for wife,True,gift,wife,,,christmas,christmas,,,0,11,8355,57964.5,192884.0,322973.73,4,growing,35.42
-CD000034,Soccer Gift,market,observed_cluster_canonical,soccer gift,True,gift,,,soccer,,,,,0,9,11357,51332.0,112173.0,220661.67,4,growing,35.27
-CD000026,Fishing Gift,market,observed_cluster_canonical,fishing gift,True,gift,,,fishing,,,,,0,10,8165,75883.5,148190.0,351970.9,4,growing,35.2
-CD000023,Papa Gift,market,observed_cluster_canonical,papa gift,True,gift,dad,,,,,,,0,15,7534,81410.5,178698.0,347571.73,4,growing,35.11
-CD000036,Dad Birthday Gift,market,observed_cluster_canonical,dad birthday gift,True,gift,dad,,,birthday,,,,0,16,12360,49080.75,123806.5,127242.19,4,declining,35.0
-CD000025,Gardening Gift,market,observed_cluster_canonical,gardening gift,True,gift,,,gardening,,,,,0,8,7831,94167.0,156815.5,422020.13,4,growing,34.82
-CD000022,Cat Gift,market,observed_cluster_canonical,cat gift,True,gift,cat,,,,,,,0,16,7210,94185.5,222963.5,340982.94,4,growing,34.71
-CD000035,Birthday Gift for Mom,market,observed_cluster_canonical,birthday gift for mom,True,gift,mom,,,birthday,,,,0,16,12233,50483.5,262471.0,374396.63,4,declining,34.18
-CD000033,Gift for Husband Christmas,market,observed_cluster_canonical,gift for husband christmas,True,gift,husband,,,christmas,christmas,,,0,14,11179,58860.5,298257.0,374368.5,4,growing,34.0
-CD000020,Girl Gift,market,observed_cluster_canonical,girl gift,True,gift,girl,,,,,,,0,20,6582,129051.0,321866.0,415771.1,4,growing,33.94
-CD000032,Pickleball Gift,market,observed_cluster_canonical,pickleball gift,True,gift,,,pickleball,,,,,0,11,10568,86724.5,342533.0,405546.0,4,growing,33.22
-CD000031,Grandma Christmas Gift,market,observed_cluster_canonical,grandma christmas gift,True,gift,grandma,,,christmas,christmas,,,0,11,9464,117892.5,258642.0,376233.36,4,growing,33.21
-CD000030,Toddler Girl Gift,market,observed_cluster_canonical,toddler girl gift,True,gift,girl,,,,,,,0,18,9014,111664.25,382703.5,432255.94,4,growing,33.07
-CD000038,Christmas Gift for Grandma,market,observed_cluster_canonical,christmas gift for grandma,True,gift,grandma,,,christmas,christmas,,,0,11,13902,78751.5,281256.0,390523.18,4,growing,32.76
-CD000043,Christmas Gift for Husband,market,observed_cluster_canonical,christmas gift for husband,True,gift,husband,,,christmas,christmas,,,0,11,19892,62887.0,233646.0,285136.82,4,growing,32.3
-CD000053,Toddler Girl Christmas Gift,market,observed_cluster_canonical,toddler girl christmas gift,True,gift,girl,,,christmas,christmas,,,0,6,27537,48026.0,170947.5,495182.67,4,growing,32.16
-CD000060,Toddler Boy Christmas Gift,market,observed_cluster_canonical,toddler boy christmas gift,True,gift,boy,,,christmas,christmas,,,0,4,34261,53260.0,74267.5,119565.25,4,growing,32.13
-CD000048,Gift for Daughter,market,observed_cluster_canonical,gift for daughter,True,gift,daughter,,,,,,,0,16,22172,71992.5,175160.0,239154.06,4,growing,31.97
-CD000051,Girl Christmas Gift,market,observed_cluster_canonical,girl christmas gift,True,gift,girl,,,christmas,christmas,,,0,6,25755,51598.25,235895.0,417864.67,4,growing,31.89
-CD000046,Hunting Gift,market,observed_cluster_canonical,hunting gift,True,gift,,,hunting,,,,,0,6,21030,79343.75,211001.0,213655.0,4,growing,31.74
-CD000019,Mom Gift for Christmas,market,observed_cluster_canonical,mom gift for christmas,True,gift,mom,,,christmas,christmas,,,0,7,5375,157392.0,318601.0,445369.43,3,growing,31.67
-CD000042,Firefighter Gift,market,observed_cluster_canonical,firefighter gift,True,gift,,firefighter,,,,,,0,7,19863,109730.5,171778.0,304727.43,4,growing,31.45
-CD000050,Mother of the Bride Gift,market,observed_cluster_canonical,mother of the bride gift,True,gift,mom,,,wedding,,,,0,10,25638,74374.5,300427.0,432569.8,4,declining,30.87
-CD000037,Boy Gift,market,observed_cluster_canonical,boy gift,True,gift,boy,,,,,,,0,17,13003,151586.0,574988.0,471161.53,4,growing,30.83
-CD000041,Coffee Lover Gift,market,observed_cluster_canonical,coffee lover gift,True,gift,,,coffee,,,coffee lover,,0,19,18646,156713.5,299525.0,399303.95,4,growing,30.31
-CD000047,Book Lover Gift,market,observed_cluster_canonical,book lover gift,True,gift,,,reading,,,book lover,,0,14,21887,116114.0,368155.0,438478.29,4,growing,30.22
-CD000059,Husband Birthday Gift,market,observed_cluster_canonical,husband birthday gift,True,gift,husband,,,birthday,,,,0,18,30054,98571.25,217350.0,265042.44,4,declining,30.12
-CD000029,Dad Gift for Christmas,market,observed_cluster_canonical,dad gift for christmas,True,gift,dad,,,christmas,christmas,,,0,6,8405,147534.5,448929.5,441145.33,3,growing,30.03
-CD000056,Cat Dad Gift,market,observed_cluster_canonical,cat dad gift,True,gift,dad,,,,,cat lover,,0,5,28520,97053.0,291036.0,307449.0,4,growing,30.01
-CD000049,Mother Gift,market,observed_cluster_canonical,mother gift,True,gift,mom,,,,,,,0,17,23950,126191.0,302218.0,440943.12,4,growing,29.97
-CD000061,Birthday Gift for Dad,market,observed_cluster_canonical,birthday gift for dad,True,gift,dad,,,birthday,,,,0,13,34315,96622.0,180007.0,414773.31,4,declining,29.94
-CD000064,Boy Christmas Gift,market,observed_cluster_canonical,boy christmas gift,True,gift,boy,,,christmas,christmas,,,0,6,37383,67189.5,293409.5,482527.17,4,growing,29.92
-CD000044,Toddler Boy Gift,market,observed_cluster_canonical,toddler boy gift,True,gift,boy,,,,,,,0,15,20405,148858.5,419268.0,469558.07,4,growing,29.78
-CD000052,Gift for Son,market,observed_cluster_canonical,gift for son,True,gift,son,,,,,,,0,14,27364,123028.75,272965.5,314683.29,4,growing,29.71
-CD000040,Camping Gift,market,observed_cluster_canonical,camping gift,True,gift,,,camping,,,,,0,11,17729,217858.0,423737.0,503624.82,4,growing,29.41
-CD000068,Teen Girl Christmas Gift,market,observed_cluster_canonical,teen girl christmas gift,True,gift,girl,,,christmas,christmas,,,0,6,44312,76948.25,252987.5,450403.5,4,growing,29.25
-CD000055,Cat Mom Gift,market,observed_cluster_canonical,cat mom gift,True,gift,cat mom,,,,,cat lover,,0,7,28148,166105.0,255013.0,490976.43,4,growing,29.05
-CD000057,Grandmother Gift,market,observed_cluster_canonical,grandmother gift,True,gift,grandma,,,,,,,0,12,29286,160442.0,286241.5,405331.92,4,growing,28.88
-CD000062,Grandma Birthday Gift,market,observed_cluster_canonical,grandma birthday gift,True,gift,grandma,,,birthday,,,,0,15,36922,117597.0,267469.0,368128.53,4,declining,28.87
-CD000081,Dog Memorial,market,observed_cluster_canonical,dog memorial,True,memorial,dog,,,,,,,0,4,65852,87505.25,95653.5,88746.75,4,declining,28.75
-CD000076,Father of the Bride Gift,market,observed_cluster_canonical,father of the bride gift,True,gift,dad,,,wedding,,,,0,6,54515,95597.25,155664.0,283132.5,4,declining,28.65
-CD000085,Mom Gift for Birthday,market,observed_cluster_canonical,mom gift for birthday,True,gift,mom,,,birthday,,,,0,4,77589,80367.75,87776.5,94424.5,4,declining,28.5
-CD000054,Dog Mom Gift,market,observed_cluster_canonical,dog mom gift,True,gift,dog mom,,,,,dog lover,,0,9,27749,206752.0,293386.0,410480.22,4,growing,28.49
-CD000088,Dad Gift for Birthday,market,observed_cluster_canonical,dad gift for birthday,True,gift,dad,,,birthday,,,,0,4,79569,87705.75,96117.0,111974.25,4,declining,28.14
-CD000078,Mother of the Groom Gift,market,observed_cluster_canonical,mother of the groom gift,True,gift,mom,,,wedding,,,,0,7,57232,122800.5,180061.0,395913.0,4,declining,27.81
-CD000063,Gaming Gift,market,observed_cluster_canonical,gaming gift,True,gift,,,gaming,,,,,0,6,36951,169595.75,383644.0,412908.33,4,growing,27.72
-CD000045,Cat Christmas Gift,market,observed_cluster_canonical,cat christmas gift,True,gift,cat,,,christmas,christmas,,,0,9,20998,142232.0,292889.0,301495.33,3,growing,27.66
-CD000084,Birthday Gift for Wife,market,observed_cluster_canonical,birthday gift for wife,True,gift,wife,,,birthday,,,,0,8,75329,110380.75,143950.5,169992.38,4,declining,27.4
-CD000067,Father Gift,market,observed_cluster_canonical,father gift,True,gift,dad,,,,,,,0,13,43728,160403.0,470583.0,476770.62,4,growing,27.09
-CD000073,Gift for Adult Son,market,observed_cluster_canonical,gift for adult son,True,gift,son,,,,,,,0,9,50484,150799.0,465337.0,562228.11,4,growing,26.77
-CD000058,Mother Christmas Gift,market,observed_cluster_canonical,mother christmas gift,True,gift,mom,,,christmas,christmas,,,0,5,29967,102963.0,468596.0,443146.8,3,growing,26.72
-CD000070,Mama Gift,market,observed_cluster_canonical,mama gift,True,gift,mom,,,,,,,0,11,46879,239416.0,297731.0,510611.0,4,growing,26.5
-CD000096,Daughter Birthday Gift,market,observed_cluster_canonical,daughter birthday gift,True,gift,daughter,,,birthday,,,,0,4,99214,120538.0,146436.5,159458.0,4,declining,26.33
-CD000094,Birthday Gift for Husband,market,observed_cluster_canonical,birthday gift for husband,True,gift,husband,,,birthday,,,,0,10,97103,127153.5,196896.5,343202.4,4,declining,25.97
-CD000080,Reading Gift,market,observed_cluster_canonical,reading gift,True,gift,,,reading,,,,,0,6,63497,189216.0,413104.0,466575.33,4,growing,25.69
-CD000074,Chef Gift,market,observed_cluster_canonical,chef gift,True,gift,,chef,,,,,,0,11,50496,280660.5,431373.0,537182.18,4,growing,25.54
-CD000091,Baby Girl Christmas Gift,market,observed_cluster_canonical,baby girl christmas gift,True,gift,girl,,,christmas,christmas,,,0,7,85658,158472.5,303918.0,401197.71,4,growing,25.44
-CD000072,Christmas Gift for Grandpa,market,observed_cluster_canonical,christmas gift for grandpa,True,gift,grandpa,,,christmas,christmas,,,0,6,50138,118516.5,281218.0,388587.83,3,growing,25.34
-CD000079,Truck Driver Gift,market,observed_cluster_canonical,truck driver gift,True,gift,,truck driver,,,,,,0,6,59395,260682.5,505751.5,579587.83,4,growing,25.02
-CD000075,Gift for Mom for Christmas,market,observed_cluster_canonical,gift for mom for christmas,True,gift,mom,,,christmas,christmas,,,0,5,52821,125656.0,304062.0,433600.2,3,growing,24.96
-CD000077,Christmas Teacher Gift,market,observed_cluster_canonical,christmas teacher gift,True,gift,,teacher,,christmas,christmas,,,0,4,54625,120418.75,318237.5,356399.75,3,growing,24.9
-CD000082,Gift for Adult Daughter,market,observed_cluster_canonical,gift for adult daughter,True,gift,daughter,,,,,,,0,9,69631,225277.0,535803.0,624694.89,4,growing,24.76
-CD000083,Police Officer Gift,market,observed_cluster_canonical,police officer gift,True,gift,,police officer,,,,,,0,6,73211,234153.75,428763.5,533377.83,4,growing,24.75
-CD000069,Teacher Gift for Christmas,market,observed_cluster_canonical,teacher gift for christmas,True,gift,,teacher,,christmas,christmas,,,0,4,45158,165863.0,356263.0,450278.25,3,growing,24.71
-CD000086,Yoga Gift,market,observed_cluster_canonical,yoga gift,True,gift,,,yoga,,,,,0,6,78009,238232.5,418133.0,408156.5,4,growing,24.54
-CD000071,Father Christmas Gift,market,observed_cluster_canonical,father christmas gift,True,gift,dad,,,christmas,christmas,,,0,4,48828,132525.0,571472.0,558772.0,3,growing,24.44
-CD000102,Grandpa Birthday Gift,market,observed_cluster_canonical,grandpa birthday gift,True,gift,grandpa,,,birthday,,,,0,7,143641,181201.5,372199.0,516978.29,4,declining,23.31
-CD000066,Grandpa Christmas Gift,market,observed_cluster_canonical,grandpa christmas gift,True,gift,grandpa,,,christmas,christmas,,,0,8,41264,343870.25,540285.5,603093.88,3,growing,23.01
-CD000065,Grandma Gift for Christmas,market,observed_cluster_canonical,grandma gift for christmas,True,gift,grandma,,,christmas,christmas,,,0,3,40472,164829.5,289187.0,561808.0,2,growing,22.79
-CD000095,Police Gift,market,observed_cluster_canonical,police gift,True,gift,,police officer,,,,,,0,7,97331,386666.0,612905.0,678826.29,4,growing,22.42
-CD000089,Electrician Gift,market,observed_cluster_canonical,electrician gift,True,gift,,electrician,,,,,,0,7,81075,472371.0,762700.0,653450.71,4,growing,22.34
-CD000105,Dog Birthday Gift,market,observed_cluster_canonical,dog birthday gift,True,gift,dog,,,birthday,,,,0,9,172427,233989.0,355931.0,453669.44,4,declining,22.24
-CD000097,Dog Dad Gift,market,observed_cluster_canonical,dog dad gift,True,gift,dad,,,,,dog lover,,0,6,114607,375529.5,688152.0,657408.17,4,growing,21.84
-CD000087,Mother Gift for Christmas,market,observed_cluster_canonical,mother gift for christmas,True,gift,mom,,,christmas,christmas,,,0,2,78983,135652.25,192321.5,192321.5,2,growing,21.51
-CD000098,Male Teacher Gift,market,observed_cluster_canonical,male teacher gift,True,gift,,teacher,,,,,,0,8,120336,401818.5,841307.0,725534.0,4,growing,21.33
-CD000090,Halloween Teacher Gift,market,observed_cluster_canonical,halloween teacher gift,True,gift,,teacher,,halloween,halloween,,,0,3,82132,151957.5,221783.0,336810.67,2,growing,21.0
-CD000101,Gift for Mom Who Has Everything,market,observed_cluster_canonical,gift for mom who has everything,True,gift,mom,,,,,,,0,5,137188,176173.0,380457.0,448974.8,3,growing,20.99
-CD000093,Dog Presents for Christmas,market,observed_cluster_canonical,dog presents for christmas,True,gift,dog,,,christmas,christmas,,,0,4,94133,125951.75,261890.0,311411.0,2,growing,20.79
-CD000104,Girl Teen Gift,market,observed_cluster_canonical,girl teen gift,True,gift,girl,,,,,,,0,4,169597,232096.0,520036.0,643764.25,3,growing,19.41
-CD000092,Christmas Gift for Teacher,market,observed_cluster_canonical,christmas gift for teacher,True,gift,,teacher,,christmas,christmas,,,0,5,93057,277104.0,390477.0,469293.4,2,growing,18.74
-CD000099,Grandfather Gift,market,observed_cluster_canonical,grandfather gift,True,gift,grandpa,,,,,,,0,8,124201,206874.75,535558.5,508303.75,2,growing,18.11
-CD000100,Papa Christmas Gift,market,observed_cluster_canonical,papa christmas gift,True,gift,dad,,,christmas,christmas,,,0,3,136907,243036.0,349165.0,278432.33,2,growing,17.91
-CD000107,Boy Teen Gift,market,observed_cluster_canonical,boy teen gift,True,gift,boy,,,,,,,0,4,200746,302624.5,769551.0,753198.25,3,growing,17.9
-CD000103,Christmas Dog Gift,market,observed_cluster_canonical,christmas dog gift,True,gift,dog,,,christmas,christmas,,,0,4,154704,309855.75,460408.0,500004.75,2,growing,16.72
-CD000106,Christmas Gift for Dog,market,observed_cluster_canonical,christmas gift for dog,True,gift,dog,,,christmas,christmas,,,0,5,191983,322246.0,599478.0,546240.0,2,growing,15.67
-CD000108,Hairstylist Gift,market,observed_cluster_canonical,hairstylist gift,True,gift,,hairstylist,,,,,,0,4,287375,406720.25,618585.5,637015.25,2,growing,13.87
-CD000109,Wife Xmas Gift,market,observed_cluster_canonical,wife xmas gift,True,gift,wife,,,christmas,christmas,,,0,3,297456,450329.0,603202.0,528214.67,2,growing,13.58
-CD000111,Teacher Xmas Gift,market,observed_cluster_canonical,teacher xmas gift,True,gift,,teacher,,christmas,christmas,,,0,3,415924,579500.5,743077.0,820998.67,2,growing,11.76
-CD000110,Adult Daughter Christmas Gift,market,observed_cluster_canonical,adult daughter christmas gift,True,gift,daughter,,,christmas,christmas,,,0,3,328851,798759.0,1268667.0,982483.33,2,growing,11.26
-CD000112,Dad Fishing Gift,market,observed_cluster_canonical,dad fishing gift,True,gift,dad,,fishing,,,,,0,2,721485,772820.25,824155.5,824155.5,1,emerging,6.8
-CD000113,Gift for Teen Daughter,market,observed_cluster_canonical,gift for teen daughter,True,gift,daughter,,,,,,,0,2,952705,1017441.75,1082178.5,1082178.5,1,emerging,5.05
-CD000114,Gift for Dad Hunting,market,observed_cluster_canonical,gift for dad hunting,True,gift,dad,,hunting,,,,,0,2,1066896,1090013.0,1113130.0,1113130.0,1,emerging,4.52
-CD000115,Fishing Dad Gift,market,observed_cluster_canonical,fishing dad gift,True,gift,dad,,fishing,,,,,0,2,1188542,1226735.0,1264928.0,1264928.0,1,emerging,3.79
+demand_id,demand_name,parent_entity_type,parent_label_source,canonical_evidence_phrase,canonical_source_phrase,is_parent_market,intent,recipient,profession,interest,occasion,holiday,lifestyle,theme,product_count,keyword_count,best_rank,p25_rank,median_rank,average_rank,active_months,trend,strength_score
+CD000001,Gift for Mom,market,dominant_observed_phrase,gift for mom,gift for mom,True,gift,mom,,,,,,,0,96,65,115247.25,399184.5,483823.71,4,growing,48.6
+CD000002,Gift for Dad,market,dominant_observed_phrase,gift for dad,gift for dad,True,gift,dad,,,,,,,0,93,154,120206.0,395237.0,499675.94,4,growing,45.79
+CD000003,Teen Girl Gift,market,dominant_observed_phrase,teen girl gift trendy stuff,teen girl gift trendy stuff,True,gift,girl,,,,,,,0,114,455,109560.75,298016.5,420753.68,4,growing,42.86
+CD000005,Teen Boy Gift,market,dominant_observed_phrase,gift for teen boys,gift for teen boys,True,gift,boy,,,,,,,0,91,744,78191.0,306395.0,417784.23,4,growing,41.99
+CD000004,Grandma Gift,market,dominant_observed_phrase,grandma gift,grandma gift,True,gift,grandma,,,,,,,0,74,666,103702.5,310235.5,491425.42,4,growing,41.73
+CD000006,Teacher Gift,market,dominant_observed_phrase,teacher gift,teacher gift,True,gift,,teacher,,,,,,0,33,1015,97172.0,371043.0,487585.15,4,growing,40.34
+CD000007,Mom Christmas Gift,market,dominant_observed_phrase,christmas gift for mom,christmas gift for mom,True,gift,mom,,,christmas,christmas,,,0,86,1231,110436.0,377422.0,496988.59,4,growing,39.44
+CD000015,Baby Girl Gift,market,dominant_observed_phrase,baby girl gift,baby girl gift,True,gift,girl,,,,,,,0,29,4936,41787.0,128292.0,413008.86,4,growing,38.24
+CD000008,Grandpa Gift,market,dominant_observed_phrase,grandpa gift,grandpa gift,True,gift,grandpa,,,,,,,0,41,2236,76920.0,420470.0,455182.1,4,growing,38.2
+CD000011,Gift for Husband,market,dominant_observed_phrase,gift for husband,gift for husband,True,gift,husband,,,,,,,0,49,2778,80874.0,323374.0,482064.63,4,growing,37.69
+CD000024,Baby Boy Gift,market,dominant_observed_phrase,baby boy gift,baby boy gift,True,gift,boy,,,,,,,0,26,7566,39020.25,117413.5,334570.0,4,growing,37.12
+CD000010,Gift for Wife,market,dominant_observed_phrase,gift for wife,gift for wife,True,gift,wife,,,,,,,0,57,2513,126523.0,383668.0,556688.72,4,growing,36.88
+CD000009,Dad Christmas Gift,market,dominant_observed_phrase,dad christmas gift,dad christmas gift,True,gift,dad,,,christmas,christmas,,,0,60,2483,135056.5,386908.0,504296.7,4,growing,36.77
+CD000027,Mom Birthday Gift,market,dominant_observed_phrase,mom birthday gift,mom birthday gift,True,gift,mom,,,birthday,,,,0,44,8392,51974.5,134265.5,339636.05,4,declining,36.05
+CD000012,Dog Christmas Gift,market,dominant_observed_phrase,dog christmas gift,dog christmas gift,True,gift,dog,,,christmas,christmas,,,0,43,2843,164727.5,384932.0,496029.95,4,growing,35.93
+CD000038,Teacher Appreciation Gift,market,dominant_observed_phrase,teacher appreciation gift,teacher appreciation gift,True,appreciation,,teacher,,appreciation,,,,0,5,15075,36433.0,53546.0,230594.8,4,growing,35.92
+CD000014,Dog Gift,market,dominant_observed_phrase,dog gift,dog gift,True,gift,dog,,,,,,,0,32,3977,119304.75,378575.0,466795.47,4,growing,35.57
+CD000013,Teacher Christmas Gift,market,dominant_observed_phrase,teacher christmas gift,teacher christmas gift,True,gift,,teacher,,christmas,christmas,,,0,32,3609,139575.0,416919.5,498372.47,4,growing,35.44
+CD000020,Coffee Gift,market,dominant_observed_phrase,coffee gift,coffee gift,True,gift,,,coffee,,,,,0,12,7133,77348.75,180443.5,414239.58,4,growing,35.41
+CD000016,Nurse Gift,market,dominant_observed_phrase,nurse gift,nurse gift,True,gift,,nurse,,,,,,0,20,5255,112295.75,325913.5,453793.85,4,growing,34.97
+CD000034,Soccer Gift,market,dominant_observed_phrase,soccer gift,soccer gift,True,gift,,,soccer,,,,,0,10,11357,52127.75,151242.5,341854.0,4,growing,34.96
+CD000023,Papa Gift,market,dominant_observed_phrase,papa gift,papa gift,True,gift,dad,,,,,,,0,18,7534,94781.0,231555.5,414207.33,4,growing,34.55
+CD000035,Boy Christmas Gift,market,dominant_observed_phrase,boys christmas gift,boys christmas gift,True,gift,boy,,,christmas,christmas,,,0,37,11627,45414.0,310145.0,441508.89,4,growing,34.42
+CD000037,Dad Birthday Gift,market,dominant_observed_phrase,dad birthday gift,dad birthday gift,True,gift,dad,,,birthday,,,,0,36,12360,67314.0,143916.5,265655.17,4,declining,34.21
+CD000018,Girl Gift,market,dominant_observed_phrase,gift for girls,gift for girls,True,gift,girl,,,,,,,0,69,5340,151811.0,439953.0,518648.14,4,growing,33.97
+CD000017,Cat Lover Gift,market,dominant_observed_phrase,gift for people who love cats,gift for people who love cats,True,gift,cat,,,,,,,0,41,5328,145577.0,567920.0,551600.15,4,growing,33.79
+CD000025,Gardening Gift,market,dominant_observed_phrase,gardening gift,gardening gift,True,gift,,,gardening,,,,,0,11,7831,117072.0,337731.0,495647.36,4,growing,33.58
+CD000026,Fishing Gift,market,dominant_observed_phrase,fishing gift,fishing gift,True,gift,,,fishing,,,,,0,13,8165,89208.0,513700.0,555469.08,4,growing,33.58
+CD000030,Pickleball Gift,market,dominant_observed_phrase,pickleball gift,pickleball gift,True,gift,,,pickleball,,,,,0,11,10568,86724.5,342533.0,405546.0,4,growing,33.25
+CD000021,Cat Gift,market,dominant_observed_phrase,cat gift,cat gift,True,gift,cat,,,,,,,0,30,7210,144142.5,421181.5,558063.23,4,growing,33.17
+CD000019,Wife Christmas Gift,market,dominant_observed_phrase,wife christmas gift ideas,wife christmas gift ideas,True,gift,wife,,,christmas,christmas,,,0,52,6604,160592.0,495209.5,554558.06,4,growing,33.05
+CD000031,Girl Christmas Gift,market,dominant_observed_phrase,girls christmas gift,girls christmas gift,True,gift,girl,,,christmas,christmas,,,0,45,10897,97954.0,359443.0,454407.73,4,growing,32.85
+CD000022,Boy Gift,market,dominant_observed_phrase,gift for boys,gift for boys,True,gift,boy,,,,,,,0,53,7239,151586.0,533993.0,499861.0,4,growing,32.8
+CD000028,Toddler Girl Gift,market,dominant_observed_phrase,toddler girl gift,toddler girl gift,True,gift,girl,,,,,,,0,34,9014,158132.75,399356.5,501327.29,4,growing,32.33
+CD000033,Husband Christmas Gift,market,dominant_observed_phrase,gift for husband christmas,gift for husband christmas,True,gift,husband,,,christmas,christmas,,,0,39,11179,116619.5,430295.0,511721.74,4,growing,32.21
+CD000046,Hunting Gift,market,dominant_observed_phrase,hunting gift,hunting gift,True,gift,,,hunting,,,,,0,6,21030,79343.75,211001.0,213655.0,4,growing,31.77
+CD000036,Teen Girl Christmas Gift,market,dominant_observed_phrase,christmas gift for teen girls,christmas gift for teen girls,True,gift,girl,,,christmas,christmas,,,0,57,11801,148484.0,435648.0,506034.09,4,growing,31.52
+CD000043,Firefighter Gift,market,dominant_observed_phrase,firefighter gift,firefighter gift,True,gift,,firefighter,,,,,,0,7,19863,109730.5,171778.0,304727.43,4,growing,31.49
+CD000029,Grandma Christmas Gift,market,dominant_observed_phrase,grandma christmas gift,grandma christmas gift,True,gift,grandma,,,christmas,christmas,,,0,41,9464,200876.0,515848.0,590373.12,4,growing,31.4
+CD000049,Gift for Daughter,market,dominant_observed_phrase,gift for daughter,gift for daughter,True,gift,daughter,,,,,,,0,18,22172,97265.25,175837.5,314016.83,4,growing,31.37
+CD000041,Soccer Boy Gift,market,dominant_observed_phrase,soccer gift for boys,soccer gift for boys,True,gift,boy,,soccer,,,,,0,9,19843,73658.0,488841.0,639975.56,4,growing,31.23
+CD000032,Gift for Dad Daughter,market,dominant_observed_phrase,gift for dad from daughter,gift for dad from daughter,True,gift,dad,,,,,,,0,34,11063,259632.25,536389.0,635848.47,4,growing,30.32
+CD000047,Book Lover Gift,market,dominant_observed_phrase,book lover gift,book lover gift,True,gift,,,reading,,,book lover,,0,20,21887,114212.25,445061.5,482661.9,4,growing,30.09
+CD000060,Husband Birthday Gift,market,dominant_observed_phrase,husband birthday gift,husband birthday gift,True,gift,husband,,,birthday,,,,0,34,30054,117377.75,242812.0,382139.44,4,declining,29.67
+CD000040,Coffee Lover Gift,market,dominant_observed_phrase,coffee lover gift,coffee lover gift,True,gift,,,coffee,,,coffee lover,,0,24,18646,212422.75,366730.0,522950.88,4,growing,29.49
+CD000050,Mother Gift,market,dominant_observed_phrase,mother gift,mother gift,True,gift,mom,,,,,,,0,19,23950,153394.0,346302.0,523931.26,4,growing,29.45
+CD000052,Gift for Son,market,dominant_observed_phrase,gift for son,gift for son,True,gift,son,,,,,,,0,15,27364,149574.5,276274.0,374744.27,4,growing,29.32
+CD000044,Toddler Boy Gift,market,dominant_observed_phrase,toddler boy gift,toddler boy gift,True,gift,boy,,,,,,,0,30,20405,186108.0,481330.0,544558.67,4,growing,29.2
+CD000056,Cat Dad Gift,market,dominant_observed_phrase,cat dad gift,cat dad gift,True,gift,dad,,,,,cat lover,,0,6,28520,145548.75,293769.0,411054.67,4,growing,29.18
+CD000042,Teen Boy Christmas Gift,market,dominant_observed_phrase,christmas gift for teen boys,christmas gift for teen boys,True,gift,boy,,,christmas,christmas,,,0,36,19853,212725.75,442796.0,579343.03,4,growing,29.09
+CD000039,Camping Gift,market,dominant_observed_phrase,camping gift,camping gift,True,gift,,,camping,,,,,0,14,17729,230573.0,547951.0,581978.0,4,growing,29.06
+CD000061,Cat Cat Lover Gift,market,dominant_observed_phrase,cat gift for cat lovers,cat gift for cat lovers,True,gift,cat,,,,,cat lover,,0,7,33788,143743.0,233531.0,458936.29,4,growing,28.91
+CD000081,Dog Memorial,market,dominant_observed_phrase,dog memorial,dog memorial,True,memorial,dog,,,,,,,0,4,65852,87505.25,95653.5,88746.75,4,declining,28.79
+CD000051,Bride Mother Gift,market,dominant_observed_phrase,mother of the bride gift,mother of the bride gift,True,gift,mom,,,wedding,,,,0,16,25638,188149.5,404720.0,482150.25,4,declining,28.64
+CD000054,Dog Mom Gift,market,dominant_observed_phrase,dog mom gift,dog mom gift,True,gift,dog mom,,,,,dog lover,,0,13,27749,206752.0,293386.0,422446.77,4,growing,28.53
+CD000058,Grandmother Gift,market,dominant_observed_phrase,grandmother gift,grandmother gift,True,gift,grandma,,,,,,,0,15,29286,186115.5,326858.0,527588.87,4,growing,28.47
+CD000057,Dog Lover Gift,market,dominant_observed_phrase,gift for dog lovers,gift for dog lovers,True,gift,dog,,,,,dog lover,,0,19,28541,197078.0,318028.0,466765.47,4,growing,28.46
+CD000072,Wife Birthday Gift,market,dominant_observed_phrase,wife birthday gift ideas,wife birthday gift ideas,True,gift,wife,,,birthday,,,,0,31,47933,124404.5,294392.0,389218.94,4,declining,27.87
+CD000064,Grandma Birthday Gift,market,dominant_observed_phrase,grandma birthday gift,grandma birthday gift,True,gift,grandma,,,birthday,,,,0,27,36922,175313.0,330016.0,383249.63,4,declining,27.85
+CD000065,Gaming Gift,market,dominant_observed_phrase,gaming gift,gaming gift,True,gift,,,gaming,,,,,0,6,36951,169595.75,383644.0,412908.33,4,growing,27.76
+CD000063,Police Officer Gift,market,dominant_observed_phrase,gift for police officers,gift for police officers,True,gift,,police officer,,,,,,0,11,34280,189132.5,403083.0,493780.45,4,growing,27.71
+CD000068,Teen Girl Birthday Gift,market,dominant_observed_phrase,birthday gift for teen girls,birthday gift for teen girls,True,gift,girl,,,birthday,,,,0,16,45126,144828.75,312647.0,369996.75,4,declining,27.67
+CD000069,Girl Birthday Gift,market,dominant_observed_phrase,birthday gift for girls,birthday gift for girls,True,gift,girl,,,birthday,,,,0,24,45838,130432.75,369133.5,482737.96,4,declining,27.67
+CD000059,Mother Christmas Gift,market,dominant_observed_phrase,mother christmas gift,mother christmas gift,True,gift,mom,,,christmas,christmas,,,0,7,29967,90973.0,305660.0,371482.43,3,growing,27.47
+CD000055,Cat Mom Gift,market,dominant_observed_phrase,cat mom gift,cat mom gift,True,gift,cat mom,,,,,cat lover,,0,11,28148,247798.0,550035.0,616897.73,4,growing,27.44
+CD000053,Toddler Girl Christmas Gift,market,dominant_observed_phrase,toddler girl christmas gift,toddler girl christmas gift,True,gift,girl,,,christmas,christmas,,,0,23,27537,275794.5,477805.0,593697.78,4,growing,27.43
+CD000048,Dad Daughter Christmas Gift,market,dominant_observed_phrase,dad christmas gift from daughter,dad christmas gift from daughter,True,gift,dad,,,christmas,christmas,,,0,14,22168,128409.0,416036.5,489761.43,3,growing,27.38
+CD000062,Toddler Boy Christmas Gift,market,dominant_observed_phrase,toddler boy christmas gift,toddler boy christmas gift,True,gift,boy,,,christmas,christmas,,,0,17,34261,219044.0,427379.0,454256.82,4,growing,27.34
+CD000076,Bride Father Gift,market,dominant_observed_phrase,father of the bride gift,father of the bride gift,True,gift,dad,,,wedding,,,,0,8,54515,135203.75,299059.5,469989.5,4,declining,27.27
+CD000067,Father Gift,market,dominant_observed_phrase,father gift,father gift,True,gift,dad,,,,,,,0,13,43728,160403.0,470583.0,476770.62,4,growing,27.13
+CD000079,Soccer Girl Gift,market,dominant_observed_phrase,soccer gift for girls,soccer gift for girls,True,gift,girl,,soccer,,,,,0,9,60592,120735.0,335510.0,457534.22,4,growing,27.05
+CD000071,Mama Gift,market,dominant_observed_phrase,mama gift,mama gift,True,gift,mom,,,,,,,0,11,46879,239416.0,297731.0,510611.0,4,growing,26.54
+CD000077,Groom Mother Gift,market,dominant_observed_phrase,mother of the groom gift,mother of the groom gift,True,gift,mom,,,wedding,,,,0,12,57232,176029.75,423806.5,527883.33,4,declining,26.19
+CD000080,Reading Gift,market,dominant_observed_phrase,reading gift,reading gift,True,gift,,,reading,,,,,0,6,63497,189216.0,413104.0,466575.33,4,growing,25.74
+CD000045,Cat Christmas Gift,market,dominant_observed_phrase,cat christmas gift,cat christmas gift,True,gift,cat,,,christmas,christmas,,,0,22,20998,279443.0,494790.0,517427.95,3,growing,25.72
+CD000070,Gift for Dad Son,market,dominant_observed_phrase,gift for dad from son,gift for dad from son,True,gift,dad,,,,,,,0,16,46318,234684.25,775653.5,677259.0,4,growing,25.61
+CD000089,Fishing Boy Gift,market,dominant_observed_phrase,fishing gift for boys,fishing gift for boys,True,gift,boy,,fishing,,,,,0,4,95456,142176.5,281730.0,270187.0,4,growing,25.45
+CD000066,Grandpa Christmas Gift,market,dominant_observed_phrase,grandpa christmas gift,grandpa christmas gift,True,gift,grandpa,,,christmas,christmas,,,0,16,41264,127986.5,436807.5,520535.88,3,growing,25.37
+CD000093,Husband Anniversary Gift,market,dominant_observed_phrase,cool anniversary gift for husband,cool anniversary gift for husband,True,gift,husband,,,anniversary,,,,0,21,104454,146039.0,219468.0,426954.76,4,declining,25.37
+CD000094,Cat Girl Gift,market,dominant_observed_phrase,cat gift for girls,cat gift for girls,True,gift,girl,,,,,,,0,5,107343,156557.0,281885.0,437254.6,4,growing,24.88
+CD000075,Chef Gift,market,dominant_observed_phrase,chef gift,chef gift,True,gift,,chef,,,,,,0,18,50496,317438.5,687578.5,688998.72,4,growing,24.83
+CD000074,Gift for Adult Son,market,dominant_observed_phrase,gift for adult son,gift for adult son,True,gift,son,,,,,,,0,12,50484,373516.0,575900.0,644661.92,4,growing,24.68
+CD000083,Yoga Gift,market,dominant_observed_phrase,yoga gift,yoga gift,True,gift,,,yoga,,,,,0,6,78009,238232.5,418133.0,408156.5,4,growing,24.59
+CD000078,Truck Driver Gift,market,dominant_observed_phrase,truck driver gift,truck driver gift,True,gift,,truck driver,,,,,,0,7,59395,327641.0,549945.0,659336.43,4,growing,24.49
+CD000086,Baby Girl Christmas Gift,market,dominant_observed_phrase,baby girl christmas gift,baby girl christmas gift,True,gift,girl,,,christmas,christmas,,,0,12,85658,285601.5,319808.0,461590.75,4,growing,24.19
+CD000091,Daughter Birthday Gift,market,dominant_observed_phrase,daughter birthday gift,daughter birthday gift,True,gift,daughter,,,birthday,,,,0,12,99214,225615.5,415289.0,422393.17,4,declining,23.95
+CD000105,Boy Birthday Gift,market,dominant_observed_phrase,boys birthday gift,boys birthday gift,True,gift,boy,,,birthday,,,,0,12,140361,199855.5,243049.5,304087.33,4,declining,23.67
+CD000073,Father Christmas Gift,market,dominant_observed_phrase,father christmas gift,father christmas gift,True,gift,dad,,,christmas,christmas,,,0,6,48828,216442.75,683509.5,639256.5,3,growing,23.25
+CD000082,Gift for Adult Daughter,market,dominant_observed_phrase,gift for adult daughter,gift for adult daughter,True,gift,daughter,,,,,,,0,15,69631,508108.5,542577.0,645759.4,4,growing,23.07
+CD000096,Wife Anniversary Gift,market,dominant_observed_phrase,anniversary gift for wife,anniversary gift for wife,True,gift,wife,,,anniversary,,,,0,13,113658,267079.0,475389.0,485317.38,4,declining,23.02
+CD000095,Mother Birthday Gift,market,dominant_observed_phrase,mother birthday gift,mother birthday gift,True,gift,mom,,,birthday,,,,0,9,111215,254093.0,623549.0,617369.89,4,declining,22.91
+CD000092,Baby Boy Christmas Gift,market,dominant_observed_phrase,baby boy christmas gift,baby boy christmas gift,True,gift,boy,,,christmas,christmas,,,0,12,101696,344081.0,568827.5,647209.42,4,growing,22.65
+CD000090,Police Gift,market,dominant_observed_phrase,police gift,police gift,True,gift,,police officer,,,,,,0,7,97331,386666.0,612905.0,678826.29,4,growing,22.46
+CD000084,Electrician Gift,market,dominant_observed_phrase,electrician gift,electrician gift,True,gift,,electrician,,,,,,0,8,81075,555291.5,742789.0,655073.63,4,growing,22.07
+CD000103,Daughter Christmas Gift,market,dominant_observed_phrase,christmas gift for daughter,christmas gift for daughter,True,gift,daughter,,,christmas,christmas,,,0,7,136786,168041.0,338683.0,444191.71,3,growing,21.27
+CD000109,Dog Birthday Gift,market,dominant_observed_phrase,dog birthday gift,dog birthday gift,True,gift,dog,,,birthday,,,,0,13,172427,320494.0,505243.0,624316.0,4,declining,21.25
+CD000099,Male Teacher Gift,market,dominant_observed_phrase,male teacher gift,male teacher gift,True,gift,,teacher,,,,,,0,9,120336,440141.0,1003821.0,758325.11,4,growing,21.0
+CD000097,Dog Dad Gift,market,dominant_observed_phrase,dog dad gift,dog dad gift,True,gift,dad,,,,,dog lover,,0,9,114607,531609.0,844695.0,837575.33,4,growing,20.93
+CD000085,Teacher Halloween Gift,market,dominant_observed_phrase,halloween teacher gift,halloween teacher gift,True,gift,,teacher,,halloween,halloween,,,0,7,82132,165165.5,357593.0,359015.43,2,growing,20.36
+CD000106,Grandpa Birthday Gift,market,dominant_observed_phrase,grandpa birthday gift,grandpa birthday gift,True,gift,grandpa,,,birthday,,,,0,16,143641,507108.25,811198.0,726969.75,4,declining,20.36
+CD000088,Husband Day Valentine Gift,market,dominant_observed_phrase,husband valentines day gift,husband valentines day gift,True,gift,husband,,,valentine's day,valentine,,,0,1,92549,92549.0,92549.0,92549.0,1,emerging,20.13
+CD000116,Girl Soccer Gift,market,dominant_observed_phrase,girls soccer gift,girls soccer gift,True,gift,girl,,soccer,,,,,0,6,216509,383400.75,537818.5,560956.0,4,growing,20.09
+CD000087,Dad Son Christmas Gift,market,dominant_observed_phrase,dad christmas gift from son,dad christmas gift from son,True,gift,dad,,,christmas,christmas,,,0,8,88737,285833.0,379153.0,591111.13,2,growing,18.9
+CD000098,Mom Xmas Gift,market,dominant_observed_phrase,xmas gift for mom,xmas gift for mom,True,gift,mom,,,christmas,christmas,,,0,6,116788,240275.5,356751.0,493427.5,2,growing,18.46
+CD000101,Grandfather Gift,market,dominant_observed_phrase,grandfather gift,grandfather gift,True,gift,grandpa,,,,,,,0,8,124201,206874.75,535558.5,508303.75,2,growing,18.15
+CD000112,Boy Soccer Gift,market,dominant_observed_phrase,boys soccer gift,boys soccer gift,True,gift,boy,,soccer,,,,,0,4,186908,361589.0,603544.5,609356.5,3,growing,18.05
+CD000127,Son Birthday Gift,market,dominant_observed_phrase,son birthday gift,son birthday gift,True,gift,son,,,birthday,,,,0,11,302259,719180.0,786425.0,885043.27,4,declining,17.3
+CD000102,Nurse Christmas Gift,market,dominant_observed_phrase,nurse christmas gift,nurse christmas gift,True,gift,,nurse,,christmas,christmas,,,0,4,129194,258350.0,702987.5,670026.5,2,growing,17.27
+CD000104,Papa Christmas Gift,market,dominant_observed_phrase,papa christmas gift,papa christmas gift,True,gift,dad,,,christmas,christmas,,,0,7,136907,339643.5,349225.0,481391.71,2,growing,17.25
+CD000100,Grandmother Christmas Gift,market,dominant_observed_phrase,grandmother christmas gift,grandmother christmas gift,True,gift,grandma,,,christmas,christmas,,,0,6,120702,352830.25,538858.0,485287.0,2,growing,17.11
+CD000108,Girl Teen Gift,market,dominant_observed_phrase,girl teen gift,girl teen gift,True,gift,girl,,,,,,,0,14,169597,663796.5,802190.5,850753.79,3,growing,16.78
+CD000126,Kid Boy Christmas Gift,market,dominant_observed_phrase,kids christmas gift boys,kids christmas gift boys,True,gift,boy,,,christmas,christmas,,,0,5,298256,315082.0,942479.0,784776.2,3,growing,16.39
+CD000134,Soccer Kid Gift,market,dominant_observed_phrase,soccer kids gift,soccer kids gift,True,gift,,,soccer,,,,,0,6,495446,589579.75,692847.5,789039.67,4,growing,16.29
+CD000114,Boy Teen Gift,market,dominant_observed_phrase,boy teen gift,boy teen gift,True,gift,boy,,,,,,,0,9,200746,611275.0,918371.0,906989.33,3,growing,16.28
+CD000107,Dog Xmas Gift,market,dominant_observed_phrase,dog xmas gift,dog xmas gift,True,gift,dog,,,christmas,christmas,,,0,3,155691,359985.0,564279.0,540017.0,2,growing,16.21
+CD000133,Teen Boy Birthday Gift,market,dominant_observed_phrase,birthday gift for teen boys,birthday gift for teen boys,True,gift,boy,,,birthday,,,,0,7,487262,631129.5,856604.0,830913.86,4,declining,15.98
+CD000115,Wife Xmas Gift,market,dominant_observed_phrase,xmas gift for wife,xmas gift for wife,True,gift,wife,,,christmas,christmas,,,0,8,202665,316459.5,494909.5,547037.13,2,growing,15.79
+CD000117,Son Christmas Gift,market,dominant_observed_phrase,christmas gift for son,christmas gift for son,True,gift,son,,,christmas,christmas,,,0,7,220281,291171.5,572109.0,699850.29,2,growing,15.55
+CD000111,Dad Kid Gift,market,dominant_observed_phrase,gift for dad from kids,gift for dad from kids,True,gift,dad,,,,,,,0,8,183134,450690.25,649448.5,713890.88,2,growing,15.08
+CD000110,Girl Halloween Gift,market,dominant_observed_phrase,halloween gift for girls,halloween gift for girls,True,gift,girl,,,halloween,halloween,,,0,6,176823,458464.25,748957.5,686821.0,2,growing,15.0
+CD000120,Dad Xmas Gift,market,dominant_observed_phrase,dad xmas gift,dad xmas gift,True,gift,dad,,,christmas,christmas,,,0,7,257418,291382.5,610255.0,528000.29,2,growing,14.98
+CD000121,Adult Son Christmas Gift,market,dominant_observed_phrase,adult son christmas gift ideas,adult son christmas gift ideas,True,gift,son,,,christmas,christmas,,,0,5,266686,384499.0,635452.0,689048.0,2,growing,14.24
+CD000113,Mom Kid Gift,market,dominant_observed_phrase,gift for mom from kids,gift for mom from kids,True,gift,mom,,,,,,,0,4,188717,624247.25,815992.0,732972.25,2,growing,14.05
+CD000132,Kid Boy Gift,market,dominant_observed_phrase,kids gift boys,kids gift boys,True,gift,boy,,,,,,,0,5,389018,712774.0,768404.0,826088.2,3,growing,14.05
+CD000124,Hairstylist Gift,market,dominant_observed_phrase,hairstylist gift,hairstylist gift,True,gift,,hairstylist,,,,,,0,4,287375,406720.25,618585.5,637015.25,2,growing,13.92
+CD000118,Thanksgiving Teacher Gift,market,dominant_observed_phrase,thanksgiving teacher gift,thanksgiving teacher gift,True,gift,,teacher,,thanksgiving,thanksgiving,,,0,3,245731,252817.0,259903.0,263902.0,1,stable,13.83
+CD000125,Teacher Xmas Gift,market,dominant_observed_phrase,teacher gift xmas,teacher gift xmas,True,gift,,teacher,,christmas,christmas,,,0,5,287375,415924.0,739636.0,698001.4,2,growing,13.68
+CD000128,Adult Daughter Christmas Gift,market,dominant_observed_phrase,christmas gift for adult daughter,christmas gift for adult daughter,True,gift,daughter,,,christmas,christmas,,,0,6,325663,378194.0,642128.0,759561.5,2,growing,13.64
+CD000122,Cat Cat Gift,market,dominant_observed_phrase,cat gift for cats,cat gift for cats,True,gift,cat,,,,,,,0,3,280157,506738.0,733319.0,811707.33,2,growing,13.36
+CD000119,Boy Halloween Gift,market,dominant_observed_phrase,halloween gift for boys,halloween gift for boys,True,gift,boy,,,halloween,halloween,,,0,5,245813,626433.0,805152.0,796604.6,2,growing,13.22
+CD000131,Kid Girl Christmas Gift,market,dominant_observed_phrase,kids christmas gift girls,kids christmas gift girls,True,gift,girl,,,christmas,christmas,,,0,4,379242,480114.0,812463.0,796679.75,2,growing,12.4
+CD000123,Grandfather Christmas Gift,market,dominant_observed_phrase,grandfather christmas gift,grandfather christmas gift,True,gift,grandpa,,,christmas,christmas,,,0,3,283914,707782.5,1131651.0,891915.0,2,growing,12.15
+CD000130,Kid Girl Gift,market,dominant_observed_phrase,kids gift girls,kids gift girls,True,gift,girl,,,,,,,0,8,365847,670685.25,807215.0,799151.13,2,growing,11.82
+CD000129,Fishing Dad Gift,market,dominant_observed_phrase,fishing gift for dad,fishing gift for dad,True,gift,dad,,fishing,,,,,0,5,347109,884927.0,1012325.0,954843.4,2,growing,11.16
+CD000136,Girl Xmas Gift,market,dominant_observed_phrase,girls xmas gift,girls xmas gift,True,gift,girl,,,christmas,christmas,,,0,3,525468,608222.5,690977.0,855780.33,2,growing,11.04
+CD000142,Adult Daughter Birthday Gift,market,dominant_observed_phrase,adult daughter birthday gift,adult daughter birthday gift,True,gift,daughter,,,birthday,,,,0,5,906795,1007446.0,1025610.0,1050829.0,3,declining,10.33
+CD000138,Cat Lover Christmas Gift,market,dominant_observed_phrase,christmas gift for cat lovers,christmas gift for cat lovers,True,gift,cat,,,christmas,christmas,cat lover,,0,4,545005,801649.75,933719.0,914022.0,2,growing,10.03
+CD000137,Hunting Dad Gift,market,dominant_observed_phrase,hunting gift for dad,hunting gift for dad,True,gift,dad,,hunting,,,,,0,3,543428,839402.0,1135376.0,959586.33,2,growing,9.73
+CD000135,Dad Kid Christmas Gift,market,dominant_observed_phrase,christmas gift for dad from kids,christmas gift for dad from kids,True,gift,dad,,,christmas,christmas,,,0,3,520194,743787.0,967380.0,935120.33,1,emerging,7.8
+CD000139,Senior Dog Gift,market,dominant_observed_phrase,gift for senior dogs,gift for senior dogs,True,gift,dog,,,,,,,0,2,648834,649117.0,649400.0,649400.0,1,emerging,7.8
+CD000145,Husband Xmas Gift,market,dominant_observed_phrase,husband xmas gift ideas,husband xmas gift ideas,True,gift,husband,,,christmas,christmas,,,0,4,977673,1162051.5,1251453.5,1217761.75,2,growing,7.09
+CD000140,Dad Fishing Gift,market,dominant_observed_phrase,dad fishing gift,dad fishing gift,True,gift,dad,,fishing,,,,,0,2,721485,772820.25,824155.5,824155.5,1,emerging,6.85
+CD000141,Grandma Xmas Gift,market,dominant_observed_phrase,grandma xmas gift,grandma xmas gift,True,gift,grandma,,,christmas,christmas,,,0,2,848567,872176.75,895786.5,895786.5,1,emerging,5.99
+CD000144,Coffee Christmas Gift,market,dominant_observed_phrase,coffee christmas gift,coffee christmas gift,True,gift,,,coffee,christmas,christmas,,,0,3,957524,1006172.5,1054821.0,1066962.33,1,emerging,5.14
+CD000143,Gift for Teen Daughter,market,dominant_observed_phrase,gift for teen daughter,gift for teen daughter,True,gift,daughter,,,,,,,0,2,952705,1017441.75,1082178.5,1082178.5,1,emerging,5.1
+CD000148,Baby Mom Gift,market,dominant_observed_phrase,baby mom gift,baby mom gift,True,gift,mom,,,,,,,0,2,1051942,1054150.25,1056358.5,1056358.5,1,emerging,4.74
+CD000147,Toddler Mom Gift,market,dominant_observed_phrase,gift from toddler to mom,gift from toddler to mom,True,gift,mom,,,,,,,0,2,1046183,1059183.75,1072184.5,1072184.5,1,emerging,4.73
+CD000146,Kid Mom Gift,market,dominant_observed_phrase,gift from kids to mom,gift from kids to mom,True,gift,mom,,,,,,,0,2,990766,1097146.25,1203526.5,1203526.5,1,emerging,4.71
+CD000149,Dad Hunting Gift,market,dominant_observed_phrase,gift for dad hunting,gift for dad hunting,True,gift,dad,,hunting,,,,,0,2,1066896,1090013.0,1113130.0,1113130.0,1,emerging,4.57
+CD000150,Dad Toddler Gift,market,dominant_observed_phrase,gift to dad from toddler,gift to dad from toddler,True,gift,dad,,,,,,,0,2,1184824,1205784.75,1226745.5,1226745.5,1,emerging,3.92
