@@ -113,10 +113,18 @@ MARKET_SCORECARD_COLUMNS = [
     "recommended_action",
 ]
 
+SEGMENT_METADATA_COLUMNS = [
+    "segment_signature",
+    "segment_refinements",
+    "primary_segment_type",
+    "primary_segment_value",
+]
+
 RESEARCH_CANDIDATE_COLUMNS = [
     "priority",
     "parent_demand",
     "child_segment",
+    *SEGMENT_METADATA_COLUMNS,
     "reason",
     "opportunity_score",
     "estimated_roi",
@@ -466,15 +474,12 @@ def build_customization_recommendation(segments: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows, columns=CUSTOMIZATION_RECOMMENDATION_COLUMNS)
 
 
-def recommendation_lookup(frame: pd.DataFrame, segment_column: str, value_column: str) -> dict[str, str]:
-    if frame.empty:
-        return {}
-    grouped = (
-        frame.groupby(segment_column)[value_column]
-        .apply(lambda values: " | ".join(values.astype(str).head(3)))
-        .to_dict()
-    )
-    return grouped
+def recommended_values_from_rules(values: list[tuple[str, str, str]]) -> str:
+    return " | ".join(value for value, _, _ in values[:3])
+
+
+def segment_metadata(segment: pd.Series) -> dict[str, str]:
+    return {column: clean_text(segment.get(column)) for column in SEGMENT_METADATA_COLUMNS}
 
 
 def candidate_priority(parent_priority: str, segment_strength: float, opportunity_score: float) -> str:
@@ -502,17 +507,9 @@ def estimated_roi(priority: str, opportunity_score: float, segment_strength: flo
 def build_research_candidates(
     market_scorecard: pd.DataFrame,
     segments: pd.DataFrame,
-    product_recommendations: pd.DataFrame,
-    customization_recommendations: pd.DataFrame,
     opportunities: pd.DataFrame,
 ) -> pd.DataFrame:
     parent_lookup = market_scorecard.set_index("demand_name")
-    product_lookup = recommendation_lookup(product_recommendations, "child_segment", "recommended_product")
-    customization_lookup = recommendation_lookup(
-        customization_recommendations,
-        "child_segment",
-        "customization",
-    )
     opportunity_lookup = opportunities.groupby("demand_name")["opportunity_score"].max().to_dict()
 
     rows = []
@@ -532,13 +529,14 @@ def build_research_candidates(
             opportunity_score,
         )
         child_segment = clean_text(segment["segment_name"])
-        products = product_lookup.get(child_segment, "")
-        customizations = customization_lookup.get(child_segment, "")
+        products = recommended_values_from_rules(product_rules(segment))
+        customizations = recommended_values_from_rules(customization_rules(segment))
         rows.append(
             {
                 "priority": priority,
                 "parent_demand": parent_demand,
                 "child_segment": child_segment,
+                **segment_metadata(segment),
                 "reason": (
                     f"{child_segment} inherits {parent['market_size']} parent demand "
                     f"with segment strength {round(numeric(segment.get('segment_strength')), 2)}."
@@ -696,8 +694,6 @@ def build_decision_layer(output_dir: Path, rebuild: bool) -> None:
     research_candidates = build_research_candidates(
         market_scorecard,
         segments,
-        product_recommendations,
-        customization_recommendations,
         opportunities,
     )
     market_calendar = build_market_calendar(market_scorecard, seasonality_map)

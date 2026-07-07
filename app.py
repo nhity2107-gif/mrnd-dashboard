@@ -854,6 +854,98 @@ def first_pipe_value(value: object) -> str:
     return values[0] if values else ""
 
 
+SEGMENT_IDENTITY_COLUMNS = [
+    "segment_signature",
+    "segment_refinements",
+    "primary_segment_type",
+    "primary_segment_value",
+]
+
+
+def has_nonblank_column(df: pd.DataFrame, column: str) -> bool:
+    if df.empty or column not in df.columns:
+        return False
+    return df[column].map(clean_text).ne("").any()
+
+
+def normalize_segment_columns(df: pd.DataFrame) -> pd.DataFrame:
+    frame = df.copy()
+    if "child_segment" not in frame.columns and "segment_name" in frame.columns:
+        frame["child_segment"] = frame["segment_name"]
+    return frame
+
+
+def segment_join_keys(left: pd.DataFrame, right: pd.DataFrame) -> list[str]:
+    left = normalize_segment_columns(left)
+    right = normalize_segment_columns(right)
+    if (
+        "parent_demand" in left.columns
+        and "parent_demand" in right.columns
+        and has_nonblank_column(left, "segment_signature")
+        and has_nonblank_column(right, "segment_signature")
+    ):
+        return ["parent_demand", "segment_signature"]
+    if (
+        "parent_demand" in left.columns
+        and "parent_demand" in right.columns
+        and "child_segment" in left.columns
+        and "child_segment" in right.columns
+    ):
+        return ["parent_demand", "child_segment"]
+    if has_nonblank_column(left, "segment_signature") and has_nonblank_column(right, "segment_signature"):
+        return ["segment_signature"]
+    if "child_segment" in left.columns and "child_segment" in right.columns:
+        return ["child_segment"]
+    return []
+
+
+def merge_segment_frames(
+    left: pd.DataFrame,
+    right: pd.DataFrame,
+    how: str = "left",
+    suffixes: tuple[str, str] = ("", "_right"),
+) -> pd.DataFrame:
+    if left.empty:
+        return normalize_segment_columns(right) if how == "outer" else left.copy()
+    if right.empty:
+        return normalize_segment_columns(left)
+    left_frame = normalize_segment_columns(left)
+    right_frame = normalize_segment_columns(right)
+    keys = segment_join_keys(left_frame, right_frame)
+    if not keys:
+        return left_frame
+    right_frame = right_frame.drop_duplicates(subset=keys, keep="first")
+    return left_frame.merge(right_frame, on=keys, how=how, suffixes=suffixes)
+
+
+def segment_metadata_columns(df: pd.DataFrame) -> list[str]:
+    return existing_columns(df, SEGMENT_IDENTITY_COLUMNS)
+
+
+def segment_option_label(row: pd.Series) -> str:
+    parent = clean_text(row.get("parent_demand"))
+    child = clean_text(row.get("child_segment", row.get("segment_name")))
+    signature = clean_text(row.get("segment_signature"))
+    if parent and signature:
+        return f"{parent} | {child or signature} | {signature}"
+    if parent and child:
+        return f"{parent} | {child}"
+    return child or signature or "Segment"
+
+
+def select_segment_row(label: str, data: pd.DataFrame, key: str) -> pd.Series:
+    if data.empty:
+        return pd.Series(dtype=object)
+    options = list(range(len(data)))
+    selected_index = st.selectbox(
+        label,
+        options,
+        key=key,
+        format_func=lambda index: segment_option_label(data.iloc[index]),
+    )
+    return data.iloc[selected_index]
+
+
 def build_research_queue() -> pd.DataFrame:
     candidates = load_csv("research_candidates")
     scores = load_csv("opportunity_scorecard")
@@ -882,15 +974,12 @@ def build_research_queue() -> pd.DataFrame:
         score_columns = [
             "parent_demand",
             "child_segment",
+            *SEGMENT_IDENTITY_COLUMNS,
             "total_score",
             "recommended_priority",
             "explanation",
         ]
-        queue = queue.merge(
-            scores[existing_columns(scores, score_columns)],
-            on=["parent_demand", "child_segment"],
-            how="left",
-        )
+        queue = merge_segment_frames(queue, scores[existing_columns(scores, score_columns)], how="left")
         queue["decision_opportunity_score"] = queue.get("opportunity_score")
         queue["opportunity_score"] = queue["total_score"].combine_first(queue["decision_opportunity_score"])
 
@@ -1321,14 +1410,20 @@ def customization_score_by_parent(scorecard: pd.DataFrame, customization_fit: pd
         scorecard.empty
         or customization_fit.empty
         or "parent_demand" not in scorecard.columns
-        or "child_segment" not in scorecard.columns
-        or "child_segment" not in customization_fit.columns
+        or "child_segment" not in normalize_segment_columns(scorecard).columns
+        or "child_segment" not in normalize_segment_columns(customization_fit).columns
     ):
         return pd.DataFrame()
     available_scores = existing_columns(customization_fit, score_columns)
     if not available_scores:
         return pd.DataFrame()
-    merged = scorecard[["parent_demand", "child_segment"]].merge(customization_fit, on="child_segment", how="left")
+    score_keys = existing_columns(scorecard, ["parent_demand", "child_segment", *SEGMENT_IDENTITY_COLUMNS])
+    fit_columns = existing_columns(customization_fit, ["parent_demand", "child_segment", *SEGMENT_IDENTITY_COLUMNS, *score_columns])
+    merged = merge_segment_frames(
+        scorecard[score_keys].drop_duplicates(),
+        customization_fit[fit_columns],
+        how="left",
+    )
     if merged.empty:
         return pd.DataFrame()
     merged["Customization Fit Score"] = merged[available_scores].apply(
@@ -1915,11 +2010,11 @@ def decision_data() -> pd.DataFrame:
         return queue
     result = queue.copy()
     if not product_fit.empty:
-        result = result.merge(product_fit, on="child_segment", how="left", suffixes=("", "_product_fit"))
+        result = merge_segment_frames(result, product_fit, how="left", suffixes=("", "_product_fit"))
     if not customization_fit.empty:
-        result = result.merge(customization_fit, on="child_segment", how="left", suffixes=("", "_custom_fit"))
+        result = merge_segment_frames(result, customization_fit, how="left", suffixes=("", "_custom_fit"))
     if not reasoning.empty:
-        result = result.merge(reasoning, on="child_segment", how="left", suffixes=("", "_reasoning"))
+        result = merge_segment_frames(result, reasoning, how="left", suffixes=("", "_reasoning"))
     result["recommended_product"] = result.get("best_product", result.get("primary_product", ""))
     result["recommended_customization"] = result.get("best_customization", result.get("primary_customization", ""))
     return sort_by_available(result, ["priority", "opportunity_score"], [True, False])
@@ -2748,7 +2843,7 @@ def product_customization_fit() -> None:
         st.info("Product and customization fit CSVs are missing or empty.")
         return
 
-    combined = product_fit.merge(customization_fit, on="child_segment", how="outer", suffixes=("_product", "_custom"))
+    combined = merge_segment_frames(product_fit, customization_fit, how="outer", suffixes=("_product", "_custom"))
     filters = st.columns(3)
     with filters[0]:
         combined = filter_multiselect(combined, "best_product", "Best Product", "fit_product")
@@ -3599,6 +3694,7 @@ def build_child_niche_rows(demand_name: str, queue_rows: pd.DataFrame, demand_se
     segment_columns = [
         "parent_demand",
         "segment_name",
+        *SEGMENT_IDENTITY_COLUMNS,
         "keyword_count",
         "best_rank",
         "median_rank",
@@ -3618,7 +3714,7 @@ def build_child_niche_rows(demand_name: str, queue_rows: pd.DataFrame, demand_se
     elif segment_rows.empty:
         children = queue_rows.copy()
     else:
-        children = queue_rows.merge(segment_rows, on="child_segment", how="outer", suffixes=("", "_segment"))
+        children = merge_segment_frames(queue_rows, segment_rows, how="outer", suffixes=("", "_segment"))
 
     if children.empty:
         return children
@@ -3655,17 +3751,39 @@ def build_child_niche_rows(demand_name: str, queue_rows: pd.DataFrame, demand_se
     return sort_by_available(children, ["opportunity_score", "estimated_share"], [False, False])
 
 
+def fit_rows_for_segments(
+    fit: pd.DataFrame,
+    child_segments: list[str],
+    segment_context: pd.DataFrame | None = None,
+) -> pd.DataFrame:
+    if fit.empty:
+        return pd.DataFrame()
+    fit_frame = normalize_segment_columns(fit)
+    if segment_context is not None and not segment_context.empty:
+        context = normalize_segment_columns(segment_context)
+        keys = segment_join_keys(context, fit_frame)
+        if keys:
+            key_rows = context[keys].drop_duplicates()
+            for key in keys:
+                key_rows = key_rows[key_rows[key].map(clean_text) != ""]
+            if not key_rows.empty:
+                rows = key_rows.merge(fit_frame, on=keys, how="inner")
+                if not rows.empty:
+                    return rows.drop_duplicates()
+    if child_segments and "child_segment" in fit_frame.columns:
+        return fit_frame[fit_frame["child_segment"].astype(str).isin(child_segments)].copy()
+    return pd.DataFrame()
+
+
 def distribution_from_fit_and_evidence(
     fit: pd.DataFrame,
     child_segments: list[str],
     score_columns: dict[str, str],
     evidence_keywords: list[str],
     term_map: dict[str, list[str]],
+    segment_context: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
-    if child_segments and not fit.empty and "child_segment" in fit.columns:
-        subset = fit[fit["child_segment"].astype(str).isin(child_segments)].copy()
-    else:
-        subset = pd.DataFrame()
+    subset = fit_rows_for_segments(fit, child_segments, segment_context)
 
     evidence_denominator = len(evidence_keywords)
     evidence_counts = {
@@ -4175,6 +4293,7 @@ def demand_explorer() -> None:
         PRODUCT_SCORE_COLUMNS,
         evidence_keywords,
         PRODUCT_TERMS,
+        child_rows,
     )
     customization_distribution = distribution_from_fit_and_evidence(
         customization_fit,
@@ -4182,6 +4301,7 @@ def demand_explorer() -> None:
         CUSTOMIZATION_SCORE_COLUMNS,
         evidence_keywords,
         CUSTOMIZATION_TERMS,
+        child_rows,
     )
 
     section_break()
@@ -4282,8 +4402,7 @@ def research_center() -> None:
     section_break()
     st.subheader("C. Expandable Details")
     if "child_segment" in data.columns:
-        selected = st.selectbox("Inspect research action", data["child_segment"].astype(str).drop_duplicates().tolist(), key="rc_inspect")
-        detail = data[data["child_segment"].astype(str) == selected].iloc[0]
+        detail = select_segment_row("Inspect research action", data.reset_index(drop=True), "rc_inspect")
         with st.expander("Analyst reasoning", expanded=True):
             for label, column in [
                 ("Strengths", "strengths"),
@@ -4324,10 +4443,10 @@ def decision_center() -> None:
         return
     data = scorecard.copy()
     if not reasoning.empty and "child_segment" in reasoning.columns:
-        data = data.merge(reasoning, on="child_segment", how="left", suffixes=("", "_reasoning"))
+        data = merge_segment_frames(data, reasoning, how="left", suffixes=("", "_reasoning"))
     data = sort_by_available(data, ["total_score", "child_segment"], [False, True])
-    selected = st.selectbox("Select child segment", data["child_segment"].astype(str).tolist(), key="decision_center_segment")
-    row = data[data["child_segment"].astype(str) == selected].iloc[0]
+    data = data.reset_index(drop=True)
+    row = select_segment_row("Select child segment", data, "decision_center_segment")
     decision = score_to_decision(row.get("total_score"))
     confidence = confidence_from_score(row.get("total_score"), row.get("recommended_priority"))
 
@@ -4366,7 +4485,7 @@ def decision_center() -> None:
         f"{clean_text(row.get('child_segment'))} should be classified as '{decision}'. {clean_text(row.get('explanation')) or 'Use score breakdown and analyst reasoning to guide the next action.'}",
     )
     with st.expander("Scorecard detail", expanded=False):
-        display_table(data[data["child_segment"].astype(str) == selected], height=260)
+        display_table(pd.DataFrame([row]), height=260)
 
 
 def fit_level(score: object) -> str:
@@ -4491,9 +4610,10 @@ def product_intelligence_segments(
     demand_segments: pd.DataFrame,
 ) -> pd.DataFrame:
     frames = []
-    scored_children: set[str] = set()
     metadata_columns = [
+        "parent_demand",
         "child_segment",
+        *SEGMENT_IDENTITY_COLUMNS,
         "segment_label_source",
         "canonical_evidence_phrase",
         "is_evidence_backed",
@@ -4508,7 +4628,6 @@ def product_intelligence_segments(
         for column in metadata_columns:
             if column not in subset.columns:
                 subset[column] = ""
-        scored_children.update(subset["child_segment"].map(clean_text))
         frames.append(subset)
 
     if not demand_segments.empty and "segment_name" in demand_segments.columns:
@@ -4519,19 +4638,24 @@ def product_intelligence_segments(
         for column in metadata_columns:
             if column not in evidence.columns:
                 evidence[column] = ""
-        if scored_children:
-            evidence = evidence[evidence["child_segment"].isin(scored_children)].copy()
         frames.append(evidence[metadata_columns])
 
     if not frames:
         return pd.DataFrame(columns=metadata_columns)
 
     raw_segments = pd.concat(frames, ignore_index=True)
+    raw_segments = normalize_segment_columns(raw_segments)
     raw_segments["child_segment"] = raw_segments["child_segment"].map(clean_text)
     raw_segments = raw_segments[raw_segments["child_segment"] != ""].copy()
     rows = []
-    for child_segment, group in raw_segments.groupby("child_segment", sort=False):
-        row = {"child_segment": child_segment}
+    if has_nonblank_column(raw_segments, "segment_signature") and "parent_demand" in raw_segments.columns:
+        group_columns = ["parent_demand", "segment_signature"]
+    elif "parent_demand" in raw_segments.columns:
+        group_columns = ["parent_demand", "child_segment"]
+    else:
+        group_columns = ["child_segment"]
+    for _, group in raw_segments.groupby(group_columns, sort=False):
+        row = {"child_segment": first_nonempty_value(group, "child_segment")}
         for column in metadata_columns:
             if column != "child_segment":
                 row[column] = first_nonempty_value(group, column)
@@ -4590,18 +4714,18 @@ def product_intelligence() -> None:
     else:
         segment_options = validated
 
-    segments = segment_options["child_segment"].dropna().astype(str).tolist()
-    if not segments:
+    segment_options = segment_options.reset_index(drop=True)
+    if segment_options.empty:
         st.info("No evidence-backed child segments are available for Product Intelligence.")
         return
 
-    selected = st.selectbox(
-        "Select child segment",
-        segments,
-        key="product_intelligence_segment",
-    )
-    product_row = first_matching_row(product_fit, "child_segment", selected)
-    custom_row = first_matching_row(customization_fit, "child_segment", selected)
+    selected_row = select_segment_row("Select child segment", segment_options, "product_intelligence_segment")
+    selected = clean_text(selected_row.get("child_segment"))
+    selected_context = pd.DataFrame([selected_row])
+    product_matches = fit_rows_for_segments(product_fit, [selected], selected_context)
+    custom_matches = fit_rows_for_segments(customization_fit, [selected], selected_context)
+    product_row = product_matches.iloc[0] if not product_matches.empty else pd.Series(dtype=object)
+    custom_row = custom_matches.iloc[0] if not custom_matches.empty else pd.Series(dtype=object)
     product_rows = segment_fit_scores(product_row, PRODUCT_SCORE_COLUMNS)
     custom_rows = segment_fit_scores(custom_row, CUSTOMIZATION_SCORE_COLUMNS)
 
@@ -4629,8 +4753,8 @@ def product_intelligence() -> None:
     )
     insight_box("Suggested First Test", f"Start with {product_1 or 'the strongest product'} using {custom_1 or 'the strongest customization'} for {selected}. Add {product_2 or 'a second product'} only after the first test validates.")
     with st.expander("Fit details", expanded=False):
-        display_table(product_fit[product_fit["child_segment"].astype(str) == selected] if "child_segment" in product_fit.columns else pd.DataFrame(), height=220)
-        display_table(customization_fit[customization_fit["child_segment"].astype(str) == selected] if "child_segment" in customization_fit.columns else pd.DataFrame(), height=220)
+        display_table(product_matches, height=220)
+        display_table(custom_matches, height=220)
 
 
 def evidence_records_for_source(source: str) -> tuple[pd.DataFrame, pd.DataFrame, str, str, list[str]]:
