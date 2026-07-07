@@ -1128,7 +1128,7 @@ def executive_insights(
 def executive_intelligence() -> None:
     page_header(
         "Executive Intelligence",
-        "Executive dashboard for market size, investment, weekly research, seasonality, coverage, and insights.",
+        "Executive dashboard for market size, investment, seasonality, coverage, and insights.",
     )
     portfolio_master = load_csv("portfolio_master")
     portfolio_summary = load_csv("portfolio_summary")
@@ -2542,7 +2542,7 @@ def research_queue_page() -> None:
 def portfolio_planner() -> None:
     page_header(
         "Portfolio Strategy",
-        "Portfolio coverage, investment recommendations, and weekly research roadmap.",
+        "Portfolio coverage, investment recommendations, and research roadmap.",
     )
     portfolio_master = load_csv("portfolio_master")
     portfolio_summary = load_csv("portfolio_summary")
@@ -3390,29 +3390,6 @@ def compact_market_risk_cards(markets: pd.DataFrame, title: str, limit: int = 6)
                     st.markdown(note)
 
 
-def weekly_research_focus(queue: pd.DataFrame, limit: int = 10) -> None:
-    st.subheader("Weekly Research Focus")
-    if queue.empty:
-        st.info("No research candidates are available.")
-        return
-    rows = sort_by_available(queue, ["priority", "opportunity_score"], [True, False]).head(limit).reset_index(drop=True)
-    for start in range(0, len(rows), 2):
-        columns = st.columns(2)
-        for column, (_, row) in zip(columns, rows.iloc[start : start + 2].iterrows()):
-            with column:
-                action_card(
-                    row.get("child_segment"),
-                    first_existing_value(row, ["priority", "recommended_priority"], "Watchlist"),
-                    row.get("opportunity_score", row.get("total_score")),
-                    [
-                        ("Parent demand", row.get("parent_demand")),
-                        ("Product", first_existing_value(row, ["recommended_product", "best_product", "primary_product"])),
-                        ("Customization", first_existing_value(row, ["recommended_customization", "best_customization", "primary_customization"])),
-                        ("Next action", first_existing_value(row, ["next_action", "recommended_next_step", "reason"], "Validate market evidence.")),
-                    ],
-                )
-
-
 def child_detail_expander(row: pd.Series, key_prefix: str) -> None:
     child = clean_text(row.get("child_segment")) or key_prefix
     with st.expander(f"View detail: {child}", expanded=False):
@@ -4156,9 +4133,6 @@ def demand_explorer() -> None:
         risk_candidates = ranked_markets.tail(6).copy()
     risk_candidates = sort_by_available(risk_candidates, ["Risk Score", "Market Rank Score"], [False, True])
     compact_market_risk_cards(risk_candidates, "Biggest Risks / Avoid", 6)
-
-    section_break()
-    weekly_research_focus(queue, 10)
 
     with st.expander("Market ranking details", expanded=False):
         display_table(
