@@ -106,6 +106,12 @@ SEGMENT_COLUMNS = [
     "parent_demand_id",
     "parent_demand",
     "segment_name",
+    "segment_signature",
+    "segment_types",
+    "segment_values",
+    "segment_refinements",
+    "primary_segment_type",
+    "primary_segment_value",
     "segment_type",
     "segment_value",
     "segment_label_source",
@@ -209,8 +215,10 @@ OCCASION_RELABEL_VALUES = {
 SEGMENT_TYPE_BY_DIMENSION = {
     "relationship": "relationship",
     "recipient_refinement": "audience",
+    "audience_modifier": "audience_group",
     "profession": "profession",
     "interest": "interest",
+    "intent": "intent",
     "pet": "pet",
     "holiday": "holiday",
     "occasion": "occasion",
@@ -264,6 +272,59 @@ ENTITY_VALUE_TOKEN_ALIASES = {
     "mom": {"mom", "moms", "mother", "mothers", "mama"},
     "son": {"son", "sons", "boy", "boys"},
 }
+CONTEXT_INTENT_DIMENSIONS = {
+    "appreciation": "intent",
+    "anniversary": "occasion",
+    "birthday": "occasion",
+    "christmas": "holiday",
+    "graduation": "occasion",
+    "housewarming": "occasion",
+    "memorial": "occasion",
+    "retirement": "occasion",
+    "sympathy": "occasion",
+    "wedding": "occasion",
+}
+GIFT_COMPATIBLE_INTENTS = {"gift", *CONTEXT_INTENT_DIMENSIONS}
+SEGMENT_CANDIDATE_COLUMNS = [
+    "parent_demand_id",
+    "parent_demand",
+    "parent_intent",
+    "parent_core_type",
+    "parent_core_value",
+    "market_subject_type",
+    "market_subject_value",
+    "parent_recipient",
+    "parent_profession",
+    "parent_interest",
+    "parent_pet",
+    "keyword_id",
+    "raw_keyword",
+    "normalized_keyword",
+    "month",
+    "search_frequency_rank",
+    "intent",
+    "recipient",
+    "profession",
+    "pet",
+    "interest",
+    "theme",
+    "lifestyle",
+    "holiday",
+    "occasion",
+    "age_group",
+    "gender",
+    "parent_match_type",
+    "segment_signature",
+    "segment_types",
+    "segment_values",
+    "segment_refinements",
+    "primary_segment_dimension",
+    "primary_segment_value",
+    "primary_segment_type",
+    "primary_segment_label",
+    "segment_dimension",
+    "segment_value",
+]
 
 logger = logging.getLogger(__name__)
 
@@ -393,10 +454,27 @@ def nullable_column(table_alias: str, column_name: str) -> str:
     return f"nullif(trim(CAST({table_alias}.{column_name} AS VARCHAR)), '')"
 
 
+def optional_nullable_column(
+    connection: duckdb.DuckDBPyConnection,
+    table_name: str,
+    table_alias: str,
+    column_name: str,
+) -> str:
+    if column_name in table_columns(connection, table_name):
+        return nullable_column(table_alias, column_name)
+    return "NULL"
+
+
 def create_parent_demand_stage(connection: duckdb.DuckDBPyConnection, demand_table: str) -> None:
     logger.info("Creating parent demand stage from %s", demand_table)
     excluded_intents = ", ".join(f"'{intent}'" for intent in sorted(EXCLUDED_PARENT_INTENTS))
     pet_values = ", ".join(f"'{pet}'" for pet in sorted(PET_VALUES))
+    subject_type_select = optional_nullable_column(
+        connection, demand_table, "demand", "market_subject_type"
+    )
+    subject_value_select = optional_nullable_column(
+        connection, demand_table, "demand", "market_subject_value"
+    )
 
     connection.execute("DROP TABLE IF EXISTS parent_demand_stage")
     connection.execute(
@@ -407,6 +485,8 @@ def create_parent_demand_stage(connection: duckdb.DuckDBPyConnection, demand_tab
                 demand_id AS parent_demand_id,
                 demand_name AS parent_demand,
                 {nullable_column("demand", "intent")} AS parent_intent,
+                lower({subject_type_select}) AS source_market_subject_type,
+                lower({subject_value_select}) AS source_market_subject_value,
                 lower({nullable_column("demand", "recipient")}) AS source_recipient,
                 lower({nullable_column("demand", "profession")}) AS source_profession,
                 lower({nullable_column("demand", "interest")}) AS source_interest,
@@ -425,13 +505,27 @@ def create_parent_demand_stage(connection: duckdb.DuckDBPyConnection, demand_tab
             SELECT
                 *,
                 CASE
+                    WHEN source_market_subject_type IN (
+                        'person',
+                        'profession',
+                        'pet',
+                        'persona',
+                        'audience_group'
+                    ) THEN source_market_subject_type
                     WHEN source_profession IS NOT NULL THEN 'profession'
                     WHEN source_recipient IN ({pet_values}) THEN 'pet'
-                    WHEN source_recipient IS NOT NULL THEN 'recipient'
-                    WHEN source_interest IS NOT NULL THEN 'interest'
+                    WHEN source_recipient IS NOT NULL THEN 'person'
+                    WHEN source_interest IS NOT NULL THEN 'persona'
                     ELSE NULL
                 END AS parent_core_type,
                 CASE
+                    WHEN source_market_subject_type IN (
+                        'person',
+                        'profession',
+                        'pet',
+                        'persona',
+                        'audience_group'
+                    ) THEN source_market_subject_value
                     WHEN source_profession IS NOT NULL THEN source_profession
                     WHEN source_recipient IN ({pet_values}) THEN source_recipient
                     WHEN source_recipient IS NOT NULL THEN source_recipient
@@ -439,13 +533,22 @@ def create_parent_demand_stage(connection: duckdb.DuckDBPyConnection, demand_tab
                     ELSE NULL
                 END AS parent_core_value,
                 CASE
+                    WHEN source_market_subject_type IN ('person', 'audience_group')
+                    THEN source_market_subject_value
                     WHEN source_recipient IS NOT NULL AND source_recipient NOT IN ({pet_values})
                     THEN source_recipient
                     ELSE NULL
                 END AS parent_recipient,
-                source_profession AS parent_profession,
-                source_interest AS parent_interest,
                 CASE
+                    WHEN source_market_subject_type = 'profession' THEN source_market_subject_value
+                    ELSE source_profession
+                END AS parent_profession,
+                CASE
+                    WHEN source_market_subject_type = 'persona' THEN source_market_subject_value
+                    ELSE source_interest
+                END AS parent_interest,
+                CASE
+                    WHEN source_market_subject_type = 'pet' THEN source_market_subject_value
                     WHEN source_recipient IN ({pet_values}) THEN source_recipient
                     ELSE NULL
                 END AS parent_pet
@@ -457,6 +560,8 @@ def create_parent_demand_stage(connection: duckdb.DuckDBPyConnection, demand_tab
             parent_intent,
             parent_core_type,
             parent_core_value,
+            source_market_subject_type AS market_subject_type,
+            source_market_subject_value AS market_subject_value,
             parent_recipient,
             parent_profession,
             parent_interest,
@@ -470,15 +575,20 @@ def create_parent_demand_stage(connection: duckdb.DuckDBPyConnection, demand_tab
         WHERE parent_intent IS NOT NULL
           AND parent_intent NOT IN ({excluded_intents})
           AND parent_core_type IS NOT NULL
-          AND source_occasion IS NULL
-          AND source_holiday IS NULL
-          AND source_lifestyle IS NULL
-          AND source_theme IS NULL
           AND (
-                CASE WHEN source_recipient IS NOT NULL THEN 1 ELSE 0 END
-              + CASE WHEN source_profession IS NOT NULL THEN 1 ELSE 0 END
-              + CASE WHEN source_interest IS NOT NULL THEN 1 ELSE 0 END
-          ) = 1
+                source_market_subject_type IS NOT NULL
+             OR (
+                    source_occasion IS NULL
+                AND source_holiday IS NULL
+                AND source_lifestyle IS NULL
+                AND source_theme IS NULL
+                AND (
+                      CASE WHEN source_recipient IS NOT NULL THEN 1 ELSE 0 END
+                    + CASE WHEN source_profession IS NOT NULL THEN 1 ELSE 0 END
+                    + CASE WHEN source_interest IS NOT NULL THEN 1 ELSE 0 END
+                ) = 1
+             )
+          )
         """
     )
     row_count = connection.execute("SELECT count(*) FROM parent_demand_stage").fetchone()[0]
@@ -487,6 +597,8 @@ def create_parent_demand_stage(connection: duckdb.DuckDBPyConnection, demand_tab
 
 def create_keyword_base_stage(connection: duckdb.DuckDBPyConnection) -> None:
     logger.info("Creating keyword base stage")
+    age_group_select = optional_nullable_column(connection, INTENT_LAYER_TABLE, "keyword", "age_group")
+    gender_select = optional_nullable_column(connection, INTENT_LAYER_TABLE, "keyword", "gender")
     connection.execute("DROP TABLE IF EXISTS segment_keyword_base_stage")
     connection.execute(
         f"""
@@ -505,7 +617,9 @@ def create_keyword_base_stage(connection: duckdb.DuckDBPyConnection) -> None:
             lower({nullable_column("keyword", "theme")}) AS theme,
             lower({nullable_column("keyword", "lifestyle")}) AS lifestyle,
             lower({nullable_column("keyword", "holiday")}) AS holiday,
-            lower({nullable_column("keyword", "occasion")}) AS occasion
+            lower({nullable_column("keyword", "occasion")}) AS occasion,
+            lower({age_group_select}) AS age_group,
+            lower({gender_select}) AS gender
         FROM {INTENT_LAYER_TABLE} AS keyword
         WHERE intent <> 'unknown'
           AND search_frequency_rank IS NOT NULL
@@ -522,7 +636,22 @@ def create_parent_match_stage(connection: duckdb.DuckDBPyConnection) -> None:
     compatibility = """
         (
             keyword.intent = parent.parent_intent
-            OR (keyword.intent = 'appreciation' AND parent.parent_intent = 'gift')
+            OR (
+                parent.parent_intent = 'gift'
+                AND keyword.intent IN (
+                    'gift',
+                    'appreciation',
+                    'anniversary',
+                    'birthday',
+                    'christmas',
+                    'graduation',
+                    'housewarming',
+                    'memorial',
+                    'retirement',
+                    'sympathy',
+                    'wedding'
+                )
+            )
         )
     """
 
@@ -532,6 +661,8 @@ def create_parent_match_stage(connection: duckdb.DuckDBPyConnection) -> None:
         parent.parent_intent,
         parent.parent_core_type,
         parent.parent_core_value,
+        parent.market_subject_type,
+        parent.market_subject_value,
         parent.parent_recipient,
         parent.parent_profession,
         parent.parent_interest,
@@ -549,7 +680,9 @@ def create_parent_match_stage(connection: duckdb.DuckDBPyConnection) -> None:
         keyword.theme,
         keyword.lifestyle,
         keyword.holiday,
-        keyword.occasion
+        keyword.occasion,
+        keyword.age_group,
+        keyword.gender
     """
 
     connection.execute("DROP TABLE IF EXISTS segment_parent_match_stage")
@@ -569,10 +702,10 @@ def create_parent_match_stage(connection: duckdb.DuckDBPyConnection) -> None:
 
         SELECT
             {parent_columns},
-            'recipient_exact' AS parent_match_type
+            'person_exact' AS parent_match_type
         FROM segment_keyword_base_stage AS keyword
         JOIN parent_demand_stage AS parent
-          ON parent.parent_core_type = 'recipient'
+          ON parent.parent_core_type = 'person'
          AND keyword.recipient = parent.parent_core_value
          AND {compatibility}
 
@@ -580,13 +713,15 @@ def create_parent_match_stage(connection: duckdb.DuckDBPyConnection) -> None:
 
         SELECT
             {parent_columns},
-            'recipient_refinement' AS parent_match_type
+            'audience_group_exact' AS parent_match_type
         FROM segment_keyword_base_stage AS keyword
         JOIN parent_demand_stage AS parent
-          ON parent.parent_core_type = 'recipient'
-         AND keyword.recipient IS NOT NULL
-         AND keyword.recipient <> parent.parent_core_value
-         AND (' ' || keyword.recipient || ' ') LIKE ('% ' || parent.parent_core_value || ' %')
+          ON parent.parent_core_type = 'audience_group'
+         AND (
+                keyword.recipient = parent.parent_core_value
+             OR keyword.age_group = parent.parent_core_value
+             OR keyword.gender = parent.parent_core_value
+         )
          AND {compatibility}
 
         UNION ALL
@@ -604,14 +739,18 @@ def create_parent_match_stage(connection: duckdb.DuckDBPyConnection) -> None:
 
         SELECT
             {parent_columns},
-            'interest_exact' AS parent_match_type
+            'persona_exact' AS parent_match_type
         FROM segment_keyword_base_stage AS keyword
         JOIN parent_demand_stage AS parent
-          ON parent.parent_core_type = 'interest'
-         AND keyword.interest = parent.parent_core_value
+          ON parent.parent_core_type = 'persona'
+         AND (
+                keyword.interest = parent.parent_core_value
+             OR keyword.pet = parent.parent_core_value
+             OR keyword.interest = replace(parent.parent_core_value, ' lover', '')
+             OR keyword.pet = replace(parent.parent_core_value, ' lover', '')
+         )
          AND keyword.recipient IS NULL
          AND keyword.profession IS NULL
-         AND keyword.pet IS NULL
          AND {compatibility}
         """
     )
@@ -619,303 +758,232 @@ def create_parent_match_stage(connection: duckdb.DuckDBPyConnection) -> None:
     logger.info("Parent keyword match stage: %s rows", f"{row_count:,}")
 
 
+def normalized_refinement_value(value: object) -> str:
+    return clean_text(value).lower()
+
+
+def count_distinct_clean(values: pd.Series) -> int:
+    cleaned = {clean_text(value) for value in values}
+    cleaned.discard("")
+    return len(cleaned)
+
+
+def persona_base_value(value: object) -> str:
+    normalized = normalized_refinement_value(value)
+    if normalized.endswith(" lover"):
+        return normalized[: -len(" lover")].strip()
+    return normalized
+
+
+def add_refinement(refinements: dict[tuple[str, str], None], dimension: str, value: object) -> None:
+    normalized = normalized_refinement_value(value)
+    if not dimension or not normalized:
+        return
+    refinements[(dimension, normalized)] = None
+
+
+def refinement_label(dimension: object, value: object) -> str:
+    normalized_dimension = clean_text(dimension)
+    normalized_value = clean_text(value)
+    if normalized_dimension == "relationship":
+        label = relationship_segment_label(normalized_value)
+        if label:
+            return label
+    return title_case(normalized_value)
+
+
+def refinement_signature(refinements: list[tuple[str, str]]) -> str:
+    return "|".join(f"{dimension}:{value}" for dimension, value in sorted(refinements))
+
+
+def row_refinements(row: pd.Series) -> list[tuple[str, str]]:
+    refinements: dict[tuple[str, str], None] = {}
+    parent_type = normalized_refinement_value(row.get("parent_core_type"))
+    parent_value = normalized_refinement_value(row.get("parent_core_value"))
+    parent_persona_base = persona_base_value(parent_value)
+
+    relationship_value = relationship_segment_value_from_phrase(
+        row.get("normalized_keyword"),
+        parent_value,
+    )
+    if not relationship_value:
+        relationship_value = relationship_segment_value_from_phrase(row.get("raw_keyword"), parent_value)
+    if relationship_value and relationship_value != parent_value:
+        add_refinement(refinements, "relationship", relationship_value)
+
+    intent = normalized_refinement_value(row.get("intent"))
+    parent_intent = normalized_refinement_value(row.get("parent_intent"))
+    intent_dimension = CONTEXT_INTENT_DIMENSIONS.get(intent)
+    if intent_dimension and intent != parent_intent:
+        add_refinement(refinements, intent_dimension, intent)
+
+    holiday = normalized_refinement_value(row.get("holiday"))
+    occasion = normalized_refinement_value(row.get("occasion"))
+    add_refinement(refinements, "holiday", holiday)
+    if occasion and occasion != holiday:
+        add_refinement(refinements, "occasion", occasion)
+
+    interest = normalized_refinement_value(row.get("interest"))
+    if interest and not (
+        parent_type == "persona"
+        and interest in {parent_value, parent_persona_base}
+    ):
+        add_refinement(refinements, "interest", interest)
+
+    pet = normalized_refinement_value(row.get("pet"))
+    if pet and not (
+        (parent_type == "pet" and pet == parent_value)
+        or (parent_type == "persona" and pet in {parent_value, parent_persona_base})
+    ):
+        add_refinement(refinements, "pet", pet)
+
+    profession = normalized_refinement_value(row.get("profession"))
+    if profession and not (parent_type == "profession" and profession == parent_value):
+        add_refinement(refinements, "profession", profession)
+
+    recipient = normalized_refinement_value(row.get("recipient"))
+    if recipient and not (
+        parent_type in {"person", "audience_group"} and recipient == parent_value
+    ):
+        add_refinement(refinements, "audience_modifier", recipient)
+
+    age_group = normalized_refinement_value(row.get("age_group"))
+    if age_group and not (parent_type == "audience_group" and age_group == parent_value):
+        add_refinement(refinements, "audience_modifier", age_group)
+
+    gender = normalized_refinement_value(row.get("gender"))
+    if gender and not (parent_type == "audience_group" and gender == parent_value):
+        add_refinement(refinements, "audience_modifier", gender)
+
+    add_refinement(refinements, "theme", row.get("theme"))
+    add_refinement(refinements, "lifestyle", row.get("lifestyle"))
+
+    return sorted(refinements)
+
+
+def refinement_stats(candidate_rows: list[dict[str, object]]) -> dict[tuple[str, str, str], dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    for row in candidate_rows:
+        for dimension, value in row["_refinements"]:
+            rows.append(
+                {
+                    "parent_demand_id": row["parent_demand_id"],
+                    "dimension": dimension,
+                    "value": value,
+                    "normalized_keyword": row["normalized_keyword"],
+                    "search_frequency_rank": row["search_frequency_rank"],
+                    "month": row["month"],
+                }
+            )
+    if not rows:
+        return {}
+
+    frame = pd.DataFrame(rows)
+    frame["search_frequency_rank"] = pd.to_numeric(frame["search_frequency_rank"], errors="coerce")
+    grouped = (
+        frame.groupby(["parent_demand_id", "dimension", "value"], dropna=False)
+        .agg(
+            frequency=("normalized_keyword", "size"),
+            evidence_count=("normalized_keyword", count_distinct_clean),
+            best_rank=("search_frequency_rank", "min"),
+            active_months=("month", count_distinct_clean),
+        )
+        .reset_index()
+    )
+    output: dict[tuple[str, str, str], dict[str, object]] = {}
+    for _, item in grouped.iterrows():
+        output[
+            (
+                clean_text(item["parent_demand_id"]),
+                clean_text(item["dimension"]),
+                clean_text(item["value"]),
+            )
+        ] = item.to_dict()
+    return output
+
+
+def choose_primary_refinement(
+    parent_demand_id: object,
+    refinements: list[tuple[str, str]],
+    stats: dict[tuple[str, str, str], dict[str, object]],
+) -> tuple[str, str]:
+    parent_id = clean_text(parent_demand_id)
+
+    def sort_key(item: tuple[str, str]) -> tuple[float, float, float, float, str, str]:
+        dimension, value = item
+        row = stats.get((parent_id, dimension, value), {})
+        return (
+            -float(row.get("frequency") or 0),
+            float(row.get("best_rank") or 999999999),
+            -float(row.get("evidence_count") or 0),
+            -float(row.get("active_months") or 0),
+            dimension,
+            value,
+        )
+
+    return sorted(refinements, key=sort_key)[0]
+
+
+def segment_candidate_frame(parent_matches: pd.DataFrame) -> pd.DataFrame:
+    if parent_matches.empty:
+        return pd.DataFrame(columns=SEGMENT_CANDIDATE_COLUMNS)
+
+    candidate_rows: list[dict[str, object]] = []
+    for _, row in parent_matches.iterrows():
+        refinements = row_refinements(row)
+        if not refinements:
+            continue
+        output = row.to_dict()
+        output["_refinements"] = refinements
+        candidate_rows.append(output)
+
+    if not candidate_rows:
+        return pd.DataFrame(columns=SEGMENT_CANDIDATE_COLUMNS)
+
+    stats = refinement_stats(candidate_rows)
+    rows: list[dict[str, object]] = []
+    for row in candidate_rows:
+        refinements = row["_refinements"]
+        primary_dimension, primary_value = choose_primary_refinement(
+            row.get("parent_demand_id"),
+            refinements,
+            stats,
+        )
+        segment_types = [segment_type_from_dimension(dimension) for dimension, _ in refinements]
+        segment_values = [value for _, value in refinements]
+        labels = [refinement_label(dimension, value) for dimension, value in refinements]
+        output = {column: row.get(column) for column in SEGMENT_CANDIDATE_COLUMNS}
+        output["segment_signature"] = refinement_signature(refinements)
+        output["segment_types"] = "|".join(segment_types)
+        output["segment_values"] = "|".join(segment_values)
+        output["segment_refinements"] = "|".join(labels)
+        output["primary_segment_dimension"] = primary_dimension
+        output["primary_segment_value"] = primary_value
+        output["primary_segment_type"] = segment_type_from_dimension(primary_dimension)
+        output["primary_segment_label"] = refinement_label(primary_dimension, primary_value)
+        output["segment_dimension"] = primary_dimension
+        output["segment_value"] = primary_value
+        rows.append(output)
+
+    output_frame = pd.DataFrame(rows, columns=SEGMENT_CANDIDATE_COLUMNS)
+    return output_frame.drop_duplicates(
+        subset=["parent_demand_id", "keyword_id", "segment_signature"]
+    ).reset_index(drop=True)
+
+
 def create_segment_candidate_stage(connection: duckdb.DuckDBPyConnection) -> None:
     logger.info("Creating segment candidate evidence stage")
+    parent_matches = connection.execute("SELECT * FROM segment_parent_match_stage").df()
+    candidate_frame = segment_candidate_frame(parent_matches)
     connection.execute("DROP TABLE IF EXISTS segment_candidate_evidence_stage")
+    connection.register("segment_candidate_frame", candidate_frame)
     connection.execute(
         """
         CREATE TEMP TABLE segment_candidate_evidence_stage AS
-        SELECT DISTINCT
-            parent_demand_id,
-            parent_demand,
-            parent_intent,
-            parent_core_type,
-            parent_core_value,
-            parent_recipient,
-            parent_profession,
-            parent_interest,
-            parent_pet,
-            keyword_id,
-            raw_keyword,
-            normalized_keyword,
-            month,
-            search_frequency_rank,
-            intent,
-            recipient,
-            profession,
-            pet,
-            interest,
-            theme,
-            lifestyle,
-            holiday,
-            occasion,
-            parent_match_type,
-            'recipient_refinement' AS segment_dimension,
-            recipient AS segment_value
-        FROM segment_parent_match_stage
-        WHERE parent_match_type = 'recipient_refinement'
-          AND recipient IS NOT NULL
-
-        UNION ALL
-
-        SELECT DISTINCT
-            parent_demand_id,
-            parent_demand,
-            parent_intent,
-            parent_core_type,
-            parent_core_value,
-            parent_recipient,
-            parent_profession,
-            parent_interest,
-            parent_pet,
-            keyword_id,
-            raw_keyword,
-            normalized_keyword,
-            month,
-            search_frequency_rank,
-            intent,
-            recipient,
-            profession,
-            pet,
-            interest,
-            theme,
-            lifestyle,
-            holiday,
-            occasion,
-            parent_match_type,
-            'profession' AS segment_dimension,
-            profession AS segment_value
-        FROM segment_parent_match_stage
-        WHERE profession IS NOT NULL
-          AND NOT (parent_core_type = 'profession' AND profession = parent_core_value)
-
-        UNION ALL
-
-        SELECT DISTINCT
-            parent_demand_id,
-            parent_demand,
-            parent_intent,
-            parent_core_type,
-            parent_core_value,
-            parent_recipient,
-            parent_profession,
-            parent_interest,
-            parent_pet,
-            keyword_id,
-            raw_keyword,
-            normalized_keyword,
-            month,
-            search_frequency_rank,
-            intent,
-            recipient,
-            profession,
-            pet,
-            interest,
-            theme,
-            lifestyle,
-            holiday,
-            occasion,
-            parent_match_type,
-            'interest' AS segment_dimension,
-            interest AS segment_value
-        FROM segment_parent_match_stage
-        WHERE interest IS NOT NULL
-          AND NOT (parent_core_type = 'interest' AND interest = parent_core_value)
-
-        UNION ALL
-
-        SELECT DISTINCT
-            parent_demand_id,
-            parent_demand,
-            parent_intent,
-            parent_core_type,
-            parent_core_value,
-            parent_recipient,
-            parent_profession,
-            parent_interest,
-            parent_pet,
-            keyword_id,
-            raw_keyword,
-            normalized_keyword,
-            month,
-            search_frequency_rank,
-            intent,
-            recipient,
-            profession,
-            pet,
-            interest,
-            theme,
-            lifestyle,
-            holiday,
-            occasion,
-            parent_match_type,
-            'pet' AS segment_dimension,
-            pet AS segment_value
-        FROM segment_parent_match_stage
-        WHERE pet IS NOT NULL
-          AND parent_match_type <> 'recipient_refinement'
-          AND NOT (parent_core_type = 'pet' AND pet = parent_core_value)
-
-        UNION ALL
-
-        SELECT DISTINCT
-            parent_demand_id,
-            parent_demand,
-            parent_intent,
-            parent_core_type,
-            parent_core_value,
-            parent_recipient,
-            parent_profession,
-            parent_interest,
-            parent_pet,
-            keyword_id,
-            raw_keyword,
-            normalized_keyword,
-            month,
-            search_frequency_rank,
-            intent,
-            recipient,
-            profession,
-            pet,
-            interest,
-            theme,
-            lifestyle,
-            holiday,
-            occasion,
-            parent_match_type,
-            'holiday' AS segment_dimension,
-            holiday AS segment_value
-        FROM segment_parent_match_stage
-        WHERE holiday IS NOT NULL
-
-        UNION ALL
-
-        SELECT DISTINCT
-            parent_demand_id,
-            parent_demand,
-            parent_intent,
-            parent_core_type,
-            parent_core_value,
-            parent_recipient,
-            parent_profession,
-            parent_interest,
-            parent_pet,
-            keyword_id,
-            raw_keyword,
-            normalized_keyword,
-            month,
-            search_frequency_rank,
-            intent,
-            recipient,
-            profession,
-            pet,
-            interest,
-            theme,
-            lifestyle,
-            holiday,
-            occasion,
-            parent_match_type,
-            'occasion' AS segment_dimension,
-            CASE WHEN intent = 'appreciation' THEN 'appreciation' ELSE occasion END AS segment_value
-        FROM segment_parent_match_stage
-        WHERE intent = 'appreciation'
-           OR (
-                occasion IS NOT NULL
-            AND NOT (holiday IS NOT NULL AND occasion = holiday)
-           )
-
-        UNION ALL
-
-        SELECT DISTINCT
-            parent_demand_id,
-            parent_demand,
-            parent_intent,
-            parent_core_type,
-            parent_core_value,
-            parent_recipient,
-            parent_profession,
-            parent_interest,
-            parent_pet,
-            keyword_id,
-            raw_keyword,
-            normalized_keyword,
-            month,
-            search_frequency_rank,
-            intent,
-            recipient,
-            profession,
-            pet,
-            interest,
-            theme,
-            lifestyle,
-            holiday,
-            occasion,
-            parent_match_type,
-            'theme' AS segment_dimension,
-            theme AS segment_value
-        FROM segment_parent_match_stage
-        WHERE theme IS NOT NULL
-
-        UNION ALL
-
-        SELECT DISTINCT
-            parent_demand_id,
-            parent_demand,
-            parent_intent,
-            parent_core_type,
-            parent_core_value,
-            parent_recipient,
-            parent_profession,
-            parent_interest,
-            parent_pet,
-            keyword_id,
-            raw_keyword,
-            normalized_keyword,
-            month,
-            search_frequency_rank,
-            intent,
-            recipient,
-            profession,
-            pet,
-            interest,
-            theme,
-            lifestyle,
-            holiday,
-            occasion,
-            parent_match_type,
-            'lifestyle' AS segment_dimension,
-            lifestyle AS segment_value
-        FROM segment_parent_match_stage
-        WHERE lifestyle IS NOT NULL
+        SELECT *
+        FROM segment_candidate_frame
         """
     )
-    connection.execute(
-        """
-        DELETE FROM segment_candidate_evidence_stage
-        WHERE segment_value IS NULL
-           OR trim(segment_value) = ''
-           OR segment_value = parent_core_value
-        """
-    )
-    connection.execute(
-        """
-        UPDATE segment_candidate_evidence_stage
-        SET occasion = 'appreciation'
-        WHERE segment_dimension = 'occasion'
-          AND segment_value = 'appreciation'
-          AND occasion IS NULL
-        """
-    )
-    relationship_frame = relationship_candidate_frame(connection)
-    if not relationship_frame.empty:
-        connection.register("relationship_candidate_frame", relationship_frame)
-        connection.execute(
-            """
-            INSERT INTO segment_candidate_evidence_stage
-            SELECT *
-            FROM relationship_candidate_frame
-            """
-        )
     row_count = connection.execute("SELECT count(*) FROM segment_candidate_evidence_stage").fetchone()[0]
     logger.info("Segment candidate evidence stage: %s rows", f"{row_count:,}")
 
@@ -935,9 +1003,17 @@ def create_segment_metric_frame(connection: duckdb.DuckDBPyConnection) -> pd.Dat
                 parent_profession,
                 parent_interest,
                 parent_pet,
+                segment_signature,
+                segment_types,
+                segment_values,
+                segment_refinements,
+                primary_segment_dimension,
+                primary_segment_value,
+                primary_segment_type,
+                primary_segment_label,
                 segment_dimension,
                 segment_value,
-                parent_demand_id || '|' || segment_dimension || '|' || segment_value AS segment_key,
+                parent_demand_id || '|' || segment_signature AS segment_key,
                 count(*) AS keyword_count,
                 count(DISTINCT normalized_keyword) AS distinct_keyword_count,
                 min(search_frequency_rank) AS best_rank,
@@ -957,6 +1033,14 @@ def create_segment_metric_frame(connection: duckdb.DuckDBPyConnection) -> pd.Dat
                 parent_profession,
                 parent_interest,
                 parent_pet,
+                segment_signature,
+                segment_types,
+                segment_values,
+                segment_refinements,
+                primary_segment_dimension,
+                primary_segment_value,
+                primary_segment_type,
+                primary_segment_label,
                 segment_dimension,
                 segment_value
         ),
@@ -968,7 +1052,7 @@ def create_segment_metric_frame(connection: duckdb.DuckDBPyConnection) -> pd.Dat
             FROM metrics
             LEFT JOIN (
                 SELECT
-                    parent_demand_id || '|' || segment_dimension || '|' || segment_value AS segment_key,
+                    parent_demand_id || '|' || segment_signature AS segment_key,
                     month,
                     min(search_frequency_rank) AS best_rank
                 FROM segment_candidate_evidence_stage
@@ -978,7 +1062,7 @@ def create_segment_metric_frame(connection: duckdb.DuckDBPyConnection) -> pd.Dat
              AND metrics.first_month = first_month.month
             LEFT JOIN (
                 SELECT
-                    parent_demand_id || '|' || segment_dimension || '|' || segment_value AS segment_key,
+                    parent_demand_id || '|' || segment_signature AS segment_key,
                     month,
                     min(search_frequency_rank) AS best_rank
                 FROM segment_candidate_evidence_stage
@@ -993,18 +1077,17 @@ def create_segment_metric_frame(connection: duckdb.DuckDBPyConnection) -> pd.Dat
         ),
         ranked_examples AS (
             SELECT
-                parent_demand_id || '|' || segment_dimension || '|' || segment_value AS segment_key,
+                parent_demand_id || '|' || segment_signature AS segment_key,
                 normalized_keyword,
                 min(search_frequency_rank) AS example_rank,
                 row_number() OVER (
-                    PARTITION BY parent_demand_id, segment_dimension, segment_value
+                    PARTITION BY parent_demand_id, segment_signature
                     ORDER BY min(search_frequency_rank) ASC NULLS LAST, normalized_keyword
                 ) AS example_position
             FROM segment_candidate_evidence_stage
             GROUP BY
                 parent_demand_id,
-                segment_dimension,
-                segment_value,
+                segment_signature,
                 normalized_keyword
         ),
         examples AS (
@@ -1117,6 +1200,14 @@ def create_segment_metric_frame(connection: duckdb.DuckDBPyConnection) -> pd.Dat
             parent_profession,
             parent_interest,
             parent_pet,
+            segment_signature,
+            segment_types,
+            segment_values,
+            segment_refinements,
+            primary_segment_dimension,
+            primary_segment_value,
+            primary_segment_type,
+            primary_segment_label,
             segment_dimension,
             segment_value,
             keyword_count,
@@ -1340,26 +1431,16 @@ def observed_segment_label(row: pd.Series) -> tuple[str, str]:
 
 
 def segment_label_details(row: pd.Series) -> pd.Series:
-    if clean_text(row.get("segment_dimension")) == "relationship":
-        segment_name = relationship_segment_label(row.get("segment_value"))
-        if segment_name:
-            return pd.Series(
-                {
-                    "segment_name": segment_name,
-                    "segment_label_source": "observed_relationship",
-                    "canonical_evidence_phrase": clean_text(row.get("canonical_evidence_phrase")),
-                    "is_evidence_backed": True,
-                    "observed_products": " | ".join(observed_products(clean_text(row.get("evidence_keywords")))),
-                }
-            )
-
-    observed_label, evidence_phrase = observed_segment_label(row)
-    if observed_label:
+    segment_name = clean_text(row.get("primary_segment_label")) or refinement_label(
+        row.get("primary_segment_dimension"),
+        row.get("primary_segment_value"),
+    )
+    if segment_name:
         return pd.Series(
             {
-                "segment_name": observed_label,
-                "segment_label_source": "observed_phrase",
-                "canonical_evidence_phrase": evidence_phrase,
+                "segment_name": segment_name,
+                "segment_label_source": "observed_refinement_signature",
+                "canonical_evidence_phrase": clean_text(row.get("canonical_evidence_phrase")),
                 "is_evidence_backed": True,
                 "observed_products": " | ".join(observed_products(clean_text(row.get("evidence_keywords")))),
             }
@@ -1383,8 +1464,7 @@ def strip_suffix(text: str, suffix: str) -> str:
 
 
 def segment_dimension_values(row: pd.Series) -> dict[str, str | None]:
-    dimension = clean_text(row["segment_dimension"])
-    value = clean_text(row["segment_value"])
+    signature = clean_text(row.get("segment_signature"))
     recipient = clean_text(row["parent_recipient"]) or None
     profession = clean_text(row["parent_profession"]) or None
     interest = clean_text(row["parent_interest"]) or None
@@ -1394,22 +1474,30 @@ def segment_dimension_values(row: pd.Series) -> dict[str, str | None]:
     theme = None
     lifestyle = None
 
-    if dimension == "recipient_refinement":
-        recipient = value or recipient
-    elif dimension == "profession":
-        profession = value or profession
-    elif dimension == "interest":
-        interest = value or interest
-    elif dimension == "pet":
-        pet = value or pet
-    elif dimension == "holiday":
-        holiday = value or None
-    elif dimension == "occasion":
-        occasion = value or None
-    elif dimension == "theme":
-        theme = value or None
-    elif dimension == "lifestyle":
-        lifestyle = value or None
+    for part in signature.split("|"):
+        if ":" not in part:
+            continue
+        dimension, value = (piece.strip() for piece in part.split(":", 1))
+        if not value:
+            continue
+        if dimension in {"recipient_refinement", "audience_modifier"}:
+            recipient = value or recipient
+        elif dimension == "relationship":
+            continue
+        elif dimension == "profession":
+            profession = value or profession
+        elif dimension == "interest":
+            interest = value or interest
+        elif dimension == "pet":
+            pet = value or pet
+        elif dimension == "holiday":
+            holiday = value or holiday
+        elif dimension in {"occasion", "intent"}:
+            occasion = value or occasion
+        elif dimension == "theme":
+            theme = value or theme
+        elif dimension == "lifestyle":
+            lifestyle = value or lifestyle
 
     return {
         "recipient": recipient,
@@ -1440,9 +1528,14 @@ def build_demand_segments(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame
         index=metrics.index,
     )
     metrics = pd.concat([metrics, dimension_frame], axis=1)
-    metrics["intent"] = metrics["parent_intent"].apply(clean_text)
-    metrics["segment_type"] = metrics["segment_dimension"].apply(segment_type_from_dimension)
-    metrics["segment_value"] = metrics["segment_value"].apply(clean_text)
+    metrics["intent"] = metrics.apply(
+        lambda row: clean_text(row.get("primary_segment_value"))
+        if clean_text(row.get("primary_segment_dimension")) == "intent"
+        else clean_text(row.get("parent_intent")),
+        axis=1,
+    )
+    metrics["segment_type"] = metrics["primary_segment_type"].apply(clean_text)
+    metrics["segment_value"] = metrics["primary_segment_value"].apply(clean_text)
     metrics["segment_name_key"] = metrics["segment_name"].str.lower().str.strip()
     metrics["trend_sort"] = metrics["trend"].map(TREND_ORDER).fillna(99)
 
@@ -1465,7 +1558,10 @@ def build_demand_segments(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame
         ascending=[False, True, False, True, True, True],
         na_position="last",
     )
-    metrics = metrics.drop_duplicates(subset=["segment_name_key"], keep="first").reset_index(drop=True)
+    metrics = metrics.drop_duplicates(
+        subset=["parent_demand_id", "segment_signature"],
+        keep="first",
+    ).reset_index(drop=True)
     metrics.insert(0, "segment_id", [f"SEG{index:06d}" for index in range(1, len(metrics) + 1)])
 
     table_frame = metrics[
@@ -1474,6 +1570,12 @@ def build_demand_segments(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame
             "parent_demand_id",
             "parent_demand",
             "segment_name",
+            "segment_signature",
+            "segment_types",
+            "segment_values",
+            "segment_refinements",
+            "primary_segment_type",
+            "primary_segment_value",
             "segment_type",
             "segment_value",
             "segment_label_source",
@@ -1509,6 +1611,12 @@ def build_demand_segments(connection: duckdb.DuckDBPyConnection) -> pd.DataFrame
                 "parent_demand_id",
                 "parent_demand",
                 "segment_name",
+                "segment_signature",
+                "segment_types",
+                "segment_values",
+                "segment_refinements",
+                "primary_segment_type",
+                "primary_segment_value",
                 "segment_type",
                 "segment_label_source",
                 "canonical_evidence_phrase",
@@ -1554,6 +1662,12 @@ def build_segment_keywords(connection: duckdb.DuckDBPyConnection) -> int:
             id_map.parent_demand_id,
             id_map.parent_demand,
             id_map.segment_name,
+            id_map.segment_signature,
+            id_map.segment_types,
+            id_map.segment_values,
+            id_map.segment_refinements,
+            id_map.primary_segment_type,
+            id_map.primary_segment_value,
             id_map.intent,
             id_map.segment_dimension,
             id_map.segment_type,
@@ -1564,7 +1678,7 @@ def build_segment_keywords(connection: duckdb.DuckDBPyConnection) -> int:
             evidence.search_frequency_rank
         FROM segment_candidate_evidence_stage AS evidence
         JOIN segment_id_map_frame AS id_map
-          ON evidence.parent_demand_id || '|' || evidence.segment_dimension || '|' || evidence.segment_value
+          ON evidence.parent_demand_id || '|' || evidence.segment_signature
            = id_map.segment_key
         ORDER BY
             id_map.segment_id,
@@ -1667,16 +1781,16 @@ def validate_outputs(connection: duckdb.DuckDBPyConnection) -> None:
         f"""
         SELECT count(*)
         FROM (
-            SELECT lower(segment_name) AS segment_name_key
+            SELECT parent_demand_id, segment_signature
             FROM {DEMAND_SEGMENTS_TABLE}
-            GROUP BY lower(segment_name)
+            GROUP BY parent_demand_id, segment_signature
             HAVING count(*) > 1
         )
         """
     ).fetchone()[0]
     if duplicate_count:
         raise RuntimeError(
-            f"Demand Segment validation failed: {duplicate_count} duplicate segment name(s)"
+            f"Demand Segment validation failed: {duplicate_count} duplicate segment signature(s)"
         )
 
     product_segment_count = connection.execute(
@@ -1691,7 +1805,7 @@ def validate_outputs(connection: duckdb.DuckDBPyConnection) -> None:
             "Demand Segment validation failed: product/customization segment evidence was generated"
         )
 
-    logger.info("Validation passed: one parent per segment, no duplicate names, no product/customization segments")
+    logger.info("Validation passed: one parent per segment, no duplicate signatures, no product/customization segments")
 
 
 def log_summary(connection: duckdb.DuckDBPyConnection) -> None:

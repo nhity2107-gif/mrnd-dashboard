@@ -1,151 +1,24 @@
 demand_id,demand_name,market_size,growth_stage,market_stage,expansion_score,competition_level,seasonality_type,research_priority,recommendation,top_child_segments
-CD000002,Gift for Dad,Mega,Growing,Scale Market,100.0,High,Evergreen,P1,Research child segments first; use parent demand as the umbrella market.,Dad Christmas | Dad Birthday | Cat Dad | Father Of Bride | Funny Dad
-CD000001,Gift for Mom,Mega,Growing,Scale Market,100.0,High,Evergreen,P1,Research child segments first; use parent demand as the umbrella market.,Christmas Mom | Mom Birthday | Dog Mom Women | Cat Mom | Mother Of Bride
-CD000003,Teen Girl Gift,Mega,Growing,Scale Market,100.0,High,Evergreen,P1,Research child segments first; use parent demand as the umbrella market.,Girls Christmas | 1st Birthday Girl | Flower Girl | Soccer Girls | Cat Girls
-CD000005,Teen Boy Gift,Mega,Growing,Scale Market,91.21,High,Evergreen,P1,Research child segments first; use parent demand as the umbrella market.,Boys Christmas | Soccer Boys | 1st Birthday Boy | Gamer Boys | Fishing Boys
-CD000006,Teacher Gift,Mega,Growing,Scale Market,86.67,High,Evergreen,P2,Research child segments first; use parent demand as the umbrella market.,Teacher Christmas | Teacher Appreciation | Funny Teacher | Halloween Teacher | Teacher Birthday
-CD000011,Gift for Husband,Large,Growing,Scale Market,84.59,Medium,Evergreen,P2,Research child segments first; use parent demand as the umbrella market.,Husband Christmas | Husband Birthday | Wedding Anniversary Husband | Husband Valentines Day | Funny Husband
-CD000004,Grandma Gift,Mega,Growing,Established Market,75.33,High,Evergreen,P2,Research best child segments before broad parent-demand product work.,Grandma Christmas | Grandma Birthday | Dog Grandma | Funny Grandma | Grandma Garden
-CD000008,Grandpa Gift,Mega,Growing,Established Market,66.77,High,Evergreen,P3,Research best child segments before broad parent-demand product work.,Grandpa Christmas | Grandpa Birthday | Funny Grandpa | Dog Grandpa | Grandpa Fishing
-CD000010,Gift for Wife,Large,Growing,Established Market,66.37,Medium,Evergreen,P3,Research best child segments before broad parent-demand product work.,Wife Christmas Ideas | Wife Birthday Ideas | Anniversary Wife | Pastor Wife Appreciation | Mrs Mrs Wedding
-CD000020,Coffee Gift,Large,Growing,Established Market,58.64,Medium,Evergreen,P3,Research best child segments before broad parent-demand product work.,Coffee Lover | Coffee Christmas Set | Funny Coffee | Holiday Coffee Set
-CD000049,Gift for Daughter,Mid,Growing,Growth Market,51.29,Low-Medium,Evergreen,P3,Validate ranking durability and research focused child niches.,Daughter Birthday | Daughter In Law Christmas | Daughter In Law Wedding | Funny Daughter | Christian Daughter
-CD000014,Dog Gift,Large,Growing,Established Market,46.29,Medium,Evergreen,P3,Research best child segments before broad parent-demand product work.,Dog Christmas | Dog Birthday | Funny Dog | Dog Thank You
-CD000017,Cat Lover Gift,Large,Growing,Established Market,47.91,Medium,Evergreen,Watchlist,Research best child segments before broad parent-demand product work.,Cat Lovers | Cat Christmas | Funny Cat | Cat Thank You | Cat Birthday
-CD000052,Gift for Son,Mid,Growing,Growth Market,45.76,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,Birthday Son Adult | Son In Law Christmas | Funny Son In Law | Wedding Son
-CD000016,Nurse Gift,Large,Growing,Established Market,43.12,Medium,Evergreen,Watchlist,Research best child segments before broad parent-demand product work.,Funny Nurse | Nurse Graduation | Nurse Christmas | Nurse Appreciation | Halloween Nurse
-CD000034,Soccer Gift,Large,Growing,Established Market,41.16,Medium,Evergreen,Watchlist,Research best child segments before broad parent-demand product work.,Football Thank You | Soccer Christmas | Funny Football
-CD000063,Police Officer Gift,Mid,Growing,Growth Market,33.46,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,Police Academy Graduation | Funny Cop | Christmas Police Officers
-CD000026,Fishing Gift,Large,Growing,Established Market,31.89,Medium,Evergreen,Watchlist,"Research parent demand positioning, then segment into niches.",Funny Fishing | Fishing Christmas
-CD000030,Pickleball Gift,Large,Growing,Established Market,28.0,Medium,Evergreen,Watchlist,"Research parent demand positioning, then segment into niches.",Funny Pickleball | Pickleball Christmas
-CD000025,Gardening Gift,Large,Growing,Established Market,27.93,Medium,Evergreen,Watchlist,"Research parent demand positioning, then segment into niches.",Give Thanks Garden Flag | Funny Gardening
-CD000065,Gaming Gift,Mid,Growing,Growth Market,27.57,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,Gamer Christmas | Funny Gamer
-CD000046,Hunting Gift,Mid,Growing,Growth Market,27.37,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,Funny Hunting | Hunting Christmas
-CD000080,Reading Gift,Mid,Growing,Growth Market,26.92,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,Book Lover Women
-CD000039,Camping Gift,Mid,Growing,Growth Market,25.96,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,Funny Camping | Camping Christmas
-CD000043,Firefighter Gift,Mid,Growing,Growth Market,23.79,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,Funny Firefighter | Firefighter Christmas
-CD000075,Chef Gift,Small,Growing,Growth Market,23.03,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,Funny Chef | Chef Christmas
-CD000078,Truck Driver Gift,Mid,Growing,Growth Market,17.85,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,Truck Driver Appreciation Week
-CD000081,Dog Memorial,Mid,Declining,Mature / Declining,16.37,Low-Medium,Declining,Watchlist,Research child segments; parent demand is too broad for direct action.,Dog Memorial Garden Stones
-CD000084,Electrician Gift,Small,Growing,Growth Market,12.59,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,Funny Electrician
-CD000124,Hairstylist Gift,Micro,Growing,Growth Market,12.38,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,Best Christmas Hairdresser
-CD000142,Adult Daughter Birthday Gift,Micro,Declining,Mature / Declining,0.0,Low,Declining,Watchlist,Validate further before assigning research.,
-CD000128,Adult Daughter Christmas Gift,Micro,Growing,Growth Market,0.0,Low,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000121,Adult Son Christmas Gift,Micro,Growing,Growth Market,0.0,Low,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000092,Baby Boy Christmas Gift,Small,Growing,Growth Market,0.0,Low,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000024,Baby Boy Gift,Large,Growing,Established Market,0.0,Medium,Evergreen,Watchlist,"Research parent demand positioning, then segment into niches.",
-CD000086,Baby Girl Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000015,Baby Girl Gift,Mega,Growing,Established Market,0.0,High,Evergreen,Watchlist,"Research parent demand positioning, then segment into niches.",
-CD000148,Baby Mom Gift,Micro,Emerging,Early Signal,0.0,Low,Insufficient Data,Watchlist,Validate further before assigning research.,
-CD000047,Book Lover Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000105,Boy Birthday Gift,Mid,Declining,Mature / Declining,0.0,Low-Medium,Declining,Watchlist,Validate further before assigning research.,
-CD000035,Boy Christmas Gift,Large,Growing,Established Market,0.0,Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000022,Boy Gift,Mid,Growing,Growth Market,0.0,Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000119,Boy Halloween Gift,Micro,Growing,Growth Market,0.0,Low,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000112,Boy Soccer Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000114,Boy Teen Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000076,Bride Father Gift,Mid,Declining,Mature / Declining,0.0,Low-Medium,Declining,Watchlist,Validate further before assigning research.,
-CD000051,Bride Mother Gift,Mid,Declining,Mature / Declining,0.0,Low-Medium,Declining,Watchlist,Validate further before assigning research.,
-CD000122,Cat Cat Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000061,Cat Cat Lover Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000045,Cat Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000056,Cat Dad Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000021,Cat Gift,Large,Growing,Established Market,0.0,Medium,Evergreen,Watchlist,"Research parent demand positioning, then segment into niches.",
-CD000094,Cat Girl Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000138,Cat Lover Christmas Gift,Micro,Growing,Growth Market,0.0,Low,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000055,Cat Mom Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000144,Coffee Christmas Gift,Micro,Emerging,Early Signal,0.0,Low,Insufficient Data,Watchlist,Validate further before assigning research.,
-CD000040,Coffee Lover Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000037,Dad Birthday Gift,Large,Declining,Mature / Declining,0.0,Medium,Declining,Watchlist,"Research parent demand positioning, then segment into niches.",
-CD000009,Dad Christmas Gift,Large,Growing,Established Market,0.0,Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000048,Dad Daughter Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000140,Dad Fishing Gift,Micro,Emerging,Early Signal,0.0,Low,Insufficient Data,Watchlist,Validate further before assigning research.,
-CD000149,Dad Hunting Gift,Micro,Emerging,Early Signal,0.0,Low,Insufficient Data,Watchlist,Validate further before assigning research.,
-CD000135,Dad Kid Christmas Gift,Micro,Emerging,Early Signal,0.0,Low,Insufficient Data,Watchlist,Validate further before assigning research.,
-CD000111,Dad Kid Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000087,Dad Son Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000150,Dad Toddler Gift,Micro,Emerging,Early Signal,0.0,Low,Insufficient Data,Watchlist,Validate further before assigning research.,
-CD000120,Dad Xmas Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000091,Daughter Birthday Gift,Mid,Declining,Mature / Declining,0.0,Low-Medium,Declining,Watchlist,Validate further before assigning research.,
-CD000103,Daughter Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000109,Dog Birthday Gift,Mid,Declining,Mature / Declining,0.0,Low-Medium,Declining,Watchlist,Validate further before assigning research.,
-CD000012,Dog Christmas Gift,Large,Growing,Established Market,0.0,Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000097,Dog Dad Gift,Small,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000057,Dog Lover Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000054,Dog Mom Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000107,Dog Xmas Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000073,Father Christmas Gift,Small,Growing,Growth Market,0.0,Low,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000067,Father Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000089,Fishing Boy Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000129,Fishing Dad Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000082,Gift for Adult Daughter,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000074,Gift for Adult Son,Small,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000032,Gift for Dad Daughter,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000070,Gift for Dad Son,Small,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000143,Gift for Teen Daughter,Micro,Emerging,Early Signal,0.0,Low,Insufficient Data,Watchlist,Validate further before assigning research.,
-CD000069,Girl Birthday Gift,Mid,Declining,Mature / Declining,0.0,Low-Medium,Declining,Watchlist,Validate further before assigning research.,
-CD000031,Girl Christmas Gift,Mid,Growing,Growth Market,0.0,Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000018,Girl Gift,Large,Growing,Established Market,0.0,Medium,Evergreen,Watchlist,"Research parent demand positioning, then segment into niches.",
-CD000110,Girl Halloween Gift,Micro,Growing,Growth Market,0.0,Low,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000116,Girl Soccer Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000108,Girl Teen Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000136,Girl Xmas Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000123,Grandfather Christmas Gift,Micro,Growing,Growth Market,0.0,Low,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000101,Grandfather Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000064,Grandma Birthday Gift,Mid,Declining,Mature / Declining,0.0,Low-Medium,Declining,Watchlist,Validate further before assigning research.,
-CD000029,Grandma Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000141,Grandma Xmas Gift,Micro,Emerging,Early Signal,0.0,Low,Insufficient Data,Watchlist,Validate further before assigning research.,
-CD000100,Grandmother Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000058,Grandmother Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000106,Grandpa Birthday Gift,Small,Declining,Mature / Declining,0.0,Low,Declining,Watchlist,Validate further before assigning research.,
-CD000066,Grandpa Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000077,Groom Mother Gift,Mid,Declining,Mature / Declining,0.0,Low-Medium,Declining,Watchlist,Validate further before assigning research.,
-CD000137,Hunting Dad Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000093,Husband Anniversary Gift,Mid,Declining,Mature / Declining,0.0,Low-Medium,Declining,Watchlist,Validate further before assigning research.,
-CD000060,Husband Birthday Gift,Mid,Declining,Mature / Declining,0.0,Low-Medium,Declining,Watchlist,Validate further before assigning research.,
-CD000033,Husband Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000088,Husband Day Valentine Gift,Mid,Emerging,Early Signal,0.0,Low-Medium,Insufficient Data,Watchlist,Validate further before assigning research.,
-CD000145,Husband Xmas Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000126,Kid Boy Christmas Gift,Micro,Growing,Growth Market,0.0,Low,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000132,Kid Boy Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000131,Kid Girl Christmas Gift,Micro,Growing,Growth Market,0.0,Low,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000130,Kid Girl Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000146,Kid Mom Gift,Micro,Emerging,Early Signal,0.0,Low,Insufficient Data,Watchlist,Validate further before assigning research.,
-CD000099,Male Teacher Gift,Small,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000071,Mama Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000027,Mom Birthday Gift,Large,Declining,Mature / Declining,0.0,Medium,Declining,Watchlist,"Research parent demand positioning, then segment into niches.",
-CD000007,Mom Christmas Gift,Mega,Growing,Established Market,0.0,High,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000113,Mom Kid Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000098,Mom Xmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000095,Mother Birthday Gift,Small,Declining,Mature / Declining,0.0,Low,Declining,Watchlist,Validate further before assigning research.,
-CD000059,Mother Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000050,Mother Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000102,Nurse Christmas Gift,Micro,Growing,Growth Market,0.0,Low,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000104,Papa Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000023,Papa Gift,Large,Growing,Established Market,0.0,Medium,Evergreen,Watchlist,"Research parent demand positioning, then segment into niches.",
-CD000090,Police Gift,Small,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000139,Senior Dog Gift,Micro,Emerging,Early Signal,0.0,Low,Insufficient Data,Watchlist,Validate further before assigning research.,
-CD000041,Soccer Boy Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000079,Soccer Girl Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000134,Soccer Kid Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000127,Son Birthday Gift,Micro,Declining,Mature / Declining,0.0,Low,Declining,Watchlist,Validate further before assigning research.,
-CD000117,Son Christmas Gift,Micro,Growing,Growth Market,0.0,Low,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000038,Teacher Appreciation Gift,Large,Growing,Established Market,0.0,Medium,Holiday Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000013,Teacher Christmas Gift,Large,Growing,Established Market,0.0,Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000085,Teacher Halloween Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000125,Teacher Xmas Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000133,Teen Boy Birthday Gift,Micro,Declining,Mature / Declining,0.0,Low,Declining,Watchlist,Validate further before assigning research.,
-CD000042,Teen Boy Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000068,Teen Girl Birthday Gift,Mid,Declining,Mature / Declining,0.0,Low-Medium,Declining,Watchlist,Validate further before assigning research.,
-CD000036,Teen Girl Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000118,Thanksgiving Teacher Gift,Mid,Unproven,Early Signal,0.0,Low-Medium,Insufficient Data,Watchlist,Validate further before assigning research.,
-CD000062,Toddler Boy Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000044,Toddler Boy Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000053,Toddler Girl Christmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000028,Toddler Girl Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000147,Toddler Mom Gift,Micro,Emerging,Early Signal,0.0,Low,Insufficient Data,Watchlist,Validate further before assigning research.,
-CD000096,Wife Anniversary Gift,Mid,Declining,Mature / Declining,0.0,Low-Medium,Declining,Watchlist,Validate further before assigning research.,
-CD000072,Wife Birthday Gift,Mid,Declining,Mature / Declining,0.0,Low-Medium,Declining,Watchlist,Validate further before assigning research.,
-CD000019,Wife Christmas Gift,Large,Growing,Established Market,0.0,Medium,Q4 Seasonal,Watchlist,Research seasonal segments and validate timing windows.,
-CD000115,Wife Xmas Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
-CD000083,Yoga Gift,Mid,Growing,Growth Market,0.0,Low-Medium,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
+CD000002,Dad Gift,Mega,Growing,Scale Market,100.0,High,Evergreen,P1,Research child segments first; use parent demand as the umbrella market.,Christmas | Birthday | From Daughter | Cat | Wedding
+CD000003,Girl Gift,Mega,Growing,Scale Market,100.0,High,Evergreen,P1,Research child segments first; use parent demand as the umbrella market.,Female | Female | Female | Female | Female
+CD000001,Mom Gift,Mega,Growing,Scale Market,100.0,High,Evergreen,P1,Research child segments first; use parent demand as the umbrella market.,Wedding | Christmas | Wedding | Birthday | From Daughter
+CD000005,Teacher Gift,Large,Growing,Scale Market,100.0,Medium,Evergreen,P1,Research child segments first; use parent demand as the umbrella market.,Teacher | Teacher | Teacher | Teacher | Teacher
+CD000009,Cat Lover Gift,Large,Growing,Scale Market,100.0,Medium,Evergreen,P2,Research child segments first; use parent demand as the umbrella market.,Female | Cat Lover | Christmas | Cat Lover | Memorial
+CD000017,Dog Lover Gift,Mid,Growing,Expansion Market,100.0,Medium,Evergreen,P2,Research child segments; parent demand is too broad for direct action.,Christmas | Birthday | Dog Lover | Female | Memorial
+CD000010,Gardening Gift,Mid,Growing,Expansion Market,100.0,Medium,Evergreen,P2,Research child segments; parent demand is too broad for direct action.,Female | Christmas | Male | Memorial | Wedding
+CD000004,Grandma Gift,Mega,Growing,Scale Market,100.0,High,Evergreen,P2,Research child segments first; use parent demand as the umbrella market.,Christmas | Birthday | Wedding | Anniversary | Dog
+CD000008,Husband Gift,Large,Growing,Scale Market,100.0,Medium,Evergreen,P2,Research child segments first; use parent demand as the umbrella market.,Christmas | Anniversary | Birthday | Male | Anniversary
+CD000015,Coffee Lover Gift,Mid,Growing,Expansion Market,94.56,Medium,Evergreen,P2,Research child segments; parent demand is too broad for direct action.,Coffee Lover | Female | Coffee Lover | Christmas | Wedding
+CD000007,Wife Gift,Large,Growing,Scale Market,88.16,Medium,Evergreen,P2,Research child segments first; use parent demand as the umbrella market.,Christmas | Anniversary | Birthday | Appreciation | Wedding
+CD000013,Daughter Gift,Mid,Growing,Expansion Market,85.36,Medium,Evergreen,P2,Research child segments; parent demand is too broad for direct action.,Birthday | Adult | Christmas | Birthday | Memorial
+CD000012,Soccer Gift,Mid,Growing,Expansion Market,79.84,Medium,Evergreen,P3,Research child segments; parent demand is too broad for direct action.,Birthday | Male | Christmas | Kid | Senior
+CD000016,Son Gift,Small,Growing,Expansion Market,76.27,Medium,Evergreen,P3,Research child segments; parent demand is too broad for direct action.,Adult | Birthday | Memorial | Christmas | Birthday
+CD000006,Grandpa Gift,Large,Growing,Established Market,65.98,Medium,Evergreen,P3,Research best child segments before broad parent-demand product work.,Christmas | Birthday | Funny | Dog | Fishing
+CD000014,Camping Gift,Mid,Growing,Growth Market,62.76,Low-Medium,Evergreen,P3,Validate ranking durability and research focused child niches.,Male | Female | Birthday | Kid | Funny
+CD000011,Reading Gift,Mid,Growing,Growth Market,59.41,Low-Medium,Evergreen,P3,Validate ranking durability and research focused child niches.,Book Lover | Book Lover | Female | Christmas | Book Lover
+CD000018,Hairstylist Gift,Small,Growing,Growth Market,29.95,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,Female | Christmas
+CD000021,Realtor Gift,Small,Declining,Mature / Declining,29.95,Low,Declining,Watchlist,Research child segments; parent demand is too broad for direct action.,Female | Male | Christmas
+CD000019,Electrician Gift,Small,Growing,Growth Market,22.28,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,Male | Funny
+CD000022,Accountant Gift,Small,Growing,Growth Market,19.38,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,Funny | Female | Male
+CD000020,Male Gift,Small,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,
+CD000023,Senior Gift,Micro,Growing,Growth Market,0.0,Low,Evergreen,Watchlist,Validate ranking durability and research focused child niches.,

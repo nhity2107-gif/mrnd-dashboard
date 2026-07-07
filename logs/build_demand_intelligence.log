@@ -94,3 +94,51 @@
 2026-07-07 09:27:50 INFO Exported data\output\intelligence\executive_dashboard.csv with 1 rows
 2026-07-07 09:27:50 INFO Demand Intelligence build complete
 2026-07-07 09:27:50 INFO Build log: logs\build_demand_intelligence.log
+2026-07-07 12:33:27 INFO Starting Demand Intelligence build
+2026-07-07 12:33:27 INFO Replacing data\output\intelligence\demand_intelligence.csv
+2026-07-07 12:33:27 INFO Replacing data\output\intelligence\expansion_graph.csv
+2026-07-07 12:33:27 INFO Replacing data\output\intelligence\research_queue.csv
+2026-07-07 12:33:27 INFO Replacing data\output\intelligence\executive_dashboard.csv
+2026-07-07 12:33:27 INFO Input data\output\composite_demands\composite_demands.csv: 24 rows
+2026-07-07 12:33:27 INFO Input data\output\composite_demands\demand_strength_v3.csv: 24 rows
+2026-07-07 12:33:27 INFO Input data\output\demand_segments\demand_segments.csv: 332 rows
+2026-07-07 12:33:27 INFO Input data\output\opportunity\opportunity_master.csv: 24 rows
+2026-07-07 12:33:27 INFO Input data\output\insights\demand_size_map.csv: 24 rows
+2026-07-07 12:33:27 INFO Input data\output\insights\segment_size_map.csv: 332 rows
+2026-07-07 12:33:27 INFO Input data\output\insights\seasonality_map.csv: 380 rows
+2026-07-07 12:33:27 INFO Input data\output\insights\growth_map.csv: 380 rows
+2026-07-07 12:33:27 INFO Input data\output\insights\niche_direction_map.csv: 332 rows
+2026-07-07 12:33:27 INFO Input data\output\insights\research_opportunity_queue.csv: 356 rows
+2026-07-07 12:33:27 INFO Validated canonical demand export with 24 rows
+2026-07-07 12:33:27 INFO Validated insight queue with 356 rows
+2026-07-07 12:33:27 INFO Validated niche direction map with 332 rows
+2026-07-07 12:33:27 INFO Exported data\output\intelligence\demand_intelligence.csv with 24 rows
+2026-07-07 12:33:27 INFO Exported data\output\intelligence\expansion_graph.csv with 22 rows
+2026-07-07 12:33:27 INFO Exported data\output\intelligence\research_queue.csv with 17 rows
+2026-07-07 12:33:27 INFO Exported data\output\intelligence\executive_dashboard.csv with 1 rows
+2026-07-07 12:33:27 INFO Demand Intelligence build complete
+2026-07-07 12:33:27 INFO Build log: logs\build_demand_intelligence.log
+2026-07-07 12:38:59 INFO Starting Demand Intelligence build
+2026-07-07 12:38:59 INFO Replacing data\output\intelligence\demand_intelligence.csv
+2026-07-07 12:38:59 INFO Replacing data\output\intelligence\expansion_graph.csv
+2026-07-07 12:38:59 INFO Replacing data\output\intelligence\research_queue.csv
+2026-07-07 12:38:59 INFO Replacing data\output\intelligence\executive_dashboard.csv
+2026-07-07 12:38:59 INFO Input data\output\composite_demands\composite_demands.csv: 23 rows
+2026-07-07 12:38:59 INFO Input data\output\composite_demands\demand_strength_v3.csv: 23 rows
+2026-07-07 12:38:59 INFO Input data\output\demand_segments\demand_segments.csv: 330 rows
+2026-07-07 12:38:59 INFO Input data\output\opportunity\opportunity_master.csv: 23 rows
+2026-07-07 12:38:59 INFO Input data\output\insights\demand_size_map.csv: 23 rows
+2026-07-07 12:38:59 INFO Input data\output\insights\segment_size_map.csv: 330 rows
+2026-07-07 12:38:59 INFO Input data\output\insights\seasonality_map.csv: 376 rows
+2026-07-07 12:38:59 INFO Input data\output\insights\growth_map.csv: 376 rows
+2026-07-07 12:38:59 INFO Input data\output\insights\niche_direction_map.csv: 330 rows
+2026-07-07 12:38:59 INFO Input data\output\insights\research_opportunity_queue.csv: 353 rows
+2026-07-07 12:38:59 INFO Validated canonical demand export with 23 rows
+2026-07-07 12:38:59 INFO Validated insight queue with 353 rows
+2026-07-07 12:38:59 INFO Validated niche direction map with 330 rows
+2026-07-07 12:38:59 INFO Exported data\output\intelligence\demand_intelligence.csv with 23 rows
+2026-07-07 12:38:59 INFO Exported data\output\intelligence\expansion_graph.csv with 21 rows
+2026-07-07 12:38:59 INFO Exported data\output\intelligence\research_queue.csv with 17 rows
+2026-07-07 12:38:59 INFO Exported data\output\intelligence\executive_dashboard.csv with 1 rows
+2026-07-07 12:38:59 INFO Demand Intelligence build complete
+2026-07-07 12:38:59 INFO Build log: logs\build_demand_intelligence.log

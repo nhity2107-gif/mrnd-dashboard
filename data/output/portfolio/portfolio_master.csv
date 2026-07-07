@@ -1,31 +1,22 @@
 portfolio_id,parent_demand,market_size,child_segment_count,average_opportunity_score,best_child_score,expansion_potential,portfolio_stage,research_priority,coverage_score,investment_recommendation
-PF000001,Gift for Husband,Large,9,68.43,80.08,78.09,Growing,P1,33.33,Invest Aggressively
-PF000002,Gift for Mom,Mega,14,70.32,79.84,82.61,Mature,P2,41.18,Expand
-PF000003,Gift for Dad,Mega,14,70.35,78.98,82.39,Mature,P2,41.18,Expand
-PF000004,Teen Boy Gift,Mega,11,70.3,77.24,80.36,Mature,P2,33.33,Expand
-PF000005,Teen Girl Gift,Mega,19,70.23,78.2,77.79,Saturated,P2,55.88,Expand
-PF000006,Grandma Gift,Mega,7,66.99,76.66,76.5,Growing,P2,21.88,Expand
-PF000007,Teacher Gift,Mega,13,69.3,77.73,76.25,Mature,P2,40.62,Expand
-PF000008,Grandpa Gift,Mega,5,65.89,72.71,73.38,Growing,P2,16.13,Expand
-PF000009,Gift for Wife,Large,7,67.72,78.84,71.5,Growing,P2,26.92,Expand
-PF000010,Coffee Gift,Large,4,69.5,77.05,70.85,Growing,P2,16.0,Expand
-PF000011,Dog Gift,Large,4,67.74,76.78,65.02,Growing,P2,16.67,Expand
-PF000012,Cat Lover Gift,Large,5,71.02,76.57,64.45,Mature,P2,20.83,Expand
-PF000013,Nurse Gift,Large,5,69.21,72.78,61.35,Mature,P2,20.83,Expand
-PF000014,Fishing Gift,Large,2,69.57,71.32,59.68,Growing,P2,8.33,Expand
-PF000015,Reading Gift,Mid,1,67.37,67.37,57.08,Growing,P2,6.25,Expand
-PF000016,Gift for Daughter,Mid,5,59.17,67.79,61.69,Growing,P3,27.78,Monitor
-PF000017,Soccer Gift,Large,3,64.26,67.72,61.54,Growing,P3,13.04,Monitor
-PF000018,Gift for Son,Mid,4,58.8,64.76,59.72,Growing,P3,23.53,Monitor
-PF000019,Pickleball Gift,Large,2,63.08,63.97,55.87,Growing,P3,9.09,Monitor
-PF000020,Gardening Gift,Large,2,59.55,60.06,54.86,Growing,P3,9.09,Monitor
-PF000021,Police Officer Gift,Mid,3,58.02,59.72,54.36,Growing,P3,18.75,Monitor
-PF000022,Gaming Gift,Mid,2,59.55,61.7,54.08,Growing,P3,12.5,Monitor
-PF000023,Hunting Gift,Mid,2,61.25,61.42,53.92,Growing,P3,12.5,Monitor
-PF000024,Firefighter Gift,Mid,2,58.08,60.24,52.02,Growing,P3,12.5,Monitor
-PF000025,Chef Gift,Small,2,59.33,60.07,49.93,Growing,P3,18.18,Monitor
-PF000026,Camping Gift,Mid,2,57.8,57.91,52.16,Emerging,Watchlist,13.33,Monitor
-PF000027,Truck Driver Gift,Mid,1,55.14,55.14,49.82,Emerging,Watchlist,6.67,Monitor
-PF000028,Dog Memorial,Mid,1,50.68,50.68,48.04,Emerging,Watchlist,6.67,Exit
-PF000029,Electrician Gift,Small,1,57.34,57.34,47.0,Emerging,Watchlist,10.0,Monitor
-PF000030,Hairstylist Gift,Micro,1,56.81,56.81,45.49,Emerging,Watchlist,14.29,Monitor
+PF000001,Gardening Gift,Mid,13,68.85,80.04,77.28,Growing,P1,59.09,Invest Aggressively
+PF000002,Wife Gift,Large,12,69.59,80.76,76.53,Mature,P1,44.44,Invest Aggressively
+PF000003,Husband Gift,Large,19,71.41,81.33,74.97,Saturated,P1,67.86,Invest Aggressively
+PF000004,Cat Lover Gift,Large,21,74.31,82.34,73.09,Saturated,P1,75.0,Expand
+PF000005,Teacher Gift,Large,22,73.23,81.94,71.91,Saturated,P1,78.57,Expand
+PF000006,Grandma Gift,Mega,14,68.02,78.86,82.36,Growing,P2,41.18,Expand
+PF000007,Coffee Lover Gift,Mid,12,71.37,77.95,74.9,Mature,P2,57.14,Expand
+PF000008,Grandpa Gift,Large,5,69.03,74.96,72.43,Mature,P2,20.0,Expand
+PF000009,Daughter Gift,Mid,12,66.29,73.72,68.84,Growing,P2,60.0,Expand
+PF000010,Soccer Gift,Mid,11,67.88,73.75,67.87,Growing,P2,55.0,Expand
+PF000011,Dog Lover Gift,Mid,20,70.55,79.3,67.55,Saturated,P2,90.91,Maintain
+PF000012,Mom Gift,Mega,40,69.18,79.72,64.93,Saturated,P2,100.0,Maintain
+PF000013,Dad Gift,Mega,40,69.71,78.87,64.72,Saturated,P2,100.0,Maintain
+PF000014,Girl Gift,Mega,56,69.79,78.54,64.64,Saturated,P2,100.0,Maintain
+PF000015,Reading Gift,Mid,7,65.76,73.23,63.99,Growing,P2,36.84,Expand
+PF000016,Camping Gift,Mid,6,65.06,70.87,66.49,Growing,P3,31.58,Monitor
+PF000017,Son Gift,Small,10,63.09,69.05,60.16,Growing,P3,71.43,Monitor
+PF000018,Hairstylist Gift,Small,2,66.81,68.82,55.23,Growing,P3,18.18,Monitor
+PF000019,Electrician Gift,Small,2,64.31,67.79,51.52,Growing,P3,18.18,Monitor
+PF000020,Realtor Gift,Small,3,60.73,63.43,51.15,Growing,P3,27.27,Monitor
+PF000021,Accountant Gift,Small,3,60.37,61.01,45.79,Growing,P3,27.27,Monitor

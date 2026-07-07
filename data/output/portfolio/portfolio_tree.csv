@@ -1,154 +1,331 @@
-parent_demand,child_segment,recommended_product,recommended_customization,opportunity_score
-Camping Gift,Funny Camping,Mug,Name,57.91
-Camping Gift,Camping Christmas,Mug,Name,57.7
-Cat Lover Gift,Cat Lovers,Blanket,Name,76.57
-Cat Lover Gift,Cat Christmas,Ornament,Name,74.51
-Cat Lover Gift,Funny Cat,Blanket,Name,74.18
-Cat Lover Gift,Cat Thank You,Card,Name,67.83
-Cat Lover Gift,Cat Birthday,Blanket,Name,62.02
-Chef Gift,Chef Christmas,Ornament,Name,60.07
-Chef Gift,Funny Chef,Mug,Name,58.59
-Coffee Gift,Coffee Lover,Mug,Name,77.05
-Coffee Gift,Coffee Christmas Set,Mug,Name,69.8
-Coffee Gift,Funny Coffee,Mug,Name,65.72
-Coffee Gift,Holiday Coffee Set,Mug,Name,65.44
-Dog Gift,Dog Christmas,Ornament,Name,76.78
-Dog Gift,Funny Dog,Blanket,Name,67.84
-Dog Gift,Dog Birthday,Blanket,Name,64.95
-Dog Gift,Dog Thank You,Card,Name,61.38
-Dog Memorial,Dog Memorial Garden Stones,Blanket,Name,50.68
-Electrician Gift,Funny Electrician,Mug,Name,57.34
-Firefighter Gift,Firefighter Christmas,Ornament,Name,60.24
-Firefighter Gift,Funny Firefighter,Mug,Name,55.91
-Fishing Gift,Funny Fishing,Mug,Name,71.32
-Fishing Gift,Fishing Christmas,Mug,Name,67.83
-Gaming Gift,Gamer Christmas,Mug,Name,61.7
-Gaming Gift,Funny Gamer,Mug,Name,57.39
-Gardening Gift,Funny Gardening,Mug,Name,60.06
-Gardening Gift,Give Thanks Garden Flag,Card,Name,59.05
-Gift for Dad,Dad Christmas,Ornament,Name,78.98
-Gift for Dad,Cat Dad,Blanket,Name,77.59
-Gift for Dad,Dog Dad Men,Blanket,Name,76.47
-Gift for Dad,Funny Dad,Mug,Name,75.69
-Gift for Dad,Fishing Dad,Mug,Name,70.38
-Gift for Dad,Hunting Dad,Mug,Name,69.71
-Gift for Dad,Dad Birthday,Mug,Name,68.82
-Gift for Dad,Christian Dad,Mug,Name,67.98
-Gift for Dad,Fathers Day Dad,Mug,Name,67.75
-Gift for Dad,Gamer Dad,Mug,Name,67.15
-Gift for Dad,Soccer Dad,Mug,Name,66.99
-Gift for Dad,Father Of Bride,Mug,Name,66.93
-Gift for Dad,Camping Dad,Mug,Name,65.75
-Gift for Dad,Dad Gardening,Mug,Name,64.7
-Gift for Daughter,Daughter In Law Christmas,Ornament,Name,67.79
-Gift for Daughter,Daughter Birthday,Mug,Name,59.2
-Gift for Daughter,Funny Daughter,Mug,Name,58.02
-Gift for Daughter,Christian Daughter,Mug,Name,56.96
-Gift for Daughter,Daughter In Law Wedding,Mug,Name,53.87
-Gift for Husband,Husband Christmas,Ornament,Name,80.08
-Gift for Husband,Funny Husband,Mug,Name,71.19
-Gift for Husband,Gamer Husband,Mug,Name,71.08
-Gift for Husband,Husband Valentines Day,Mug,Name,70.97
-Gift for Husband,Husband Birthday,Mug,Name,68.69
-Gift for Husband,Wedding Anniversary Husband,Mug,Name,67.18
-Gift for Husband,Christian Husband,Mug,Name,65.13
-Gift for Husband,Thank You Mr Falker,Mug,Name,61.16
-Gift for Husband,Husband On Wedding Day,Mug,Name,60.38
-Gift for Mom,Christmas Mom,Ornament,Name,79.84
-Gift for Mom,Dog Mom Women,Ornament,Name,79.05
-Gift for Mom,Funny Mom,Mug,Name,76.07
-Gift for Mom,Cat Mom,Blanket,Name,74.39
-Gift for Mom,Soccer Mom,Mug,Name,71.81
-Gift for Mom,Christian Mom,Mug,Name,71.29
-Gift for Mom,Mom Birthday,Mug,Name,69.25
-Gift for Mom,Mothers Day Mom,Mug,Name,68.0
-Gift for Mom,Mother Of Bride,Mug,Name,67.79
-Gift for Mom,Cat Lover Mom,Blanket,Name,65.97
-Gift for Mom,Mom Dog Women,Blanket,Name,65.77
-Gift for Mom,Gardening Mom,Mug,Name,65.35
-Gift for Mom,Reading Mom,Mug,Name,65.2
-Gift for Mom,Thank You Mom,Mug,Name,64.74
-Gift for Son,Son In Law Christmas,Ornament,Name,64.76
-Gift for Son,Funny Son In Law,Mug,Name,61.4
-Gift for Son,Birthday Son Adult,Mug,Name,57.02
-Gift for Son,Wedding Son,Mug,Name,52.02
-Gift for Wife,Wife Christmas Ideas,Ornament,Name,78.84
-Gift for Wife,Funny Wife,Mug,Name,68.95
-Gift for Wife,Wife Birthday Ideas,Mug,Name,66.62
-Gift for Wife,Pastor Wife Appreciation,Card,Name,66.47
-Gift for Wife,Anniversary Wife,Mug,Name,65.33
-Gift for Wife,Christian Wife,Mug,Name,64.3
-Gift for Wife,Mrs Mrs Wedding,Mug,Name,63.53
-Grandma Gift,Grandma Christmas,Ornament,Name,76.66
-Grandma Gift,Dog Grandma,Blanket,Name,69.38
-Grandma Gift,Funny Grandma,Mug,Name,67.53
-Grandma Gift,Grandma Birthday,Mug,Name,65.09
-Grandma Gift,Cat Grandma,Blanket,Name,64.51
-Grandma Gift,Grandma Garden,Mug,Name,62.9
-Grandma Gift,Christian Grandma,Mug,Name,62.87
-Grandpa Gift,Grandpa Christmas,Ornament,Name,72.71
-Grandpa Gift,Funny Grandpa,Mug,Name,66.98
-Grandpa Gift,Dog Grandpa,Blanket,Name,64.07
-Grandpa Gift,Grandpa Fishing,Mug,Name,63.55
-Grandpa Gift,Grandpa Birthday,Mug,Name,62.15
-Hairstylist Gift,Best Christmas Hairdresser,Ornament,Name,56.81
-Hunting Gift,Hunting Christmas,Mug,Name,61.42
-Hunting Gift,Funny Hunting,Mug,Name,61.08
-Nurse Gift,Funny Nurse,Mug,Name,72.78
-Nurse Gift,Nurse Graduation,Mug,Name,72.36
-Nurse Gift,Nurse Christmas,Mug,Name,70.14
-Nurse Gift,Nurse Appreciation,Mug,Name,68.51
-Nurse Gift,Halloween Nurse,Mug,Name,62.26
-Pickleball Gift,Funny Pickleball,Mug,Name,63.97
-Pickleball Gift,Pickleball Christmas,Ornament,Name,62.18
-Police Officer Gift,Police Academy Graduation,Mug,Name,59.72
-Police Officer Gift,Christmas Police Officers,Ornament,Name,57.77
-Police Officer Gift,Funny Cop,Mug,Name,56.57
-Reading Gift,Book Lover Women,Mug,Name,67.37
-Soccer Gift,Soccer Christmas,Mug,Name,67.72
-Soccer Gift,Funny Football,Mug,Name,63.59
-Soccer Gift,Football Thank You,Tumbler,Name,61.47
-Teacher Gift,Teacher Christmas,Mug,Name,77.73
-Teacher Gift,Teacher Appreciation,Mug,Name,77.03
-Teacher Gift,Funny Teacher,Mug,Name,74.91
-Teacher Gift,Halloween Teacher,Mug,Name,72.5
-Teacher Gift,Holiday Teacher,Mug,Name,69.64
-Teacher Gift,Christian Teacher,Mug,Name,69.31
-Teacher Gift,Thanksgiving Teacher,Mug,Name,66.46
-Teacher Gift,Teacher Valentine,Mug,Name,66.28
-Teacher Gift,Teacher Birthday,Mug,Name,65.97
-Teacher Gift,Yoga Teacher,Mug,Name,65.87
-Teacher Gift,Reading Teacher,Mug,Name,65.83
-Teacher Gift,Teacher Graduation,Mug,Name,65.21
-Teacher Gift,Thankful Teacher,Mug,Name,64.18
-Teen Boy Gift,Boys Christmas,Ornament,Name,77.24
-Teen Boy Gift,Soccer Boys,Mug,Name,76.6
-Teen Boy Gift,Gamer Boys,Mug,Name,74.92
-Teen Boy Gift,Fishing Boys,Mug,Name,74.68
-Teen Boy Gift,Halloween Boys,Ornament,Name,69.93
-Teen Boy Gift,Hunting Boys,Mug,Name,69.65
-Teen Boy Gift,Christian Teen Boys,Mug,Name,68.68
-Teen Boy Gift,Funny Teen Boys,Mug,Name,67.4
-Teen Boy Gift,1st Birthday Boy,Mug,Name,65.72
-Teen Boy Gift,Baby Boy Thank You,Card,Name,64.48
-Teen Boy Gift,Boys Valentine,Mug,Name,63.97
-Teen Girl Gift,Girls Christmas,Ornament,Name,78.2
-Teen Girl Gift,Soccer Girls,Mug,Name,75.92
-Teen Girl Gift,Cat Girls,Blanket,Name,75.19
-Teen Girl Gift,American Girl,Card,Name,74.58
-Teen Girl Gift,Country Girl,Mug,Name,72.6
-Teen Girl Gift,Demon Hunter Girls,Mug,Name,72.6
-Teen Girl Gift,Christian Teen Girls,Mug,Name,72.01
-Teen Girl Gift,Thanks Giving Outfit Baby Girl,Card,Name,71.92
-Teen Girl Gift,Halloween Girls,Ornament,Name,71.23
-Teen Girl Gift,Gamer Girl,Mug,Name,70.66
-Teen Girl Gift,Cat Lover Girls,Blanket,Name,69.89
-Teen Girl Gift,Book Lovers Girls,Mug,Name,68.29
-Teen Girl Gift,1st Birthday Girl,Mug,Name,66.92
-Teen Girl Gift,Western Girl,Mug,Name,66.92
-Teen Girl Gift,Funny Teen Girls,Mug,Name,66.9
-Teen Girl Gift,Flower Girl,Mug,Name,66.3
-Teen Girl Gift,Girl Dog,Blanket,Name,66.09
-Teen Girl Gift,Farm Girl,Mug,Name,64.1
-Teen Girl Gift,Book Lover Teen Girls,Mug,Name,64.01
-Truck Driver Gift,Truck Driver Appreciation Week,Card,Name,55.14
+parent_demand,child_segment,segment_signature,recommended_product,recommended_customization,opportunity_score
+Accountant Gift,Funny,theme:funny,Tumbler,Name,61.01
+Accountant Gift,Female,audience_modifier:female,Tumbler,Photo,60.22
+Accountant Gift,Male,audience_modifier:male,Tumbler,Photo,59.88
+Camping Gift,Male,audience_modifier:male,Tumbler,Photo,70.87
+Camping Gift,Female,audience_modifier:female,Tumbler,Photo,70.28
+Camping Gift,Kid,audience_modifier:kid,Tumbler,Name,63.57
+Camping Gift,Birthday,occasion:birthday,Tumbler,Photo,62.85
+Camping Gift,Funny,theme:funny,Tumbler,Name,61.59
+Camping Gift,Christmas,holiday:christmas,Tumbler,Photo,61.18
+Cat Lover Gift,Christmas,holiday:christmas,Tumbler,Photo,82.34
+Cat Lover Gift,Cat Lover,audience_modifier:female|lifestyle:cat lover,Ornament,Photo,81.47
+Cat Lover Gift,Cat Lover,lifestyle:cat lover,Ornament,Photo,81.41
+Cat Lover Gift,Female,audience_modifier:female,Tumbler,Photo,81.2
+Cat Lover Gift,Funny,theme:funny,Tumbler,Photo,79.62
+Cat Lover Gift,Male,audience_modifier:male,Tumbler,Photo,77.75
+Cat Lover Gift,Christmas,holiday:christmas|theme:funny,Tumbler,Photo,75.1
+Cat Lover Gift,Cat Lover,audience_modifier:male|lifestyle:cat lover,Ornament,Photo,74.53
+Cat Lover Gift,Kid,audience_modifier:kid,Tumbler,Name,74.44
+Cat Lover Gift,Christmas,holiday:christmas|lifestyle:cat lover,Tumbler,Photo,73.91
+Cat Lover Gift,Female,audience_modifier:female|theme:funny,Tumbler,Photo,73.81
+Cat Lover Gift,Christmas,holiday:christmas|theme:retro,Tumbler,Photo,73.45
+Cat Lover Gift,Appreciation,intent:appreciation,Tumbler,Photo,72.62
+Cat Lover Gift,Birthday,occasion:birthday,Tumbler,Photo,71.78
+Cat Lover Gift,Memorial,occasion:memorial,Ornament,Photo,71.76
+Cat Lover Gift,Cat Lover,lifestyle:cat lover|theme:funny,Ornament,Photo,70.49
+Cat Lover Gift,Christmas,audience_modifier:female|holiday:christmas,Tumbler,Photo,70.43
+Cat Lover Gift,Christmas,audience_modifier:female|holiday:christmas|lifestyle:cat lover,Tumbler,Photo,69.85
+Cat Lover Gift,Funny,audience_modifier:male|theme:funny,Tumbler,Photo,69.34
+Cat Lover Gift,Christmas,holiday:christmas|interest:gardening,Tumbler,Photo,68.05
+Cat Lover Gift,Birthday,occasion:birthday|theme:funny,Tumbler,Photo,67.22
+Coffee Lover Gift,Coffee Lover,lifestyle:coffee lover,Tumbler,Name,77.95
+Coffee Lover Gift,Christmas,holiday:christmas,Tumbler,Photo,77.41
+Coffee Lover Gift,Coffee Lover,audience_modifier:female|lifestyle:coffee lover,Tumbler,Name,76.83
+Coffee Lover Gift,Female,audience_modifier:female,Tumbler,Photo,76.57
+Coffee Lover Gift,Male,audience_modifier:male,Tumbler,Photo,75.3
+Coffee Lover Gift,Coffee Lover,audience_modifier:male|lifestyle:coffee lover,Tumbler,Name,74.24
+Coffee Lover Gift,Christmas,holiday:christmas|lifestyle:coffee lover,Tumbler,Photo,67.65
+Coffee Lover Gift,Funny,theme:funny,Tumbler,Name,66.65
+Coffee Lover Gift,Christmas,occasion:christmas,Tumbler,Photo,66.37
+Coffee Lover Gift,Birthday,occasion:birthday,Tumbler,Photo,66.01
+Coffee Lover Gift,Wedding,occasion:wedding,Tumbler,Name,65.98
+Coffee Lover Gift,Adult,audience_modifier:adult,Tumbler,Name,65.43
+Dad Gift,Christmas,holiday:christmas,Tumbler,Photo,78.87
+Dad Gift,Cat,lifestyle:cat lover|pet:cat,Ornament,Photo,78.27
+Dad Gift,Male,audience_modifier:male|lifestyle:dog lover|pet:dog,Tumbler,Photo,77.26
+Dad Gift,Christmas,holiday:christmas|relationship:daughter,Tumbler,Photo,76.95
+Dad Gift,Funny,theme:funny,Tumbler,Photo,76.93
+Dad Gift,Dog,lifestyle:dog lover|pet:dog,Ornament,Photo,75.9
+Dad Gift,Memorial,occasion:memorial,Ornament,Photo,75.59
+Dad Gift,From Daughter,relationship:daughter,Tumbler,Name,75.16
+Dad Gift,Wedding,occasion:wedding,Tumbler,Name,75.05
+Dad Gift,Christmas,holiday:christmas|relationship:son,Tumbler,Photo,73.14
+Dad Gift,From Son,relationship:son,Mug,Name,72.54
+Dad Gift,Christmas,holiday:christmas|theme:funny,Tumbler,Photo,70.9
+Dad Gift,Birthday,occasion:birthday,Tumbler,Photo,70.77
+Dad Gift,From Daughter,relationship:daughter|theme:funny,Tumbler,Name,70.62
+Dad Gift,Fishing,interest:fishing,Tumbler,Name,70.38
+Dad Gift,Baby,audience_modifier:baby,Mug,Name,70.07
+Dad Gift,Faith,theme:faith,Tumbler,Name,69.98
+Dad Gift,Hunting,interest:hunting,Mug,Name,69.71
+Dad Gift,Senior,audience_modifier:senior,Tumbler,Name,69.46
+Dad Gift,Male,audience_modifier:male,Tumbler,Photo,69.2
+Dad Gift,Father's Day,holiday:father's day,Mug,Name,68.75
+Dad Gift,Christmas,audience_modifier:male|holiday:christmas,Tumbler,Photo,68.66
+Dad Gift,Kid,audience_modifier:kid|relationship:kids,Tumbler,Name,68.12
+Dad Gift,Christmas,audience_modifier:kid|holiday:christmas|relationship:kids,Tumbler,Photo,67.71
+Dad Gift,Male,audience_modifier:male|lifestyle:cat lover|pet:cat,Tumbler,Photo,67.56
+Dad Gift,Birthday,occasion:birthday|relationship:daughter,Tumbler,Photo,67.25
+Dad Gift,Gaming,interest:gaming,Tumbler,Name,67.15
+Dad Gift,Soccer,interest:soccer,Tumbler,Name,66.99
+Dad Gift,Gardening,interest:gardening,Mug,Name,66.7
+Dad Gift,Christmas,audience_modifier:baby|holiday:christmas,Tumbler,Photo,66.55
+Dad Gift,Birthday,occasion:birthday|theme:funny,Tumbler,Photo,66.24
+Dad Gift,Cat,pet:cat,Ornament,Photo,66.21
+Dad Gift,Christmas,audience_modifier:female|audience_modifier:senior|holiday:christmas,Tumbler,Photo,66.14
+Dad Gift,Camping,interest:camping,Mug,Name,65.75
+Dad Gift,Dog,pet:dog,Ornament,Photo,65.69
+Dad Gift,Sympathy,occasion:sympathy,Mug,Name,65.28
+Dad Gift,From Daughter,occasion:wedding|relationship:daughter,Tumbler,Name,64.26
+Dad Gift,From Daughter,audience_modifier:adult|relationship:daughter,Tumbler,Name,63.36
+Dad Gift,Toddler,audience_modifier:toddler|relationship:toddler,Mug,Name,61.88
+Dad Gift,Birthday,occasion:birthday|relationship:son,Tumbler,Photo,61.56
+Daughter Gift,Christmas,holiday:christmas,Tumbler,Photo,73.72
+Daughter Gift,Memorial,occasion:memorial,Ornament,Photo,71.58
+Daughter Gift,Adult,audience_modifier:adult,Tumbler,Name,71.48
+Daughter Gift,Christmas,audience_modifier:adult|holiday:christmas,Tumbler,Photo,69.98
+Daughter Gift,Birthday,occasion:birthday,Tumbler,Photo,67.49
+Daughter Gift,Birthday,audience_modifier:adult|occasion:birthday,Tumbler,Photo,65.24
+Daughter Gift,Funny,theme:funny,Tumbler,Name,64.77
+Daughter Gift,Faith,theme:faith,Tumbler,Name,64.51
+Daughter Gift,Female,audience_modifier:female,Tumbler,Photo,62.28
+Daughter Gift,Teen,audience_modifier:teen,Mug,Name,61.98
+Daughter Gift,Wedding,occasion:wedding,Tumbler,Name,61.23
+Daughter Gift,Anniversary,occasion:anniversary,Tumbler,Name,61.17
+Dog Lover Gift,Christmas,holiday:christmas,Tumbler,Photo,79.3
+Dog Lover Gift,Dog Lover,lifestyle:dog lover,Mug,Photo,78.11
+Dog Lover Gift,Female,audience_modifier:female|lifestyle:dog lover,Tumbler,Photo,77.93
+Dog Lover Gift,Female,audience_modifier:female,Tumbler,Photo,77.39
+Dog Lover Gift,Memorial,occasion:memorial,Ornament,Photo,75.11
+Dog Lover Gift,Dog Lover,audience_modifier:male|lifestyle:dog lover,Blanket,Photo,71.68
+Dog Lover Gift,Christmas,holiday:christmas|lifestyle:dog lover,Tumbler,Photo,71.36
+Dog Lover Gift,Birthday,occasion:birthday,Tumbler,Photo,71.08
+Dog Lover Gift,Funny,theme:funny,Tumbler,Photo,70.87
+Dog Lover Gift,Christmas,audience_modifier:female|holiday:christmas,Tumbler,Photo,70.57
+Dog Lover Gift,Male,audience_modifier:male,Tumbler,Photo,70.17
+Dog Lover Gift,Wedding,occasion:wedding,Tumbler,Photo,69.05
+Dog Lover Gift,Christmas,holiday:christmas|theme:funny,Tumbler,Photo,68.23
+Dog Lover Gift,Senior,audience_modifier:senior,Tumbler,Name,67.21
+Dog Lover Gift,Christmas,audience_modifier:male|holiday:christmas,Tumbler,Photo,67.08
+Dog Lover Gift,Sympathy,occasion:sympathy,Mug,Name,66.84
+Dog Lover Gift,Memorial,interest:gardening|occasion:memorial,Ornament,Photo,65.67
+Dog Lover Gift,Graduation,occasion:graduation,Blanket,Name,65.48
+Dog Lover Gift,Birthday,audience_modifier:male|occasion:birthday,Tumbler,Photo,64.01
+Dog Lover Gift,Appreciation,intent:appreciation,Tumbler,Photo,63.91
+Electrician Gift,Male,audience_modifier:male,Tumbler,Photo,67.79
+Electrician Gift,Funny,theme:funny,Tumbler,Name,60.83
+Gardening Gift,Christmas,holiday:christmas,Tumbler,Photo,80.04
+Gardening Gift,Female,audience_modifier:female,Tumbler,Photo,78.71
+Gardening Gift,Male,audience_modifier:male,Tumbler,Photo,76.17
+Gardening Gift,Christmas,holiday:christmas|theme:funny,Tumbler,Photo,67.33
+Gardening Gift,Memorial,occasion:memorial,Ornament,Photo,67.07
+Gardening Gift,Funny,theme:funny,Tumbler,Name,66.97
+Gardening Gift,Memorial,occasion:memorial|pet:dog,Ornament,Photo,66.32
+Gardening Gift,Christmas,holiday:christmas|pet:cat,Tumbler,Photo,66.3
+Gardening Gift,Christmas,holiday:christmas|theme:vintage,Tumbler,Photo,66.06
+Gardening Gift,Wedding,occasion:wedding,Tumbler,Name,66.02
+Gardening Gift,Christmas,holiday:christmas|theme:faith,Tumbler,Photo,65.76
+Gardening Gift,Appreciation,intent:appreciation,Tumbler,Name,65.15
+Gardening Gift,Birthday,occasion:birthday,Tumbler,Photo,63.18
+Girl Gift,Female,audience_modifier:female|audience_modifier:teen|holiday:christmas,Tumbler,Photo,78.54
+Girl Gift,Female,audience_modifier:female|holiday:christmas,Tumbler,Photo,78.39
+Girl Gift,Female,audience_modifier:baby|audience_modifier:female|holiday:christmas,Tumbler,Photo,78.37
+Girl Gift,Female,audience_modifier:female|audience_modifier:toddler|holiday:christmas,Tumbler,Photo,77.89
+Girl Gift,Female,audience_modifier:female|audience_modifier:teen,Tumbler,Photo,77.05
+Girl Gift,Female,audience_modifier:female|interest:soccer,Tumbler,Photo,76.26
+Girl Gift,Female,audience_modifier:female,Tumbler,Photo,76.2
+Girl Gift,Female,audience_modifier:female|pet:cat,Tumbler,Photo,75.73
+Girl Gift,Female,audience_modifier:female|audience_modifier:toddler|relationship:toddler,Tumbler,Photo,75.61
+Girl Gift,Female,audience_modifier:female|holiday:christmas|pet:dog,Tumbler,Photo,75.26
+Girl Gift,Female,audience_modifier:female|lifestyle:country girl,Tumbler,Photo,75.2
+Girl Gift,Female,audience_modifier:female|theme:american,Tumbler,Photo,74.71
+Girl Gift,Female,audience_modifier:female|audience_modifier:teen|theme:faith,Tumbler,Photo,74.58
+Girl Gift,Female,audience_modifier:baby|audience_modifier:female,Tumbler,Photo,74.42
+Girl Gift,Female,audience_modifier:female|theme:faith,Tumbler,Photo,74.17
+Girl Gift,Female,audience_modifier:female|audience_modifier:kid|holiday:christmas,Tumbler,Photo,73.93
+Girl Gift,Female,audience_modifier:female|audience_modifier:toddler,Tumbler,Photo,73.83
+Girl Gift,Female,audience_modifier:female|interest:hunting,Tumbler,Photo,72.9
+Girl Gift,Female,audience_modifier:baby|audience_modifier:female|intent:appreciation,Tumbler,Photo,71.87
+Girl Gift,Female,audience_modifier:female|holiday:halloween,Tumbler,Photo,71.74
+Girl Gift,Female,audience_modifier:female|interest:gaming,Tumbler,Photo,70.96
+Girl Gift,Female,audience_modifier:female|lifestyle:cat lover|pet:cat,Tumbler,Photo,70.92
+Girl Gift,Female,audience_modifier:female|audience_modifier:teen|holiday:halloween,Tumbler,Photo,70.51
+Girl Gift,Christmas,holiday:christmas,Tumbler,Photo,70.13
+Girl Gift,Female,audience_modifier:female|lifestyle:book lover,Tumbler,Photo,70.12
+Girl Gift,Female,audience_modifier:female|occasion:birthday,Tumbler,Photo,70.09
+Girl Gift,Female,audience_modifier:female|audience_modifier:teen|theme:funny,Tumbler,Photo,69.52
+Girl Gift,Female,audience_modifier:female|lifestyle:cowgirl,Tumbler,Photo,69.52
+Girl Gift,Female,audience_modifier:female|audience_modifier:teen|occasion:birthday,Tumbler,Photo,69.12
+Girl Gift,Female,audience_modifier:female|occasion:wedding|theme:floral,Tumbler,Photo,69.05
+Girl Gift,Female,audience_modifier:female|theme:floral,Tumbler,Photo,68.9
+Girl Gift,Female,audience_modifier:female|audience_modifier:senior,Tumbler,Photo,67.5
+Girl Gift,Female,audience_modifier:female|occasion:wedding,Tumbler,Photo,67.5
+Girl Gift,Female,audience_modifier:adult|audience_modifier:female,Tumbler,Photo,67.34
+Girl Gift,Female,audience_modifier:baby|audience_modifier:female|occasion:birthday,Tumbler,Photo,67.19
+Girl Gift,Female,audience_modifier:female|audience_modifier:kid,Tumbler,Photo,67.09
+Girl Gift,Female,audience_modifier:female|lifestyle:farm life,Tumbler,Photo,66.7
+Girl Gift,Female,audience_modifier:female|theme:funny,Tumbler,Photo,66.61
+Girl Gift,Female,audience_modifier:female|pet:dog,Tumbler,Photo,66.59
+Girl Gift,Female,audience_modifier:female|audience_modifier:toddler|occasion:birthday,Tumbler,Photo,66.52
+Girl Gift,Female,audience_modifier:female|audience_modifier:teen|interest:reading|lifestyle:book lover,Tumbler,Photo,66.34
+Girl Gift,Female,audience_modifier:female|occasion:birthday|pet:dog,Tumbler,Photo,66.34
+Girl Gift,Female,audience_modifier:female|audience_modifier:teen|interest:soccer,Tumbler,Photo,65.74
+Girl Gift,Female,audience_modifier:female|audience_modifier:kid|occasion:birthday,Tumbler,Photo,65.44
+Girl Gift,Female,audience_modifier:female|intent:appreciation,Tumbler,Photo,65.4
+Girl Gift,Female,audience_modifier:female|holiday:christmas|pet:cat,Tumbler,Photo,65.01
+Girl Gift,Female,audience_modifier:female|holiday:christmas|theme:vintage,Tumbler,Photo,65.0
+Girl Gift,Female,audience_modifier:female|audience_modifier:toddler|intent:appreciation,Tumbler,Photo,64.87
+Girl Gift,Female,audience_modifier:baby|audience_modifier:female|holiday:halloween,Tumbler,Photo,64.84
+Girl Gift,Female,audience_modifier:female|audience_modifier:toddler|holiday:halloween,Tumbler,Photo,64.45
+Girl Gift,Female,audience_modifier:female|audience_modifier:kid|occasion:wedding,Tumbler,Photo,64.27
+Girl Gift,Female,audience_modifier:female|audience_modifier:kid|relationship:kids,Tumbler,Photo,63.78
+Girl Gift,Female,audience_modifier:baby|audience_modifier:female|occasion:wedding,Tumbler,Photo,62.75
+Girl Gift,Female,audience_modifier:female|holiday:christmas|theme:american,Tumbler,Photo,62.53
+Girl Gift,Female,audience_modifier:female|audience_modifier:toddler|occasion:wedding,Tumbler,Photo,62.37
+Girl Gift,American,theme:american,Mug,Name,60.39
+Grandma Gift,Christmas,holiday:christmas,Tumbler,Photo,78.86
+Grandma Gift,Dog,pet:dog,Ornament,Photo,71.65
+Grandma Gift,Funny,theme:funny,Tumbler,Photo,70.99
+Grandma Gift,Baby,audience_modifier:baby,Mug,Name,69.97
+Grandma Gift,Birthday,occasion:birthday,Tumbler,Photo,69.18
+Grandma Gift,Wedding,occasion:wedding,Tumbler,Name,68.6
+Grandma Gift,Gardening,interest:gardening,Mug,Name,67.17
+Grandma Gift,Faith,theme:faith,Tumbler,Name,67.14
+Grandma Gift,Cat,pet:cat,Ornament,Photo,66.78
+Grandma Gift,Memorial,occasion:memorial,Ornament,Photo,66.28
+Grandma Gift,Anniversary,occasion:anniversary,Tumbler,Name,65.71
+Grandma Gift,Female,audience_modifier:female,Tumbler,Photo,64.87
+Grandma Gift,Senior,audience_modifier:senior,Tumbler,Name,62.54
+Grandma Gift,Kid,audience_modifier:kid|relationship:kids,Tumbler,Name,62.51
+Grandpa Gift,Christmas,holiday:christmas,Tumbler,Photo,74.96
+Grandpa Gift,Funny,theme:funny,Tumbler,Photo,70.74
+Grandpa Gift,Birthday,occasion:birthday,Tumbler,Photo,66.69
+Grandpa Gift,Dog,pet:dog,Ornament,Photo,66.64
+Grandpa Gift,Fishing,interest:fishing,Tumbler,Name,66.11
+Hairstylist Gift,Female,audience_modifier:female,Tumbler,Photo,68.82
+Hairstylist Gift,Christmas,holiday:christmas,Tumbler,Photo,64.8
+Husband Gift,Christmas,holiday:christmas,Tumbler,Photo,81.33
+Husband Gift,Memorial,occasion:memorial,Ornament,Photo,77.33
+Husband Gift,Male,audience_modifier:male,Tumbler,Photo,76.76
+Husband Gift,Valentine,holiday:valentine|occasion:valentine's day,Mug,Name,73.92
+Husband Gift,Funny,theme:funny,Tumbler,Photo,73.8
+Husband Gift,Christmas,audience_modifier:male|holiday:christmas,Tumbler,Photo,73.25
+Husband Gift,Valentine,holiday:valentine,Mug,Name,72.8
+Husband Gift,Anniversary,occasion:anniversary,Tumbler,Name,72.76
+Husband Gift,Birthday,occasion:birthday,Tumbler,Photo,72.5
+Husband Gift,Gaming,interest:gaming,Tumbler,Name,72.5
+Husband Gift,Christmas,holiday:christmas|theme:funny,Tumbler,Photo,70.45
+Husband Gift,Anniversary,audience_modifier:male|occasion:anniversary,Tumbler,Name,69.84
+Husband Gift,Anniversary,occasion:anniversary|occasion:wedding,Tumbler,Name,68.87
+Husband Gift,Birthday,occasion:birthday|theme:funny,Tumbler,Photo,68.83
+Husband Gift,Faith,theme:faith,Tumbler,Name,68.55
+Husband Gift,Sympathy,occasion:sympathy,Mug,Name,67.48
+Husband Gift,Wedding,occasion:wedding,Tumbler,Name,66.67
+Husband Gift,Anniversary,occasion:anniversary|theme:funny,Tumbler,Name,65.24
+Husband Gift,Appreciation,intent:appreciation,Tumbler,Name,63.97
+Mom Gift,Christmas,holiday:christmas,Tumbler,Photo,79.72
+Mom Gift,Christmas,holiday:christmas|relationship:daughter,Tumbler,Photo,76.73
+Mom Gift,Memorial,occasion:memorial,Ornament,Photo,75.93
+Mom Gift,Funny,theme:funny,Tumbler,Photo,75.86
+Mom Gift,From Daughter,relationship:daughter,Tumbler,Name,74.41
+Mom Gift,Faith,theme:faith,Tumbler,Name,73.29
+Mom Gift,Christmas,holiday:christmas|relationship:son,Tumbler,Photo,73.15
+Mom Gift,From Son,relationship:son,Mug,Name,72.5
+Mom Gift,Soccer,interest:soccer,Tumbler,Name,71.87
+Mom Gift,Female,audience_modifier:female,Tumbler,Photo,71.82
+Mom Gift,Wedding,occasion:wedding,Tumbler,Name,71.64
+Mom Gift,Wedding,occasion:wedding|theme:floral,Tumbler,Name,71.59
+Mom Gift,Birthday,occasion:birthday,Tumbler,Photo,71.23
+Mom Gift,Wedding,audience_modifier:female|occasion:wedding,Tumbler,Name,71.14
+Mom Gift,Adult,audience_modifier:adult,Tumbler,Name,70.65
+Mom Gift,Birthday,audience_modifier:female|occasion:birthday,Tumbler,Photo,70.63
+Mom Gift,Christmas,audience_modifier:baby|holiday:christmas,Tumbler,Photo,70.51
+Mom Gift,Senior,audience_modifier:senior,Tumbler,Name,70.31
+Mom Gift,Mother's Day,holiday:mother's day,Mug,Name,69.0
+Mom Gift,Christmas,audience_modifier:female|holiday:christmas,Tumbler,Photo,68.0
+Mom Gift,Kid,audience_modifier:kid|relationship:kids,Tumbler,Name,67.95
+Mom Gift,Birthday,occasion:birthday|relationship:daughter,Tumbler,Photo,67.79
+Mom Gift,Christmas,holiday:christmas|theme:funny,Tumbler,Photo,67.64
+Mom Gift,Christmas,audience_modifier:senior|holiday:christmas,Tumbler,Photo,67.63
+Mom Gift,Gardening,interest:gardening,Mug,Name,67.35
+Mom Gift,Christmas,audience_modifier:kid|holiday:christmas|relationship:kids,Tumbler,Photo,67.27
+Mom Gift,Cat,lifestyle:cat lover|pet:cat,Ornament,Photo,66.52
+Mom Gift,Wedding,occasion:wedding|relationship:daughter,Tumbler,Name,66.51
+Mom Gift,Birthday,occasion:birthday|relationship:son,Tumbler,Photo,66.18
+Mom Gift,Appreciation,intent:appreciation,Tumbler,Name,66.14
+Mom Gift,Sympathy,occasion:sympathy,Mug,Name,66.03
+Mom Gift,Birthday,occasion:birthday|theme:funny,Tumbler,Photo,65.84
+Mom Gift,Cat,pet:cat,Ornament,Photo,65.84
+Mom Gift,Female,audience_modifier:female|interest:soccer,Tumbler,Photo,65.83
+Mom Gift,Female,audience_modifier:female|pet:dog,Tumbler,Photo,65.77
+Mom Gift,Reading,interest:reading,Mug,Name,65.2
+Mom Gift,Baby,audience_modifier:baby,Mug,Name,63.61
+Mom Gift,From Daughter,audience_modifier:adult|relationship:daughter,Tumbler,Name,63.17
+Mom Gift,Kid,audience_modifier:kid,Tumbler,Name,62.91
+Mom Gift,Toddler,audience_modifier:toddler|relationship:toddler,Mug,Name,62.13
+Reading Gift,Book Lover,audience_modifier:female|lifestyle:book lover,Tumbler,Name,73.23
+Reading Gift,Book Lover,lifestyle:book lover,Tumbler,Name,72.15
+Reading Gift,Female,audience_modifier:female,Tumbler,Photo,69.81
+Reading Gift,Book Lover,audience_modifier:male|lifestyle:book lover,Tumbler,Name,64.24
+Reading Gift,Kid,audience_modifier:kid,Tumbler,Name,62.99
+Reading Gift,Male,audience_modifier:male,Tumbler,Photo,60.04
+Reading Gift,Christmas,holiday:christmas,Tumbler,Photo,57.89
+Realtor Gift,Female,audience_modifier:female,Tumbler,Photo,63.43
+Realtor Gift,Christmas,holiday:christmas,Tumbler,Photo,61.08
+Realtor Gift,Male,audience_modifier:male,Tumbler,Photo,57.69
+Soccer Gift,Male,audience_modifier:male,Tumbler,Photo,73.75
+Soccer Gift,Christmas,holiday:christmas,Tumbler,Photo,73.38
+Soccer Gift,Kid,audience_modifier:kid,Tumbler,Name,71.54
+Soccer Gift,Senior,audience_modifier:senior,Tumbler,Name,69.47
+Soccer Gift,Kid,audience_modifier:kid|relationship:kids,Tumbler,Name,68.37
+Soccer Gift,Birthday,occasion:birthday,Tumbler,Photo,67.41
+Soccer Gift,Christmas,audience_modifier:kid|holiday:christmas,Tumbler,Photo,66.41
+Soccer Gift,Funny,theme:funny,Tumbler,Name,65.13
+Soccer Gift,Teen,audience_modifier:teen,Tumbler,Name,64.33
+Soccer Gift,Female,audience_modifier:female,Tumbler,Photo,64.18
+Soccer Gift,Appreciation,intent:appreciation,Tumbler,Name,62.7
+Son Gift,Memorial,occasion:memorial,Ornament,Photo,69.05
+Son Gift,Adult,audience_modifier:adult,Tumbler,Name,67.88
+Son Gift,Christmas,holiday:christmas,Tumbler,Photo,67.79
+Son Gift,Christmas,audience_modifier:adult|holiday:christmas,Tumbler,Photo,65.98
+Son Gift,Funny,theme:funny,Tumbler,Name,64.65
+Son Gift,Birthday,occasion:birthday,Tumbler,Photo,63.02
+Son Gift,Birthday,audience_modifier:adult|occasion:birthday,Tumbler,Photo,61.16
+Son Gift,Birthday,occasion:birthday|theme:funny,Tumbler,Photo,57.76
+Son Gift,Teen,audience_modifier:teen,Mug,Name,57.48
+Son Gift,Wedding,occasion:wedding,Tumbler,Name,56.09
+Teacher Gift,Teacher,audience_modifier:teacher,Tumbler,Name,81.94
+Teacher Gift,Teacher,audience_modifier:female|audience_modifier:teacher,Tumbler,Name,81.81
+Teacher Gift,Teacher,audience_modifier:teacher|holiday:christmas,Tumbler,Name,81.59
+Teacher Gift,Teacher,audience_modifier:teacher|intent:appreciation,Tumbler,Name,80.92
+Teacher Gift,Teacher,audience_modifier:teacher|theme:funny,Tumbler,Name,78.77
+Teacher Gift,Teacher,audience_modifier:male|audience_modifier:teacher,Tumbler,Name,77.78
+Teacher Gift,Teacher,audience_modifier:teacher|holiday:halloween,Tumbler,Name,76.37
+Teacher Gift,Teacher,audience_modifier:female|audience_modifier:teacher|holiday:christmas,Tumbler,Name,74.88
+Teacher Gift,Teacher,audience_modifier:teacher|occasion:christmas,Tumbler,Name,73.5
+Teacher Gift,Teacher,audience_modifier:teacher|theme:faith,Tumbler,Name,73.37
+Teacher Gift,Teacher,audience_modifier:male|audience_modifier:teacher|holiday:christmas,Tumbler,Name,70.81
+Teacher Gift,Teacher,audience_modifier:teacher|holiday:valentine|occasion:valentine's day,Tumbler,Name,70.74
+Teacher Gift,Teacher,audience_modifier:teacher|holiday:thanksgiving,Tumbler,Name,70.32
+Teacher Gift,Teacher,audience_modifier:teacher|occasion:birthday,Tumbler,Name,70.01
+Teacher Gift,Teacher,audience_modifier:teacher|interest:yoga,Tumbler,Name,69.93
+Teacher Gift,Teacher,audience_modifier:teacher|interest:reading,Tumbler,Name,69.89
+Teacher Gift,Teacher,audience_modifier:teacher|occasion:graduation,Tumbler,Name,69.28
+Teacher Gift,Teacher,audience_modifier:male|audience_modifier:teacher|intent:appreciation,Tumbler,Name,69.18
+Teacher Gift,Teacher,audience_modifier:female|audience_modifier:teacher|intent:appreciation,Tumbler,Name,69.06
+Teacher Gift,Teacher,audience_modifier:teacher|audience_modifier:toddler|relationship:toddler,Tumbler,Name,68.23
+Teacher Gift,Teacher,audience_modifier:teacher|occasion:thanksgiving,Tumbler,Name,68.04
+Teacher Gift,Teacher,audience_modifier:female|audience_modifier:teacher|occasion:birthday,Tumbler,Name,64.59
+Wife Gift,Christmas,holiday:christmas,Tumbler,Photo,80.76
+Wife Gift,Funny,theme:funny,Tumbler,Photo,72.15
+Wife Gift,Anniversary,occasion:anniversary,Tumbler,Name,71.41
+Wife Gift,Birthday,occasion:birthday,Tumbler,Photo,71.2
+Wife Gift,Christmas,holiday:christmas|theme:funny,Tumbler,Photo,69.53
+Wife Gift,Appreciation,intent:appreciation,Tumbler,Name,68.48
+Wife Gift,Female,audience_modifier:female,Tumbler,Photo,68.48
+Wife Gift,Faith,theme:faith,Tumbler,Name,68.31
+Wife Gift,Wedding,occasion:wedding,Tumbler,Name,67.46
+Wife Gift,Anniversary,occasion:anniversary|theme:funny,Tumbler,Name,66.36
+Wife Gift,Anniversary,occasion:anniversary|occasion:wedding,Tumbler,Name,65.59
+Wife Gift,Birthday,occasion:birthday|theme:funny,Tumbler,Photo,65.29

@@ -1,151 +1,24 @@
 demand_id,demand_name,market_size_score,expansion_score,growth_score,seasonality_score,evidence_score,overall_score,market_size_tier,expansion_tier,research_priority,recommended_strategy,executive_summary
-CD000001,Gift for Mom,39.53,100.0,90.97,80.0,90.33,76.6,Mega,Very High,P1,Core Market,Gift for Mom is a mega demand with very high expansion potential and growing ranking signals. Focus on scalable child niches.
-CD000002,Gift for Dad,36.73,100.0,90.41,75.0,81.37,73.81,Mega,Very High,P1,Core Market,Gift for Dad is a mega demand with very high expansion potential and growing ranking signals. Focus on scalable child niches.
-CD000003,Teen Girl Gift,33.99,100.0,89.82,75.0,85.88,73.54,Mega,Very High,P1,Core Market,Teen Girl Gift is a mega demand with very high expansion potential and growing ranking signals. Focus on scalable child niches.
-CD000005,Teen Boy Gift,33.1,91.21,89.65,80.0,78.01,70.36,Mega,Very High,P1,Core Market,Teen Boy Gift is a mega demand with very high expansion potential and growing ranking signals. Focus on scalable child niches.
-CD000006,Teacher Gift,31.32,86.67,89.32,100.0,58.82,67.75,Mega,Very High,P2,Core Market,Teacher Gift is a mega demand with very high expansion potential and growing ranking signals. Focus on scalable child niches.
-CD000011,Gift for Husband,28.77,84.59,88.79,85.0,51.71,63.79,Large,High,P2,Core Market,Gift for Husband is a large demand with high expansion potential and growing ranking signals. Focus on scalable child niches.
-CD000004,Grandma Gift,32.83,75.33,89.6,72.0,59.61,62.74,Mega,High,P2,Core Market,Grandma Gift is a mega demand with high expansion potential and growing ranking signals. Focus on scalable child niches.
-CD000010,Gift for Wife,27.84,66.37,88.63,80.0,45.42,57.48,Large,Medium,P3,Core Market,Gift for Wife is a large demand with medium expansion potential and growing ranking signals. Focus on scalable child niches.
-CD000008,Grandpa Gift,29.1,66.77,88.89,72.0,42.95,56.84,Mega,Medium,P3,Core Market,Grandpa Gift is a mega demand with medium expansion potential and growing ranking signals. Focus on scalable child niches.
-CD000020,Coffee Gift,26.9,58.64,88.33,72.0,36.02,53.0,Large,Medium,P3,Validate Further,"Coffee Gift has some business signal but needs validation on expansion, seasonality, or evidence quality."
-CD000049,Gift for Daughter,22.88,51.29,87.52,72.0,38.7,50.2,Mid,Low,P3,Validate Further,"Gift for Daughter has some business signal but needs validation on expansion, seasonality, or evidence quality."
-CD000014,Dog Gift,26.53,46.29,88.36,72.0,38.5,50.18,Large,Low,P3,Validate Further,"Dog Gift has some business signal but needs validation on expansion, seasonality, or evidence quality."
-CD000017,Cat Lover Gift,24.48,47.91,88.01,72.0,37.96,49.82,Large,Low,Watchlist,Low Priority,Cat Lover Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000016,Nurse Gift,26.04,43.12,88.24,75.0,37.78,49.41,Large,Low,Watchlist,Low Priority,Nurse Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000034,Soccer Gift,26.57,41.16,88.24,72.0,34.05,48.22,Large,Low,Watchlist,Low Priority,Soccer Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000052,Gift for Son,20.51,45.76,79.61,72.0,35.61,46.06,Mid,Low,Watchlist,Low Priority,Gift for Son is lower priority in current evidence; monitor until rank signals improve.
-CD000026,Fishing Gift,24.33,31.89,87.97,72.0,30.3,44.61,Large,Limited,Watchlist,Low Priority,Fishing Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000025,Gardening Gift,24.63,27.93,87.97,72.0,30.78,43.78,Large,Limited,Watchlist,Low Priority,Gardening Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000030,Pickleball Gift,24.29,28.0,87.9,72.0,30.75,43.68,Large,Limited,Watchlist,Low Priority,Pickleball Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000046,Hunting Gift,23.15,27.37,87.6,72.0,30.7,43.11,Mid,Limited,Watchlist,Low Priority,Hunting Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000043,Firefighter Gift,23.01,23.79,87.55,72.0,31.29,42.25,Mid,Limited,Watchlist,Low Priority,Firefighter Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000063,Police Officer Gift,18.64,33.46,79.29,72.0,32.47,41.89,Mid,Limited,Watchlist,Low Priority,Police Officer Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000039,Camping Gift,19.76,25.96,87.06,72.0,30.3,41.58,Mid,Limited,Watchlist,Low Priority,Camping Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000007,Mom Christmas Gift,30.41,0.0,89.14,88.0,38.82,41.57,Mega,Limited,Watchlist,Low Priority,Mom Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000065,Gaming Gift,18.71,27.57,79.3,72.0,29.65,40.01,Mid,Limited,Watchlist,Low Priority,Gaming Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000009,Dad Christmas Gift,27.72,0.0,88.6,88.0,33.72,39.89,Large,Limited,Watchlist,Low Priority,Dad Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000012,Dog Christmas Gift,26.89,0.0,88.44,88.0,30.96,39.2,Large,Limited,Watchlist,Low Priority,Dog Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000013,Teacher Christmas Gift,26.34,0.0,88.34,88.0,30.33,38.92,Large,Limited,Watchlist,Low Priority,Teacher Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000080,Reading Gift,16.64,26.92,78.9,72.0,27.52,38.83,Mid,Limited,Watchlist,Low Priority,Reading Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000015,Baby Girl Gift,29.97,0.0,88.9,72.0,32.24,38.81,Mega,Limited,Watchlist,Low Priority,Baby Girl Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000038,Teacher Appreciation Gift,28.26,0.0,88.43,80.0,28.85,38.49,Large,Limited,Watchlist,Low Priority,Teacher Appreciation Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000035,Boy Christmas Gift,25.53,0.0,88.13,88.0,28.85,38.41,Large,Limited,Watchlist,Low Priority,Boy Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000024,Baby Boy Gift,28.91,0.0,88.67,72.0,29.99,38.11,Large,Limited,Watchlist,Low Priority,Baby Boy Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000031,Girl Christmas Gift,23.85,0.0,87.82,88.0,28.92,37.86,Mid,Limited,Watchlist,Low Priority,Girl Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000075,Chef Gift,15.38,23.03,78.72,72.0,30.3,37.86,Small,Limited,Watchlist,Low Priority,Chef Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000019,Wife Christmas Gift,23.83,0.0,87.86,88.0,28.59,37.81,Large,Limited,Watchlist,Low Priority,Wife Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000033,Husband Christmas Gift,23.09,0.0,87.69,88.0,28.37,37.52,Mid,Limited,Watchlist,Low Priority,Husband Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000036,Teen Girl Christmas Gift,22.38,0.0,87.55,88.0,28.97,37.37,Mid,Limited,Watchlist,Low Priority,Teen Girl Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000029,Grandma Christmas Gift,22.15,0.0,87.53,88.0,28.13,37.17,Mid,Limited,Watchlist,Low Priority,Grandma Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000023,Papa Gift,25.86,0.0,88.16,72.0,28.21,36.82,Large,Limited,Watchlist,Low Priority,Papa Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000018,Girl Gift,24.83,0.0,88.04,72.0,29.26,36.65,Large,Limited,Watchlist,Low Priority,Girl Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000042,Teen Boy Christmas Gift,19.95,0.0,87.07,88.0,28.18,36.43,Mid,Limited,Watchlist,Low Priority,Teen Boy Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000021,Cat Gift,24.06,0.0,87.88,72.0,27.98,36.19,Large,Limited,Watchlist,Low Priority,Cat Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000022,Boy Gift,23.53,0.0,87.81,72.0,28.49,36.09,Mid,Limited,Watchlist,Low Priority,Boy Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000078,Truck Driver Gift,15.19,17.85,78.65,72.0,27.24,36.04,Mid,Limited,Watchlist,Low Priority,Truck Driver Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000028,Toddler Girl Gift,23.26,0.0,87.72,72.0,28.27,35.96,Mid,Limited,Watchlist,Low Priority,Toddler Girl Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000041,Soccer Boy Gift,22.02,0.0,87.5,72.0,25.82,35.18,Mid,Limited,Watchlist,Low Priority,Soccer Boy Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000048,Dad Daughter Christmas Gift,20.78,0.0,84.23,88.0,21.79,35.15,Mid,Limited,Watchlist,Low Priority,Dad Daughter Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000032,Gift for Dad Daughter,21.04,0.0,87.31,72.0,27.76,35.14,Mid,Limited,Watchlist,Low Priority,Gift for Dad Daughter is lower priority in current evidence; monitor until rank signals improve.
-CD000047,Book Lover Gift,20.95,0.0,87.27,72.0,27.23,35.02,Mid,Limited,Watchlist,Low Priority,Book Lover Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000040,Coffee Lover Gift,20.48,0.0,87.15,72.0,27.86,34.95,Mid,Limited,Watchlist,Low Priority,Coffee Lover Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000050,Mother Gift,20.48,0.0,87.14,72.0,27.59,34.91,Mid,Limited,Watchlist,Low Priority,Mother Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000044,Toddler Boy Gift,20.0,0.0,87.09,72.0,27.74,34.78,Mid,Limited,Watchlist,Low Priority,Toddler Boy Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000045,Cat Christmas Gift,19.0,0.0,83.89,88.0,22.19,34.61,Mid,Limited,Watchlist,Low Priority,Cat Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000053,Toddler Girl Christmas Gift,18.23,0.0,79.24,88.0,27.33,34.22,Mid,Limited,Watchlist,Low Priority,Toddler Girl Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000062,Toddler Boy Christmas Gift,18.22,0.0,79.22,88.0,27.04,34.17,Mid,Limited,Watchlist,Low Priority,Toddler Boy Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000084,Electrician Gift,12.56,12.59,78.16,72.0,26.91,33.78,Small,Limited,Watchlist,Low Priority,Electrician Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000059,Mother Christmas Gift,21.09,0.0,76.74,88.0,21.28,33.67,Mid,Limited,Watchlist,Low Priority,Mother Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000061,Cat Cat Lover Gift,20.22,0.0,79.53,72.0,26.75,33.18,Mid,Limited,Watchlist,Low Priority,Cat Cat Lover Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000086,Baby Girl Christmas Gift,15.27,0.0,78.59,88.0,27.01,33.15,Mid,Limited,Watchlist,Low Priority,Baby Girl Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000056,Cat Dad Gift,20.33,0.0,79.59,72.0,26.12,33.14,Mid,Limited,Watchlist,Low Priority,Cat Dad Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000057,Dog Lover Gift,19.55,0.0,79.44,72.0,27.74,33.11,Mid,Limited,Watchlist,Low Priority,Dog Lover Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000054,Dog Mom Gift,19.67,0.0,79.46,72.0,27.28,33.08,Mid,Limited,Watchlist,Low Priority,Dog Mom Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000058,Grandmother Gift,19.54,0.0,79.44,72.0,27.32,33.05,Mid,Limited,Watchlist,Low Priority,Grandmother Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000066,Grandpa Christmas Gift,18.73,0.0,76.32,88.0,21.91,32.97,Mid,Limited,Watchlist,Low Priority,Grandpa Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000079,Soccer Girl Gift,18.1,0.0,79.16,72.0,26.48,32.43,Mid,Limited,Watchlist,Low Priority,Soccer Girl Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000067,Father Gift,17.94,0.0,79.18,72.0,26.45,32.39,Mid,Limited,Watchlist,Low Priority,Father Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000055,Cat Mom Gift,18.14,0.0,79.24,72.0,25.92,32.38,Mid,Limited,Watchlist,Low Priority,Cat Mom Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000071,Mama Gift,17.68,0.0,79.06,72.0,27.0,32.37,Mid,Limited,Watchlist,Low Priority,Mama Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000092,Baby Boy Christmas Gift,13.33,0.0,78.28,88.0,26.0,32.36,Small,Limited,Watchlist,Low Priority,Baby Boy Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000073,Father Christmas Gift,16.3,0.0,75.9,88.0,19.64,31.82,Small,Limited,Watchlist,Low Priority,Father Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000089,Fishing Boy Gift,16.63,0.0,78.84,72.0,25.63,31.8,Mid,Limited,Watchlist,Low Priority,Fishing Boy Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000070,Gift for Dad Son,16.08,0.0,78.87,72.0,25.9,31.68,Small,Limited,Watchlist,Low Priority,Gift for Dad Son is lower priority in current evidence; monitor until rank signals improve.
-CD000094,Cat Girl Gift,16.05,0.0,78.73,72.0,25.93,31.65,Mid,Limited,Watchlist,Low Priority,Cat Girl Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000103,Daughter Christmas Gift,14.81,0.0,75.5,88.0,21.1,31.51,Mid,Limited,Watchlist,Low Priority,Daughter Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000074,Gift for Adult Son,15.35,0.0,78.69,72.0,25.97,31.44,Small,Limited,Watchlist,Low Priority,Gift for Adult Son is lower priority in current evidence; monitor until rank signals improve.
-CD000083,Yoga Gift,15.48,0.0,78.67,72.0,25.5,31.4,Mid,Limited,Watchlist,Low Priority,Yoga Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000082,Gift for Adult Daughter,13.79,0.0,78.36,72.0,26.43,30.97,Mid,Limited,Watchlist,Low Priority,Gift for Adult Daughter is lower priority in current evidence; monitor until rank signals improve.
-CD000085,Teacher Halloween Gift,16.37,0.0,72.82,88.0,16.0,30.68,Mid,Limited,Watchlist,Low Priority,Teacher Halloween Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000090,Police Gift,13.09,0.0,78.24,72.0,25.05,30.53,Small,Limited,Watchlist,Low Priority,Police Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000087,Dad Son Christmas Gift,14.86,0.0,72.53,88.0,16.09,30.18,Mid,Limited,Watchlist,Low Priority,Dad Son Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000097,Dog Dad Gift,11.34,0.0,77.94,72.0,24.86,29.92,Small,Limited,Watchlist,Low Priority,Dog Dad Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000124,Hairstylist Gift,9.54,12.38,71.53,72.0,16.25,29.9,Micro,Limited,Watchlist,Low Priority,Hairstylist Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000099,Male Teacher Gift,11.28,0.0,77.95,72.0,24.56,29.86,Small,Limited,Watchlist,Low Priority,Male Teacher Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000116,Girl Soccer Gift,10.81,0.0,77.77,72.0,25.06,29.76,Mid,Limited,Watchlist,Low Priority,Girl Soccer Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000104,Papa Christmas Gift,13.27,0.0,72.2,88.0,16.04,29.63,Mid,Limited,Watchlist,Low Priority,Papa Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000100,Grandmother Christmas Gift,12.83,0.0,72.17,88.0,15.06,29.34,Mid,Limited,Watchlist,Low Priority,Grandmother Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000126,Kid Boy Christmas Gift,9.22,0.0,74.53,88.0,18.81,29.29,Micro,Limited,Watchlist,Low Priority,Kid Boy Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000102,Nurse Christmas Gift,12.8,0.0,72.2,88.0,14.02,29.18,Micro,Limited,Watchlist,Low Priority,Nurse Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000117,Son Christmas Gift,11.22,0.0,71.86,88.0,15.17,28.81,Micro,Limited,Watchlist,Low Priority,Son Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000110,Girl Halloween Gift,10.49,0.0,71.75,88.0,14.48,28.47,Micro,Limited,Watchlist,Low Priority,Girl Halloween Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000112,Boy Soccer Gift,11.19,0.0,74.86,72.0,19.29,28.42,Micro,Limited,Watchlist,Low Priority,Boy Soccer Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000098,Mom Xmas Gift,14.47,0.0,72.44,72.0,15.78,28.4,Mid,Limited,Watchlist,Low Priority,Mom Xmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000134,Soccer Kid Gift,6.83,0.0,77.01,72.0,24.61,28.34,Micro,Limited,Watchlist,Low Priority,Soccer Kid Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000121,Adult Son Christmas Gift,9.85,0.0,71.6,88.0,14.51,28.25,Micro,Limited,Watchlist,Low Priority,Adult Son Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000101,Grandfather Gift,13.87,0.0,72.38,72.0,15.49,28.16,Mid,Limited,Watchlist,Low Priority,Grandfather Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000108,Girl Teen Gift,9.72,0.0,74.61,72.0,20.63,28.13,Micro,Limited,Watchlist,Low Priority,Girl Teen Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000128,Adult Daughter Christmas Gift,9.23,0.0,71.48,88.0,14.75,28.08,Micro,Limited,Watchlist,Low Priority,Adult Daughter Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000114,Boy Teen Gift,9.12,0.0,74.51,72.0,19.71,27.79,Micro,Limited,Watchlist,Low Priority,Boy Teen Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000119,Boy Halloween Gift,8.66,0.0,71.39,88.0,14.09,27.79,Micro,Limited,Watchlist,Low Priority,Boy Halloween Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000131,Kid Girl Christmas Gift,7.83,0.0,71.23,88.0,13.77,27.46,Micro,Limited,Watchlist,Low Priority,Kid Girl Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000115,Wife Xmas Gift,11.57,0.0,71.91,72.0,15.63,27.4,Mid,Limited,Watchlist,Low Priority,Wife Xmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000107,Dog Xmas Gift,11.9,0.0,71.99,72.0,14.04,27.27,Micro,Limited,Watchlist,Low Priority,Dog Xmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000123,Grandfather Christmas Gift,7.35,0.0,71.18,88.0,12.82,27.16,Micro,Limited,Watchlist,Low Priority,Grandfather Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000111,Dad Kid Gift,10.66,0.0,71.77,72.0,15.15,27.02,Micro,Limited,Watchlist,Low Priority,Dad Kid Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000120,Dad Xmas Gift,10.61,0.0,71.75,72.0,15.06,26.99,Micro,Limited,Watchlist,Low Priority,Dad Xmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000132,Kid Boy Gift,7.02,0.0,74.06,72.0,19.17,26.99,Micro,Limited,Watchlist,Low Priority,Kid Boy Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000138,Cat Lover Christmas Gift,5.36,0.0,70.76,88.0,13.53,26.59,Micro,Limited,Watchlist,Low Priority,Cat Lover Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000113,Mom Kid Gift,9.48,0.0,71.56,72.0,13.76,26.42,Micro,Limited,Watchlist,Low Priority,Mom Kid Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000125,Teacher Xmas Gift,9.18,0.0,71.49,72.0,14.24,26.39,Micro,Limited,Watchlist,Low Priority,Teacher Xmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000122,Cat Cat Gift,8.86,0.0,71.42,72.0,13.58,26.18,Micro,Limited,Watchlist,Low Priority,Cat Cat Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000130,Kid Girl Gift,7.25,0.0,71.11,72.0,14.77,25.81,Micro,Limited,Watchlist,Low Priority,Kid Girl Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000136,Girl Xmas Gift,6.59,0.0,70.96,72.0,13.68,25.42,Micro,Limited,Watchlist,Low Priority,Girl Xmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000129,Fishing Dad Gift,6.44,0.0,70.98,72.0,13.69,25.38,Micro,Limited,Watchlist,Low Priority,Fishing Dad Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000081,Dog Memorial,20.72,16.37,34.51,35.0,29.53,25.14,Mid,Limited,Watchlist,Low Priority,Dog Memorial is lower priority in current evidence; monitor until rank signals improve.
-CD000137,Hunting Dad Gift,4.93,0.0,70.7,72.0,12.81,24.74,Micro,Limited,Watchlist,Low Priority,Hunting Dad Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000145,Husband Xmas Gift,2.21,0.0,70.17,72.0,13.01,23.85,Micro,Limited,Watchlist,Low Priority,Husband Xmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000027,Mom Birthday Gift,27.75,0.0,35.96,35.0,30.61,23.61,Large,Limited,Watchlist,Low Priority,Mom Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000088,Husband Day Valentine Gift,19.59,0.0,65.03,30.0,11.06,23.54,Mid,Limited,Watchlist,Low Priority,Husband Day Valentine Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000037,Dad Birthday Gift,25.85,0.0,35.59,35.0,30.16,22.9,Large,Limited,Watchlist,Low Priority,Dad Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000060,Husband Birthday Gift,20.95,0.0,34.68,35.0,29.15,21.09,Mid,Limited,Watchlist,Low Priority,Husband Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000072,Wife Birthday Gift,19.01,0.0,34.32,35.0,28.66,20.37,Mid,Limited,Watchlist,Low Priority,Wife Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000051,Bride Mother Gift,19.56,0.0,34.48,35.0,27.04,20.32,Mid,Limited,Watchlist,Low Priority,Bride Mother Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000064,Grandma Birthday Gift,18.91,0.0,34.32,35.0,28.24,20.27,Mid,Limited,Watchlist,Low Priority,Grandma Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000069,Girl Birthday Gift,18.65,0.0,34.28,35.0,27.85,20.13,Mid,Limited,Watchlist,Low Priority,Girl Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000068,Teen Girl Birthday Gift,18.78,0.0,34.28,35.0,27.5,20.12,Mid,Limited,Watchlist,Low Priority,Teen Girl Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000076,Bride Father Gift,18.4,0.0,34.2,35.0,26.51,19.84,Mid,Limited,Watchlist,Low Priority,Bride Father Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000093,Husband Anniversary Gift,16.72,0.0,33.82,35.0,28.55,19.56,Mid,Limited,Watchlist,Low Priority,Husband Anniversary Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000077,Groom Mother Gift,17.08,0.0,33.99,35.0,26.51,19.4,Mid,Limited,Watchlist,Low Priority,Groom Mother Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000105,Boy Birthday Gift,14.95,0.0,33.48,35.0,27.49,18.8,Mid,Limited,Watchlist,Low Priority,Boy Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000118,Thanksgiving Teacher Gift,12.56,0.0,51.77,30.0,10.4,18.68,Mid,Limited,Watchlist,Low Priority,Thanksgiving Teacher Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000091,Daughter Birthday Gift,14.85,0.0,33.54,35.0,26.55,18.65,Mid,Limited,Watchlist,Low Priority,Daughter Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000139,Senior Dog Gift,5.89,0.0,62.56,30.0,8.31,18.53,Micro,Limited,Watchlist,Low Priority,Senior Dog Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000135,Dad Kid Christmas Gift,5.6,0.0,62.56,30.0,8.09,18.41,Micro,Limited,Watchlist,Low Priority,Dad Kid Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000096,Wife Anniversary Gift,13.82,0.0,33.35,35.0,26.44,18.28,Mid,Limited,Watchlist,Low Priority,Wife Anniversary Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000140,Dad Fishing Gift,4.77,0.0,62.37,30.0,7.89,18.09,Micro,Limited,Watchlist,Low Priority,Dad Fishing Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000095,Mother Birthday Gift,13.52,0.0,33.33,35.0,25.4,18.03,Small,Limited,Watchlist,Low Priority,Mother Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000141,Grandma Xmas Gift,3.85,0.0,62.2,30.0,7.75,17.76,Micro,Limited,Watchlist,Low Priority,Grandma Xmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000109,Dog Birthday Gift,12.01,0.0,33.0,35.0,26.33,17.65,Mid,Limited,Watchlist,Low Priority,Dog Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000144,Coffee Christmas Gift,2.88,0.0,62.03,30.0,7.94,17.46,Micro,Limited,Watchlist,Low Priority,Coffee Christmas Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000143,Gift for Teen Daughter,2.83,0.0,62.02,30.0,7.41,17.36,Micro,Limited,Watchlist,Low Priority,Gift for Teen Daughter is lower priority in current evidence; monitor until rank signals improve.
-CD000148,Baby Mom Gift,2.48,0.0,61.95,30.0,7.46,17.25,Micro,Limited,Watchlist,Low Priority,Baby Mom Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000147,Toddler Mom Gift,2.46,0.0,61.95,30.0,7.43,17.24,Micro,Limited,Watchlist,Low Priority,Toddler Mom Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000146,Kid Mom Gift,2.36,0.0,61.94,30.0,7.23,17.18,Micro,Limited,Watchlist,Low Priority,Kid Mom Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000106,Grandpa Birthday Gift,10.79,0.0,32.82,35.0,25.82,17.17,Small,Limited,Watchlist,Low Priority,Grandpa Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000149,Dad Hunting Gift,2.28,0.0,61.91,30.0,7.36,17.17,Micro,Limited,Watchlist,Low Priority,Dad Hunting Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000150,Dad Toddler Gift,1.56,0.0,61.78,30.0,7.19,16.9,Micro,Limited,Watchlist,Low Priority,Dad Toddler Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000127,Son Birthday Gift,7.75,0.0,32.21,35.0,25.29,16.06,Micro,Limited,Watchlist,Low Priority,Son Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000133,Teen Boy Birthday Gift,6.37,0.0,31.95,35.0,24.46,15.47,Micro,Limited,Watchlist,Low Priority,Teen Boy Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
-CD000142,Adult Daughter Birthday Gift,3.1,0.0,28.32,35.0,18.66,12.89,Micro,Limited,Watchlist,Low Priority,Adult Daughter Birthday Gift is lower priority in current evidence; monitor until rank signals improve.
+CD000003,Girl Gift,30.11,100.0,89.16,100.0,91.38,75.57,Mega,Very High,P1,Core Market,Girl Gift is a mega demand with very high expansion potential and growing ranking signals. Focus on scalable child niches.
+CD000001,Mom Gift,36.31,100.0,90.4,100.0,71.69,74.73,Mega,Very High,P1,Core Market,Mom Gift is a mega demand with very high expansion potential and growing ranking signals. Focus on scalable child niches.
+CD000002,Dad Gift,33.7,100.0,89.88,100.0,65.37,72.89,Mega,Very High,P1,Core Market,Dad Gift is a mega demand with very high expansion potential and growing ranking signals. Focus on scalable child niches.
+CD000005,Teacher Gift,27.42,100.0,88.63,100.0,57.74,69.61,Large,Very High,P1,Core Market,Teacher Gift is a large demand with very high expansion potential and growing ranking signals. Focus on scalable child niches.
+CD000004,Grandma Gift,29.38,100.0,89.01,80.0,59.77,68.58,Mega,Very High,P2,Core Market,Grandma Gift is a mega demand with very high expansion potential and growing ranking signals. Focus on scalable child niches.
+CD000008,Husband Gift,24.7,100.0,88.07,100.0,57.01,68.58,Large,Very High,P2,Core Market,Husband Gift is a large demand with very high expansion potential and growing ranking signals. Focus on scalable child niches.
+CD000009,Cat Lover Gift,24.52,100.0,88.0,100.0,54.64,68.15,Large,Very High,P2,Core Market,Cat Lover Gift is a large demand with very high expansion potential and growing ranking signals. Focus on scalable child niches.
+CD000010,Gardening Gift,21.42,100.0,87.42,100.0,49.97,66.41,Mid,Very High,P2,Seasonal Expansion,Gardening Gift has seasonal leverage with mid rank signals. Plan research around timing-sensitive segments.
+CD000007,Wife Gift,25.35,88.16,88.2,100.0,50.13,64.8,Large,Very High,P2,Core Market,Wife Gift is a large demand with very high expansion potential and growing ranking signals. Focus on scalable child niches.
+CD000017,Dog Lover Gift,18.41,100.0,79.28,100.0,54.16,64.5,Mid,Very High,P2,Seasonal Expansion,Dog Lover Gift has seasonal leverage with mid rank signals. Plan research around timing-sensitive segments.
+CD000015,Coffee Lover Gift,19.44,94.56,86.99,80.0,48.24,62.11,Mid,Very High,P2,Seasonal Expansion,Coffee Lover Gift has seasonal leverage with mid rank signals. Plan research around timing-sensitive segments.
+CD000013,Daughter Gift,19.67,85.36,87.07,90.0,48.99,61.0,Mid,Very High,P2,Seasonal Expansion,Daughter Gift has seasonal leverage with mid rank signals. Plan research around timing-sensitive segments.
+CD000012,Soccer Gift,19.95,79.84,87.12,75.0,46.86,57.9,Mid,High,P3,Emerging Opportunity,Soccer Gift is showing emerging or improving momentum. Validate next-month rank durability before scaling research.
+CD000016,Son Gift,17.17,76.27,79.07,90.0,44.65,55.73,Small,High,P3,Niche Expansion,Son Gift has useful child-segment breadth. Explore niche angles before committing to product concepts.
+CD000006,Grandpa Gift,25.05,65.98,88.15,72.0,36.19,54.27,Large,Medium,P3,Core Market,Grandpa Gift is a large demand with medium expansion potential and growing ranking signals. Focus on scalable child niches.
+CD000011,Reading Gift,19.9,59.41,87.12,72.0,38.21,51.18,Mid,Medium,P3,Validate Further,"Reading Gift has some business signal but needs validation on expansion, seasonality, or evidence quality."
+CD000014,Camping Gift,17.43,62.76,86.65,72.0,35.79,50.82,Mid,Medium,P3,Validate Further,"Camping Gift has some business signal but needs validation on expansion, seasonality, or evidence quality."
+CD000018,Hairstylist Gift,14.33,29.95,78.51,72.0,27.53,38.82,Small,Limited,Watchlist,Low Priority,Hairstylist Gift is lower priority in current evidence; monitor until rank signals improve.
+CD000019,Electrician Gift,12.88,22.28,78.23,72.0,27.31,36.38,Small,Limited,Watchlist,Low Priority,Electrician Gift is lower priority in current evidence; monitor until rank signals improve.
+CD000022,Accountant Gift,10.66,19.38,77.79,72.0,28.48,35.07,Small,Limited,Watchlist,Low Priority,Accountant Gift is lower priority in current evidence; monitor until rank signals improve.
+CD000020,Male Gift,12.64,0.0,78.2,72.0,23.29,30.13,Small,Limited,Watchlist,Low Priority,Male Gift is lower priority in current evidence; monitor until rank signals improve.
+CD000021,Realtor Gift,13.96,29.95,33.43,60.0,29.59,28.8,Small,Limited,Watchlist,Low Priority,Realtor Gift is lower priority in current evidence; monitor until rank signals improve.
+CD000023,Senior Gift,9.58,0.0,71.59,72.0,12.69,26.3,Micro,Limited,Watchlist,Low Priority,Senior Gift is lower priority in current evidence; monitor until rank signals improve.

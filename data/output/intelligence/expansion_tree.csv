@@ -1,154 +1,331 @@
 parent_demand,child_segment,relation_type,segment_strength
-Camping Gift,Funny Camping,Theme,6.58
-Camping Gift,Camping Christmas,Seasonal,3.43
-Cat Lover Gift,Cat Lovers,Pet,30.9
-Cat Lover Gift,Cat Christmas,Seasonal,24.98
-Cat Lover Gift,Funny Cat,Pet,24.78
-Cat Lover Gift,Cat Thank You,Occasion,12.51
-Cat Lover Gift,Cat Birthday,Occasion,4.72
-Chef Gift,Funny Chef,Profession,6.74
-Chef Gift,Chef Christmas,Seasonal,2.84
-Coffee Gift,Coffee Lover,Lifestyle,29.21
-Coffee Gift,Coffee Christmas Set,Seasonal,10.59
-Coffee Gift,Funny Coffee,Theme,5.61
-Coffee Gift,Holiday Coffee Set,Occasion,2.94
-Dog Gift,Dog Christmas,Seasonal,33.98
-Dog Gift,Dog Birthday,Occasion,21.25
-Dog Gift,Funny Dog,Pet,11.15
-Dog Gift,Dog Thank You,Occasion,10.69
-Dog Memorial,Dog Memorial Garden Stones,Pet,7.48
-Electrician Gift,Funny Electrician,Profession,5.75
-Firefighter Gift,Funny Firefighter,Profession,8.42
-Firefighter Gift,Firefighter Christmas,Seasonal,7.56
-Fishing Gift,Funny Fishing,Theme,19.75
-Fishing Gift,Fishing Christmas,Seasonal,13.61
-Gaming Gift,Gamer Christmas,Seasonal,10.16
-Gaming Gift,Funny Gamer,Theme,4.27
-Gardening Gift,Give Thanks Garden Flag,Occasion,5.4
-Gardening Gift,Funny Gardening,Theme,4.78
-Gift for Dad,Dad Christmas,Seasonal,35.08
-Gift for Dad,Dad Birthday,Occasion,31.68
-Gift for Dad,Cat Dad,Lifestyle,29.18
-Gift for Dad,Father Of Bride,Occasion,26.13
-Gift for Dad,Funny Dad,Theme,25.87
-Gift for Dad,Dog Dad Men,Lifestyle,25.22
-Gift for Dad,Fishing Dad,Interest,11.46
-Gift for Dad,Christian Dad,Theme,10.44
-Gift for Dad,Hunting Dad,Interest,9.23
-Gift for Dad,Fathers Day Dad,Seasonal,8.27
-Gift for Dad,Gamer Dad,Interest,7.89
-Gift for Dad,Soccer Dad,Interest,6.92
-Gift for Dad,Dad Gardening,Interest,6.24
-Gift for Dad,Camping Dad,Interest,2.77
-Gift for Daughter,Daughter Birthday,Occasion,22.87
-Gift for Daughter,Daughter In Law Christmas,Seasonal,20.5
-Gift for Daughter,Daughter In Law Wedding,Occasion,12.24
-Gift for Daughter,Funny Daughter,Theme,3.7
-Gift for Daughter,Christian Daughter,Theme,2.77
-Gift for Husband,Husband Christmas,Seasonal,31.3
-Gift for Husband,Husband Birthday,Occasion,27.84
-Gift for Husband,Wedding Anniversary Husband,Occasion,23.5
-Gift for Husband,Husband Valentines Day,Occasion,19.78
-Gift for Husband,Funny Husband,Theme,14.8
-Gift for Husband,Gamer Husband,Interest,10.49
-Gift for Husband,Thank You Mr Falker,Occasion,7.9
-Gift for Husband,Husband On Wedding Day,Occasion,7.35
-Gift for Husband,Christian Husband,Theme,3.83
-Gift for Mom,Christmas Mom,Seasonal,37.3
-Gift for Mom,Mom Birthday,Occasion,32.52
-Gift for Mom,Dog Mom Women,Lifestyle,32.26
-Gift for Mom,Cat Mom,Core,28.9
-Gift for Mom,Mother Of Bride,Occasion,28.16
-Gift for Mom,Funny Mom,Theme,22.48
-Gift for Mom,Christian Mom,Theme,17.33
-Gift for Mom,Soccer Mom,Interest,12.5
-Gift for Mom,Mothers Day Mom,Seasonal,9.1
-Gift for Mom,Gardening Mom,Interest,8.37
-Gift for Mom,Reading Mom,Interest,5.04
-Gift for Mom,Thank You Mom,Occasion,4.07
-Gift for Mom,Cat Lover Mom,Pet,3.43
-Gift for Mom,Mom Dog Women,Pet,2.72
-Gift for Son,Birthday Son Adult,Occasion,17.25
-Gift for Son,Son In Law Christmas,Seasonal,15.54
-Gift for Son,Funny Son In Law,Theme,10.01
-Gift for Son,Wedding Son,Occasion,7.5
-Gift for Wife,Wife Christmas Ideas,Seasonal,31.93
-Gift for Wife,Wife Birthday Ideas,Occasion,27.19
-Gift for Wife,Anniversary Wife,Occasion,22.88
-Gift for Wife,Pastor Wife Appreciation,Occasion,20.05
-Gift for Wife,Mrs Mrs Wedding,Occasion,17.31
-Gift for Wife,Funny Wife,Theme,12.71
-Gift for Wife,Christian Wife,Theme,6.92
-Grandma Gift,Grandma Christmas,Seasonal,30.74
-Grandma Gift,Grandma Birthday,Occasion,27.56
-Grandma Gift,Dog Grandma,Pet,16.62
-Grandma Gift,Funny Grandma,Theme,13.94
-Grandma Gift,Grandma Garden,Interest,8.11
-Grandma Gift,Christian Grandma,Theme,7.5
-Grandma Gift,Cat Grandma,Pet,6.77
-Grandpa Gift,Grandpa Christmas,Seasonal,25.04
-Grandpa Gift,Grandpa Birthday,Occasion,20.36
-Grandpa Gift,Funny Grandpa,Theme,15.45
-Grandpa Gift,Dog Grandpa,Pet,8.26
-Grandpa Gift,Grandpa Fishing,Interest,6.04
-Hairstylist Gift,Best Christmas Hairdresser,Seasonal,5.29
-Hunting Gift,Funny Hunting,Theme,9.71
-Hunting Gift,Hunting Christmas,Seasonal,9.26
-Nurse Gift,Funny Nurse,Profession,20.27
-Nurse Gift,Nurse Graduation,Occasion,19.67
-Nurse Gift,Nurse Christmas,Seasonal,16.7
-Nurse Gift,Nurse Appreciation,Occasion,16.35
-Nurse Gift,Halloween Nurse,Seasonal,3.76
-Pickleball Gift,Funny Pickleball,Theme,11.11
-Pickleball Gift,Pickleball Christmas,Seasonal,3.23
-Police Officer Gift,Police Academy Graduation,Occasion,17.68
-Police Officer Gift,Funny Cop,Profession,7.22
-Police Officer Gift,Christmas Police Officers,Seasonal,2.74
-Reading Gift,Book Lover Women,Lifestyle,30.93
-Soccer Gift,Football Thank You,Occasion,12.58
-Soccer Gift,Soccer Christmas,Seasonal,10.07
-Soccer Gift,Funny Football,Theme,4.9
-Teacher Gift,Teacher Christmas,Seasonal,33.72
-Teacher Gift,Teacher Appreciation,Occasion,28.22
-Teacher Gift,Funny Teacher,Profession,21.97
-Teacher Gift,Halloween Teacher,Seasonal,20.36
-Teacher Gift,Teacher Birthday,Occasion,19.68
-Teacher Gift,Thanksgiving Teacher,Seasonal,13.75
-Teacher Gift,Christian Teacher,Profession,11.71
-Teacher Gift,Holiday Teacher,Occasion,10.46
-Teacher Gift,Yoga Teacher,Profession,6.79
-Teacher Gift,Reading Teacher,Profession,6.66
-Teacher Gift,Teacher Valentine,Seasonal,5.93
-Teacher Gift,Thankful Teacher,Occasion,5.49
-Teacher Gift,Teacher Graduation,Occasion,4.4
-Teen Boy Gift,Boys Christmas,Seasonal,29.35
-Teen Boy Gift,Soccer Boys,Interest,28.98
-Teen Boy Gift,1st Birthday Boy,Occasion,25.79
-Teen Boy Gift,Gamer Boys,Interest,23.82
-Teen Boy Gift,Fishing Boys,Interest,23.6
-Teen Boy Gift,Christian Teen Boys,Theme,14.59
-Teen Boy Gift,Baby Boy Thank You,Occasion,14.46
-Teen Boy Gift,Hunting Boys,Interest,13.16
-Teen Boy Gift,Funny Teen Boys,Theme,13.11
-Teen Boy Gift,Halloween Boys,Seasonal,12.99
-Teen Boy Gift,Boys Valentine,Seasonal,3.69
-Teen Girl Gift,Girls Christmas,Seasonal,29.84
-Teen Girl Gift,1st Birthday Girl,Occasion,27.17
-Teen Girl Gift,Flower Girl,Theme,26.54
-Teen Girl Gift,Soccer Girls,Interest,24.33
-Teen Girl Gift,Cat Girls,Pet,23.28
-Teen Girl Gift,Country Girl,Lifestyle,21.62
-Teen Girl Gift,Christian Teen Girls,Theme,19.41
-Teen Girl Gift,American Girl,Theme,19.39
-Teen Girl Gift,Demon Hunter Girls,Interest,16.92
-Teen Girl Gift,Halloween Girls,Seasonal,14.48
-Teen Girl Gift,Gamer Girl,Interest,13.68
-Teen Girl Gift,Thanks Giving Outfit Baby Girl,Occasion,13.51
-Teen Girl Gift,Cat Lover Girls,Lifestyle,12.49
-Teen Girl Gift,Book Lovers Girls,Lifestyle,11.43
-Teen Girl Gift,Western Girl,Lifestyle,9.18
-Teen Girl Gift,Funny Teen Girls,Theme,9.15
-Teen Girl Gift,Farm Girl,Lifestyle,6.42
-Teen Girl Gift,Girl Dog,Pet,6.02
-Teen Girl Gift,Book Lover Teen Girls,Interest,3.19
-Truck Driver Gift,Truck Driver Appreciation Week,Occasion,11.89
+Accountant Gift,Funny,Profession,7.5
+Accountant Gift,Female,Profession,6.53
+Accountant Gift,Male,Profession,5.26
+Camping Gift,Male,Interest,25.03
+Camping Gift,Female,Interest,24.04
+Camping Gift,Birthday,Occasion,23.77
+Camping Gift,Kid,Interest,8.4
+Camping Gift,Funny,Theme,6.58
+Camping Gift,Christmas,Seasonal,3.43
+Cat Lover Gift,Female,Interest,31.8
+Cat Lover Gift,Cat Lover,Lifestyle,31.71
+Cat Lover Gift,Christmas,Seasonal,31.45
+Cat Lover Gift,Cat Lover,Lifestyle,31.17
+Cat Lover Gift,Memorial,Occasion,25.79
+Cat Lover Gift,Funny,Theme,25.66
+Cat Lover Gift,Birthday,Occasion,24.71
+Cat Lover Gift,Male,Interest,21.02
+Cat Lover Gift,Cat Lover,Lifestyle,15.66
+Cat Lover Gift,Christmas,Seasonal,14.77
+Cat Lover Gift,Kid,Interest,13.62
+Cat Lover Gift,Female,Theme,13.51
+Cat Lover Gift,Appreciation,Occasion,12.51
+Cat Lover Gift,Birthday,Occasion,11.67
+Cat Lover Gift,Christmas,Seasonal,10.03
+Cat Lover Gift,Christmas,Seasonal,9.84
+Cat Lover Gift,Christmas,Seasonal,8.72
+Cat Lover Gift,Cat Lover,Lifestyle,6.64
+Cat Lover Gift,Christmas,Seasonal,5.63
+Cat Lover Gift,Funny,Theme,4.89
+Cat Lover Gift,Christmas,Seasonal,2.96
+Coffee Lover Gift,Coffee Lover,Lifestyle,29.03
+Coffee Lover Gift,Female,Interest,26.6
+Coffee Lover Gift,Coffee Lover,Lifestyle,26.21
+Coffee Lover Gift,Christmas,Seasonal,25.54
+Coffee Lover Gift,Wedding,Occasion,22.67
+Coffee Lover Gift,Male,Interest,22.12
+Coffee Lover Gift,Coffee Lover,Lifestyle,21.16
+Coffee Lover Gift,Birthday,Occasion,16.16
+Coffee Lover Gift,Funny,Theme,5.61
+Coffee Lover Gift,Christmas,Seasonal,5.45
+Coffee Lover Gift,Adult,Interest,3.07
+Coffee Lover Gift,Christmas,Occasion,2.94
+Dad Gift,Christmas,Seasonal,34.43
+Dad Gift,Birthday,Occasion,31.41
+Dad Gift,From Daughter,Core,30.22
+Dad Gift,Cat,Pet,30.05
+Dad Gift,Wedding,Occasion,29.06
+Dad Gift,Christmas,Seasonal,28.92
+Dad Gift,Male,Pet,26.69
+Dad Gift,Funny,Theme,26.09
+Dad Gift,From Son,Core,26.03
+Dad Gift,Memorial,Occasion,22.13
+Dad Gift,Dog,Pet,21.45
+Dad Gift,Birthday,Occasion,20.93
+Dad Gift,Christmas,Seasonal,19.8
+Dad Gift,Senior,Core,15.84
+Dad Gift,Birthday,Occasion,15.58
+Dad Gift,Baby,Core,15.14
+Dad Gift,Male,Core,14.77
+Dad Gift,Kid,Core,14.49
+Dad Gift,Sympathy,Occasion,14.38
+Dad Gift,From Daughter,Theme,12.61
+Dad Gift,Christmas,Seasonal,11.76
+Dad Gift,Fishing,Interest,11.46
+Dad Gift,Christmas,Seasonal,10.56
+Dad Gift,Faith,Theme,10.44
+Dad Gift,Hunting,Interest,9.23
+Dad Gift,Birthday,Occasion,8.39
+Dad Gift,Father's Day,Seasonal,8.27
+Dad Gift,Gaming,Interest,7.89
+Dad Gift,Christmas,Seasonal,7.8
+Dad Gift,Male,Pet,7.47
+Dad Gift,Christmas,Seasonal,7.26
+Dad Gift,Soccer,Interest,6.92
+Dad Gift,Gardening,Interest,6.24
+Dad Gift,From Daughter,Core,5.72
+Dad Gift,From Daughter,Occasion,4.58
+Dad Gift,Cat,Pet,4.47
+Dad Gift,Toddler,Core,3.92
+Dad Gift,Camping,Interest,2.77
+Dad Gift,Christmas,Seasonal,2.55
+Dad Gift,Dog,Pet,2.55
+Daughter Gift,Birthday,Occasion,25.24
+Daughter Gift,Adult,Core,22.72
+Daughter Gift,Christmas,Seasonal,22.02
+Daughter Gift,Birthday,Occasion,17.75
+Daughter Gift,Memorial,Occasion,13.54
+Daughter Gift,Christmas,Seasonal,13.42
+Daughter Gift,Anniversary,Occasion,11.33
+Daughter Gift,Wedding,Occasion,11.15
+Daughter Gift,Female,Core,6.29
+Daughter Gift,Teen,Core,5.07
+Daughter Gift,Funny,Theme,3.7
+Daughter Gift,Faith,Theme,2.77
+Dog Lover Gift,Christmas,Seasonal,33.91
+Dog Lover Gift,Birthday,Occasion,29.41
+Dog Lover Gift,Dog Lover,Lifestyle,28.68
+Dog Lover Gift,Female,Lifestyle,28.45
+Dog Lover Gift,Memorial,Occasion,27.54
+Dog Lover Gift,Female,Interest,26.89
+Dog Lover Gift,Wedding,Occasion,23.63
+Dog Lover Gift,Sympathy,Occasion,17.33
+Dog Lover Gift,Graduation,Occasion,14.69
+Dog Lover Gift,Dog Lover,Lifestyle,14.26
+Dog Lover Gift,Funny,Theme,11.15
+Dog Lover Gift,Birthday,Occasion,11.01
+Dog Lover Gift,Male,Interest,10.7
+Dog Lover Gift,Appreciation,Occasion,10.69
+Dog Lover Gift,Christmas,Seasonal,9.66
+Dog Lover Gift,Christmas,Seasonal,9.09
+Dog Lover Gift,Senior,Interest,7.8
+Dog Lover Gift,Memorial,Occasion,7.48
+Dog Lover Gift,Christmas,Seasonal,5.81
+Dog Lover Gift,Christmas,Seasonal,3.77
+Electrician Gift,Male,Profession,20.63
+Electrician Gift,Funny,Profession,5.75
+Gardening Gift,Female,Interest,31.55
+Gardening Gift,Christmas,Seasonal,31.38
+Gardening Gift,Male,Interest,23.61
+Gardening Gift,Memorial,Occasion,18.16
+Gardening Gift,Wedding,Occasion,17.58
+Gardening Gift,Birthday,Occasion,11.17
+Gardening Gift,Christmas,Seasonal,9.34
+Gardening Gift,Memorial,Occasion,7.48
+Gardening Gift,Christmas,Seasonal,5.63
+Gardening Gift,Appreciation,Occasion,5.4
+Gardening Gift,Christmas,Seasonal,4.88
+Gardening Gift,Funny,Theme,4.78
+Gardening Gift,Christmas,Seasonal,3.78
+Girl Gift,Female,Core,40.1
+Girl Gift,Female,Core,37.01
+Girl Gift,Female,Seasonal,32.93
+Girl Gift,Female,Core,32.55
+Girl Gift,Female,Core,32.34
+Girl Gift,Female,Seasonal,29.21
+Girl Gift,Female,Seasonal,28.83
+Girl Gift,Female,Occasion,28.72
+Girl Gift,Female,Seasonal,27.66
+Girl Gift,Female,Occasion,26.78
+Girl Gift,Female,Theme,26.54
+Girl Gift,Female,Core,26.28
+Girl Gift,Female,Interest,24.53
+Girl Gift,Female,Occasion,24.17
+Girl Gift,Female,Pet,23.53
+Girl Gift,Female,Lifestyle,21.62
+Girl Gift,Female,Occasion,20.86
+Girl Gift,Female,Seasonal,20.52
+Girl Gift,Female,Occasion,20.23
+Girl Gift,Female,Theme,20.12
+Girl Gift,Female,Theme,19.24
+Girl Gift,Female,Seasonal,18.67
+Girl Gift,Female,Theme,18.28
+Girl Gift,Female,Occasion,18.13
+Girl Gift,Female,Interest,16.92
+Girl Gift,Female,Occasion,15.95
+Girl Gift,Female,Occasion,15.0
+Girl Gift,Female,Seasonal,14.54
+Girl Gift,Female,Interest,13.68
+Girl Gift,Female,Core,13.42
+Girl Gift,Female,Occasion,13.21
+Girl Gift,Female,Core,12.55
+Girl Gift,Female,Occasion,12.49
+Girl Gift,Female,Pet,12.49
+Girl Gift,American,Theme,12.25
+Girl Gift,Female,Lifestyle,11.61
+Girl Gift,Female,Core,11.33
+Girl Gift,Female,Occasion,11.29
+Girl Gift,Female,Seasonal,11.18
+Girl Gift,Christmas,Seasonal,9.91
+Girl Gift,Female,Theme,9.29
+Girl Gift,Female,Lifestyle,9.18
+Girl Gift,Female,Occasion,8.93
+Girl Gift,Female,Seasonal,8.47
+Girl Gift,Female,Core,7.31
+Girl Gift,Female,Occasion,6.96
+Girl Gift,Female,Lifestyle,6.42
+Girl Gift,Female,Pet,6.02
+Girl Gift,Female,Theme,5.99
+Girl Gift,Female,Seasonal,5.22
+Girl Gift,Female,Occasion,4.77
+Girl Gift,Female,Seasonal,3.9
+Girl Gift,Female,Seasonal,3.87
+Girl Gift,Female,Seasonal,3.8
+Girl Gift,Female,Lifestyle,3.19
+Girl Gift,Female,Interest,2.91
+Grandma Gift,Christmas,Seasonal,30.35
+Grandma Gift,Birthday,Occasion,26.52
+Grandma Gift,Wedding,Occasion,24.09
+Grandma Gift,Anniversary,Occasion,19.34
+Grandma Gift,Dog,Pet,16.62
+Grandma Gift,Baby,Core,15.09
+Grandma Gift,Funny,Theme,13.94
+Grandma Gift,Female,Core,11.47
+Grandma Gift,Gardening,Interest,8.11
+Grandma Gift,Faith,Theme,7.5
+Grandma Gift,Cat,Pet,6.77
+Grandma Gift,Memorial,Occasion,4.97
+Grandma Gift,Senior,Core,2.96
+Grandma Gift,Kid,Core,2.84
+Grandpa Gift,Christmas,Seasonal,23.28
+Grandpa Gift,Birthday,Occasion,20.23
+Grandpa Gift,Funny,Theme,15.45
+Grandpa Gift,Dog,Pet,8.26
+Grandpa Gift,Fishing,Interest,6.04
+Hairstylist Gift,Female,Profession,22.11
+Hairstylist Gift,Christmas,Seasonal,8.5
+Husband Gift,Christmas,Seasonal,30.35
+Husband Gift,Anniversary,Occasion,29.36
+Husband Gift,Birthday,Occasion,28.66
+Husband Gift,Male,Core,27.93
+Husband Gift,Anniversary,Occasion,21.25
+Husband Gift,Memorial,Occasion,20.75
+Husband Gift,Valentine,Seasonal,19.78
+Husband Gift,Anniversary,Occasion,17.94
+Husband Gift,Valentine,Seasonal,17.76
+Husband Gift,Birthday,Occasion,15.91
+Husband Gift,Funny,Theme,14.8
+Husband Gift,Sympathy,Occasion,13.17
+Husband Gift,Wedding,Occasion,13.11
+Husband Gift,Christmas,Seasonal,12.02
+Husband Gift,Gaming,Interest,10.49
+Husband Gift,Anniversary,Occasion,10.37
+Husband Gift,Appreciation,Occasion,7.9
+Husband Gift,Christmas,Seasonal,7.13
+Husband Gift,Faith,Theme,3.83
+Mom Gift,Wedding,Occasion,36.67
+Mom Gift,Christmas,Seasonal,36.63
+Mom Gift,Wedding,Occasion,33.75
+Mom Gift,Birthday,Occasion,32.42
+Mom Gift,From Daughter,Core,28.63
+Mom Gift,Christmas,Seasonal,27.38
+Mom Gift,From Son,Core,24.99
+Mom Gift,Birthday,Occasion,22.95
+Mom Gift,Funny,Theme,22.7
+Mom Gift,Memorial,Occasion,22.38
+Mom Gift,Female,Core,20.61
+Mom Gift,Christmas,Seasonal,19.6
+Mom Gift,Adult,Core,18.93
+Mom Gift,Baby,Core,18.52
+Mom Gift,Senior,Core,18.42
+Mom Gift,Birthday,Occasion,17.33
+Mom Gift,Faith,Theme,17.33
+Mom Gift,Sympathy,Occasion,16.75
+Mom Gift,Birthday,Occasion,14.15
+Mom Gift,Kid,Core,13.41
+Mom Gift,Soccer,Interest,12.88
+Mom Gift,Birthday,Occasion,12.86
+Mom Gift,Christmas,Seasonal,10.93
+Mom Gift,Wedding,Occasion,10.7
+Mom Gift,Mother's Day,Seasonal,9.1
+Mom Gift,Christmas,Seasonal,8.66
+Mom Gift,Wedding,Occasion,8.62
+Mom Gift,Gardening,Interest,8.37
+Mom Gift,Christmas,Seasonal,7.89
+Mom Gift,Christmas,Seasonal,6.55
+Mom Gift,Christmas,Seasonal,5.71
+Mom Gift,Reading,Interest,5.04
+Mom Gift,From Daughter,Core,4.83
+Mom Gift,Toddler,Core,4.73
+Mom Gift,Appreciation,Occasion,4.07
+Mom Gift,Kid,Core,3.91
+Mom Gift,Cat,Pet,3.52
+Mom Gift,Cat,Pet,2.98
+Mom Gift,Female,Interest,2.91
+Mom Gift,Female,Pet,2.72
+Reading Gift,Book Lover,Lifestyle,32.03
+Reading Gift,Book Lover,Lifestyle,28.46
+Reading Gift,Female,Interest,23.54
+Reading Gift,Christmas,Seasonal,13.27
+Reading Gift,Book Lover,Lifestyle,9.65
+Reading Gift,Kid,Interest,7.31
+Reading Gift,Male,Interest,3.85
+Realtor Gift,Female,Profession,15.44
+Realtor Gift,Male,Profession,6.62
+Realtor Gift,Christmas,Seasonal,3.93
+Soccer Gift,Birthday,Occasion,24.1
+Soccer Gift,Male,Interest,21.72
+Soccer Gift,Christmas,Seasonal,17.66
+Soccer Gift,Kid,Interest,15.11
+Soccer Gift,Senior,Interest,14.49
+Soccer Gift,Appreciation,Occasion,12.58
+Soccer Gift,Christmas,Seasonal,11.14
+Soccer Gift,Kid,Interest,11.12
+Soccer Gift,Funny,Theme,4.9
+Soccer Gift,Teen,Interest,3.79
+Soccer Gift,Female,Interest,3.37
+Son Gift,Adult,Core,23.94
+Son Gift,Birthday,Occasion,23.63
+Son Gift,Memorial,Occasion,18.89
+Son Gift,Christmas,Seasonal,18.56
+Son Gift,Birthday,Occasion,17.73
+Son Gift,Christmas,Seasonal,12.79
+Son Gift,Birthday,Occasion,11.29
+Son Gift,Funny,Theme,10.01
+Son Gift,Wedding,Occasion,7.52
+Son Gift,Teen,Core,3.41
+Teacher Gift,Teacher,Profession,36.8
+Teacher Gift,Teacher,Seasonal,33.71
+Teacher Gift,Teacher,Profession,33.48
+Teacher Gift,Teacher,Occasion,28.36
+Teacher Gift,Teacher,Profession,21.97
+Teacher Gift,Teacher,Profession,20.77
+Teacher Gift,Teacher,Seasonal,20.36
+Teacher Gift,Teacher,Occasion,19.52
+Teacher Gift,Teacher,Seasonal,15.55
+Teacher Gift,Teacher,Seasonal,13.75
+Teacher Gift,Teacher,Profession,11.71
+Teacher Gift,Teacher,Occasion,10.46
+Teacher Gift,Teacher,Occasion,8.13
+Teacher Gift,Teacher,Seasonal,7.93
+Teacher Gift,Teacher,Profession,6.79
+Teacher Gift,Teacher,Profession,6.66
+Teacher Gift,Teacher,Seasonal,5.93
+Teacher Gift,Teacher,Occasion,5.49
+Teacher Gift,Teacher,Occasion,4.4
+Teacher Gift,Teacher,Occasion,4.0
+Teacher Gift,Teacher,Occasion,3.6
+Teacher Gift,Teacher,Profession,2.52
+Wife Gift,Christmas,Seasonal,31.46
+Wife Gift,Anniversary,Occasion,29.09
+Wife Gift,Birthday,Occasion,28.77
+Wife Gift,Appreciation,Occasion,20.05
+Wife Gift,Wedding,Occasion,16.87
+Wife Gift,Anniversary,Occasion,14.78
+Wife Gift,Anniversary,Occasion,13.7
+Wife Gift,Funny,Theme,12.71
+Wife Gift,Female,Core,11.39
+Wife Gift,Birthday,Occasion,10.7
+Wife Gift,Christmas,Seasonal,7.6
+Wife Gift,Faith,Theme,6.92

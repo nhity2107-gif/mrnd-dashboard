@@ -154,3 +154,111 @@
 2026-07-07 09:26:58 INFO   SEG000010 | parent=Reading Gift | Book Lover Women | strength=30.93 | best=10421 | median=564758.0 | active=4 | growing
 2026-07-07 09:26:58 INFO Demand Segment build complete
 2026-07-07 09:26:58 INFO Build log: logs\build_demand_segments.log
+2026-07-07 12:33:02 INFO Starting Demand Segment build
+2026-07-07 12:33:02 INFO demand_master_v3 is not present; using demand_strength_v3 as the V3 demand source
+2026-07-07 12:33:02 INFO Input demand_strength_v3: 24 rows
+2026-07-07 12:33:02 INFO Input composite_demands: 24 rows
+2026-07-07 12:33:02 INFO Input semantic_relationships: 483 rows
+2026-07-07 12:33:02 INFO Input entity_master: 128 rows
+2026-07-07 12:33:02 INFO Input market_nodes: 10 rows
+2026-07-07 12:33:02 INFO Input intent_keywords: 5,291,320 rows
+2026-07-07 12:33:02 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-07 12:33:02 INFO Dropping segment_keywords if it exists
+2026-07-07 12:33:02 INFO Dropping demand_segments if it exists
+2026-07-07 12:33:02 INFO Creating parent demand stage from demand_strength_v3
+2026-07-07 12:33:02 INFO Parent demand stage: 24 rows
+2026-07-07 12:33:02 INFO Creating keyword base stage
+2026-07-07 12:33:02 INFO Keyword base stage: 280,514 rows
+2026-07-07 12:33:02 INFO Creating parent keyword match stage
+2026-07-07 12:33:02 INFO Parent keyword match stage: 15,648 rows
+2026-07-07 12:33:02 INFO Creating segment candidate evidence stage
+2026-07-07 12:33:04 INFO Segment candidate evidence stage: 12,636 rows
+2026-07-07 12:33:04 INFO Creating segment metric frame
+2026-07-07 12:33:04 INFO Built demand_segments with 332 rows
+2026-07-07 12:33:04 INFO Building segment_keywords
+2026-07-07 12:33:04 INFO Built segment_keywords with 12,636 rows
+2026-07-07 12:33:04 INFO Validation passed: one parent per segment, no duplicate signatures, no product/customization segments
+2026-07-07 12:33:04 INFO Exporting Demand Segment CSVs to data\output\demand_segments
+2026-07-07 12:33:04 INFO Exported demand_segments.csv with 332 rows
+2026-07-07 12:33:04 INFO Exported segment_keywords.csv with 12,636 rows
+2026-07-07 12:33:04 INFO Exported top_200_segments.csv with 200 rows
+2026-07-07 12:33:04 INFO Demand Segment summary
+2026-07-07 12:33:04 INFO   demand_segments: 332 rows
+2026-07-07 12:33:04 INFO   segment_keywords: 12,636 rows
+2026-07-07 12:33:04 INFO Segments by added dimension:
+2026-07-07 12:33:04 INFO   audience_group: 134
+2026-07-07 12:33:04 INFO   occasion: 67
+2026-07-07 12:33:04 INFO   holiday: 57
+2026-07-07 12:33:04 INFO   niche: 24
+2026-07-07 12:33:04 INFO   lifestyle: 14
+2026-07-07 12:33:04 INFO   interest: 12
+2026-07-07 12:33:04 INFO   pet: 9
+2026-07-07 12:33:04 INFO   relationship: 8
+2026-07-07 12:33:04 INFO   intent: 7
+2026-07-07 12:33:04 INFO Top demand segments:
+2026-07-07 12:33:04 INFO   SEG000001 | parent=Girl Gift | Female | strength=40.1 | best=455 | median=625362.5 | active=4 | growing
+2026-07-07 12:33:04 INFO   SEG000002 | parent=Girl Gift | Female | strength=37.01 | best=986 | median=711696.0 | active=4 | growing
+2026-07-07 12:33:04 INFO   SEG000003 | parent=Teacher Gift | Teacher | strength=36.8 | best=1015 | median=722152.5 | active=4 | growing
+2026-07-07 12:33:04 INFO   SEG000004 | parent=Mom Gift | Wedding | strength=36.67 | best=1077 | median=670424.0 | active=4 | declining
+2026-07-07 12:33:04 INFO   SEG000005 | parent=Mom Gift | Christmas | strength=36.63 | best=1231 | median=664604.0 | active=4 | growing
+2026-07-07 12:33:04 INFO   SEG000006 | parent=Dad Gift | Christmas | strength=34.43 | best=2483 | median=662422.0 | active=4 | growing
+2026-07-07 12:33:04 INFO   SEG000007 | parent=Dog Lover Gift | Christmas | strength=33.91 | best=2843 | median=677515.0 | active=4 | growing
+2026-07-07 12:33:04 INFO   SEG000008 | parent=Mom Gift | Wedding | strength=33.75 | best=14273 | median=380684.0 | active=4 | declining
+2026-07-07 12:33:04 INFO   SEG000009 | parent=Teacher Gift | Teacher | strength=33.71 | best=3609 | median=572772.5 | active=4 | growing
+2026-07-07 12:33:04 INFO   SEG000010 | parent=Teacher Gift | Teacher | strength=33.48 | best=6513 | median=1034341.5 | active=4 | growing
+2026-07-07 12:33:05 INFO Demand Segment build complete
+2026-07-07 12:33:05 INFO Build log: logs\build_demand_segments.log
+2026-07-07 12:38:43 INFO Starting Demand Segment build
+2026-07-07 12:38:43 INFO demand_master_v3 is not present; using demand_strength_v3 as the V3 demand source
+2026-07-07 12:38:43 INFO Input demand_strength_v3: 23 rows
+2026-07-07 12:38:43 INFO Input composite_demands: 23 rows
+2026-07-07 12:38:43 INFO Input semantic_relationships: 483 rows
+2026-07-07 12:38:43 INFO Input entity_master: 128 rows
+2026-07-07 12:38:43 INFO Input market_nodes: 10 rows
+2026-07-07 12:38:43 INFO Input intent_keywords: 5,291,320 rows
+2026-07-07 12:38:43 INFO Input keyword_entity_edges: 2,044,109 rows
+2026-07-07 12:38:44 INFO Dropping segment_keywords if it exists
+2026-07-07 12:38:44 INFO Dropping demand_segments if it exists
+2026-07-07 12:38:44 INFO Creating parent demand stage from demand_strength_v3
+2026-07-07 12:38:44 INFO Parent demand stage: 23 rows
+2026-07-07 12:38:44 INFO Creating keyword base stage
+2026-07-07 12:38:44 INFO Keyword base stage: 280,514 rows
+2026-07-07 12:38:44 INFO Creating parent keyword match stage
+2026-07-07 12:38:44 INFO Parent keyword match stage: 15,636 rows
+2026-07-07 12:38:44 INFO Creating segment candidate evidence stage
+2026-07-07 12:38:46 INFO Segment candidate evidence stage: 12,624 rows
+2026-07-07 12:38:46 INFO Creating segment metric frame
+2026-07-07 12:38:46 INFO Built demand_segments with 330 rows
+2026-07-07 12:38:46 INFO Building segment_keywords
+2026-07-07 12:38:46 INFO Built segment_keywords with 12,624 rows
+2026-07-07 12:38:46 INFO Validation passed: one parent per segment, no duplicate signatures, no product/customization segments
+2026-07-07 12:38:46 INFO Exporting Demand Segment CSVs to data\output\demand_segments
+2026-07-07 12:38:46 INFO Exported demand_segments.csv with 330 rows
+2026-07-07 12:38:46 INFO Exported segment_keywords.csv with 12,624 rows
+2026-07-07 12:38:46 INFO Exported top_200_segments.csv with 200 rows
+2026-07-07 12:38:46 INFO Demand Segment summary
+2026-07-07 12:38:46 INFO   demand_segments: 330 rows
+2026-07-07 12:38:46 INFO   segment_keywords: 12,624 rows
+2026-07-07 12:38:46 INFO Segments by added dimension:
+2026-07-07 12:38:46 INFO   audience_group: 134
+2026-07-07 12:38:46 INFO   occasion: 67
+2026-07-07 12:38:46 INFO   holiday: 57
+2026-07-07 12:38:46 INFO   niche: 24
+2026-07-07 12:38:46 INFO   interest: 12
+2026-07-07 12:38:46 INFO   lifestyle: 12
+2026-07-07 12:38:46 INFO   pet: 9
+2026-07-07 12:38:46 INFO   relationship: 8
+2026-07-07 12:38:46 INFO   intent: 7
+2026-07-07 12:38:46 INFO Top demand segments:
+2026-07-07 12:38:46 INFO   SEG000001 | parent=Girl Gift | Female | strength=40.1 | best=455 | median=625362.5 | active=4 | growing
+2026-07-07 12:38:46 INFO   SEG000002 | parent=Girl Gift | Female | strength=37.01 | best=986 | median=711696.0 | active=4 | growing
+2026-07-07 12:38:46 INFO   SEG000003 | parent=Teacher Gift | Teacher | strength=36.8 | best=1015 | median=722152.5 | active=4 | growing
+2026-07-07 12:38:46 INFO   SEG000004 | parent=Mom Gift | Wedding | strength=36.67 | best=1077 | median=670424.0 | active=4 | declining
+2026-07-07 12:38:46 INFO   SEG000005 | parent=Mom Gift | Christmas | strength=36.63 | best=1231 | median=664604.0 | active=4 | growing
+2026-07-07 12:38:46 INFO   SEG000006 | parent=Dad Gift | Christmas | strength=34.43 | best=2483 | median=662422.0 | active=4 | growing
+2026-07-07 12:38:46 INFO   SEG000007 | parent=Dog Lover Gift | Christmas | strength=33.91 | best=2843 | median=677515.0 | active=4 | growing
+2026-07-07 12:38:46 INFO   SEG000008 | parent=Mom Gift | Wedding | strength=33.75 | best=14273 | median=380684.0 | active=4 | declining
+2026-07-07 12:38:46 INFO   SEG000009 | parent=Teacher Gift | Teacher | strength=33.71 | best=3609 | median=572772.5 | active=4 | growing
+2026-07-07 12:38:46 INFO   SEG000010 | parent=Teacher Gift | Teacher | strength=33.48 | best=6513 | median=1034341.5 | active=4 | growing
+2026-07-07 12:38:46 INFO Demand Segment build complete
+2026-07-07 12:38:46 INFO Build log: logs\build_demand_segments.log

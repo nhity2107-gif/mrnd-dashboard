@@ -1,31 +1,22 @@
 parent_demand,segment_count,seasonal_segments,interest_segments,pet_segments,profession_segments,occasion_segments,theme_segments,expansion_score
-Teen Girl Gift,19,2,4,2,0,2,4,100.0
-Gift for Dad,14,2,6,0,0,2,2,100.0
-Gift for Mom,14,2,3,2,0,3,2,100.0
-Teen Boy Gift,11,3,4,0,0,2,2,91.21
-Teacher Gift,13,4,0,0,9,0,0,86.67
-Gift for Husband,9,1,1,0,0,5,2,84.59
-Grandma Gift,7,1,1,2,0,1,2,75.33
-Grandpa Gift,5,1,1,1,0,1,1,66.77
-Gift for Wife,7,1,0,0,0,4,2,66.37
-Coffee Gift,4,1,0,0,0,1,1,58.64
-Gift for Daughter,5,1,0,0,0,2,2,51.29
-Cat Lover Gift,5,1,0,4,0,0,0,47.91
-Dog Gift,4,1,0,3,0,0,0,46.29
-Gift for Son,4,1,0,0,0,2,1,45.76
-Nurse Gift,5,2,0,0,3,0,0,43.12
-Soccer Gift,3,1,0,0,0,1,1,41.16
-Police Officer Gift,3,1,0,0,2,0,0,33.46
-Fishing Gift,2,1,0,0,0,0,1,31.89
-Pickleball Gift,2,1,0,0,0,0,1,28.0
-Gardening Gift,2,0,0,0,0,1,1,27.93
-Gaming Gift,2,1,0,0,0,0,1,27.57
-Hunting Gift,2,1,0,0,0,0,1,27.37
-Reading Gift,1,0,0,0,0,0,0,26.92
-Camping Gift,2,1,0,0,0,0,1,25.96
-Firefighter Gift,2,1,0,0,1,0,0,23.79
-Chef Gift,2,1,0,0,1,0,0,23.03
-Truck Driver Gift,1,0,0,0,1,0,0,17.85
-Dog Memorial,1,0,0,1,0,0,0,16.37
-Electrician Gift,1,0,0,0,1,0,0,12.59
-Hairstylist Gift,1,1,0,0,0,0,0,12.38
+Girl Gift,56,14,4,4,0,13,7,100.0
+Dad Gift,40,9,6,6,0,8,3,100.0
+Mom Gift,40,9,4,3,0,12,2,100.0
+Teacher Gift,22,6,0,0,16,0,0,100.0
+Cat Lover Gift,21,7,3,0,0,4,4,100.0
+Dog Lover Gift,20,5,3,0,0,8,1,100.0
+Husband Gift,19,5,1,0,0,10,2,100.0
+Grandma Gift,14,1,1,2,0,4,2,100.0
+Gardening Gift,13,5,2,1,0,4,1,100.0
+Coffee Lover Gift,12,2,3,0,0,3,1,94.56
+Wife Gift,12,2,0,0,0,7,2,88.16
+Daughter Gift,12,2,0,0,0,5,2,85.36
+Soccer Gift,11,2,6,0,0,2,1,79.84
+Son Gift,10,2,0,0,0,5,1,76.27
+Grandpa Gift,5,1,1,1,0,1,1,65.98
+Camping Gift,6,1,3,0,0,1,1,62.76
+Reading Gift,7,1,3,0,0,0,0,59.41
+Realtor Gift,3,1,0,0,2,0,0,29.95
+Hairstylist Gift,2,1,0,0,1,0,0,29.95
+Electrician Gift,2,0,0,0,2,0,0,22.28
+Accountant Gift,3,0,0,0,3,0,0,19.38

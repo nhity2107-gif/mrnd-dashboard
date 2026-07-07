@@ -70,3 +70,39 @@
 2026-07-07 09:28:56 INFO Exported data\output\intelligence\market_stage.csv with 150 rows
 2026-07-07 09:28:56 INFO Market Intelligence build complete
 2026-07-07 09:28:56 INFO Build log: logs\build_market_intelligence.log
+2026-07-07 12:33:43 INFO Starting Market Intelligence build
+2026-07-07 12:33:43 INFO Replacing data\output\intelligence\market_intelligence.csv
+2026-07-07 12:33:43 INFO Replacing data\output\intelligence\research_portfolio.csv
+2026-07-07 12:33:43 INFO Replacing data\output\intelligence\expansion_tree.csv
+2026-07-07 12:33:43 INFO Replacing data\output\intelligence\market_stage.csv
+2026-07-07 12:33:43 INFO Input data\output\intelligence\demand_intelligence.csv: 24 rows
+2026-07-07 12:33:43 INFO Input data\output\intelligence\expansion_graph.csv: 22 rows
+2026-07-07 12:33:43 INFO Input data\output\insights\demand_size_map.csv: 24 rows
+2026-07-07 12:33:43 INFO Input data\output\insights\seasonality_map.csv: 380 rows
+2026-07-07 12:33:43 INFO Input data\output\insights\growth_map.csv: 380 rows
+2026-07-07 12:33:43 INFO Input data\output\demand_segments\demand_segments.csv: 332 rows
+2026-07-07 12:33:43 INFO Input data\output\opportunity\opportunity_master.csv: 24 rows
+2026-07-07 12:33:44 INFO Exported data\output\intelligence\market_intelligence.csv with 24 rows
+2026-07-07 12:33:44 INFO Exported data\output\intelligence\research_portfolio.csv with 17 rows
+2026-07-07 12:33:44 INFO Exported data\output\intelligence\expansion_tree.csv with 332 rows
+2026-07-07 12:33:44 INFO Exported data\output\intelligence\market_stage.csv with 24 rows
+2026-07-07 12:33:44 INFO Market Intelligence build complete
+2026-07-07 12:33:44 INFO Build log: logs\build_market_intelligence.log
+2026-07-07 12:39:08 INFO Starting Market Intelligence build
+2026-07-07 12:39:08 INFO Replacing data\output\intelligence\market_intelligence.csv
+2026-07-07 12:39:08 INFO Replacing data\output\intelligence\research_portfolio.csv
+2026-07-07 12:39:08 INFO Replacing data\output\intelligence\expansion_tree.csv
+2026-07-07 12:39:08 INFO Replacing data\output\intelligence\market_stage.csv
+2026-07-07 12:39:08 INFO Input data\output\intelligence\demand_intelligence.csv: 23 rows
+2026-07-07 12:39:08 INFO Input data\output\intelligence\expansion_graph.csv: 21 rows
+2026-07-07 12:39:08 INFO Input data\output\insights\demand_size_map.csv: 23 rows
+2026-07-07 12:39:08 INFO Input data\output\insights\seasonality_map.csv: 376 rows
+2026-07-07 12:39:08 INFO Input data\output\insights\growth_map.csv: 376 rows
+2026-07-07 12:39:08 INFO Input data\output\demand_segments\demand_segments.csv: 330 rows
+2026-07-07 12:39:08 INFO Input data\output\opportunity\opportunity_master.csv: 23 rows
+2026-07-07 12:39:08 INFO Exported data\output\intelligence\market_intelligence.csv with 23 rows
+2026-07-07 12:39:08 INFO Exported data\output\intelligence\research_portfolio.csv with 17 rows
+2026-07-07 12:39:08 INFO Exported data\output\intelligence\expansion_tree.csv with 330 rows
+2026-07-07 12:39:08 INFO Exported data\output\intelligence\market_stage.csv with 23 rows
+2026-07-07 12:39:08 INFO Market Intelligence build complete
+2026-07-07 12:39:08 INFO Build log: logs\build_market_intelligence.log

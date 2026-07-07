@@ -1,26 +1,53 @@
 week,parent_demand,child_segment,product,customization,priority,reason
-Week 1,Teen Girl Gift,Christmas Teen Girl Gift,Ornament,Name,P2,Strong Evidence; expected value 79.99. Accepted because the exact phrase appears in segment evidence keywords.
-Week 2,Gift for Wife,Christmas Gift for Wife,Ornament,Name,P2,Strong Evidence; expected value 78.8. Accepted because the exact phrase appears in segment evidence keywords.
-Week 3,Coffee Gift,Christmas Coffee Gift,Ornament,Name,P2,Strong Evidence; expected value 78.35. Accepted because the exact phrase appears in segment evidence keywords.
-Week 4,Gift for Wife,Birthday Gift for Wife,Mug,Name,P2,Strong Evidence; expected value 76.8. Accepted because the exact phrase appears in segment evidence keywords.
-Week 5,Teen Boy Gift,Funny Teen Boy Gift,Mug,Clipart,P2,Strong Evidence; expected value 76.51. Accepted because the exact phrase appears in segment evidence keywords.
-Week 6,Teacher Gift,Back To School Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 74.39. Accepted because this child niche is in the allowed expansion family for the parent demand.
-Week 7,Teacher Gift,Kindergarten Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 74.39. Accepted because this child niche is in the allowed expansion family for the parent demand.
-Week 8,Teacher Gift,Math Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 74.39. Accepted because this child niche is in the allowed expansion family for the parent demand.
-Week 9,Teacher Gift,Music Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 74.39. Accepted because this child niche is in the allowed expansion family for the parent demand.
-Week 10,Teacher Gift,Preschool Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 74.39. Accepted because this child niche is in the allowed expansion family for the parent demand.
-Week 11,Teacher Gift,Science Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 74.39. Accepted because this child niche is in the allowed expansion family for the parent demand.
-Week 12,Grandma Gift,Grandma Memorial Gift,Blanket,Photo,P2,Moderate Evidence; expected value 74.04. Accepted because this child niche is in the allowed expansion family for the parent demand.
-Week 13,Cat Lover Gift,Funny Cat Lover Gift,Mug,Clipart,P2,Strong Evidence; expected value 74.0. Accepted because the exact phrase appears in segment evidence keywords.
-Week 14,Gift for Husband,Wedding Gift for Husband,Blanket,Multiple Names,P2,Strong Evidence; expected value 73.43. Accepted because the exact phrase appears in segment evidence keywords.
-Week 15,Grandma Gift,Gardening Grandma Gift,Tumbler,Clipart,P2,Strong Evidence; expected value 72.79. Accepted because the exact phrase appears in segment evidence keywords.
-Week 16,Dog Gift,Dog Memorial Gift,Blanket,Photo,P2,Moderate Evidence; expected value 72.51. Accepted because this child niche is in the allowed expansion family for the parent demand.
-Week 17,Dog Gift,Personalized Dog Gift,Blanket,Photo,P2,Moderate Evidence; expected value 72.51. Accepted because this child niche is in the allowed expansion family for the parent demand.
-Week 18,Grandma Gift,Grandma Mother's Day Gift,Mug,Name,P2,Moderate Evidence; expected value 72.04. Accepted because this child niche is in the allowed expansion family for the parent demand.
-Week 19,Grandpa Gift,Golf Grandpa Gift,Tumbler,Clipart,P2,Moderate Evidence; expected value 71.27. Accepted because this child niche is in the allowed expansion family for the parent demand.
-Week 20,Grandpa Gift,Hunting Grandpa Gift,Tumbler,Clipart,P2,Moderate Evidence; expected value 71.27. Accepted because this child niche is in the allowed expansion family for the parent demand.
-Week 21,Gift for Daughter,Christmas Gift for Daughter,Ornament,Name,P2,Strong Evidence; expected value 71.2. Accepted because the exact phrase appears in segment evidence keywords.
-Week 22,Gift for Son,Birthday Gift for Son,Mug,Name,P2,Strong Evidence; expected value 70.0. Accepted because the exact phrase appears in segment evidence keywords.
-Week 23,Gift for Son,Christmas Gift for Son,Ornament,Name,P2,Strong Evidence; expected value 70.0. Accepted because the exact phrase appears in segment evidence keywords.
-Week 24,Gift for Son,Funny Gift for Son,Mug,Clipart,P2,Strong Evidence; expected value 70.0. Accepted because the exact phrase appears in segment evidence keywords.
-Week 25,Truck Driver Gift,Truck Driver Appreciation Gift,Mug,Name,P2,Strong Evidence; expected value 70.0. Accepted because the exact phrase appears in segment evidence keywords.
+Week 1,Cat Lover Gift,Christmas Cat Lover Gift,Ornament,Name,P1,Strong Evidence; expected value 81.76. Accepted because the exact phrase appears in segment evidence keywords.
+Week 2,Teacher Gift,Christmas Teacher Gift,Ornament,Name,P1,Strong Evidence; expected value 81.21. Accepted because the exact phrase appears in segment evidence keywords.
+Week 3,Husband Gift,Christmas Husband Gift,Ornament,Name,P1,Strong Evidence; expected value 81.06. Accepted because the exact phrase appears in segment evidence keywords.
+Week 4,Wife Gift,Christmas Wife Gift,Ornament,Name,P1,Strong Evidence; expected value 80.7. Accepted because the exact phrase appears in segment evidence keywords.
+Week 5,Grandma Gift,Christmas Grandma Gift,Ornament,Name,P1,Strong Evidence; expected value 80.5. Accepted because the exact phrase appears in segment evidence keywords.
+Week 6,Teacher Gift,Teacher Birthday Gift,Mug,Name,P2,Strong Evidence; expected value 79.21. Accepted because the exact phrase appears in segment evidence keywords.
+Week 7,Husband Gift,Husband Birthday Gift,Mug,Name,P2,Strong Evidence; expected value 79.06. Accepted because the exact phrase appears in segment evidence keywords.
+Week 8,Wife Gift,Wife Birthday Gift,Mug,Name,P2,Strong Evidence; expected value 78.7. Accepted because the exact phrase appears in segment evidence keywords.
+Week 9,Grandma Gift,Grandma Birthday Gift,Mug,Name,P2,Strong Evidence; expected value 78.5. Accepted because the exact phrase appears in segment evidence keywords.
+Week 10,Mom Gift,Christmas Mom Gift,Ornament,Name,P2,Strong Evidence; expected value 78.46. Accepted because the exact phrase appears in segment evidence keywords.
+Week 11,Cat Lover Gift,Funny Cat Lover Gift,Mug,Clipart,P2,Strong Evidence; expected value 78.26. Accepted because the exact phrase appears in segment evidence keywords.
+Week 12,Teacher Gift,Teacher Appreciation Gift,Mug,Name,P2,Strong Evidence; expected value 78.21. Accepted because the exact phrase appears in segment evidence keywords.
+Week 13,Dad Gift,Christmas Dad Gift,Ornament,Name,P2,Strong Evidence; expected value 78.2. Accepted because the exact phrase appears in segment evidence keywords.
+Week 14,Teacher Gift,Funny Teacher Gift,Mug,Clipart,P2,Strong Evidence; expected value 77.71. Accepted because the exact phrase appears in segment evidence keywords.
+Week 15,Grandpa Gift,Christmas Grandpa Gift,Ornament,Name,P2,Strong Evidence; expected value 77.65. Accepted because the exact phrase appears in segment evidence keywords.
+Week 16,Husband Gift,Funny Husband Gift,Mug,Clipart,P2,Strong Evidence; expected value 77.56. Accepted because the exact phrase appears in segment evidence keywords.
+Week 17,Wife Gift,Funny Wife Gift,Mug,Clipart,P2,Strong Evidence; expected value 77.2. Accepted because the exact phrase appears in segment evidence keywords.
+Week 18,Grandma Gift,Funny Grandma Gift,Mug,Clipart,P2,Strong Evidence; expected value 77.0. Accepted because the exact phrase appears in segment evidence keywords.
+Week 19,Gardening Gift,Funny Gardening Gift,Mug,Clipart,P2,Strong Evidence; expected value 76.88. Accepted because the exact phrase appears in segment evidence keywords.
+Week 20,Mom Gift,Mom Birthday Gift,Mug,Name,P2,Strong Evidence; expected value 76.46. Accepted because the exact phrase appears in segment evidence keywords.
+Week 21,Soccer Gift,Christmas Soccer Gift,Ornament,Name,P2,Strong Evidence; expected value 76.26. Accepted because the exact phrase appears in segment evidence keywords.
+Week 22,Teacher Gift,Music Teacher Gift,Mug,Name,P2,Strong Evidence; expected value 76.21. Accepted because the exact phrase appears in segment evidence keywords.
+Week 23,Teacher Gift,Back To School Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 76.21. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 24,Teacher Gift,Kindergarten Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 76.21. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 25,Teacher Gift,Math Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 76.21. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 26,Teacher Gift,Preschool Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 76.21. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 27,Teacher Gift,Science Teacher Gift,Mug,Name,P2,Moderate Evidence; expected value 76.21. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 28,Dad Gift,Dad Birthday Gift,Mug,Name,P2,Strong Evidence; expected value 76.2. Accepted because the exact phrase appears in segment evidence keywords.
+Week 29,Daughter Gift,Christmas Daughter Gift,Ornament,Name,P2,Strong Evidence; expected value 76.07. Accepted because the exact phrase appears in segment evidence keywords.
+Week 30,Girl Gift,Girl Birthday Gift,Mug,Name,P2,Strong Evidence; expected value 76.07. Accepted because the exact phrase appears in segment evidence keywords.
+Week 31,Husband Gift,Husband Anniversary Gift,Blanket,Multiple Names,P2,Strong Evidence; expected value 76.06. Accepted because the exact phrase appears in segment evidence keywords.
+Week 32,Grandma Gift,Cat Grandma Gift,Blanket,Photo,P2,Strong Evidence; expected value 76.0. Accepted because the exact phrase appears in segment evidence keywords.
+Week 33,Grandma Gift,Dog Grandma Gift,Blanket,Photo,P2,Strong Evidence; expected value 76.0. Accepted because the exact phrase appears in segment evidence keywords.
+Week 34,Grandma Gift,Grandma Memorial Gift,Blanket,Photo,P2,Strong Evidence; expected value 76.0. Accepted because the exact phrase appears in segment evidence keywords.
+Week 35,Wife Gift,Wife Anniversary Gift,Blanket,Multiple Names,P2,Strong Evidence; expected value 75.7. Accepted because the exact phrase appears in segment evidence keywords.
+Week 36,Grandpa Gift,Grandpa Birthday Gift,Mug,Name,P2,Strong Evidence; expected value 75.65. Accepted because the exact phrase appears in segment evidence keywords.
+Week 37,Teacher Gift,Reading Teacher Gift,Mug,Name,P2,Strong Evidence; expected value 75.21. Accepted because the exact phrase appears in segment evidence keywords.
+Week 38,Mom Gift,Funny Mom Gift,Mug,Clipart,P2,Strong Evidence; expected value 74.96. Accepted because the exact phrase appears in segment evidence keywords.
+Week 39,Grandma Gift,Gardening Grandma Gift,Tumbler,Clipart,P2,Strong Evidence; expected value 74.75. Accepted because the exact phrase appears in segment evidence keywords.
+Week 40,Teacher Gift,Graduation Teacher Gift,Mug,Name,P2,Strong Evidence; expected value 74.71. Accepted because the exact phrase appears in segment evidence keywords.
+Week 41,Teacher Gift,Halloween Teacher Gift,Shirt,Clipart,P2,Strong Evidence; expected value 74.71. Accepted because the exact phrase appears in segment evidence keywords.
+Week 42,Dad Gift,Funny Dad Gift,Mug,Clipart,P2,Strong Evidence; expected value 74.7. Accepted because the exact phrase appears in segment evidence keywords.
+Week 43,Gardening Gift,Gardening Gardening Gift,Tumbler,Clipart,P2,Strong Evidence; expected value 74.63. Accepted because the exact child segment already exists in demand_segments.csv.
+Week 44,Girl Gift,Funny Girl Gift,Mug,Clipart,P2,Strong Evidence; expected value 74.57. Accepted because the exact phrase appears in segment evidence keywords.
+Week 45,Camping Gift,Christmas Camping Gift,Ornament,Name,P2,Strong Evidence; expected value 74.33. Accepted because the exact phrase appears in segment evidence keywords.
+Week 46,Soccer Gift,Soccer Birthday Gift,Mug,Name,P2,Strong Evidence; expected value 74.26. Accepted because the exact phrase appears in segment evidence keywords.
+Week 47,Grandpa Gift,Funny Grandpa Gift,Mug,Clipart,P2,Strong Evidence; expected value 74.15. Accepted because the exact phrase appears in segment evidence keywords.
+Week 48,Daughter Gift,Daughter Birthday Gift,Mug,Name,P2,Strong Evidence; expected value 74.07. Accepted because the exact phrase appears in segment evidence keywords.
+Week 49,Husband Gift,Husband Wedding Gift,Blanket,Multiple Names,P2,Strong Evidence; expected value 74.06. Accepted because the exact phrase appears in segment evidence keywords.
+Week 50,Grandma Gift,Grandma Mother's Day Gift,Mug,Name,P2,Moderate Evidence; expected value 74.0. Accepted because this child niche is in the allowed expansion family for the parent demand.
+Week 51,Mom Gift,Cat Lover Mom Gift,Blanket,Photo,P2,Strong Evidence; expected value 73.96. Accepted because the exact phrase appears in segment evidence keywords.
+Week 52,Mom Gift,Cat Mom Gift,Blanket,Photo,P2,Strong Evidence; expected value 73.96. Accepted because the exact phrase appears in segment evidence keywords.

@@ -121,6 +121,7 @@ PORTFOLIO_MASTER_COLUMNS = [
 PORTFOLIO_TREE_COLUMNS = [
     "parent_demand",
     "child_segment",
+    "segment_signature",
     "recommended_product",
     "recommended_customization",
     "opportunity_score",
@@ -698,7 +699,9 @@ def merge_scoring_context(
     segments: pd.DataFrame,
 ) -> pd.DataFrame:
     product_cols = [
+        "parent_demand",
         "child_segment",
+        "segment_signature",
         "best_product",
         "card_score",
         "blanket_score",
@@ -709,7 +712,9 @@ def merge_scoring_context(
         "canvas_score",
     ]
     customization_cols = [
+        "parent_demand",
         "child_segment",
+        "segment_signature",
         "best_customization",
         "photo",
         "name",
@@ -722,6 +727,7 @@ def merge_scoring_context(
     segment_cols = [
         "parent_demand",
         "segment_name",
+        "segment_signature",
         "intent",
         "recipient",
         "profession",
@@ -733,13 +739,55 @@ def merge_scoring_context(
         "lifestyle",
     ]
     product_cols = [column for column in product_cols if column in product_fit.columns]
-    context = opportunity_scorecard.merge(product_fit[product_cols], on="child_segment", how="left")
-    context = context.merge(customization_fit[customization_cols], on="child_segment", how="left")
-    context = context.merge(reasoning[["child_segment", "recommended_next_step"]], on="child_segment", how="left")
+    product_keys = [
+        column
+        for column in ["parent_demand", "child_segment", "segment_signature"]
+        if column in opportunity_scorecard.columns and column in product_fit.columns
+    ]
+    if not product_keys:
+        product_keys = ["child_segment"]
+    context = opportunity_scorecard.merge(product_fit[product_cols], on=product_keys, how="left")
+    customization_cols = [
+        column for column in customization_cols if column in customization_fit.columns
+    ]
+    customization_keys = [
+        column
+        for column in ["parent_demand", "child_segment", "segment_signature"]
+        if column in context.columns and column in customization_fit.columns
+    ]
+    if not customization_keys:
+        customization_keys = ["child_segment"]
+    context = context.merge(customization_fit[customization_cols], on=customization_keys, how="left")
+    reasoning_cols = [
+        column
+        for column in ["parent_demand", "child_segment", "segment_signature", "recommended_next_step"]
+        if column in reasoning.columns
+    ]
+    reasoning_keys = [
+        column
+        for column in ["parent_demand", "child_segment", "segment_signature"]
+        if column in context.columns and column in reasoning.columns
+    ]
+    if not reasoning_keys:
+        reasoning_keys = ["child_segment"]
+    context = context.merge(reasoning[reasoning_cols], on=reasoning_keys, how="left")
+    segment_cols = [column for column in segment_cols if column in segments.columns]
+    segment_keys_left = [
+        column
+        for column in ["parent_demand", "child_segment", "segment_signature"]
+        if column in context.columns
+    ]
+    segment_keys_right = [
+        "parent_demand" if column == "parent_demand" else "segment_name" if column == "child_segment" else column
+        for column in segment_keys_left
+    ]
+    if "segment_signature" in segment_keys_left and "segment_signature" not in segments.columns:
+        segment_keys_left.remove("segment_signature")
+        segment_keys_right.remove("segment_signature")
     context = context.merge(
         segments[segment_cols],
-        left_on=["parent_demand", "child_segment"],
-        right_on=["parent_demand", "segment_name"],
+        left_on=segment_keys_left,
+        right_on=segment_keys_right,
         how="left",
     )
     return context.drop(columns=["segment_name"], errors="ignore")
@@ -804,7 +852,10 @@ def build_portfolio_master(scoring_context: pd.DataFrame, market_scorecard: pd.D
         if not parent:
             continue
         market = markets.loc[parent] if parent in markets.index else pd.Series(dtype=object)
-        child_count = int(group["child_segment"].nunique())
+        if "segment_signature" in group.columns and group["segment_signature"].fillna("").astype(str).str.strip().any():
+            child_count = int(group["segment_signature"].nunique())
+        else:
+            child_count = int(group["child_segment"].nunique())
         average_score = round(float(group["total_score"].mean()), 2)
         best_score = round(float(group["total_score"].max()), 2)
         parent_expansion = numeric(market.get("expansion_score"), group["expansion_score"].mean())
@@ -844,15 +895,20 @@ def build_portfolio_master(scoring_context: pd.DataFrame, market_scorecard: pd.D
 
 
 def build_portfolio_tree(scoring_context: pd.DataFrame) -> pd.DataFrame:
+    columns = [
+        "parent_demand",
+        "child_segment",
+        "segment_signature",
+        "best_product",
+        "best_customization",
+        "total_score",
+    ]
+    columns = [column for column in columns if column in scoring_context.columns]
     output = scoring_context[
-        [
-            "parent_demand",
-            "child_segment",
-            "best_product",
-            "best_customization",
-            "total_score",
-        ]
+        columns
     ].copy()
+    if "segment_signature" not in output.columns:
+        output["segment_signature"] = ""
     output = output.rename(
         columns={
             "best_product": "recommended_product",
@@ -861,9 +917,9 @@ def build_portfolio_tree(scoring_context: pd.DataFrame) -> pd.DataFrame:
         }
     )
     return output.sort_values(
-        ["parent_demand", "opportunity_score", "child_segment"],
-        ascending=[True, False, True],
-    ).drop_duplicates(["parent_demand", "child_segment"]).reset_index(drop=True)[PORTFOLIO_TREE_COLUMNS]
+        ["parent_demand", "opportunity_score", "child_segment", "segment_signature"],
+        ascending=[True, False, True, True],
+    ).drop_duplicates(["parent_demand", "child_segment", "segment_signature"]).reset_index(drop=True)[PORTFOLIO_TREE_COLUMNS]
 
 
 def modifier_is_relevant(parent_demand: str, modifier: str) -> bool:

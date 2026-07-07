@@ -127,3 +127,89 @@
 2026-07-07 09:26:21 INFO   OP000010 | Baby Girl Gift | score=78.06 | P2 | best=4936 | p25=41787.0 | growing
 2026-07-07 09:26:21 INFO Opportunity Engine build complete
 2026-07-07 09:26:21 INFO Build log: logs\build_opportunity_engine.log
+2026-07-07 12:32:55 INFO Starting Opportunity Engine build
+2026-07-07 12:32:55 INFO Input composite_demands: 24 rows
+2026-07-07 12:32:55 INFO Input composite_keywords: 25,091 rows
+2026-07-07 12:32:55 INFO Input demand_strength_v3: 24 rows
+2026-07-07 12:32:55 INFO Input demand_profile_v2: 1,349 rows
+2026-07-07 12:32:55 INFO Input market_nodes: 10 rows
+2026-07-07 12:32:55 INFO Input intent_summary: 16 rows
+2026-07-07 12:32:55 INFO Dropping research_backlog if it exists
+2026-07-07 12:32:55 INFO Dropping opportunity_master if it exists
+2026-07-07 12:32:55 INFO Building opportunity keyword statistics stage
+2026-07-07 12:32:55 INFO Building opportunity keyword examples stage
+2026-07-07 12:32:55 INFO Building market node pet enrichment stage
+2026-07-07 12:32:55 INFO Building opportunity_master
+2026-07-07 12:32:55 INFO Built opportunity_master with 24 rows
+2026-07-07 12:32:55 INFO Building research_backlog
+2026-07-07 12:32:55 INFO Built research_backlog with 23 rows
+2026-07-07 12:32:55 INFO Exporting Opportunity Engine CSVs to data\output\opportunity
+2026-07-07 12:32:55 INFO Exported opportunity_master.csv with 24 rows
+2026-07-07 12:32:55 INFO Exported research_backlog.csv with 23 rows
+2026-07-07 12:32:55 INFO Exported top_100_opportunities.csv with 24 rows
+2026-07-07 12:32:55 INFO Exported top_growing_opportunities.csv with 23 rows
+2026-07-07 12:32:55 INFO Exported top_seasonal_opportunities.csv with 0 rows
+2026-07-07 12:32:55 INFO Opportunity Engine summary
+2026-07-07 12:32:55 INFO   opportunity_master: 24 rows
+2026-07-07 12:32:55 INFO   research_backlog: 23 rows
+2026-07-07 12:32:55 INFO Priority distribution:
+2026-07-07 12:32:55 INFO   P1: 3
+2026-07-07 12:32:55 INFO   P2: 6
+2026-07-07 12:32:55 INFO   P3: 12
+2026-07-07 12:32:55 INFO   Watchlist: 3
+2026-07-07 12:32:55 INFO Top opportunities:
+2026-07-07 12:32:55 INFO   OP000001 | Mom Gift | score=95.08 | P1 | best=65 | p25=343614.0 | growing
+2026-07-07 12:32:55 INFO   OP000002 | Girl Gift | score=91.15 | P1 | best=455 | p25=344795.0 | growing
+2026-07-07 12:32:55 INFO   OP000003 | Dad Gift | score=89.76 | P1 | best=154 | p25=328055.5 | growing
+2026-07-07 12:32:55 INFO   OP000004 | Grandma Gift | score=82.6 | P2 | best=666 | p25=288795.5 | growing
+2026-07-07 12:32:55 INFO   OP000005 | Teacher Gift | score=78.89 | P2 | best=1015 | p25=369036.5 | growing
+2026-07-07 12:32:55 INFO   OP000006 | Wife Gift | score=75.33 | P2 | best=2513 | p25=276596.0 | growing
+2026-07-07 12:32:55 INFO   OP000007 | Grandpa Gift | score=75.06 | P2 | best=2236 | p25=353690.75 | growing
+2026-07-07 12:32:55 INFO   OP000008 | Husband Gift | score=74.67 | P2 | best=2778 | p25=316086.0 | growing
+2026-07-07 12:32:55 INFO   OP000009 | Cat Lover Gift | score=73.39 | P2 | best=5328 | p25=161629.5 | growing
+2026-07-07 12:32:55 INFO   OP000010 | Gardening Gift | score=69.22 | P3 | best=7831 | p25=311767.0 | growing
+2026-07-07 12:32:55 INFO Opportunity Engine build complete
+2026-07-07 12:32:55 INFO Build log: logs\build_opportunity_engine.log
+2026-07-07 12:38:30 INFO Starting Opportunity Engine build
+2026-07-07 12:38:30 INFO Input composite_demands: 23 rows
+2026-07-07 12:38:30 INFO Input composite_keywords: 25,133 rows
+2026-07-07 12:38:30 INFO Input demand_strength_v3: 23 rows
+2026-07-07 12:38:30 INFO Input demand_profile_v2: 1,349 rows
+2026-07-07 12:38:30 INFO Input market_nodes: 10 rows
+2026-07-07 12:38:30 INFO Input intent_summary: 16 rows
+2026-07-07 12:38:30 INFO Dropping research_backlog if it exists
+2026-07-07 12:38:30 INFO Dropping opportunity_master if it exists
+2026-07-07 12:38:30 INFO Building opportunity keyword statistics stage
+2026-07-07 12:38:30 INFO Building opportunity keyword examples stage
+2026-07-07 12:38:30 INFO Building market node pet enrichment stage
+2026-07-07 12:38:30 INFO Building opportunity_master
+2026-07-07 12:38:30 INFO Built opportunity_master with 23 rows
+2026-07-07 12:38:30 INFO Building research_backlog
+2026-07-07 12:38:30 INFO Built research_backlog with 22 rows
+2026-07-07 12:38:30 INFO Exporting Opportunity Engine CSVs to data\output\opportunity
+2026-07-07 12:38:30 INFO Exported opportunity_master.csv with 23 rows
+2026-07-07 12:38:30 INFO Exported research_backlog.csv with 22 rows
+2026-07-07 12:38:30 INFO Exported top_100_opportunities.csv with 23 rows
+2026-07-07 12:38:30 INFO Exported top_growing_opportunities.csv with 22 rows
+2026-07-07 12:38:30 INFO Exported top_seasonal_opportunities.csv with 0 rows
+2026-07-07 12:38:30 INFO Opportunity Engine summary
+2026-07-07 12:38:30 INFO   opportunity_master: 23 rows
+2026-07-07 12:38:30 INFO   research_backlog: 22 rows
+2026-07-07 12:38:30 INFO Priority distribution:
+2026-07-07 12:38:30 INFO   P1: 3
+2026-07-07 12:38:30 INFO   P2: 6
+2026-07-07 12:38:30 INFO   P3: 11
+2026-07-07 12:38:30 INFO   Watchlist: 3
+2026-07-07 12:38:30 INFO Top opportunities:
+2026-07-07 12:38:30 INFO   OP000001 | Mom Gift | score=95.08 | P1 | best=65 | p25=339406.0 | growing
+2026-07-07 12:38:30 INFO   OP000002 | Girl Gift | score=91.1 | P1 | best=455 | p25=344795.0 | growing
+2026-07-07 12:38:30 INFO   OP000003 | Dad Gift | score=89.71 | P1 | best=154 | p25=328055.5 | growing
+2026-07-07 12:38:30 INFO   OP000004 | Grandma Gift | score=82.56 | P2 | best=666 | p25=288795.5 | growing
+2026-07-07 12:38:30 INFO   OP000005 | Teacher Gift | score=78.85 | P2 | best=1015 | p25=369036.5 | growing
+2026-07-07 12:38:30 INFO   OP000006 | Wife Gift | score=75.3 | P2 | best=2513 | p25=276596.0 | growing
+2026-07-07 12:38:30 INFO   OP000007 | Grandpa Gift | score=75.02 | P2 | best=2236 | p25=353690.75 | growing
+2026-07-07 12:38:30 INFO   OP000008 | Husband Gift | score=74.63 | P2 | best=2778 | p25=316086.0 | growing
+2026-07-07 12:38:30 INFO   OP000009 | Cat Lover Gift | score=73.35 | P2 | best=5328 | p25=161629.5 | growing
+2026-07-07 12:38:30 INFO   OP000010 | Gardening Gift | score=69.19 | P3 | best=7831 | p25=311767.0 | growing
+2026-07-07 12:38:30 INFO Opportunity Engine build complete
+2026-07-07 12:38:30 INFO Build log: logs\build_opportunity_engine.log

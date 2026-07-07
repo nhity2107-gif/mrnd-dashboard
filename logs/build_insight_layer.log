@@ -76,3 +76,45 @@
 2026-07-07 09:27:36 INFO Exported data\output\insights\research_opportunity_queue.csv with 303 rows
 2026-07-07 09:27:36 INFO Insight Layer build complete
 2026-07-07 09:27:36 INFO Build log: logs\build_insight_layer.log
+2026-07-07 12:33:13 INFO Starting Insight Layer build
+2026-07-07 12:33:13 INFO Replacing data\output\insights\demand_size_map.csv
+2026-07-07 12:33:13 INFO Replacing data\output\insights\segment_size_map.csv
+2026-07-07 12:33:13 INFO Replacing data\output\insights\seasonality_map.csv
+2026-07-07 12:33:13 INFO Replacing data\output\insights\growth_map.csv
+2026-07-07 12:33:13 INFO Replacing data\output\insights\niche_direction_map.csv
+2026-07-07 12:33:13 INFO Replacing data\output\insights\research_opportunity_queue.csv
+2026-07-07 12:33:13 INFO Input data\output\composite_demands\composite_demands.csv: 24 rows
+2026-07-07 12:33:13 INFO Input data\output\composite_demands\demand_strength_v3.csv: 24 rows
+2026-07-07 12:33:13 INFO Input data\output\demand_segments\demand_segments.csv: 332 rows
+2026-07-07 12:33:13 INFO Input data\output\opportunity\opportunity_master.csv: 24 rows
+2026-07-07 12:33:13 INFO Input data\output\intent_layer\intent_summary.csv: 16 rows
+2026-07-07 12:33:13 INFO Validated canonical demand export with 24 rows
+2026-07-07 12:33:13 INFO Exported data\output\insights\demand_size_map.csv with 24 rows
+2026-07-07 12:33:13 INFO Exported data\output\insights\segment_size_map.csv with 332 rows
+2026-07-07 12:33:13 INFO Exported data\output\insights\seasonality_map.csv with 380 rows
+2026-07-07 12:33:13 INFO Exported data\output\insights\growth_map.csv with 380 rows
+2026-07-07 12:33:14 INFO Exported data\output\insights\niche_direction_map.csv with 332 rows
+2026-07-07 12:33:14 INFO Exported data\output\insights\research_opportunity_queue.csv with 356 rows
+2026-07-07 12:33:14 INFO Insight Layer build complete
+2026-07-07 12:33:14 INFO Build log: logs\build_insight_layer.log
+2026-07-07 12:38:53 INFO Starting Insight Layer build
+2026-07-07 12:38:53 INFO Replacing data\output\insights\demand_size_map.csv
+2026-07-07 12:38:53 INFO Replacing data\output\insights\segment_size_map.csv
+2026-07-07 12:38:53 INFO Replacing data\output\insights\seasonality_map.csv
+2026-07-07 12:38:53 INFO Replacing data\output\insights\growth_map.csv
+2026-07-07 12:38:53 INFO Replacing data\output\insights\niche_direction_map.csv
+2026-07-07 12:38:53 INFO Replacing data\output\insights\research_opportunity_queue.csv
+2026-07-07 12:38:53 INFO Input data\output\composite_demands\composite_demands.csv: 23 rows
+2026-07-07 12:38:53 INFO Input data\output\composite_demands\demand_strength_v3.csv: 23 rows
+2026-07-07 12:38:53 INFO Input data\output\demand_segments\demand_segments.csv: 330 rows
+2026-07-07 12:38:53 INFO Input data\output\opportunity\opportunity_master.csv: 23 rows
+2026-07-07 12:38:53 INFO Input data\output\intent_layer\intent_summary.csv: 16 rows
+2026-07-07 12:38:53 INFO Validated canonical demand export with 23 rows
+2026-07-07 12:38:53 INFO Exported data\output\insights\demand_size_map.csv with 23 rows
+2026-07-07 12:38:53 INFO Exported data\output\insights\segment_size_map.csv with 330 rows
+2026-07-07 12:38:53 INFO Exported data\output\insights\seasonality_map.csv with 376 rows
+2026-07-07 12:38:53 INFO Exported data\output\insights\growth_map.csv with 376 rows
+2026-07-07 12:38:53 INFO Exported data\output\insights\niche_direction_map.csv with 330 rows
+2026-07-07 12:38:53 INFO Exported data\output\insights\research_opportunity_queue.csv with 353 rows
+2026-07-07 12:38:53 INFO Insight Layer build complete
+2026-07-07 12:38:53 INFO Build log: logs\build_insight_layer.log

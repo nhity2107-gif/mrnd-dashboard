@@ -93,6 +93,12 @@ OUTPUT_FILES = {
 OPPORTUNITY_COLUMNS = [
     "parent_demand",
     "child_segment",
+    "segment_signature",
+    "segment_types",
+    "segment_values",
+    "segment_refinements",
+    "primary_segment_type",
+    "primary_segment_value",
     "segment_type",
     "segment_value",
     "segment_label_source",
@@ -110,7 +116,14 @@ OPPORTUNITY_COLUMNS = [
 ]
 
 PRODUCT_COLUMNS = [
+    "parent_demand",
     "child_segment",
+    "segment_signature",
+    "segment_types",
+    "segment_values",
+    "segment_refinements",
+    "primary_segment_type",
+    "primary_segment_value",
     "segment_type",
     "segment_value",
     "segment_label_source",
@@ -129,7 +142,14 @@ PRODUCT_COLUMNS = [
 ]
 
 CUSTOMIZATION_COLUMNS = [
+    "parent_demand",
     "child_segment",
+    "segment_signature",
+    "segment_types",
+    "segment_values",
+    "segment_refinements",
+    "primary_segment_type",
+    "primary_segment_value",
     "segment_type",
     "segment_value",
     "segment_label_source",
@@ -148,7 +168,14 @@ CUSTOMIZATION_COLUMNS = [
 ]
 
 REASONING_COLUMNS = [
+    "parent_demand",
     "child_segment",
+    "segment_signature",
+    "segment_types",
+    "segment_values",
+    "segment_refinements",
+    "primary_segment_type",
+    "primary_segment_value",
     "segment_type",
     "segment_value",
     "strengths",
@@ -375,6 +402,9 @@ def label_has_observed_support(segment: pd.Series) -> bool:
     if segment_type(segment) == "relationship" and relationship_has_observed_support(segment):
         return True
 
+    if clean_text(segment.get("segment_label_source")) == "observed_refinement_signature":
+        return bool(segment_signature(segment) or primary_segment_value(segment) or segment_value(segment))
+
     label_key = market_phrase_key(segment.get("segment_name", segment.get("child_segment")))
     if not label_key or len(label_key.split()) < 2:
         return False
@@ -433,6 +463,55 @@ def segment_value(segment: pd.Series) -> str:
     return clean_text(segment.get("segment_value"))
 
 
+def segment_signature(segment: pd.Series) -> str:
+    return clean_text(segment.get("segment_signature"))
+
+
+def segment_types(segment: pd.Series) -> str:
+    return clean_text(segment.get("segment_types"))
+
+
+def segment_values(segment: pd.Series) -> str:
+    return clean_text(segment.get("segment_values"))
+
+
+def segment_refinements(segment: pd.Series) -> str:
+    return clean_text(segment.get("segment_refinements"))
+
+
+def primary_segment_type(segment: pd.Series) -> str:
+    return clean_text(segment.get("primary_segment_type")) or segment_type(segment)
+
+
+def primary_segment_value(segment: pd.Series) -> str:
+    return clean_text(segment.get("primary_segment_value")) or segment_value(segment)
+
+
+def segment_identity(parent_demand: object, child_segment: object, signature: object) -> str:
+    parent = clean_text(parent_demand)
+    signature_text = clean_text(signature)
+    child = clean_text(child_segment)
+    return f"{parent}||{signature_text or child}"
+
+
+def segment_identity_from_row(row: pd.Series) -> str:
+    return segment_identity(row.get("parent_demand"), row.get("child_segment", row.get("segment_name")), row.get("segment_signature"))
+
+
+def segment_metadata(segment: pd.Series) -> dict[str, object]:
+    return {
+        "parent_demand": clean_text(segment.get("parent_demand")),
+        "segment_signature": segment_signature(segment),
+        "segment_types": segment_types(segment),
+        "segment_values": segment_values(segment),
+        "segment_refinements": segment_refinements(segment),
+        "primary_segment_type": primary_segment_type(segment),
+        "primary_segment_value": primary_segment_value(segment),
+        "segment_type": segment_type(segment),
+        "segment_value": segment_value(segment),
+    }
+
+
 def relationship_value_tokens(value: object) -> set[str]:
     normalized = lower_text(value)
     return RELATIONSHIP_VALUE_ALIASES.get(normalized, {normalized} if normalized else set())
@@ -459,6 +538,16 @@ def evidence_backed_segments(segments: pd.DataFrame) -> pd.DataFrame:
     output["observed_products"] = output.apply(observed_products, axis=1)
     output["segment_type"] = output.apply(segment_type, axis=1)
     output["segment_value"] = output.apply(segment_value, axis=1)
+    for column in [
+        "segment_signature",
+        "segment_types",
+        "segment_values",
+        "segment_refinements",
+        "primary_segment_type",
+        "primary_segment_value",
+    ]:
+        if column not in output.columns:
+            output[column] = ""
     return output[output["is_evidence_backed"]].copy()
 
 
@@ -690,9 +779,8 @@ def score_product_fit(
     best_product = max(capped, key=lambda product: (capped[product], product))
     explanation = "; ".join(reasons[:3]) if reasons else "General gift language creates moderate product fit."
     return {
+        **segment_metadata(segment),
         "child_segment": segment_name,
-        "segment_type": segment_type(segment),
-        "segment_value": segment_value(segment),
         "segment_label_source": segment_label_source(segment),
         "canonical_evidence_phrase": canonical_evidence_phrase(segment),
         "is_evidence_backed": segment_is_evidence_backed(segment),
@@ -781,9 +869,8 @@ def score_customization_fit(
     best_customization = max(capped, key=lambda item: (capped[item], item))
     explanation = "; ".join(reasons[:3]) if reasons else "Name customization is the broadest deterministic fit."
     output = {
+        **segment_metadata(segment),
         "child_segment": segment_name,
-        "segment_type": segment_type(segment),
-        "segment_value": segment_value(segment),
         "segment_label_source": segment_label_source(segment),
         "canonical_evidence_phrase": canonical_evidence_phrase(segment),
         "is_evidence_backed": segment_is_evidence_backed(segment),
@@ -800,7 +887,11 @@ def build_product_fit_matrix(
     product_recommendations: pd.DataFrame,
 ) -> pd.DataFrame:
     rows = [score_product_fit(segment, product_recommendations) for _, segment in segments.iterrows()]
-    return pd.DataFrame(rows, columns=PRODUCT_COLUMNS).drop_duplicates("child_segment").reset_index(drop=True)
+    return (
+        pd.DataFrame(rows, columns=PRODUCT_COLUMNS)
+        .drop_duplicates(["parent_demand", "child_segment", "segment_signature"])
+        .reset_index(drop=True)
+    )
 
 
 def build_customization_fit_matrix(
@@ -808,7 +899,11 @@ def build_customization_fit_matrix(
     customization_recommendations: pd.DataFrame,
 ) -> pd.DataFrame:
     rows = [score_customization_fit(segment, customization_recommendations) for _, segment in segments.iterrows()]
-    return pd.DataFrame(rows, columns=CUSTOMIZATION_COLUMNS).drop_duplicates("child_segment").reset_index(drop=True)
+    return (
+        pd.DataFrame(rows, columns=CUSTOMIZATION_COLUMNS)
+        .drop_duplicates(["parent_demand", "child_segment", "segment_signature"])
+        .reset_index(drop=True)
+    )
 
 
 def parent_lookup(scorecard: pd.DataFrame) -> pd.DataFrame:
@@ -828,15 +923,24 @@ def product_score_lookup(product_fit: pd.DataFrame) -> dict[str, float]:
         "ornament_score",
         "canvas_score",
     ]
-    return product_fit.set_index("child_segment")[score_columns].max(axis=1).to_dict()
+    return {
+        segment_identity_from_row(row): float(row[score_columns].max())
+        for _, row in product_fit.iterrows()
+    }
 
 
 def product_name_lookup(product_fit: pd.DataFrame) -> dict[str, str]:
-    return product_fit.set_index("child_segment")["best_product"].to_dict()
+    return {
+        segment_identity_from_row(row): clean_text(row.get("best_product"))
+        for _, row in product_fit.iterrows()
+    }
 
 
 def customization_name_lookup(customization_fit: pd.DataFrame) -> dict[str, str]:
-    return customization_fit.set_index("child_segment")["best_customization"].to_dict()
+    return {
+        segment_identity_from_row(row): clean_text(row.get("best_customization"))
+        for _, row in customization_fit.iterrows()
+    }
 
 
 def score_market_size(segment: pd.Series, parent: pd.Series) -> float:
@@ -930,12 +1034,13 @@ def build_opportunity_scorecard(
             continue
         parent = parents.loc[parent_name]
         child_segment = clean_text(segment["segment_name"])
+        segment_key = segment_identity(parent_name, child_segment, segment_signature(segment))
         market_size_score = score_market_size(segment, parent)
         growth_score = score_growth(segment, parent)
         competition_score = score_competition(segment, parent)
         expansion_score = score_expansion(segment, parent)
         seasonality_score = score_seasonality(segment, parent)
-        product_fit_score = numeric(fit_scores.get(child_segment), 50.0)
+        product_fit_score = numeric(fit_scores.get(segment_key), 50.0)
         total_score = round(
             market_size_score * 0.25
             + growth_score * 0.20
@@ -948,6 +1053,12 @@ def build_opportunity_scorecard(
         row = {
             "parent_demand": parent_name,
             "child_segment": child_segment,
+            "segment_signature": segment_signature(segment),
+            "segment_types": segment_types(segment),
+            "segment_values": segment_values(segment),
+            "segment_refinements": segment_refinements(segment),
+            "primary_segment_type": primary_segment_type(segment),
+            "primary_segment_value": primary_segment_value(segment),
             "segment_type": segment_type(segment),
             "segment_value": segment_value(segment),
             "segment_label_source": segment_label_source(segment),
@@ -985,20 +1096,24 @@ def build_research_reasoning(
     market_scorecard: pd.DataFrame,
 ) -> pd.DataFrame:
     parents = parent_lookup(market_scorecard)
-    score_lookup = opportunity_scorecard.set_index("child_segment").to_dict("index")
+    score_lookup = {
+        segment_identity_from_row(row): row.to_dict()
+        for _, row in opportunity_scorecard.iterrows()
+    }
     product_lookup = product_name_lookup(product_fit)
     customization_lookup = customization_name_lookup(customization_fit)
 
     rows = []
     for _, segment in segments.iterrows():
         child_segment = clean_text(segment["segment_name"])
-        score = score_lookup.get(child_segment)
+        parent_name = clean_text(segment.get("parent_demand"))
+        segment_key = segment_identity(parent_name, child_segment, segment_signature(segment))
+        score = score_lookup.get(segment_key)
         if not score:
             continue
-        parent_name = clean_text(segment.get("parent_demand"))
         parent = parents.loc[parent_name] if parent_name in parents.index else pd.Series(dtype=object)
-        best_product = product_lookup.get(child_segment, "Mug")
-        best_customization = customization_lookup.get(child_segment, "Name")
+        best_product = product_lookup.get(segment_key, "Mug")
+        best_customization = customization_lookup.get(segment_key, "Name")
         total_score = numeric(score.get("total_score"))
         trend = lower_text(segment.get("trend"))
         seasonality = clean_text(parent.get("seasonality"))
@@ -1043,7 +1158,14 @@ def build_research_reasoning(
 
         rows.append(
             {
+                "parent_demand": parent_name,
                 "child_segment": child_segment,
+                "segment_signature": segment_signature(segment),
+                "segment_types": segment_types(segment),
+                "segment_values": segment_values(segment),
+                "segment_refinements": segment_refinements(segment),
+                "primary_segment_type": primary_segment_type(segment),
+                "primary_segment_value": primary_segment_value(segment),
                 "segment_type": segment_type(segment),
                 "segment_value": segment_value(segment),
                 "strengths": sentence_join(strengths),
@@ -1056,9 +1178,16 @@ def build_research_reasoning(
         )
 
     output = pd.DataFrame(rows, columns=REASONING_COLUMNS)
-    score_order = opportunity_scorecard[["child_segment", "total_score"]]
-    output = output.merge(score_order, on="child_segment", how="left")
-    output = output.sort_values(["total_score", "child_segment"], ascending=[False, True])
+    if output.empty:
+        return output
+    output["_segment_identity"] = output.apply(segment_identity_from_row, axis=1)
+    score_order = opportunity_scorecard.copy()
+    score_order["_segment_identity"] = score_order.apply(segment_identity_from_row, axis=1)
+    output = output.merge(score_order[["_segment_identity", "total_score"]], on="_segment_identity", how="left")
+    output = output.sort_values(
+        ["total_score", "parent_demand", "child_segment"],
+        ascending=[False, True, True],
+    )
     return output[REASONING_COLUMNS].reset_index(drop=True)
 
 

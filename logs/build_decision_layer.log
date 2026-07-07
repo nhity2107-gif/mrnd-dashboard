@@ -94,3 +94,51 @@
 2026-07-07 09:29:03 INFO Exported data\output\decision\market_calendar.csv with 150 rows
 2026-07-07 09:29:03 INFO Decision Layer build complete
 2026-07-07 09:29:03 INFO Build log: logs\build_decision_layer.log
+2026-07-07 12:33:50 INFO Starting Decision Layer build
+2026-07-07 12:33:50 INFO Replacing data\output\decision\market_scorecard.csv
+2026-07-07 12:33:50 INFO Replacing data\output\decision\research_candidates.csv
+2026-07-07 12:33:50 INFO Replacing data\output\decision\product_recommendation.csv
+2026-07-07 12:33:50 INFO Replacing data\output\decision\customization_recommendation.csv
+2026-07-07 12:33:50 INFO Replacing data\output\decision\market_calendar.csv
+2026-07-07 12:33:50 INFO Input data\output\intelligence\market_intelligence.csv: 24 rows
+2026-07-07 12:33:50 INFO Input data\output\intelligence\expansion_tree.csv: 332 rows
+2026-07-07 12:33:50 INFO Input data\output\intelligence\market_stage.csv: 24 rows
+2026-07-07 12:33:50 INFO Input data\output\intelligence\demand_intelligence.csv: 24 rows
+2026-07-07 12:33:50 INFO Input data\output\opportunity\opportunity_master.csv: 24 rows
+2026-07-07 12:33:50 INFO Input data\output\demand_segments\demand_segments.csv: 332 rows
+2026-07-07 12:33:50 INFO Input data\output\insights\demand_size_map.csv: 24 rows
+2026-07-07 12:33:50 INFO Input data\output\insights\seasonality_map.csv: 380 rows
+2026-07-07 12:33:50 INFO Validated market stage with 24 rows
+2026-07-07 12:33:50 INFO Validated demand intelligence with 24 rows
+2026-07-07 12:33:50 INFO Validated expansion tree with 332 rows
+2026-07-07 12:33:50 INFO Exported data\output\decision\market_scorecard.csv with 24 rows
+2026-07-07 12:33:50 INFO Exported data\output\decision\research_candidates.csv with 332 rows
+2026-07-07 12:33:50 INFO Exported data\output\decision\product_recommendation.csv with 996 rows
+2026-07-07 12:33:50 INFO Exported data\output\decision\customization_recommendation.csv with 582 rows
+2026-07-07 12:33:50 INFO Exported data\output\decision\market_calendar.csv with 24 rows
+2026-07-07 12:33:50 INFO Decision Layer build complete
+2026-07-07 12:33:50 INFO Build log: logs\build_decision_layer.log
+2026-07-07 12:39:22 INFO Starting Decision Layer build
+2026-07-07 12:39:22 INFO Replacing data\output\decision\market_scorecard.csv
+2026-07-07 12:39:22 INFO Replacing data\output\decision\research_candidates.csv
+2026-07-07 12:39:22 INFO Replacing data\output\decision\product_recommendation.csv
+2026-07-07 12:39:22 INFO Replacing data\output\decision\customization_recommendation.csv
+2026-07-07 12:39:22 INFO Replacing data\output\decision\market_calendar.csv
+2026-07-07 12:39:22 INFO Input data\output\intelligence\market_intelligence.csv: 23 rows
+2026-07-07 12:39:22 INFO Input data\output\intelligence\expansion_tree.csv: 330 rows
+2026-07-07 12:39:22 INFO Input data\output\intelligence\market_stage.csv: 23 rows
+2026-07-07 12:39:22 INFO Input data\output\intelligence\demand_intelligence.csv: 23 rows
+2026-07-07 12:39:22 INFO Input data\output\opportunity\opportunity_master.csv: 23 rows
+2026-07-07 12:39:22 INFO Input data\output\demand_segments\demand_segments.csv: 330 rows
+2026-07-07 12:39:22 INFO Input data\output\insights\demand_size_map.csv: 23 rows
+2026-07-07 12:39:22 INFO Input data\output\insights\seasonality_map.csv: 376 rows
+2026-07-07 12:39:22 INFO Validated market stage with 23 rows
+2026-07-07 12:39:22 INFO Validated demand intelligence with 23 rows
+2026-07-07 12:39:22 INFO Validated expansion tree with 330 rows
+2026-07-07 12:39:22 INFO Exported data\output\decision\market_scorecard.csv with 23 rows
+2026-07-07 12:39:22 INFO Exported data\output\decision\research_candidates.csv with 330 rows
+2026-07-07 12:39:22 INFO Exported data\output\decision\product_recommendation.csv with 990 rows
+2026-07-07 12:39:22 INFO Exported data\output\decision\customization_recommendation.csv with 576 rows
+2026-07-07 12:39:22 INFO Exported data\output\decision\market_calendar.csv with 23 rows
+2026-07-07 12:39:22 INFO Decision Layer build complete
+2026-07-07 12:39:22 INFO Build log: logs\build_decision_layer.log

@@ -94,6 +94,8 @@ COMPOSITE_COLUMNS = [
     "canonical_evidence_phrase",
     "canonical_source_phrase",
     "is_parent_market",
+    "market_subject_type",
+    "market_subject_value",
     "intent",
     "recipient",
     "profession",
@@ -328,6 +330,83 @@ OCCASION_ENTITY_TYPES = {"occasion", "holiday"}
 PRODUCT_ENTITY_TYPES = {"product"}
 FORMAT_ENTITY_TYPES = {"customization", "style", "modifier"}
 
+ALLOWED_MARKET_SUBJECT_TYPES = {
+    "person",
+    "profession",
+    "pet",
+    "persona",
+    "audience_group",
+}
+PET_VALUES = {"bird", "cat", "dog", "fish", "horse"}
+PERSON_SUBJECT_NORMALIZATIONS = {
+    "father": "dad",
+    "fathers": "dad",
+    "dad": "dad",
+    "mother": "mom",
+    "mothers": "mom",
+    "mom": "mom",
+    "grandfather": "grandpa",
+    "grandfathers": "grandpa",
+    "grandpa": "grandpa",
+    "grandmother": "grandma",
+    "grandmothers": "grandma",
+    "grandma": "grandma",
+    "dads": "dad",
+    "moms": "mom",
+    "son": "son",
+    "sons": "son",
+    "daughter": "daughter",
+    "daughters": "daughter",
+    "wife": "wife",
+    "wives": "wife",
+    "husband": "husband",
+}
+AUDIENCE_GROUP_VALUES = {
+    "adult",
+    "baby",
+    "boy",
+    "boys",
+    "girl",
+    "girls",
+    "kid",
+    "kids",
+    "teen",
+    "teens",
+    "toddler",
+    "toddlers",
+}
+AUDIENCE_GROUP_NORMALIZATIONS = {
+    "boys": "boy",
+    "girls": "girl",
+    "kid": "kids",
+    "children": "kids",
+    "child": "kids",
+    "teens": "teen",
+    "toddlers": "toddler",
+}
+PERSONA_MARKER_TOKENS = {
+    "fan",
+    "fans",
+    "fisherman",
+    "fishermen",
+    "gamer",
+    "gamers",
+    "like",
+    "likes",
+    "love",
+    "lover",
+    "lovers",
+    "loves",
+}
+GENERIC_INTEREST_REVIEW_VALUES = {"coffee"}
+HOBBY_PERSONA_NORMALIZATIONS = {
+    "fisherman": "fishing",
+    "fishermen": "fishing",
+    "gamer": "gamer",
+    "gamers": "gamer",
+    "gaming": "gamer",
+}
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -512,6 +591,156 @@ def normalized_observed_tokens(value: object) -> list[str]:
     tokens = remove_non_market_modifiers(tokens)
     tokens = rewrite_love_like_surface(tokens)
     return [singularize_surface_token(token) for token in tokens if token]
+
+
+def normalize_subject_value(value: object) -> str:
+    tokens = normalized_observed_tokens(value)
+    return " ".join(tokens)
+
+
+def subject_alias_tokens(value: object) -> set[str]:
+    normalized = normalize_subject_value(value)
+    if not normalized:
+        return set()
+    aliases = {normalized}
+    aliases.update(ENTITY_VALUE_TOKEN_ALIASES.get(normalized, set()))
+    aliases.update(phrase_tokens(normalized))
+    return aliases
+
+
+def phrase_has_subject(value: object, phrase: object) -> bool:
+    subject_tokens = subject_alias_tokens(value)
+    phrase_token_set = set(normalized_observed_tokens(phrase))
+    return bool(subject_tokens & phrase_token_set)
+
+
+def has_persona_marker(tokens: list[str]) -> bool:
+    return bool(set(tokens) & PERSONA_MARKER_TOKENS)
+
+
+def normalize_person_or_group(value: object) -> tuple[str, str]:
+    normalized = normalize_subject_value(value)
+    if not normalized:
+        return "", ""
+    normalized = PERSON_SUBJECT_NORMALIZATIONS.get(normalized, normalized)
+    normalized = AUDIENCE_GROUP_NORMALIZATIONS.get(normalized, normalized)
+    if " " in normalized:
+        for token in reversed(normalized.split()):
+            person = PERSON_SUBJECT_NORMALIZATIONS.get(token)
+            if person:
+                return "person", person
+            group = AUDIENCE_GROUP_NORMALIZATIONS.get(token, token)
+            if group in AUDIENCE_GROUP_VALUES:
+                return "audience_group", group
+    if normalized in AUDIENCE_GROUP_VALUES:
+        return "audience_group", normalized
+    return "person", normalized
+
+
+def persona_subject_value(value: object, phrase: object) -> tuple[str, str]:
+    normalized = normalize_subject_value(value)
+    if not normalized:
+        return "", ""
+    tokens = normalized_observed_tokens(phrase)
+    token_set = set(tokens)
+    for token in tokens:
+        normalized_hobby = HOBBY_PERSONA_NORMALIZATIONS.get(token)
+        if normalized_hobby:
+            return "persona", normalized_hobby
+    if has_persona_marker(tokens):
+        if normalized in PET_VALUES or normalized in GENERIC_INTEREST_REVIEW_VALUES:
+            return "persona", f"{normalized} lover"
+        return "persona", normalized
+    if normalized in GENERIC_INTEREST_REVIEW_VALUES:
+        return "", ""
+    if normalized in token_set:
+        return "persona", normalized
+    return "", ""
+
+
+def market_subject_candidates(row: pd.Series) -> list[dict[str, object]]:
+    phrase = row.get("normalized_keyword") or row.get("raw_keyword")
+    primary_type = clean_text(row.get("primary_audience_type")).lower()
+    primary_value = normalize_subject_value(row.get("primary_audience_value"))
+    candidates: list[dict[str, object]] = []
+
+    def add(subject_type: str, subject_value: object, source: str, base_score: int = 0) -> None:
+        value = normalize_subject_value(subject_value)
+        if not value:
+            return
+        normalized_type = subject_type
+        normalized_value = value
+        if subject_type == "recipient":
+            normalized_type, normalized_value = normalize_person_or_group(value)
+        elif subject_type == "interest":
+            normalized_type, normalized_value = persona_subject_value(value, phrase)
+        elif subject_type == "pet" and has_persona_marker(normalized_observed_tokens(phrase)):
+            normalized_type, normalized_value = persona_subject_value(value, phrase)
+        if normalized_type not in ALLOWED_MARKET_SUBJECT_TYPES or not normalized_value:
+            return
+
+        score = base_score
+        if primary_type == subject_type and primary_value == value:
+            score += 20
+        if phrase_has_subject(normalized_value, phrase) or phrase_has_subject(value, phrase):
+            score += 6
+        if source == "primary_audience":
+            score += 4
+        if source == "entity_field":
+            score += 2
+        candidates.append(
+            {
+                "market_subject_type": normalized_type,
+                "market_subject_value": normalized_value,
+                "subject_score": score,
+                "subject_source": source,
+            }
+        )
+
+    if primary_type in {"recipient", "profession", "pet", "interest"}:
+        add(primary_type, primary_value, "primary_audience", 8)
+    add("recipient", row.get("recipient"), "entity_field")
+    add("profession", row.get("profession"), "entity_field")
+    add("pet", row.get("pet"), "entity_field")
+    add("interest", row.get("interest"), "entity_field")
+    add("recipient", row.get("age_group"), "entity_field")
+    add("recipient", row.get("gender"), "entity_field")
+    return candidates
+
+
+def market_subject_from_evidence(row: pd.Series) -> pd.Series:
+    candidates = market_subject_candidates(row)
+    if not candidates:
+        return pd.Series(
+            {
+                "market_subject_type": "",
+                "market_subject_value": "",
+                "parent_cluster_key": "",
+                "display_candidate": "",
+                "subject_resolution_reason": "excluded_no_market_subject",
+            }
+        )
+
+    frame = pd.DataFrame(candidates).drop_duplicates(
+        ["market_subject_type", "market_subject_value"]
+    )
+    frame = frame.sort_values(
+        ["subject_score", "market_subject_type", "market_subject_value"],
+        ascending=[False, True, True],
+    ).reset_index(drop=True)
+    winner = frame.iloc[0]
+    subject_type = clean_text(winner["market_subject_type"])
+    subject_value = clean_text(winner["market_subject_value"])
+    display = f"{smart_title_case(subject_value)} Gift"
+    return pd.Series(
+        {
+            "market_subject_type": subject_type,
+            "market_subject_value": subject_value,
+            "parent_cluster_key": f"{subject_type}|{subject_value}",
+            "display_candidate": display,
+            "subject_resolution_reason": "resolved_from_intent_layer_market_subject",
+        }
+    )
 
 
 def normalize_cluster_tokens(tokens: list[str]) -> list[str]:
@@ -779,6 +1008,8 @@ def ontology_unmapped_tokens(phrase: object, profile: pd.Series) -> list[str]:
         clean_text(profile.get("dominant_modifier")),
     ]
     covered.update(covered_tokens_from_values(semantic_values))
+    if intent in MARKET_INTENTS:
+        covered.update({"gift", "gifts", "present", "presents"})
     for value in semantic_values:
         covered.update(semantic_alias_tokens(value))
     return sorted(token for token in tokens if token not in covered)
@@ -1133,9 +1364,9 @@ def create_composite_metric_stage(
     evidence["search_frequency_rank"] = pd.to_numeric(
         evidence["search_frequency_rank"], errors="coerce"
     )
-    evidence["parent_cluster_key"] = evidence["normalized_keyword"].map(cluster_key_from_phrase)
+    subject_frame = evidence.apply(market_subject_from_evidence, axis=1)
+    evidence = pd.concat([evidence, subject_frame], axis=1)
     evidence["canonical_source_candidate"] = evidence["normalized_keyword"].map(clean_text)
-    evidence["display_candidate"] = evidence["normalized_keyword"].map(canonical_display_phrase)
     evidence["old_parent"] = evidence.apply(semantic_parent_name_from_evidence, axis=1)
     evidence = evidence[
         (evidence["parent_cluster_key"] != "")
@@ -1145,7 +1376,13 @@ def create_composite_metric_stage(
 
     candidate_stats = (
         evidence.groupby(
-            ["parent_cluster_key", "canonical_source_candidate", "display_candidate"],
+            [
+                "parent_cluster_key",
+                "market_subject_type",
+                "market_subject_value",
+                "canonical_source_candidate",
+                "display_candidate",
+            ],
             dropna=False,
         )
         .agg(
@@ -1189,9 +1426,28 @@ def create_composite_metric_stage(
     )
 
     evidence = evidence.merge(
-        canonical_labels[["parent_cluster_key", "demand_name", "canonical_source_phrase"]],
+        canonical_labels[
+            [
+                "parent_cluster_key",
+                "demand_name",
+                "canonical_source_phrase",
+                "market_subject_type",
+                "market_subject_value",
+            ]
+        ],
         on="parent_cluster_key",
         how="left",
+        suffixes=("", "_canonical"),
+    )
+    evidence["market_subject_type"] = evidence["market_subject_type_canonical"].fillna(
+        evidence["market_subject_type"]
+    )
+    evidence["market_subject_value"] = evidence["market_subject_value_canonical"].fillna(
+        evidence["market_subject_value"]
+    )
+    evidence = evidence.drop(
+        columns=["market_subject_type_canonical", "market_subject_value_canonical"],
+        errors="ignore",
     )
     evidence["evidence_phrase"] = evidence["canonical_source_phrase"]
 
@@ -1226,7 +1482,15 @@ def create_composite_metric_stage(
         .apply(semantic_cluster_profile)
         .reset_index()
         .merge(
-            canonical_labels[["parent_cluster_key", "demand_name", "canonical_source_phrase"]],
+            canonical_labels[
+                [
+                    "parent_cluster_key",
+                    "demand_name",
+                    "canonical_source_phrase",
+                    "market_subject_type",
+                    "market_subject_value",
+                ]
+            ],
             on="parent_cluster_key",
             how="left",
         )
@@ -1239,7 +1503,7 @@ def create_composite_metric_stage(
     )
     classifications.columns = ["parent_entity_type", "is_parent_market", "classification_reason"]
     cluster_profiles = pd.concat([cluster_profiles, classifications], axis=1)
-    cluster_profiles["parent_label_source"] = "dominant_observed_phrase"
+    cluster_profiles["parent_label_source"] = "market_subject_from_observed_evidence"
 
     representative = (
         evidence.sort_values(
@@ -1264,6 +1528,8 @@ def create_composite_metric_stage(
                 "customization",
                 "style",
                 "modifier",
+                "market_subject_type",
+                "market_subject_value",
             ]
         ]
         .rename(
@@ -1279,6 +1545,35 @@ def create_composite_metric_stage(
                 "composite_theme": "theme",
             }
         )
+    )
+    representative["intent"] = "gift"
+    representative["audience_type"] = representative["market_subject_type"]
+    representative["audience_value"] = representative["market_subject_value"]
+    representative["recipient"] = representative.apply(
+        lambda row: row["market_subject_value"]
+        if row["market_subject_type"] in {"person", "pet", "audience_group"}
+        else "",
+        axis=1,
+    )
+    representative["profession"] = representative.apply(
+        lambda row: row["market_subject_value"]
+        if row["market_subject_type"] == "profession"
+        else "",
+        axis=1,
+    )
+    representative["interest"] = representative.apply(
+        lambda row: row["market_subject_value"]
+        if row["market_subject_type"] == "persona"
+        else "",
+        axis=1,
+    )
+    representative["occasion"] = ""
+    representative["holiday"] = ""
+    representative["lifestyle"] = ""
+    representative["theme"] = ""
+    representative = representative.drop(
+        columns=["market_subject_type", "market_subject_value"],
+        errors="ignore",
     )
 
     month_best = (
@@ -1311,7 +1606,15 @@ def create_composite_metric_stage(
 
     metrics = (
         metrics.merge(
-            canonical_labels[["parent_cluster_key", "demand_name", "canonical_source_phrase"]],
+            canonical_labels[
+                [
+                    "parent_cluster_key",
+                    "demand_name",
+                    "canonical_source_phrase",
+                    "market_subject_type",
+                    "market_subject_value",
+                ]
+            ],
             on="parent_cluster_key",
         )
         .merge(representative, on="parent_cluster_key")
@@ -1326,11 +1629,24 @@ def create_composite_metric_stage(
                     "canonical_evidence_phrase",
                     "is_parent_market",
                     "classification_reason",
+                    "market_subject_type",
+                    "market_subject_value",
                 ]
             ],
             on="parent_cluster_key",
             how="left",
+            suffixes=("", "_profile"),
         )
+    )
+    metrics["market_subject_type"] = metrics["market_subject_type"].fillna(
+        metrics.get("market_subject_type_profile", "")
+    )
+    metrics["market_subject_value"] = metrics["market_subject_value"].fillna(
+        metrics.get("market_subject_value_profile", "")
+    )
+    metrics = metrics.drop(
+        columns=["market_subject_type_profile", "market_subject_value_profile"],
+        errors="ignore",
     )
     latest_month = evidence["month"].max()
     metrics["trend"] = metrics.apply(lambda row: trend_label(row, latest_month), axis=1)
@@ -1343,10 +1659,23 @@ def create_composite_metric_stage(
                 "canonical_evidence_phrase",
                 "is_parent_market",
                 "classification_reason",
+                "market_subject_type",
+                "market_subject_value",
             ]
         ],
         on="parent_cluster_key",
         how="left",
+        suffixes=("", "_profile"),
+    )
+    evidence["market_subject_type"] = evidence["market_subject_type"].fillna(
+        evidence.get("market_subject_type_profile", "")
+    )
+    evidence["market_subject_value"] = evidence["market_subject_value"].fillna(
+        evidence.get("market_subject_value_profile", "")
+    )
+    evidence = evidence.drop(
+        columns=["market_subject_type_profile", "market_subject_value_profile"],
+        errors="ignore",
     )
 
     cluster_sizes = (
@@ -1361,10 +1690,12 @@ def create_composite_metric_stage(
                 "demand_name",
                 "canonical_source_phrase",
                 "parent_cluster_key",
-                "parent_entity_type",
-                "is_parent_market",
-                "classification_reason",
-            ],
+            "parent_entity_type",
+            "is_parent_market",
+            "market_subject_type",
+            "market_subject_value",
+            "classification_reason",
+        ],
             dropna=False,
         )
         .agg(evidence_phrase=("evidence_phrase", first_clean_value))
@@ -1400,6 +1731,8 @@ def create_composite_metric_stage(
             "canonical_source_phrase",
             "parent_entity_type",
             "is_parent_market",
+            "market_subject_type",
+            "market_subject_value",
             "reason",
             "evidence_phrase",
             "cluster_size",
@@ -1418,6 +1751,8 @@ def create_composite_metric_stage(
             "canonical_evidence_phrase",
             "canonical_source_phrase",
             "is_parent_market",
+            "market_subject_type",
+            "market_subject_value",
             "intent",
             "audience_type",
             "audience_value",
@@ -1471,6 +1806,8 @@ def build_composite_demands(connection: duckdb.DuckDBPyConnection) -> pd.DataFra
             canonical_evidence_phrase,
             canonical_source_phrase,
             is_parent_market,
+            market_subject_type,
+            market_subject_value,
             intent,
             recipient,
             profession,
@@ -1514,6 +1851,8 @@ def build_composite_demands(connection: duckdb.DuckDBPyConnection) -> pd.DataFra
             canonical_source_phrase,
             parent_entity_type,
             is_parent_market,
+            market_subject_type,
+            market_subject_value,
             reason,
             evidence_phrase,
             cluster_size
@@ -1620,6 +1959,8 @@ def build_demand_strength_v3(connection: duckdb.DuckDBPyConnection) -> int:
             canonical_evidence_phrase,
             canonical_source_phrase,
             is_parent_market,
+            market_subject_type,
+            market_subject_value,
             intent,
             recipient,
             profession,
