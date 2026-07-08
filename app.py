@@ -183,6 +183,129 @@ st.markdown(
         margin-top: 0.35rem;
     }
 
+    .mrd-mini-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--mrd-border);
+        border-radius: 10px;
+        overflow: hidden;
+        background: rgba(17, 24, 39, 0.82);
+        margin-bottom: 0.7rem;
+    }
+
+    .mrd-mini-table th,
+    .mrd-mini-table td {
+        border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+        padding: 0.55rem 0.7rem;
+        vertical-align: top;
+        font-size: 0.86rem;
+    }
+
+    .mrd-mini-table th {
+        color: var(--mrd-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-size: 0.72rem;
+        background: rgba(15, 23, 42, 0.92);
+    }
+
+    .mrd-mini-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .mrd-popularity {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        min-width: 140px;
+    }
+
+    .mrd-popularity-track {
+        position: relative;
+        flex: 1 1 auto;
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(148, 163, 184, 0.18);
+        overflow: hidden;
+    }
+
+    .mrd-popularity-fill {
+        position: absolute;
+        inset: 0 auto 0 0;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #38bdf8, #22c55e);
+    }
+
+    .mrd-popularity-value {
+        color: var(--mrd-text);
+        font-size: 0.8rem;
+        min-width: 2.9rem;
+        text-align: right;
+    }
+
+    .mrd-keyword-preview {
+        color: var(--mrd-text);
+        line-height: 1.35;
+    }
+
+    .mrd-keyword-more {
+        display: inline;
+        margin-left: 0.2rem;
+    }
+
+    .mrd-keyword-more summary {
+        display: inline;
+        color: var(--mrd-accent);
+        cursor: pointer;
+        list-style: none;
+    }
+
+    .mrd-keyword-more summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .mrd-keyword-more div {
+        margin-top: 0.25rem;
+        color: var(--mrd-muted);
+    }
+
+    .mrd-investment-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 7.6rem;
+        padding: 0.28rem 0.65rem;
+        border-radius: 999px;
+        border: 1px solid var(--mrd-border);
+        font-size: 0.76rem;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    .mrd-investment-green {
+        color: var(--mrd-positive);
+        background: rgba(34, 197, 94, 0.12);
+        border-color: rgba(34, 197, 94, 0.35);
+    }
+
+    .mrd-investment-blue {
+        color: var(--mrd-accent);
+        background: rgba(56, 189, 248, 0.12);
+        border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .mrd-investment-amber {
+        color: var(--mrd-warning);
+        background: rgba(245, 158, 11, 0.12);
+        border-color: rgba(245, 158, 11, 0.35);
+    }
+
+    .mrd-investment-gray {
+        color: var(--mrd-muted);
+        background: rgba(148, 163, 184, 0.11);
+        border-color: rgba(148, 163, 184, 0.28);
+    }
+
     .mrd-accent {
         color: var(--mrd-accent) !important;
     }
@@ -698,12 +821,16 @@ def metric_cards(metrics: list[tuple[str, object, str | None]]) -> None:
     columns = st.columns(len(metrics))
     for column, (label, value, note) in zip(columns, metrics):
         display_value = clean_text(value) if isinstance(value, str) else format_int(value)
+        if isinstance(value, str) and display_value.lstrip().startswith("<"):
+            rendered_value = display_value
+        else:
+            rendered_value = safe(display_value)
         with column:
             st.markdown(
                 f"""
                 <div class="mrd-card">
                     <div class="mrd-card-label">{safe(label)}</div>
-                    <div class="mrd-card-value">{safe(display_value)}</div>
+                    <div class="mrd-card-value">{rendered_value}</div>
                     <div class="mrd-card-note">{safe(note or "")}</div>
                 </div>
                 """,
@@ -735,8 +862,16 @@ def portfolio_investment_tone(value: object) -> str:
     if "monitor" in text or "watch" in text or text == "p3":
         return "amber"
     if any(keyword in text for keyword in ["avoid", "declining", "decline", "exit", "archive"]):
-        return "red"
-    return "amber"
+        return "gray"
+    if "maintain" in text:
+        return "amber"
+    return "gray"
+
+
+def investment_badge_html(value: object) -> str:
+    label = clean_text(value) or "Monitor"
+    tone = portfolio_investment_tone(label)
+    return f'<span class="mrd-investment-badge mrd-investment-{safe(tone)}">{safe(label)}</span>'
 
 
 def portfolio_market_size_tone(value: object) -> str:
@@ -2024,82 +2159,6 @@ def score_metric_row(row: pd.Series, columns: list[str]) -> None:
     metric_cards([(column.replace("_", " ").title(), f"{numeric(row.get(column)):.1f}", "") for column in columns])
 
 
-def decision_center() -> None:
-    page_header(
-        "Decision Center",
-        "What should the team research this week?",
-    )
-    data = decision_data()
-    roadmap = load_csv("portfolio_roadmap")
-    if data.empty:
-        st.info("Decision Center data is missing or empty.")
-        return
-
-    metric_cards(
-        [
-            ("Research Items", len(data), "Candidate child segments"),
-            ("P1", int((data["priority"] == "P1").sum()) if "priority" in data.columns else 0, "Highest urgency"),
-            ("Avg Score", f"{numeric(data['opportunity_score'].mean() if 'opportunity_score' in data.columns else 0):.1f}", "Opportunity score"),
-            ("Roadmap Weeks", len(roadmap), "Weekly planning rows"),
-        ]
-    )
-
-    section_break()
-    st.subheader("Top 10 Research Priorities")
-    render_research_cards(data, 10)
-
-    section_break()
-    st.subheader("Weekly Research Plan")
-    display_table(
-        roadmap,
-        ["week", "parent_demand", "child_segment", "product", "customization", "priority", "reason"],
-        height=360,
-    )
-
-    section_break()
-    selected = st.selectbox("Select child segment", data["child_segment"].astype(str).drop_duplicates().tolist())
-    row = data[data["child_segment"].astype(str) == selected].iloc[0]
-    tab_breakdown, tab_product, tab_custom, tab_reasoning = st.tabs(
-        ["Decision Breakdown", "Product Decision", "Customization Decision", "Analyst Reasoning"]
-    )
-    with tab_breakdown:
-        score_metric_row(
-            row,
-            [
-                "market_size_score",
-                "growth_score",
-                "competition_score",
-                "expansion_score",
-                "seasonality_score",
-                "product_fit_score",
-                "total_score",
-            ],
-        )
-        st.write(clean_text(row.get("explanation")) or "No explanation available.")
-    with tab_product:
-        score_metric_row(
-            row,
-            ["card_score", "blanket_score", "mug_score", "tumbler_score", "shirt_score", "ornament_score", "canvas_score"],
-        )
-        st.markdown(f"**Best product:** {clean_text(row.get('best_product'))}")
-        st.write(clean_text(row.get("explanation_product_fit")))
-    with tab_custom:
-        score_metric_row(row, ["photo", "name", "multiple_names", "birth_flower", "clipart", "line_art", "hand_drawing"])
-        st.markdown(f"**Best customization:** {clean_text(row.get('best_customization'))}")
-        st.write(clean_text(row.get("explanation_custom_fit")))
-    with tab_reasoning:
-        for label, column in [
-            ("Strengths", "strengths"),
-            ("Weaknesses", "weaknesses"),
-            ("Risks", "risks"),
-            ("Opportunities", "opportunities"),
-            ("Why Now", "why_now"),
-            ("Recommended Next Step", "recommended_next_step"),
-        ]:
-            st.markdown(f"#### {label}")
-            st.write(clean_text(row.get(column)) or "No analyst note available.")
-
-
 def card_grid(metrics: list[tuple[str, object, str | None]], per_row: int = 4) -> None:
     if not metrics:
         return
@@ -2833,7 +2892,7 @@ def opportunity_scorecard_page() -> None:
 
 def product_customization_fit() -> None:
     page_header(
-        "Product Intelligence",
+        "Product Strategy",
         "Best-fit products and personalization systems for child niches.",
     )
     product_fit = load_csv("product_fit_matrix")
@@ -3047,75 +3106,6 @@ def show_evidence_detail(
         st.subheader("Monthly Trend")
         st.line_chart(curve.set_index("month")[["best_rank", "median_rank"]])
         display_table(curve, ["month", "best_rank", "median_rank", "keyword_count"], height=220)
-
-
-def market_evidence() -> None:
-    page_header(
-        "Market Evidence",
-        "Keyword evidence from compact evidence-light files, with evidence_keywords fallback.",
-    )
-    source = st.radio("Evidence Source", ["Demand", "Segment", "Opportunity", "Market Node"], horizontal=True)
-
-    if source == "Demand":
-        records = merge_summary_evidence(load_csv("composite_demands"), load_csv("opportunity_master"), "demand_id")
-        records = sort_by_available(records, ["best_rank", "keyword_count"], [True, False])
-        selected = select_record_with_keys(records, ["demand_name"], ["demand_id", "demand_name"], "evidence_demand")
-        if selected is None:
-            st.info("No demand records available.")
-            return
-        st.subheader(clean_text(selected.get("demand_name")) or "Demand")
-        show_evidence_detail(
-            selected,
-            load_csv("demand_evidence_light"),
-            "demand_id",
-            clean_text(selected.get("demand_id", selected.get("demand_name", ""))),
-        )
-        return
-
-    if source == "Segment":
-        records = sort_by_available(load_csv("demand_segments"), ["segment_strength", "best_rank"], [False, True])
-        selected = select_record_with_keys(records, ["segment_name"], ["segment_id", "segment_name"], "evidence_segment")
-        if selected is None:
-            st.info("No segment records available.")
-            return
-        st.subheader(clean_text(selected.get("segment_name")) or "Segment")
-        show_evidence_detail(
-            selected,
-            load_csv("segment_evidence_light"),
-            "segment_id",
-            clean_text(selected.get("segment_id", selected.get("segment_name", ""))),
-        )
-        return
-
-    if source == "Market Node":
-        records = sort_by_available(load_csv("market_nodes"), ["strength_score", "best_rank"], [False, True])
-        selected = select_record_with_keys(records, ["demand"], ["market_node_id", "demand"], "evidence_market_node")
-        if selected is None:
-            st.info("No market node records available.")
-            return
-        label = clean_text(selected.get("demand")) or "Market Node"
-        niche = clean_text(selected.get("niche"))
-        st.subheader(f"{label} + {niche}" if niche else label)
-        show_evidence_detail(
-            selected,
-            load_csv("market_node_evidence_light"),
-            "market_node_id",
-            clean_text(selected.get("market_node_id", selected.get("demand", ""))),
-        )
-        return
-
-    records = sort_by_available(load_csv("opportunity_master"), ["opportunity_score", "best_rank"], [False, True])
-    selected = select_record_with_keys(records, ["demand_name"], ["opportunity_id", "demand_name"], "evidence_opp")
-    if selected is None:
-        st.info("No opportunity records available.")
-        return
-    st.subheader(clean_text(selected.get("demand_name")) or "Opportunity")
-    show_evidence_detail(
-        selected,
-        load_csv("demand_evidence_light"),
-        "demand_id",
-        clean_text(selected.get("demand_id", selected.get("demand_name", ""))),
-    )
 
 
 # Sprint 30 decision dashboard pages. These functions intentionally keep raw
@@ -3886,7 +3876,7 @@ def render_market_snapshot(market_row: pd.Series, summary_row: pd.Series) -> Non
             ),
             (
                 "Research Priority",
-                first_existing_value(market_row, ["Investment"], "Monitor"),
+                investment_badge_html(first_existing_value(market_row, ["Investment"], "Monitor")),
                 market_recommended_action(market_row),
             ),
         ],
@@ -4206,18 +4196,13 @@ def demand_research_recommendation(
 def demand_explorer() -> None:
     page_header(
         "Demand Explorer",
-        "Executive market home for deciding which demands to inspect and research first.",
+        "Choose the demand worth researching.",
     )
-    queue = decision_data()
     scorecard = load_csv("opportunity_scorecard")
-    product_fit = load_csv("product_fit_matrix")
     customization_fit = load_csv("customization_fit_matrix")
-    demand_segments = load_csv("demand_segments")
-    composite_demands = load_csv("composite_demands")
     markets = market_landscape_data(load_csv("portfolio_master"), load_csv("market_intelligence"), scorecard, customization_fit)
     ranked_markets = prepare_market_rankings(markets)
-    options = parent_market_options(load_csv("portfolio_master"), load_csv("market_intelligence"), queue)
-    if not options:
+    if ranked_markets.empty:
         st.info("No demand data is available.")
         return
 
@@ -4227,194 +4212,169 @@ def demand_explorer() -> None:
         [False, False, False],
     )
 
-    st.subheader("Executive Market Overview")
-    executive_market_overview(ranked_markets, queue)
-
-    section_break()
-    st.subheader("Top Markets to Invest")
-    market_investment_cards(ranked_markets, 15)
-
-    section_break()
-    st.subheader("Market Size Ranking")
-    market_size_ranking_chart(ranked_markets)
-
-    section_break()
-    weak_investment = ranked_markets.get("Investment", pd.Series("", index=ranked_markets.index)).astype(str).isin(
-        ["Monitor", "Avoid", "Exit", "Archive", "Watchlist"]
+    ranking_view = ranked_markets.copy().reset_index(drop=True)
+    ranking_view.insert(0, "Rank", ranking_view.index + 1)
+    ranking_view = ranking_view.rename(
+        columns={
+            "Parent Market": "Parent Demand",
+            "Market Rank Score": "Market Score",
+            "Expansion Potential": "Expansion Score",
+            "Investment": "Investment Recommendation",
+        }
     )
-    risk_candidates = ranked_markets[
-        weak_investment
-        | (pd.to_numeric(ranked_markets["Market Rank Score"], errors="coerce").fillna(0) < 60)
-        | (pd.to_numeric(ranked_markets["Average Opportunity"], errors="coerce").fillna(0) < 60)
-    ].copy()
-    if risk_candidates.empty:
-        risk_candidates = ranked_markets.tail(6).copy()
-    risk_candidates = sort_by_available(risk_candidates, ["Risk Score", "Market Rank Score"], [False, True])
-    compact_market_risk_cards(risk_candidates, "Biggest Risks / Avoid", 6)
+    options = ranking_view["Parent Demand"].dropna().astype(str).tolist()
+    active_parent = selected_parent_market(options)
 
-    with st.expander("Market ranking details", expanded=False):
-        display_table(
-            ranked_markets,
+    st.subheader("Parent Demand Ranking")
+    st.caption("Click a row to set the active demand used by Customer Research and Product Strategy.")
+    st.markdown(
+        """
+        <style>
+        div[data-testid="stDataFrame"] [role="checkbox"] { display: none !important; }
+        div[data-testid="stDataFrame"] input[type="checkbox"] { display: none !important; }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+    table_event = st.dataframe(
+        ranking_view[
             [
-                "Parent Market",
+                "Rank",
+                "Parent Demand",
+                "Market Score",
                 "Market Size",
                 "Growth",
                 "Competition",
-                "Coverage",
-                "Expansion Potential",
-                "Average Opportunity",
-                "Child Segment Count",
-                "Investment",
-                "Market Rank Score",
-                "Recommendation",
-            ],
-            height=360,
-        )
-
-    section_break()
-    st.subheader("Inspect a Demand")
-    ranked_options = ranked_markets["Parent Market"].dropna().astype(str).tolist()
-    remaining_options = [option for option in options if option not in ranked_options]
-    selected = st.selectbox(
-        "Select demand after reviewing the market ranking",
-        ranked_options + remaining_options,
-        key="demand_explorer_selected",
+                "Expansion Score",
+                "Investment Recommendation",
+            ]
+        ],
+        hide_index=True,
+        use_container_width=True,
+        height=560,
+        on_select="rerun",
+        selection_mode="single-row",
+        key="demand_explorer_table",
     )
-    market_row = demand_market_row(selected, markets)
-    portfolio_summary = load_csv("portfolio_summary")
-    summary_row = first_matching_row(portfolio_summary, "parent_demand", selected)
-    queue_rows = parent_queue_rows(queue, selected)
-    child_rows = build_child_niche_rows(selected, queue_rows, demand_segments)
-    child_segments = child_rows["child_segment"].dropna().astype(str).unique().tolist() if "child_segment" in child_rows.columns else []
-    evidence_keywords = demand_evidence_keywords(selected, demand_segments, composite_demands)
-    product_distribution = distribution_from_fit_and_evidence(
-        product_fit,
-        child_segments,
-        PRODUCT_SCORE_COLUMNS,
-        evidence_keywords,
-        PRODUCT_TERMS,
-        child_rows,
-    )
-    customization_distribution = distribution_from_fit_and_evidence(
-        customization_fit,
-        child_segments,
-        CUSTOMIZATION_SCORE_COLUMNS,
-        evidence_keywords,
-        CUSTOMIZATION_TERMS,
-        child_rows,
-    )
-
-    section_break()
-    st.subheader("A. Market Snapshot")
-    render_market_snapshot(market_row, summary_row)
-
-    section_break()
-    st.subheader("B. Executive Insight")
-    render_executive_insight(selected, market_row, summary_row, child_rows, product_distribution)
-
-    section_break()
-    st.subheader("C. Demand Timeline")
-    timeline = inferred_timeline(selected, market_row.get("Seasonality"))
-    render_demand_timeline(timeline)
-
-    section_break()
-    st.subheader("D. Top Child Niches")
-    top_child_niche_cards(child_rows, 10, show_detail=True)
-
-    section_break()
-    render_market_distribution(child_rows)
-
-    section_break()
-    render_distribution_cards(product_distribution, "Product Distribution", "Product", 6)
-
-    section_break()
-    render_distribution_cards(customization_distribution, "Customization Distribution", "Customization", 7)
-
-    section_break()
-    st.subheader("Evidence Summary")
-    demand_evidence_cards(selected, demand_segments, composite_demands)
-
-    section_break()
-    st.subheader("Whitespace")
-    render_whitespace_capacity(summary_row, market_row)
-
-    section_break()
-    st.subheader("Decision Recommendation")
-    render_decision_recommendation(selected, market_row, summary_row, child_rows, product_distribution, customization_distribution)
-
-    section_break()
-    st.subheader("Expandable Evidence")
-    render_grouped_child_evidence(child_rows, 10)
+    selected_rows = getattr(getattr(table_event, "selection", None), "rows", [])
+    if selected_rows:
+        selected_index = selected_rows[0]
+        selected_parent = clean_text(ranking_view.iloc[selected_index].get("Parent Demand"))
+        if selected_parent:
+            st.session_state["selected_parent_market"] = selected_parent
+            active_parent = selected_parent
+    if active_parent:
+        st.caption(f"Active demand: {active_parent}")
 
 
 def research_center() -> None:
     page_header(
-        "Research Center",
-        "This week's highest-value research actions with reasons and next steps.",
+        "Customer Research",
+        "Understand what customers are actually searching for.",
     )
-    data = decision_data()
-    if data.empty:
-        st.info("Research candidate data is missing or empty.")
+    scorecard = load_csv("opportunity_scorecard")
+    customization_fit = load_csv("customization_fit_matrix")
+    demand_segments = load_csv("demand_segments")
+    markets = market_landscape_data(load_csv("portfolio_master"), load_csv("market_intelligence"), scorecard, customization_fit)
+    ranked_markets = prepare_market_rankings(markets)
+    if ranked_markets.empty:
+        st.info("No market data is available.")
         return
 
-    filters = st.columns(4)
-    with filters[0]:
-        data = filter_multiselect(data, "parent_demand", "Parent Demand", "rc_parent")
-    with filters[1]:
-        data = filter_multiselect(data, "priority", "Priority", "rc_priority")
-    with filters[2]:
-        data = filter_multiselect(data, "recommended_product", "Product", "rc_product")
-    with filters[3]:
-        data = filter_multiselect(data, "recommended_customization", "Customization", "rc_customization")
+    options = ranked_markets["Parent Market"].dropna().astype(str).tolist()
+    selected = selected_parent_market(options, "selected_parent_market")
+    segment_rows = demand_segments[demand_segments["parent_demand"].astype(str) == selected].copy() if "parent_demand" in demand_segments.columns else pd.DataFrame()
 
-    metric_cards(
-        [
-            ("Visible Actions", len(data), "Filtered research candidates"),
-            ("P1", int((data["priority"] == "P1").sum()) if "priority" in data.columns else 0, "Immediate work"),
-            ("Avg Score", f"{numeric(data['opportunity_score'].mean() if 'opportunity_score' in data.columns else 0):.1f}", "Opportunity quality"),
-            ("Parents", data["parent_demand"].nunique() if "parent_demand" in data.columns else 0, "Markets represented"),
-        ]
-    )
+    st.subheader("1. Customer Intent")
+    if segment_rows.empty:
+        st.info("No customer intent data is available for this market.")
+    else:
+        structure = segment_rows.copy()
+        structure["Segment"] = structure.get("primary_segment_value", structure.get("segment_name", "")).map(clean_text)
+        if "segment_name" in structure.columns:
+            fallback_segments = structure["segment_name"].map(clean_text)
+            structure["Segment"] = structure["Segment"].where(structure["Segment"] != "", fallback_segments)
+        structure["Category"] = structure.apply(segment_structure_category, axis=1)
+        structure["Display Category"] = structure["Category"].replace({"Other": "Theme"})
+        structure["Popularity Count"] = pd.to_numeric(structure.get("keyword_count", 0), errors="coerce").fillna(0)
 
-    section_break()
-    st.subheader("A. Top 20 Research Actions")
-    top_rows = sort_by_available(data, ["priority", "opportunity_score"], [True, False]).head(20).reset_index(drop=True)
-    for start in range(0, len(top_rows), 2):
-        columns = st.columns(2)
-        for column, (_, row) in zip(columns, top_rows.iloc[start : start + 2].iterrows()):
-            with column:
-                action_card(
-                    row.get("child_segment"),
-                    first_existing_value(row, ["priority", "recommended_priority"], "Watchlist"),
-                    row.get("opportunity_score", row.get("total_score")),
-                    [
-                        ("Parent demand", row.get("parent_demand")),
-                        ("Best product", first_existing_value(row, ["recommended_product", "best_product", "primary_product"])),
-                        (
-                            "Best customization",
-                            first_existing_value(row, ["recommended_customization", "best_customization", "primary_customization"]),
-                        ),
-                        ("Why now", first_existing_value(row, ["why_now", "reason", "explanation"], "Ranking and fit signals justify review.")),
-                        ("Next action", first_existing_value(row, ["next_action", "recommended_next_step"], "Validate market evidence.")),
-                    ],
+        category_rows = []
+        for category in ["Occasion", "Audience", "Interest", "Theme"]:
+            category_group = structure[structure["Display Category"] == category].copy()
+            if category_group.empty:
+                continue
+            category_popularity = numeric(pd.to_numeric(category_group["Popularity Count"], errors="coerce").fillna(0).sum())
+            segments = []
+            for segment_label, segment_group in category_group.groupby("Segment", sort=False):
+                popularity_count = numeric(pd.to_numeric(segment_group["Popularity Count"], errors="coerce").fillna(0).sum())
+                keywords: list[str] = []
+                seen_keywords: set[str] = set()
+                for value in segment_group.get("evidence_keywords", pd.Series(dtype=object)).dropna():
+                    for keyword in split_pipe_values(value):
+                        keyword_label = clean_text(keyword)
+                        keyword_key = keyword_label.lower()
+                        if keyword_label and keyword_key not in seen_keywords:
+                            seen_keywords.add(keyword_key)
+                            keywords.append(keyword_label)
+                segments.append(
+                    {
+                        "Segment": segment_label,
+                        "Popularity": 0.0 if category_popularity <= 0 else (popularity_count / category_popularity) * 100,
+                        "_popularity": popularity_count,
+                        "_keywords": keywords,
+                    }
                 )
+            segment_frame = pd.DataFrame(segments)
+            if not segment_frame.empty:
+                segment_frame["_sort_popularity"] = segment_frame["_popularity"].map(numeric)
+                segment_frame = sort_by_available(segment_frame, ["_sort_popularity", "Segment"], [False, True]).reset_index(drop=True)
+            category_rows.append((category, segment_frame))
+
+        for category, segment_frame in category_rows:
+            st.markdown(f"#### {category}")
+            render_intent_table(segment_frame[["Segment", "Popularity", "_keywords"]])
 
     section_break()
-    st.subheader("C. Expandable Details")
-    if "child_segment" in data.columns:
-        detail = select_segment_row("Inspect research action", data.reset_index(drop=True), "rc_inspect")
-        with st.expander("Analyst reasoning", expanded=True):
-            for label, column in [
-                ("Strengths", "strengths"),
-                ("Weaknesses", "weaknesses"),
-                ("Risks", "risks"),
-                ("Opportunities", "opportunities"),
-                ("Evidence", "explanation"),
-            ]:
-                st.markdown(f"#### {label}")
-                st.write(clean_text(detail.get(column)) or "No detail available.")
-    with st.expander("Filtered research rows", expanded=False):
-        display_table(data, height=360)
+    st.subheader("2. Customer Insight")
+    if segment_rows.empty:
+        st.info("No customer insight summary is available for this market.")
+    else:
+        for bullet in customer_insight_bullets(structure):
+            st.markdown(f"- {bullet}")
+    return
+
+    st.subheader("3. Customer Insight")
+    insight_bullets: list[str] = []
+    if not segment_rows.empty:
+        category_summary = (
+            structure.groupby("Category", sort=False)["Popularity Count"].sum().reset_index(name="_popularity")
+            if "Category" in structure.columns
+            else pd.DataFrame(columns=["Category", "_popularity"])
+        )
+        category_summary = sort_by_available(category_summary, ["_popularity", "Category"], [False, True]).reset_index(drop=True)
+        if not category_summary.empty:
+            insight_bullets.append(f"{category_summary.iloc[0]['Category']} is the largest customer intent cluster.")
+            if len(category_summary) > 1:
+                insight_bullets.append(f"{category_summary.iloc[1]['Category']} is the next most visible intent cluster.")
+        segment_summary = (
+            structure.groupby("Segment", sort=False)["Popularity Count"].sum().reset_index(name="_popularity")
+            if "Segment" in structure.columns
+            else pd.DataFrame(columns=["Segment", "_popularity"])
+        )
+        segment_summary = sort_by_available(segment_summary, ["_popularity", "Segment"], [False, True]).reset_index(drop=True)
+        if not segment_summary.empty:
+            insight_bullets.append(f"{segment_summary.iloc[0]['Segment']} is the strongest search intent.")
+        term_counts = terms_frame.groupby("Search Term", sort=False).size().reset_index(name="_count") if not terms_frame.empty else pd.DataFrame()
+        term_counts = sort_by_available(term_counts, ["_count", "Search Term"], [False, True]).reset_index(drop=True) if not term_counts.empty else term_counts
+        if not term_counts.empty:
+            insight_bullets.append(f"{term_counts.iloc[0]['Search Term']} appears most often in customer searches.")
+        if not segment_summary.empty:
+            insight_bullets.append(f"Customers are showing interest across {len(segment_summary)} distinct intent segments.")
+    else:
+        insight_bullets.append("No customer insight summary is available for this market.")
+
+    for bullet in insight_bullets[:5]:
+        st.markdown(f"• {bullet}")
 
 
 def score_breakdown_cards(row: pd.Series) -> None:
@@ -4431,63 +4391,6 @@ def score_breakdown_cards(row: pd.Series) -> None:
     )
 
 
-def decision_center() -> None:
-    page_header(
-        "Decision Center",
-        "Why an opportunity is recommended and what decision should be made.",
-    )
-    scorecard = load_csv("opportunity_scorecard")
-    reasoning = load_csv("research_reasoning")
-    if scorecard.empty or "child_segment" not in scorecard.columns:
-        st.info("Opportunity scorecard data is missing or empty.")
-        return
-    data = scorecard.copy()
-    if not reasoning.empty and "child_segment" in reasoning.columns:
-        data = merge_segment_frames(data, reasoning, how="left", suffixes=("", "_reasoning"))
-    data = sort_by_available(data, ["total_score", "child_segment"], [False, True])
-    data = data.reset_index(drop=True)
-    row = select_segment_row("Select child segment", data, "decision_center_segment")
-    decision = score_to_decision(row.get("total_score"))
-    confidence = confidence_from_score(row.get("total_score"), row.get("recommended_priority"))
-
-    st.subheader("A. Decision Summary")
-    card_grid(
-        [
-            ("Total Score", f"{numeric(row.get('total_score')):.1f}", "Weighted opportunity score"),
-            ("Priority", first_existing_value(row, ["recommended_priority"], "Watchlist"), "Scorecard priority"),
-            ("Final Recommendation", decision, "Decision output"),
-            ("Confidence", confidence, "Based on score and priority"),
-        ],
-        4,
-    )
-
-    section_break()
-    st.subheader("B. Score Breakdown")
-    score_breakdown_cards(row)
-
-    section_break()
-    st.subheader("C. Analyst Reasoning")
-    for start, items in enumerate(
-        [
-            [("Strengths", "strengths"), ("Weaknesses", "weaknesses"), ("Risks", "risks")],
-            [("Opportunities", "opportunities"), ("Why Now", "why_now"), ("Next Step", "recommended_next_step")],
-        ]
-    ):
-        columns = st.columns(3)
-        for column, (label, field) in zip(columns, items):
-            with column:
-                insight_box(label, clean_text(row.get(field)) or "No analyst note available.")
-
-    section_break()
-    st.subheader("D. Decision Output")
-    insight_box(
-        decision,
-        f"{clean_text(row.get('child_segment'))} should be classified as '{decision}'. {clean_text(row.get('explanation')) or 'Use score breakdown and analyst reasoning to guide the next action.'}",
-    )
-    with st.expander("Scorecard detail", expanded=False):
-        display_table(pd.DataFrame([row]), height=260)
-
-
 def fit_level(score: object) -> str:
     value = numeric(score)
     if value >= 85:
@@ -4497,6 +4400,174 @@ def fit_level(score: object) -> str:
     if value >= 55:
         return "Test"
     return "Weak"
+
+
+def opportunity_reason(row: pd.Series, rank: int) -> str:
+    score = numeric(row.get("Score"))
+    recommendation = clean_text(row.get("Recommendation"))
+    if rank == 1:
+        return "Largest customer demand"
+    if recommendation == "Strong":
+        return "Strong search demand"
+    if recommendation == "Good":
+        return "Strong niche"
+    if score >= 55:
+        return "Emerging niche"
+    return "Emerging niche"
+
+
+def selected_parent_market(options: list[str], state_key: str = "selected_parent_market") -> str:
+    current = clean_text(st.session_state.get(state_key))
+    if current not in options:
+        current = options[0] if options else ""
+        if current:
+            st.session_state[state_key] = current
+    return current
+
+
+def keyword_preview_html(keywords: list[str], limit: int = 4) -> str:
+    cleaned = [clean_text(keyword) for keyword in keywords if clean_text(keyword)]
+    if not cleaned:
+        return ""
+    preview = cleaned[:limit]
+    more = len(cleaned) - len(preview)
+    preview_text = ", ".join(safe(keyword) for keyword in preview)
+    if more <= 0:
+        return f'<div class="mrd-keyword-preview">{preview_text}</div>'
+    extra = ", ".join(safe(keyword) for keyword in cleaned[limit:])
+    return (
+        f'<div class="mrd-keyword-preview">{preview_text}'
+        f'<details class="mrd-keyword-more"><summary>(+{more} more)</summary><div>{extra}</div></details>'
+        f"</div>"
+    )
+
+
+def render_intent_table(segment_frame: pd.DataFrame) -> None:
+    rows: list[str] = []
+    for _, row in segment_frame.iterrows():
+        popularity = numeric(row.get("Popularity"))
+        rows.append(
+            "<tr>"
+            f"<td>{safe(row.get('Segment'))}</td>"
+            f"<td>{popularity_bar_html(popularity)}</td>"
+            f"<td>{keyword_preview_html(row.get('_keywords', []))}</td>"
+            "</tr>"
+        )
+    st.markdown(
+        """
+        <table class="mrd-mini-table">
+            <thead>
+                <tr>
+                    <th>Segment</th>
+                    <th>Popularity</th>
+                    <th>Top Keywords</th>
+                </tr>
+            </thead>
+            <tbody>
+        """
+        + "".join(rows)
+        + "</tbody></table>",
+        unsafe_allow_html=True,
+    )
+
+
+def popularity_bar_html(value: object) -> str:
+    percent = max(0.0, min(numeric(value), 100.0))
+    return (
+        '<div class="mrd-popularity">'
+        f'<div class="mrd-popularity-track"><div class="mrd-popularity-fill" style="width:{percent:.1f}%"></div></div>'
+        f'<div class="mrd-popularity-value">{format_score(percent)}%</div>'
+        "</div>"
+    )
+
+
+def customer_insight_bullets(structure: pd.DataFrame) -> list[str]:
+    if structure.empty:
+        return ["No customer insight summary is available for this market."]
+    segment_frame = structure.copy()
+    if "Segment" not in segment_frame.columns or "Popularity Count" not in segment_frame.columns:
+        return ["No customer insight summary is available for this market."]
+
+    category_summary = (
+        segment_frame.groupby("Display Category", sort=False)["Popularity Count"].sum().reset_index(name="_popularity")
+        if "Display Category" in segment_frame.columns
+        else pd.DataFrame(columns=["Display Category", "_popularity"])
+    )
+    category_summary = sort_by_available(category_summary, ["_popularity", "Display Category"], [False, True]).reset_index(drop=True)
+
+    segment_summary = (
+        segment_frame.groupby(["Display Category", "Segment"], sort=False)["Popularity Count"].sum().reset_index(name="_popularity")
+        if "Display Category" in segment_frame.columns
+        else pd.DataFrame(columns=["Display Category", "Segment", "_popularity"])
+    )
+    segment_summary = sort_by_available(segment_summary, ["_popularity", "Segment"], [False, True]).reset_index(drop=True)
+
+    total_popularity = 0.0
+    if not category_summary.empty:
+        total_popularity = numeric(category_summary["_popularity"].sum())
+
+    bullets: list[str] = []
+    if not category_summary.empty:
+        top_category = category_summary.iloc[0]
+        top_category_name = clean_text(top_category.get("Display Category"))
+        top_category_popularity = numeric(top_category.get("_popularity"))
+        top_category_share = 0.0 if total_popularity <= 0 else (top_category_popularity / total_popularity) * 100
+
+        if top_category_share >= 35:
+            bullets.append(f"{top_category_name} demand is concentrated enough to justify a narrow first launch thesis.")
+        else:
+            bullets.append(f"{top_category_name} demand is spread across related signals, so the first build should stay flexible.")
+
+        if len(category_summary) > 1:
+            second_category = category_summary.iloc[1]
+            second_category_name = clean_text(second_category.get("Display Category"))
+            second_share = 0.0 if total_popularity <= 0 else (numeric(second_category.get("_popularity")) / total_popularity) * 100
+            if second_share >= 20:
+                bullets.append(f"{second_category_name} is large enough to support a follow-on variant, but not a separate roadmap.")
+
+        if top_category_name:
+            if top_category_name.lower() in {"occasion", "audience"}:
+                bullets.append(f"{top_category_name} signals are stronger than product-first cues, so research should start from the buyer or occasion.")
+            elif top_category_name.lower() == "interest":
+                bullets.append(f"{top_category_name} demand points to lifestyle framing rather than generic merchandise.")
+            else:
+                bullets.append(f"{top_category_name} demand suggests the product concept should be built around a recognizable emotional hook.")
+
+        if top_category_share >= 45:
+            bullets.append(f"{top_category_name} alone carries enough demand that a few well-targeted designs could capture most near-term research value.")
+    else:
+        bullets.append("The market shows a concentrated set of high-intent segments.")
+
+    if not segment_summary.empty:
+        top_segment = segment_summary.iloc[0]
+        top_segment_name = clean_text(top_segment.get("Segment"))
+        top_segment_share = 0.0 if total_popularity <= 0 else (numeric(top_segment.get("_popularity")) / total_popularity) * 100
+        if top_segment_share >= 25:
+            bullets.append(f"{top_segment_name} should be researched first because it carries the clearest buying signal.")
+        if len(segment_summary) > 1:
+            second_segment = segment_summary.iloc[1]
+            second_segment_name = clean_text(second_segment.get("Segment"))
+            second_segment_share = 0.0 if total_popularity <= 0 else (numeric(second_segment.get("_popularity")) / total_popularity) * 100
+            if second_segment_share >= 15:
+                bullets.append(f"{second_segment_name} is a meaningful secondary opportunity, but it should stay adjacent to the core concept.")
+
+    if not category_summary.empty:
+        audience_like = numeric(
+            category_summary[category_summary["Display Category"].isin(["Occasion", "Audience"])]["_popularity"].sum()
+        )
+        if total_popularity > 0 and audience_like / total_popularity >= 0.55:
+            bullets.append("Search behavior is intent-led rather than product-led, so research should start with who the product is for and why it is being bought.")
+
+    unique_bullets: list[str] = []
+    seen: set[str] = set()
+    for bullet in bullets:
+        key = bullet.lower()
+        if key not in seen:
+            seen.add(key)
+            unique_bullets.append(bullet)
+    if not unique_bullets:
+        unique_bullets.append("The market shows a concentrated set of high-intent segments.")
+    return unique_bullets[:6]
 
 
 def segment_fit_scores(row: pd.Series, columns: dict[str, str]) -> pd.DataFrame:
@@ -4604,6 +4675,43 @@ def first_nonempty_value(group: pd.DataFrame, column: str) -> str:
     return values.iloc[0] if not values.empty else ""
 
 
+MARKET_STRUCTURE_CATEGORIES = ["Occasion", "Audience", "Interest", "Theme", "Other"]
+
+
+def segment_structure_category(row: pd.Series) -> str:
+    value = clean_text(first_existing_value(row, ["segment_type", "primary_segment_type"], "")).lower()
+    mapping = {
+        "occasion": "Occasion",
+        "holiday": "Occasion",
+        "audience": "Audience",
+        "audience_group": "Audience",
+        "relationship": "Audience",
+        "profession": "Audience",
+        "life_stage": "Audience",
+        "interest": "Interest",
+        "hobby": "Interest",
+        "theme": "Theme",
+        "style": "Theme",
+    }
+    if value in mapping:
+        return mapping[value]
+    if value:
+        return "Other"
+
+    segment_name = clean_text(row.get("segment_name"))
+    primary_value = clean_text(row.get("primary_segment_value"))
+    evidence = f"{segment_name} {primary_value}".lower()
+    if any(term in evidence for term in ["christmas", "birthday", "wedding", "anniversary", "memorial", "retirement", "graduation", "appreciation", "valentine"]):
+        return "Occasion"
+    if any(term in evidence for term in ["grandma", "grandpa", "mom", "dad", "teacher", "nurse", "woman", "man", "boy", "girl", "female", "male", "daughter", "son", "husband", "wife"]):
+        return "Audience"
+    if any(term in evidence for term in ["lover", "gardening", "reading", "camping", "fishing", "coffee", "dog", "cat", "gaming", "gamer"]):
+        return "Interest"
+    if any(term in evidence for term in ["funny", "faith", "boho", "vintage", "minimalist", "floral", "retro"]):
+        return "Theme"
+    return "Other"
+
+
 def product_intelligence_segments(
     product_fit: pd.DataFrame,
     customization_fit: pd.DataFrame,
@@ -4683,10 +4791,47 @@ def product_intelligence_segments(
     return segments.sort_values(["_source_order", "child_segment"]).drop(columns=["_source_order"]).reset_index(drop=True)
 
 
+def aggregate_recommendation_table(frame: pd.DataFrame, score_columns: dict[str, str], label_name: str) -> pd.DataFrame:
+    if frame.empty:
+        return pd.DataFrame(columns=["Rank", label_name, "Score", "Recommendation"])
+
+    rows = []
+    for _, row in frame.iterrows():
+        weight = max(numeric(row.get("segment_strength"), 1), 0)
+        if weight <= 0:
+            continue
+        for score_column, item_label in score_columns.items():
+            if score_column not in frame.columns:
+                continue
+            score = numeric(row.get(score_column))
+            rows.append(
+                {
+                    label_name: item_label,
+                    "Score": score,
+                    "Weight": weight,
+                }
+            )
+
+    if not rows:
+        return pd.DataFrame(columns=["Rank", label_name, "Score", "Recommendation"])
+
+    aggregated = pd.DataFrame(rows)
+    grouped_rows = []
+    for label, group in aggregated.groupby(label_name, sort=False):
+        total_weight = numeric(group["Weight"].sum())
+        weighted_score = (group["Score"] * group["Weight"]).sum() / total_weight if total_weight else 0
+        grouped_rows.append({label_name: label, "Score": weighted_score})
+    aggregated = pd.DataFrame(grouped_rows)
+    aggregated["Recommendation"] = aggregated["Score"].apply(fit_level)
+    aggregated = sort_by_available(aggregated, ["Score", label_name], [False, True]).reset_index(drop=True)
+    aggregated.insert(0, "Rank", aggregated.index + 1)
+    return aggregated[["Rank", label_name, "Score", "Recommendation"]]
+
+
 def product_intelligence() -> None:
     page_header(
-        "Product Intelligence",
-        "Translate a child niche into product and customization tests.",
+        "Product Strategy",
+        "Decide which products and personalization types to build.",
     )
     product_fit = load_csv("product_fit_matrix")
     customization_fit = load_csv("customization_fit_matrix")
@@ -4694,67 +4839,98 @@ def product_intelligence() -> None:
     if product_fit.empty and customization_fit.empty:
         st.info("Product and customization fit data is missing or empty.")
         return
-    segment_frame = product_intelligence_segments(product_fit, customization_fit, demand_segments)
-    if segment_frame.empty:
-        st.info("No child segments are available for product intelligence.")
+    markets = market_landscape_data(load_csv("portfolio_master"), load_csv("market_intelligence"), load_csv("opportunity_scorecard"), customization_fit)
+    ranked_markets = prepare_market_rankings(markets)
+    if ranked_markets.empty:
+        st.info("No market data is available for Product Strategy.")
         return
 
-    validated = segment_frame[segment_frame["is_evidence_backed"]].copy()
-    expansion = segment_frame[segment_frame["segment_label_source"].isin(["expansion_candidate"])].copy()
-    if not expansion.empty:
-        segment_group = st.radio(
-            "Segment group",
-            ["Evidence-backed Segments", "Expansion Candidates"],
-            horizontal=True,
-            key="product_intelligence_segment_group",
-        )
-        segment_options = expansion if segment_group == "Expansion Candidates" else validated
-        if segment_group == "Expansion Candidates":
-            st.caption("Expansion candidates are generated ideas and are not validated observed child segments.")
+    options = ranked_markets["Parent Market"].dropna().astype(str).tolist()
+    selected = selected_parent_market(options, "selected_parent_market")
+
+    product_matches = product_fit[product_fit["parent_demand"].astype(str) == selected].copy() if "parent_demand" in product_fit.columns else pd.DataFrame()
+    custom_matches = customization_fit[customization_fit["parent_demand"].astype(str) == selected].copy() if "parent_demand" in customization_fit.columns else pd.DataFrame()
+    if product_matches.empty and custom_matches.empty:
+        st.info("No product opportunity data is available for this market.")
+        return
+
+    if not demand_segments.empty and "parent_demand" in demand_segments.columns:
+        parent_segments = demand_segments[demand_segments["parent_demand"].astype(str) == selected].copy()
+        if not parent_segments.empty:
+            product_matches = merge_segment_frames(product_matches, parent_segments, how="left")
+            custom_matches = merge_segment_frames(custom_matches, parent_segments, how="left")
+
+    product_rows = aggregate_recommendation_table(product_matches, PRODUCT_SCORE_COLUMNS, "Product")
+    custom_rows = aggregate_recommendation_table(custom_matches, CUSTOMIZATION_SCORE_COLUMNS, "Customization")
+
+    st.subheader("1. Recommended Products")
+    if product_rows.empty:
+        st.info("No product recommendations are available for this market.")
     else:
-        segment_options = validated
-
-    segment_options = segment_options.reset_index(drop=True)
-    if segment_options.empty:
-        st.info("No evidence-backed child segments are available for Product Intelligence.")
-        return
-
-    selected_row = select_segment_row("Select child segment", segment_options, "product_intelligence_segment")
-    selected = clean_text(selected_row.get("child_segment"))
-    selected_context = pd.DataFrame([selected_row])
-    product_matches = fit_rows_for_segments(product_fit, [selected], selected_context)
-    custom_matches = fit_rows_for_segments(customization_fit, [selected], selected_context)
-    product_row = product_matches.iloc[0] if not product_matches.empty else pd.Series(dtype=object)
-    custom_row = custom_matches.iloc[0] if not custom_matches.empty else pd.Series(dtype=object)
-    product_rows = segment_fit_scores(product_row, PRODUCT_SCORE_COLUMNS)
-    custom_rows = segment_fit_scores(custom_row, CUSTOMIZATION_SCORE_COLUMNS)
-
-    st.subheader("A. Product Ranking")
-    render_fit_score_cards(product_rows, clean_text(product_row.get("explanation")) or "Fit score from product matrix.")
+        display_table(
+            product_rows.rename(
+                columns={
+                    "Score": "Recommendation Score",
+                    "Recommendation": "Recommendation Level",
+                }
+            )[["Product", "Recommendation Score", "Recommendation Level"]],
+            ["Product", "Recommendation Score", "Recommendation Level"],
+            height=280,
+        )
 
     section_break()
-    st.subheader("B. Customization Ranking")
-    render_fit_score_cards(custom_rows, clean_text(custom_row.get("explanation")) or "Fit score from customization matrix.")
+    st.subheader("2. Customization Recommendation")
+    if custom_rows.empty:
+        st.info("No customization recommendations are available for this market.")
+    else:
+        display_table(
+            custom_rows.rename(
+                columns={
+                    "Score": "Recommendation Score",
+                    "Recommendation": "Recommendation Level",
+                }
+            )[["Customization", "Recommendation Score", "Recommendation Level"]],
+            ["Customization", "Recommendation Score", "Recommendation Level"],
+            height=280,
+        )
+
+    return
 
     section_break()
-    st.subheader("C. Recommended Test Package")
-    product_1 = clean_text(product_rows.iloc[0].get("item")) if not product_rows.empty else ""
-    product_2 = clean_text(product_rows.iloc[1].get("item")) if len(product_rows) > 1 else ""
-    custom_1 = clean_text(custom_rows.iloc[0].get("item")) if not custom_rows.empty else ""
-    custom_2 = clean_text(custom_rows.iloc[1].get("item")) if len(custom_rows) > 1 else ""
-    card_grid(
-        [
-            ("Product 1", product_1, "Primary test"),
-            ("Product 2", product_2, "Backup test"),
-            ("Custom 1", custom_1, "Primary personalization"),
-            ("Custom 2", custom_2, "Backup personalization"),
-        ],
-        4,
-    )
-    insight_box("Suggested First Test", f"Start with {product_1 or 'the strongest product'} using {custom_1 or 'the strongest customization'} for {selected}. Add {product_2 or 'a second product'} only after the first test validates.")
-    with st.expander("Fit details", expanded=False):
-        display_table(product_matches, height=220)
-        display_table(custom_matches, height=220)
+    st.subheader("3. Recommended Opportunities")
+    opportunity_rows = []
+    if not product_rows.empty:
+        for _, row in product_rows.iterrows():
+            opportunity_rows.append(
+                {
+                    "Priority": row.get("Recommendation"),
+                    "Opportunity": row.get("Product"),
+                    "Score": numeric(row.get("Score")),
+                }
+            )
+    if not custom_rows.empty:
+        for _, row in custom_rows.iterrows():
+            opportunity_rows.append(
+                {
+                    "Priority": row.get("Recommendation"),
+                    "Opportunity": row.get("Customization"),
+                    "Score": numeric(row.get("Score")),
+                }
+            )
+    opportunity_frame = pd.DataFrame(opportunity_rows)
+    if opportunity_frame.empty:
+        st.info("No recommended opportunities are available for this market.")
+    else:
+        opportunity_frame["Priority"] = opportunity_frame["Priority"].map(clean_text)
+        opportunity_frame["Opportunity"] = opportunity_frame["Opportunity"].map(clean_text)
+        opportunity_frame = opportunity_frame[opportunity_frame["Opportunity"] != ""].copy()
+        opportunity_frame = sort_by_available(opportunity_frame, ["Score", "Opportunity"], [False, True]).reset_index(drop=True)
+        opportunity_frame["Reason"] = [
+            opportunity_reason(row, rank)
+            for rank, (_, row) in enumerate(opportunity_frame.iterrows(), start=1)
+        ]
+        opportunity_frame = opportunity_frame.drop_duplicates(subset=["Opportunity"], keep="first").reset_index(drop=True)
+        display_table(opportunity_frame[["Opportunity", "Priority", "Reason"]], ["Opportunity", "Priority", "Reason"], height=320)
 
 
 def evidence_records_for_source(source: str) -> tuple[pd.DataFrame, pd.DataFrame, str, str, list[str]]:
@@ -4810,72 +4986,30 @@ def evidence_confidence(keyword_count: int, best_rank: object = 0) -> str:
     return "Weak"
 
 
-def market_evidence() -> None:
-    page_header(
-        "Market Evidence",
-        "Summarized keyword evidence with details kept expandable.",
-    )
-    source = st.radio("Evidence Source", ["Demand", "Segment", "Opportunity", "Market Node"], horizontal=True)
-    records, evidence, id_column, label_column, id_columns = evidence_records_for_source(source)
-    if records.empty:
-        st.info("No evidence records are available for this source.")
-        return
-    selected = select_record_with_keys(records, [label_column], id_columns, "evidence_summary_source")
-    if selected is None:
-        st.info("No matching evidence record is available.")
-        return
-
-    record_id = clean_text(selected.get(id_column, selected.get(label_column, "")))
-    rows = evidence_keyword_rows(selected, evidence, id_column, record_id)
-    keyword_values = rows["keyword"].dropna().astype(str).tolist() if "keyword" in rows.columns else []
-    if not keyword_values and "normalized_keyword" in rows.columns:
-        keyword_values = rows["normalized_keyword"].dropna().astype(str).tolist()
-
-    st.subheader("A. Evidence Summary")
-    intent_terms = ["gift", "personalized", "custom", "memorial", "appreciation", "christmas", "birthday", "wedding", "anniversary", "decor", "apparel"]
-    product_terms = ["blanket", "mug", "tumbler", "shirt", "ornament", "canvas", "doormat", "poster", "sign", "pillow", "cup", "frame", "hoodie"]
-    recipient_terms = ["mom", "dad", "teacher", "grandma", "grandpa", "wife", "husband", "dog", "cat", "nurse", "friend", "boy", "girl"]
-    occasion_terms = ["christmas", "birthday", "anniversary", "wedding", "retirement", "memorial", "graduation", "thanksgiving", "halloween", "easter", "valentine", "mother", "father"]
-    theme_terms = ["funny", "vintage", "retro", "floral", "watercolor", "boho", "faith", "patriotic", "minimalist", "country"]
-    confidence = evidence_confidence(len(keyword_values), selected.get("best_rank"))
-    card_grid(
-        [
-            ("Top Keyword Themes", keyword_category_counts(keyword_values, theme_terms), "Theme language"),
-            ("Top Intent", keyword_category_counts(keyword_values, intent_terms), "Intent language"),
-            ("Top Product Words", keyword_category_counts(keyword_values, product_terms), "Solution clues"),
-            ("Top Recipient Words", keyword_category_counts(keyword_values, recipient_terms), "Audience clues"),
-            ("Top Occasion Words", keyword_category_counts(keyword_values, occasion_terms), "Timing clues"),
-            ("Evidence Confidence", confidence, f"{len(keyword_values)} keywords summarized"),
-        ],
-        3,
-    )
-
-    section_break()
-    st.subheader("C. Evidence Confidence")
-    insight_box(
-        confidence,
-        f"Evidence is {confidence.lower()} for {clean_text(selected.get(label_column))}. Use this to decide whether to create now, validate with manual Amazon review, or monitor until stronger evidence appears.",
-    )
-
-    with st.expander("B. Keyword Evidence", expanded=False):
-        if rows.empty:
-            st.info("No keyword evidence is available.")
-        else:
-            display_table(rows, ["raw_keyword", "normalized_keyword", "keyword", "month", "search_frequency_rank"], height=360)
-
-
 def render_sidebar() -> str:
     st.sidebar.title("MRnD")
-    st.sidebar.caption("Demand Decision Dashboard")
+    st.sidebar.caption("Product Strategy Decision Dashboard")
+    pending_page = st.session_state.pop("pending_dashboard_page", "")
+    legacy_page_labels = {
+        "Research Center": "Customer Research",
+        "Product Intelligence": "Product Strategy",
+        "Product Opportunity": "Product Strategy",
+    }
+    if pending_page in legacy_page_labels:
+        pending_page = legacy_page_labels[pending_page]
+    if pending_page:
+        st.session_state["dashboard_page"] = pending_page
+    current_page = clean_text(st.session_state.get("dashboard_page"))
+    if current_page in legacy_page_labels:
+        st.session_state["dashboard_page"] = legacy_page_labels[current_page]
     page = st.sidebar.radio(
         "Navigation",
         [
             "Demand Explorer",
-            "Research Center",
-            "Decision Center",
-            "Product Intelligence",
-            "Market Evidence",
+            "Customer Research",
+            "Product Strategy",
         ],
+        key="dashboard_page",
     )
 
     missing = missing_core_files()
@@ -4896,14 +5030,10 @@ def main() -> None:
     page = render_sidebar()
     if page == "Demand Explorer":
         demand_explorer()
-    elif page == "Research Center":
+    elif page == "Customer Research":
         research_center()
-    elif page == "Decision Center":
-        decision_center()
-    elif page == "Product Intelligence":
+    elif page == "Product Strategy":
         product_intelligence()
-    elif page == "Market Evidence":
-        market_evidence()
 
 
 if __name__ == "__main__":
