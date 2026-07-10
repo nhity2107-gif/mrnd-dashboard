@@ -1,0 +1,1749 @@
+2026-07-09 09:06:04 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 09:06:22 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 09:06:22 INFO Reading 2025-10.csv for month 2025-10
+2026-07-09 09:06:22 INFO Reading 2025-11.csv for month 2025-11
+2026-07-09 09:06:22 INFO Reading 2025-12.csv for month 2025-12
+2026-07-09 09:06:23 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-09 09:06:23 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-09 09:21:52 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 09:21:52 INFO Reading 2025-10.csv for month 2025-10
+2026-07-09 09:21:52 INFO Reading 2025-11.csv for month 2025-11
+2026-07-09 09:21:52 INFO Reading 2025-12.csv for month 2025-12
+2026-07-09 09:21:52 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-09 09:21:52 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-09 09:21:52 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-09 09:28:58 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 09:28:58 INFO Reading 2025-10.csv for month 2025-10
+2026-07-09 09:28:59 INFO Reading 2025-11.csv for month 2025-11
+2026-07-09 09:28:59 INFO Reading 2025-12.csv for month 2025-12
+2026-07-09 09:28:59 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-09 09:28:59 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-09 09:28:59 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-09 09:28:59 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-09 09:28:59 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-09 09:28:59 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-09 09:51:19 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 09:51:19 INFO Reading 2025-10.csv for month 2025-10
+2026-07-09 09:51:19 INFO Reading 2025-11.csv for month 2025-11
+2026-07-09 09:51:19 INFO Reading 2025-12.csv for month 2025-12
+2026-07-09 09:51:19 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-09 09:51:19 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-09 09:51:19 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-09 09:51:19 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-09 09:51:19 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-09 09:51:19 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-09 09:51:19 INFO Wrote dashboard dataset to data\product_research\output\ornament\ornament_dashboard.parquet
+2026-07-09 11:42:42 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 11:42:42 INFO Reading 2025-10.csv for month 2025-10
+2026-07-09 11:42:42 INFO Reading 2025-11.csv for month 2025-11
+2026-07-09 11:42:43 INFO Reading 2025-12.csv for month 2025-12
+2026-07-09 11:42:48 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-09 11:42:48 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-09 11:42:48 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-09 11:42:48 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-09 11:42:48 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-09 11:42:48 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-09 11:42:48 INFO Wrote dashboard dataset to data\product_research\output\ornament\ornament_dashboard.parquet
+2026-07-09 11:42:48 INFO Total search terms: 7,961
+2026-07-09 11:42:48 INFO Matched rows: 7,961
+2026-07-09 11:42:48 INFO Matched niches: 20
+2026-07-09 11:42:48 INFO Matched categories: 3
+2026-07-09 11:42:48 INFO Top 20 niches by matched search terms:
+    category             niche_id        niche  matched_search_terms
+  Profession       ORN_PROF_NURSE        Nurse                  6690
+Relationship          ORN_REL_PET          Pet                   257
+Relationship         ORN_REL_BABY         Baby                   231
+Relationship       ORN_REL_COUPLE       Couple                   105
+Relationship       ORN_REL_FAMILY       Family                    84
+  Life Event   ORN_EVT_ENGAGEMENT   Engagement                    80
+Relationship       ORN_REL_FRIEND       Friend                    77
+Relationship      ORN_REL_PARENTS      Parents                    75
+  Life Event      ORN_EVT_NEWHOME     New Home                    73
+Relationship      ORN_REL_BROTHER      Brother                    58
+Relationship     ORN_REL_MEMORIAL     Memorial                    51
+  Life Event   ORN_EVT_GRADUATION   Graduation                    41
+Relationship       ORN_REL_SISTER       Sister                    37
+Relationship ORN_REL_GRANDPARENTS Grandparents                    26
+  Life Event      ORN_EVT_WEDDING      Wedding                    22
+  Profession     ORN_PROF_TEACHER      Teacher                    21
+  Life Event  ORN_EVT_ANNIVERSARY  Anniversary                    13
+  Life Event   ORN_EVT_RETIREMENT   Retirement                     9
+Relationship     ORN_REL_COWORKER     Coworker                     8
+  Life Event     ORN_EVT_BIRTHDAY     Birthday                     3
+2026-07-09 11:42:48 INFO Top 20 categories by matched search terms:
+    category  matched_search_terms
+  Profession                  6711
+Relationship                  1009
+  Life Event                   241
+2026-07-09 12:33:58 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 12:33:58 INFO Reading 2025-10.csv for month 2025-10
+2026-07-09 12:33:58 INFO Reading 2025-11.csv for month 2025-11
+2026-07-09 12:33:58 INFO Reading 2025-12.csv for month 2025-12
+2026-07-09 12:34:06 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-09 12:34:06 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-09 12:34:06 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-09 12:34:06 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-09 12:34:06 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-09 12:34:06 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-09 12:34:06 INFO Wrote dashboard dataset to data\product_research\output\ornament\ornament_dashboard.parquet
+2026-07-09 12:34:06 INFO Total search terms: 7,961
+2026-07-09 12:34:06 INFO Matched rows: 739
+2026-07-09 12:34:06 INFO Matched niches: 32
+2026-07-09 12:34:06 INFO Matched categories: 6
+2026-07-09 12:34:06 INFO Top 30 matched_pattern values:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 12:34:06 INFO Matched rows per pattern:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 12:34:06 INFO Matched rows per niche:
+    category             niche_id        niche  matched_rows
+Relationship          ORN_REL_PET          Pet           114
+    Interest       ORN_INT_SPORTS       Sports            60
+Relationship         ORN_REL_BABY         Baby            59
+  Life Event   ORN_EVT_ENGAGEMENT   Engagement            51
+  Life Event      ORN_EVT_NEWHOME     New Home            50
+Relationship     ORN_REL_MEMORIAL     Memorial            43
+Relationship       ORN_REL_FAMILY       Family            35
+Relationship      ORN_REL_PARENTS      Parents            33
+Relationship       ORN_REL_COUPLE       Couple            32
+Relationship       ORN_REL_FRIEND       Friend            28
+  Profession       ORN_PROF_NURSE        Nurse            25
+  Life Event   ORN_EVT_GRADUATION   Graduation            21
+Relationship       ORN_REL_SISTER       Sister            21
+    Interest        ORN_INT_MUSIC        Music            19
+Relationship ORN_REL_GRANDPARENTS Grandparents            19
+  Profession     ORN_PROF_TEACHER      Teacher            16
+  Life Event      ORN_EVT_WEDDING      Wedding            13
+       Faith        ORN_FAI_FAITH        Faith            12
+    Interest      ORN_INT_CAMPING      Camping            11
+    Interest      ORN_INT_FISHING      Fishing            10
+  Profession    ORN_PROF_MILITARY     Military            10
+    Interest       ORN_INT_TRAVEL       Travel             9
+    Interest       ORN_INT_COFFEE       Coffee             7
+  Life Event  ORN_EVT_ANNIVERSARY  Anniversary             7
+  Life Event   ORN_EVT_RETIREMENT   Retirement             6
+Relationship      ORN_REL_BROTHER      Brother             6
+Relationship     ORN_REL_COWORKER     Coworker             6
+    Interest      ORN_INT_READING      Reading             5
+  Occupation   ORN_OCC_OCCUPATION   Occupation             5
+    Interest         ORN_INT_WINE         Wine             3
+2026-07-09 12:34:06 INFO Matched rows per category:
+    category  matched_rows
+Relationship           396
+  Life Event           149
+    Interest           126
+  Profession            51
+       Faith            12
+  Occupation             5
+2026-07-09 12:52:07 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 12:52:07 INFO Reading 2025-10.csv for month 2025-10
+2026-07-09 12:52:07 INFO Reading 2025-11.csv for month 2025-11
+2026-07-09 12:52:07 INFO Reading 2025-12.csv for month 2025-12
+2026-07-09 12:52:16 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-09 12:52:16 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-09 12:52:16 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-09 12:52:16 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-09 12:52:16 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-09 12:52:16 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-09 12:52:16 INFO Wrote dashboard dataset to data\product_research\output\ornament\ornament_dashboard.parquet
+2026-07-09 12:52:16 INFO Total search terms: 7,961
+2026-07-09 12:52:16 INFO Matched rows: 739
+2026-07-09 12:52:16 INFO Matched niches: 32
+2026-07-09 12:52:16 INFO Matched categories: 6
+2026-07-09 12:52:16 INFO Top 30 matched_pattern values:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 12:52:16 INFO Matched rows per pattern:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 12:52:16 INFO Matched rows per niche:
+    category             niche_id        niche  matched_rows
+Relationship          ORN_REL_PET          Pet           114
+    Interest       ORN_INT_SPORTS       Sports            60
+Relationship         ORN_REL_BABY         Baby            59
+  Life Event   ORN_EVT_ENGAGEMENT   Engagement            51
+  Life Event      ORN_EVT_NEWHOME     New Home            50
+Relationship     ORN_REL_MEMORIAL     Memorial            43
+Relationship       ORN_REL_FAMILY       Family            35
+Relationship      ORN_REL_PARENTS      Parents            33
+Relationship       ORN_REL_COUPLE       Couple            32
+Relationship       ORN_REL_FRIEND       Friend            28
+  Profession       ORN_PROF_NURSE        Nurse            25
+  Life Event   ORN_EVT_GRADUATION   Graduation            21
+Relationship       ORN_REL_SISTER       Sister            21
+    Interest        ORN_INT_MUSIC        Music            19
+Relationship ORN_REL_GRANDPARENTS Grandparents            19
+  Profession     ORN_PROF_TEACHER      Teacher            16
+  Life Event      ORN_EVT_WEDDING      Wedding            13
+       Faith        ORN_FAI_FAITH        Faith            12
+    Interest      ORN_INT_CAMPING      Camping            11
+    Interest      ORN_INT_FISHING      Fishing            10
+  Profession    ORN_PROF_MILITARY     Military            10
+    Interest       ORN_INT_TRAVEL       Travel             9
+    Interest       ORN_INT_COFFEE       Coffee             7
+  Life Event  ORN_EVT_ANNIVERSARY  Anniversary             7
+  Life Event   ORN_EVT_RETIREMENT   Retirement             6
+Relationship      ORN_REL_BROTHER      Brother             6
+Relationship     ORN_REL_COWORKER     Coworker             6
+    Interest      ORN_INT_READING      Reading             5
+  Occupation   ORN_OCC_OCCUPATION   Occupation             5
+    Interest         ORN_INT_WINE         Wine             3
+2026-07-09 12:52:16 INFO Matched rows per category:
+    category  matched_rows
+Relationship           396
+  Life Event           149
+    Interest           126
+  Profession            51
+       Faith            12
+  Occupation             5
+2026-07-09 13:05:45 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 13:05:45 INFO Reading 2025-10.csv for month 2025-10
+2026-07-09 13:05:45 INFO Reading 2025-11.csv for month 2025-11
+2026-07-09 13:05:45 INFO Reading 2025-12.csv for month 2025-12
+2026-07-09 13:05:53 INFO Demand Strength formula: 0.30 * latest_rank_score + 0.25 * best_rank_score + 0.20 * average_rank_score + 0.15 * matched_search_terms_score + 0.10 * month_count_score
+2026-07-09 13:05:53 INFO Top 20 niche inputs used to calculate demand_strength:
+       niche  latest_rank  best_rank  average_rank  matched_search_terms  month_count  demand_strength
+        Baby        12368      12368 681397.915254                    59            4            40.99
+         Pet        23979      23979 701744.578947                   114            4            40.36
+  Engagement        19603      19603 552656.137255                    51            4            39.00
+      Couple        15681      15681 507716.406250                    32            4            38.58
+    New Home        23047      23047 549796.700000                    50            4            38.30
+      Sports        37525      37525 719713.783333                    60            4            36.54
+      Family        38068      38068 735321.685714                    35            4            34.79
+     Teacher        25494      25494 792095.687500                    16            3            32.52
+       Music        54045      54045 582361.421053                    19            4            31.87
+    Memorial        66032      66032 797534.023256                    43            3            31.72
+      Friend        75149      75149 646919.071429                    28            4            31.58
+       Nurse        68996      68996 732835.920000                    25            3            30.01
+      Sister        75037      75037 540220.190476                    21            3            29.59
+Grandparents        78428      78428 543843.315789                    19            3            29.10
+  Graduation       109427     109427 775007.380952                    21            3            27.56
+     Wedding       131663     131663 534430.461538                    13            4            27.32
+     Fishing        71637      71637 883666.700000                    10            3            26.87
+     Parents       117708     117708 894749.969697                    33            2            26.65
+      Coffee        87042      87042 616702.000000                     7            3            25.61
+      Travel       158940     158940 742498.222222                     9            3            23.65
+2026-07-09 13:05:53 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-09 13:05:53 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-09 13:05:53 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-09 13:05:53 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-09 13:05:53 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-09 13:05:53 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-09 13:05:53 INFO Wrote dashboard dataset to data\product_research\output\ornament\ornament_dashboard.parquet
+2026-07-09 13:05:53 INFO Total search terms: 7,961
+2026-07-09 13:05:53 INFO Matched rows: 739
+2026-07-09 13:05:53 INFO Matched niches: 32
+2026-07-09 13:05:53 INFO Matched categories: 6
+2026-07-09 13:05:53 INFO Top 30 matched_pattern values:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 13:05:53 INFO Matched rows per pattern:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 13:05:53 INFO Matched rows per niche:
+    category             niche_id        niche  matched_rows
+Relationship          ORN_REL_PET          Pet           114
+    Interest       ORN_INT_SPORTS       Sports            60
+Relationship         ORN_REL_BABY         Baby            59
+  Life Event   ORN_EVT_ENGAGEMENT   Engagement            51
+  Life Event      ORN_EVT_NEWHOME     New Home            50
+Relationship     ORN_REL_MEMORIAL     Memorial            43
+Relationship       ORN_REL_FAMILY       Family            35
+Relationship      ORN_REL_PARENTS      Parents            33
+Relationship       ORN_REL_COUPLE       Couple            32
+Relationship       ORN_REL_FRIEND       Friend            28
+  Profession       ORN_PROF_NURSE        Nurse            25
+  Life Event   ORN_EVT_GRADUATION   Graduation            21
+Relationship       ORN_REL_SISTER       Sister            21
+    Interest        ORN_INT_MUSIC        Music            19
+Relationship ORN_REL_GRANDPARENTS Grandparents            19
+  Profession     ORN_PROF_TEACHER      Teacher            16
+  Life Event      ORN_EVT_WEDDING      Wedding            13
+       Faith        ORN_FAI_FAITH        Faith            12
+    Interest      ORN_INT_CAMPING      Camping            11
+    Interest      ORN_INT_FISHING      Fishing            10
+  Profession    ORN_PROF_MILITARY     Military            10
+    Interest       ORN_INT_TRAVEL       Travel             9
+    Interest       ORN_INT_COFFEE       Coffee             7
+  Life Event  ORN_EVT_ANNIVERSARY  Anniversary             7
+  Life Event   ORN_EVT_RETIREMENT   Retirement             6
+Relationship      ORN_REL_BROTHER      Brother             6
+Relationship     ORN_REL_COWORKER     Coworker             6
+    Interest      ORN_INT_READING      Reading             5
+  Occupation   ORN_OCC_OCCUPATION   Occupation             5
+    Interest         ORN_INT_WINE         Wine             3
+2026-07-09 13:05:53 INFO Matched rows per category:
+    category  matched_rows
+Relationship           396
+  Life Event           149
+    Interest           126
+  Profession            51
+       Faith            12
+  Occupation             5
+2026-07-09 13:11:44 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 13:11:44 INFO Reading 2025-10.csv for month 2025-10
+2026-07-09 13:11:44 INFO Reading 2025-11.csv for month 2025-11
+2026-07-09 13:11:44 INFO Reading 2025-12.csv for month 2025-12
+2026-07-09 13:11:52 INFO Demand Strength formula: 0.30 * latest_rank_score + 0.25 * best_rank_score + 0.20 * average_rank_score + 0.15 * matched_search_terms_score + 0.10 * month_count_score
+2026-07-09 13:11:52 INFO Top 20 niche inputs used to calculate demand_strength:
+       niche  latest_rank  best_rank  average_rank  matched_search_terms  month_count  demand_strength
+        Baby        12368      12368 681397.915254                    59            4            40.99
+         Pet        23979      23979 701744.578947                   114            4            40.36
+  Engagement        19603      19603 552656.137255                    51            4            39.00
+      Couple        15681      15681 507716.406250                    32            4            38.58
+    New Home        23047      23047 549796.700000                    50            4            38.30
+      Sports        37525      37525 719713.783333                    60            4            36.54
+      Family        38068      38068 735321.685714                    35            4            34.79
+     Teacher        25494      25494 792095.687500                    16            3            32.52
+       Music        54045      54045 582361.421053                    19            4            31.87
+    Memorial        66032      66032 797534.023256                    43            3            31.72
+      Friend        75149      75149 646919.071429                    28            4            31.58
+       Nurse        68996      68996 732835.920000                    25            3            30.01
+      Sister        75037      75037 540220.190476                    21            3            29.59
+Grandparents        78428      78428 543843.315789                    19            3            29.10
+  Graduation       109427     109427 775007.380952                    21            3            27.56
+     Wedding       131663     131663 534430.461538                    13            4            27.32
+     Fishing        71637      71637 883666.700000                    10            3            26.87
+     Parents       117708     117708 894749.969697                    33            2            26.65
+      Coffee        87042      87042 616702.000000                     7            3            25.61
+      Travel       158940     158940 742498.222222                     9            3            23.65
+2026-07-09 13:11:52 INFO Wrote demand strength audit to data\product_research\output\ornament\demand_strength_audit.csv
+2026-07-09 13:11:52 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-09 13:11:52 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-09 13:11:52 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-09 13:11:52 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-09 13:11:52 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-09 13:11:52 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-09 13:11:52 INFO Wrote dashboard dataset to data\product_research\output\ornament\ornament_dashboard.parquet
+2026-07-09 13:11:52 INFO Total search terms: 7,961
+2026-07-09 13:11:52 INFO Matched rows: 739
+2026-07-09 13:11:52 INFO Matched niches: 32
+2026-07-09 13:11:52 INFO Matched categories: 6
+2026-07-09 13:11:52 INFO Top 30 matched_pattern values:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 13:11:52 INFO Matched rows per pattern:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 13:11:52 INFO Matched rows per niche:
+    category             niche_id        niche  matched_rows
+Relationship          ORN_REL_PET          Pet           114
+    Interest       ORN_INT_SPORTS       Sports            60
+Relationship         ORN_REL_BABY         Baby            59
+  Life Event   ORN_EVT_ENGAGEMENT   Engagement            51
+  Life Event      ORN_EVT_NEWHOME     New Home            50
+Relationship     ORN_REL_MEMORIAL     Memorial            43
+Relationship       ORN_REL_FAMILY       Family            35
+Relationship      ORN_REL_PARENTS      Parents            33
+Relationship       ORN_REL_COUPLE       Couple            32
+Relationship       ORN_REL_FRIEND       Friend            28
+  Profession       ORN_PROF_NURSE        Nurse            25
+  Life Event   ORN_EVT_GRADUATION   Graduation            21
+Relationship       ORN_REL_SISTER       Sister            21
+    Interest        ORN_INT_MUSIC        Music            19
+Relationship ORN_REL_GRANDPARENTS Grandparents            19
+  Profession     ORN_PROF_TEACHER      Teacher            16
+  Life Event      ORN_EVT_WEDDING      Wedding            13
+       Faith        ORN_FAI_FAITH        Faith            12
+    Interest      ORN_INT_CAMPING      Camping            11
+    Interest      ORN_INT_FISHING      Fishing            10
+  Profession    ORN_PROF_MILITARY     Military            10
+    Interest       ORN_INT_TRAVEL       Travel             9
+    Interest       ORN_INT_COFFEE       Coffee             7
+  Life Event  ORN_EVT_ANNIVERSARY  Anniversary             7
+  Life Event   ORN_EVT_RETIREMENT   Retirement             6
+Relationship      ORN_REL_BROTHER      Brother             6
+Relationship     ORN_REL_COWORKER     Coworker             6
+    Interest      ORN_INT_READING      Reading             5
+  Occupation   ORN_OCC_OCCUPATION   Occupation             5
+    Interest         ORN_INT_WINE         Wine             3
+2026-07-09 13:11:52 INFO Matched rows per category:
+    category  matched_rows
+Relationship           396
+  Life Event           149
+    Interest           126
+  Profession            51
+       Faith            12
+  Occupation             5
+2026-07-09 13:23:55 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 13:23:55 INFO Reading 2025-10.csv for month 2025-10
+2026-07-09 13:23:55 INFO Reading 2025-11.csv for month 2025-11
+2026-07-09 13:23:55 INFO Reading 2025-12.csv for month 2025-12
+2026-07-09 13:24:03 INFO Demand Strength v2 formula: 0.60 * weighted_rank_score_norm + 0.20 * coverage_norm + 0.10 * consistency_norm + 0.10 * breadth_norm
+2026-07-09 13:24:03 INFO Top 20 niches after Demand Strength v2:
+       niche  weighted_rank_score  keywords_top_10k  keywords_top_25k  keywords_top_50k  keywords_top_100k  total_search_terms  month_count  demand_strength
+         Pet             0.000212                 0                 1                 2                  3                  62            4            92.50
+  Engagement             0.000171                 0                 1                 3                  5                  24            4            82.29
+        Baby             0.000167                 0                 1                 1                  4                  28            4            74.21
+      Sports             0.000140                 0                 0                 3                  5                  28            4            74.01
+    New Home             0.000134                 0                 1                 2                  3                  22            4            63.74
+      Couple             0.000116                 0                 1                 1                  2                  14            4            52.38
+      Family             0.000076                 0                 0                 2                  2                  17            4            44.16
+      Friend             0.000050                 0                 0                 0                  2                  13            4            31.07
+     Teacher             0.000059                 0                 0                 1                  1                  13            3            30.15
+    Memorial             0.000057                 0                 0                 0                  1                  26            3            29.40
+       Music             0.000044                 0                 0                 0                  2                   9            4            28.69
+       Nurse             0.000044                 0                 0                 0                  2                  15            3            26.38
+Grandparents             0.000042                 0                 0                 0                  1                  10            3            22.24
+      Sister             0.000041                 0                 0                 0                  1                  10            3            22.13
+     Parents             0.000043                 0                 0                 0                  0                  26            2            19.43
+  Graduation             0.000029                 0                 0                 0                  0                  11            3            16.48
+     Wedding             0.000017                 0                 0                 0                  0                   5            4            15.19
+     Fishing             0.000018                 0                 0                 0                  1                   6            3            15.01
+      Coffee             0.000015                 0                 0                 0                  1                   3            3            13.48
+ Anniversary             0.000004                 0                 0                 0                  0                   4            4            11.56
+2026-07-09 13:24:03 INFO Wrote demand strength v2 audit to data\product_research\output\ornament\demand_strength_v2_audit.csv
+2026-07-09 13:24:03 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-09 13:24:03 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-09 13:24:03 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-09 13:24:03 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-09 13:24:03 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-09 13:24:03 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-09 13:24:03 INFO Wrote dashboard dataset to data\product_research\output\ornament\ornament_dashboard.parquet
+2026-07-09 13:24:03 INFO Total search terms: 7,961
+2026-07-09 13:24:03 INFO Matched rows: 739
+2026-07-09 13:24:03 INFO Matched niches: 32
+2026-07-09 13:24:03 INFO Matched categories: 6
+2026-07-09 13:24:03 INFO Top 30 matched_pattern values:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 13:24:03 INFO Matched rows per pattern:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 13:24:03 INFO Matched rows per niche:
+    category             niche_id        niche  matched_rows
+Relationship          ORN_REL_PET          Pet           114
+    Interest       ORN_INT_SPORTS       Sports            60
+Relationship         ORN_REL_BABY         Baby            59
+  Life Event   ORN_EVT_ENGAGEMENT   Engagement            51
+  Life Event      ORN_EVT_NEWHOME     New Home            50
+Relationship     ORN_REL_MEMORIAL     Memorial            43
+Relationship       ORN_REL_FAMILY       Family            35
+Relationship      ORN_REL_PARENTS      Parents            33
+Relationship       ORN_REL_COUPLE       Couple            32
+Relationship       ORN_REL_FRIEND       Friend            28
+  Profession       ORN_PROF_NURSE        Nurse            25
+  Life Event   ORN_EVT_GRADUATION   Graduation            21
+Relationship       ORN_REL_SISTER       Sister            21
+    Interest        ORN_INT_MUSIC        Music            19
+Relationship ORN_REL_GRANDPARENTS Grandparents            19
+  Profession     ORN_PROF_TEACHER      Teacher            16
+  Life Event      ORN_EVT_WEDDING      Wedding            13
+       Faith        ORN_FAI_FAITH        Faith            12
+    Interest      ORN_INT_CAMPING      Camping            11
+    Interest      ORN_INT_FISHING      Fishing            10
+  Profession    ORN_PROF_MILITARY     Military            10
+    Interest       ORN_INT_TRAVEL       Travel             9
+    Interest       ORN_INT_COFFEE       Coffee             7
+  Life Event  ORN_EVT_ANNIVERSARY  Anniversary             7
+  Life Event   ORN_EVT_RETIREMENT   Retirement             6
+Relationship      ORN_REL_BROTHER      Brother             6
+Relationship     ORN_REL_COWORKER     Coworker             6
+    Interest      ORN_INT_READING      Reading             5
+  Occupation   ORN_OCC_OCCUPATION   Occupation             5
+    Interest         ORN_INT_WINE         Wine             3
+2026-07-09 13:24:03 INFO Matched rows per category:
+    category  matched_rows
+Relationship           396
+  Life Event           149
+    Interest           126
+  Profession            51
+       Faith            12
+  Occupation             5
+2026-07-09 14:22:57 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 14:22:57 INFO Reading 2025-10.csv for month 2025-10
+2026-07-09 14:22:57 INFO Reading 2025-11.csv for month 2025-11
+2026-07-09 14:22:57 INFO Reading 2025-12.csv for month 2025-12
+2026-07-09 14:23:06 INFO Demand Strength v3 formula: 0.70 * demand_index_norm + 0.20 * month_coverage_norm + 0.10 * breadth_norm
+2026-07-09 14:23:06 INFO Top 20 niches after Demand Strength v3:
+       niche  demand_index  unique_search_terms  month_count  demand_strength
+         Pet     63.865484                   62            4           100.00
+  Engagement     33.689143                   24            4            60.66
+        Baby     32.278029                   28            4            59.77
+    New Home     32.586029                   22            4            59.12
+      Sports     30.123040                   28            4            57.40
+      Couple     22.420700                   14            4            46.65
+      Family     17.632824                   17            4            41.89
+    Memorial     20.396449                   26            3            39.73
+      Friend     15.729897                   13            4            39.15
+       Music     12.883673                    9            4            35.37
+Grandparents     16.357889                   10            3            32.68
+      Sister     14.914923                   10            3            31.10
+       Nurse     13.967924                   15            3            30.88
+     Parents     16.468678                   26            2            28.76
+     Teacher     11.211781                   13            3            27.52
+     Wedding      6.197804                    5            4            27.38
+  Graduation     10.797112                   11            3            26.74
+ Anniversary      1.927137                    4            4            22.53
+      Travel      4.874314                    5            3            19.26
+     Fishing      4.341747                    6            3            18.84
+2026-07-09 14:23:06 INFO Wrote demand strength v3 audit to data\product_research\output\ornament\demand_strength_v3_audit.csv
+2026-07-09 14:23:06 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-09 14:23:06 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-09 14:23:06 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-09 14:23:06 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-09 14:23:06 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-09 14:23:06 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-09 14:23:06 INFO Wrote dashboard dataset to data\product_research\output\ornament\ornament_dashboard.parquet
+2026-07-09 14:23:06 INFO Total search terms: 7,961
+2026-07-09 14:23:06 INFO Matched rows: 739
+2026-07-09 14:23:06 INFO Matched niches: 32
+2026-07-09 14:23:06 INFO Matched categories: 6
+2026-07-09 14:23:06 INFO Top 30 matched_pattern values:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 14:23:06 INFO Matched rows per pattern:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 14:23:06 INFO Matched rows per niche:
+    category             niche_id        niche  matched_rows
+Relationship          ORN_REL_PET          Pet           114
+    Interest       ORN_INT_SPORTS       Sports            60
+Relationship         ORN_REL_BABY         Baby            59
+  Life Event   ORN_EVT_ENGAGEMENT   Engagement            51
+  Life Event      ORN_EVT_NEWHOME     New Home            50
+Relationship     ORN_REL_MEMORIAL     Memorial            43
+Relationship       ORN_REL_FAMILY       Family            35
+Relationship      ORN_REL_PARENTS      Parents            33
+Relationship       ORN_REL_COUPLE       Couple            32
+Relationship       ORN_REL_FRIEND       Friend            28
+  Profession       ORN_PROF_NURSE        Nurse            25
+  Life Event   ORN_EVT_GRADUATION   Graduation            21
+Relationship       ORN_REL_SISTER       Sister            21
+    Interest        ORN_INT_MUSIC        Music            19
+Relationship ORN_REL_GRANDPARENTS Grandparents            19
+  Profession     ORN_PROF_TEACHER      Teacher            16
+  Life Event      ORN_EVT_WEDDING      Wedding            13
+       Faith        ORN_FAI_FAITH        Faith            12
+    Interest      ORN_INT_CAMPING      Camping            11
+    Interest      ORN_INT_FISHING      Fishing            10
+  Profession    ORN_PROF_MILITARY     Military            10
+    Interest       ORN_INT_TRAVEL       Travel             9
+    Interest       ORN_INT_COFFEE       Coffee             7
+  Life Event  ORN_EVT_ANNIVERSARY  Anniversary             7
+  Life Event   ORN_EVT_RETIREMENT   Retirement             6
+Relationship      ORN_REL_BROTHER      Brother             6
+Relationship     ORN_REL_COWORKER     Coworker             6
+    Interest      ORN_INT_READING      Reading             5
+  Occupation   ORN_OCC_OCCUPATION   Occupation             5
+    Interest         ORN_INT_WINE         Wine             3
+2026-07-09 14:23:06 INFO Matched rows per category:
+    category  matched_rows
+Relationship           396
+  Life Event           149
+    Interest           126
+  Profession            51
+       Faith            12
+  Occupation             5
+2026-07-09 14:36:20 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 14:36:20 INFO Reading 2025-10.csv for month 2025-10
+2026-07-09 14:36:20 INFO Reading 2025-11.csv for month 2025-11
+2026-07-09 14:36:20 INFO Reading 2025-12.csv for month 2025-12
+2026-07-09 14:36:28 INFO Demand Size formula: demand_index_norm
+2026-07-09 14:36:28 INFO Top 20 niches after Demand Size:
+       niche  demand_index  unique_search_terms  month_count  demand_size
+         Pet     63.299063                   59            4       100.00
+  Engagement     32.930642                   23            4        51.97
+    New Home     32.586029                   22            4        51.42
+        Baby     32.278029                   28            4        50.94
+      Sports     29.699078                   26            4        46.86
+      Couple     22.420700                   14            4        35.35
+    Memorial     19.309481                   25            3        30.43
+      Family     17.539044                   16            4        27.63
+     Parents     16.468678                   26            2        25.93
+Grandparents     16.357889                   10            3        25.76
+      Friend     15.729897                   13            4        24.76
+      Sister     14.914923                   10            3        23.48
+       Music     12.578738                    8            4        19.78
+       Nurse     11.705293                   12            3        18.40
+     Teacher     11.211781                   13            3        17.62
+  Graduation     10.797112                   11            3        16.96
+       Faith      7.320028                    7            2        11.46
+     Wedding      6.197804                    5            4         9.69
+     Camping      5.979466                    6            2         9.34
+      Travel      4.874314                    5            3         7.59
+2026-07-09 14:36:28 INFO Wrote demand size audit to data\product_research\output\ornament\demand_size_audit.csv
+2026-07-09 14:36:28 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-09 14:36:28 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-09 14:36:28 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-09 14:36:28 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-09 14:36:28 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-09 14:36:28 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-09 14:36:28 INFO Wrote dashboard dataset to data\product_research\output\ornament\ornament_dashboard.parquet
+2026-07-09 14:36:28 INFO Total search terms: 7,961
+2026-07-09 14:36:28 INFO Matched rows: 739
+2026-07-09 14:36:28 INFO Matched niches: 32
+2026-07-09 14:36:28 INFO Matched categories: 6
+2026-07-09 14:36:28 INFO Top 30 matched_pattern values:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 14:36:28 INFO Matched rows per pattern:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 14:36:28 INFO Matched rows per niche:
+    category             niche_id        niche  matched_rows
+Relationship          ORN_REL_PET          Pet           114
+    Interest       ORN_INT_SPORTS       Sports            60
+Relationship         ORN_REL_BABY         Baby            59
+  Life Event   ORN_EVT_ENGAGEMENT   Engagement            51
+  Life Event      ORN_EVT_NEWHOME     New Home            50
+Relationship     ORN_REL_MEMORIAL     Memorial            43
+Relationship       ORN_REL_FAMILY       Family            35
+Relationship      ORN_REL_PARENTS      Parents            33
+Relationship       ORN_REL_COUPLE       Couple            32
+Relationship       ORN_REL_FRIEND       Friend            28
+  Profession       ORN_PROF_NURSE        Nurse            25
+  Life Event   ORN_EVT_GRADUATION   Graduation            21
+Relationship       ORN_REL_SISTER       Sister            21
+    Interest        ORN_INT_MUSIC        Music            19
+Relationship ORN_REL_GRANDPARENTS Grandparents            19
+  Profession     ORN_PROF_TEACHER      Teacher            16
+  Life Event      ORN_EVT_WEDDING      Wedding            13
+       Faith        ORN_FAI_FAITH        Faith            12
+    Interest      ORN_INT_CAMPING      Camping            11
+    Interest      ORN_INT_FISHING      Fishing            10
+  Profession    ORN_PROF_MILITARY     Military            10
+    Interest       ORN_INT_TRAVEL       Travel             9
+    Interest       ORN_INT_COFFEE       Coffee             7
+  Life Event  ORN_EVT_ANNIVERSARY  Anniversary             7
+  Life Event   ORN_EVT_RETIREMENT   Retirement             6
+Relationship      ORN_REL_BROTHER      Brother             6
+Relationship     ORN_REL_COWORKER     Coworker             6
+    Interest      ORN_INT_READING      Reading             5
+  Occupation   ORN_OCC_OCCUPATION   Occupation             5
+    Interest         ORN_INT_WINE         Wine             3
+2026-07-09 14:36:28 INFO Matched rows per category:
+    category  matched_rows
+Relationship           396
+  Life Event           149
+    Interest           126
+  Profession            51
+       Faith            12
+  Occupation             5
+2026-07-09 14:58:20 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 14:58:20 INFO Reading 2025-10.csv for month 2025-10
+2026-07-09 14:58:20 INFO Reading 2025-11.csv for month 2025-11
+2026-07-09 14:58:20 INFO Reading 2025-12.csv for month 2025-12
+2026-07-09 14:58:29 INFO Demand Size formula: demand_index_norm
+2026-07-09 14:58:29 INFO Top 20 niches after Demand Size:
+       niche  demand_index  unique_search_terms  month_count  demand_size
+         Pet     63.299063                   59            4       100.00
+  Engagement     32.930642                   23            4        51.97
+    New Home     32.586029                   22            4        51.42
+        Baby     32.278029                   28            4        50.94
+      Sports     29.699078                   26            4        46.86
+      Couple     22.420700                   14            4        35.35
+    Memorial     19.309481                   25            3        30.43
+      Family     17.539044                   16            4        27.63
+     Parents     16.468678                   26            2        25.93
+Grandparents     16.357889                   10            3        25.76
+      Friend     15.729897                   13            4        24.76
+      Sister     14.914923                   10            3        23.48
+       Music     12.578738                    8            4        19.78
+       Nurse     11.705293                   12            3        18.40
+     Teacher     11.211781                   13            3        17.62
+  Graduation     10.797112                   11            3        16.96
+       Faith      7.320028                    7            2        11.46
+     Wedding      6.197804                    5            4         9.69
+     Camping      5.979466                    6            2         9.34
+      Travel      4.874314                    5            3         7.59
+2026-07-09 14:58:29 INFO Wrote demand size audit to data\product_research\output\ornament\demand_size_audit.csv
+2026-07-09 14:58:29 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-09 14:58:29 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-09 14:58:29 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-09 14:58:29 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-09 14:58:29 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-09 14:58:29 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-09 14:58:29 INFO Wrote dashboard dataset to data\product_research\output\ornament\ornament_dashboard.parquet
+2026-07-09 14:58:29 INFO Total search terms: 7,961
+2026-07-09 14:58:29 INFO Matched rows: 739
+2026-07-09 14:58:29 INFO Matched niches: 32
+2026-07-09 14:58:29 INFO Matched categories: 6
+2026-07-09 14:58:29 INFO Top 30 matched_pattern values:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 14:58:29 INFO Matched rows per pattern:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 14:58:29 INFO Matched rows per niche:
+    category             niche_id        niche  matched_rows
+Relationship          ORN_REL_PET          Pet           114
+    Interest       ORN_INT_SPORTS       Sports            60
+Relationship         ORN_REL_BABY         Baby            59
+  Life Event   ORN_EVT_ENGAGEMENT   Engagement            51
+  Life Event      ORN_EVT_NEWHOME     New Home            50
+Relationship     ORN_REL_MEMORIAL     Memorial            43
+Relationship       ORN_REL_FAMILY       Family            35
+Relationship      ORN_REL_PARENTS      Parents            33
+Relationship       ORN_REL_COUPLE       Couple            32
+Relationship       ORN_REL_FRIEND       Friend            28
+  Profession       ORN_PROF_NURSE        Nurse            25
+  Life Event   ORN_EVT_GRADUATION   Graduation            21
+Relationship       ORN_REL_SISTER       Sister            21
+    Interest        ORN_INT_MUSIC        Music            19
+Relationship ORN_REL_GRANDPARENTS Grandparents            19
+  Profession     ORN_PROF_TEACHER      Teacher            16
+  Life Event      ORN_EVT_WEDDING      Wedding            13
+       Faith        ORN_FAI_FAITH        Faith            12
+    Interest      ORN_INT_CAMPING      Camping            11
+    Interest      ORN_INT_FISHING      Fishing            10
+  Profession    ORN_PROF_MILITARY     Military            10
+    Interest       ORN_INT_TRAVEL       Travel             9
+    Interest       ORN_INT_COFFEE       Coffee             7
+  Life Event  ORN_EVT_ANNIVERSARY  Anniversary             7
+  Life Event   ORN_EVT_RETIREMENT   Retirement             6
+Relationship      ORN_REL_BROTHER      Brother             6
+Relationship     ORN_REL_COWORKER     Coworker             6
+    Interest      ORN_INT_READING      Reading             5
+  Occupation   ORN_OCC_OCCUPATION   Occupation             5
+    Interest         ORN_INT_WINE         Wine             3
+2026-07-09 14:58:29 INFO Matched rows per category:
+    category  matched_rows
+Relationship           396
+  Life Event           149
+    Interest           126
+  Profession            51
+       Faith            12
+  Occupation             5
+2026-07-09 17:10:04 INFO Reading 2025-09.csv for month 2025-09
+2026-07-09 17:10:04 INFO Reading 2025-10.csv for month 2025-10
+2026-07-09 17:10:04 INFO Reading 2025-11.csv for month 2025-11
+2026-07-09 17:10:04 INFO Reading 2025-12.csv for month 2025-12
+2026-07-09 17:10:12 INFO Demand Size formula: demand_index_norm
+2026-07-09 17:10:12 INFO Top 20 niches after Demand Size:
+       niche  demand_index  unique_search_terms  month_count  demand_size
+         Pet     63.299063                   59            4       100.00
+  Engagement     32.930642                   23            4        51.97
+    New Home     32.586029                   22            4        51.42
+        Baby     32.278029                   28            4        50.94
+      Sports     29.699078                   26            4        46.86
+      Couple     22.420700                   14            4        35.35
+    Memorial     19.309481                   25            3        30.43
+      Family     17.539044                   16            4        27.63
+     Parents     16.468678                   26            2        25.93
+Grandparents     16.357889                   10            3        25.76
+      Friend     15.729897                   13            4        24.76
+      Sister     14.914923                   10            3        23.48
+       Music     12.578738                    8            4        19.78
+       Nurse     11.705293                   12            3        18.40
+     Teacher     11.211781                   13            3        17.62
+  Graduation     10.797112                   11            3        16.96
+       Faith      7.320028                    7            2        11.46
+     Wedding      6.197804                    5            4         9.69
+     Camping      5.979466                    6            2         9.34
+      Travel      4.874314                    5            3         7.59
+2026-07-09 17:10:12 INFO Wrote demand size audit to data\product_research\output\ornament\demand_size_audit.csv
+2026-07-09 17:10:12 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-09 17:10:12 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-09 17:10:12 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-09 17:10:12 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-09 17:10:12 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-09 17:10:12 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-09 17:10:12 INFO Wrote dashboard dataset to data\product_research\output\ornament\ornament_dashboard.parquet
+2026-07-09 17:10:12 INFO Total search terms: 7,961
+2026-07-09 17:10:12 INFO Matched rows: 739
+2026-07-09 17:10:12 INFO Matched niches: 32
+2026-07-09 17:10:12 INFO Matched categories: 6
+2026-07-09 17:10:12 INFO Top 30 matched_pattern values:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 17:10:12 INFO Matched rows per pattern:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-09 17:10:12 INFO Matched rows per niche:
+    category             niche_id        niche  matched_rows
+Relationship          ORN_REL_PET          Pet           114
+    Interest       ORN_INT_SPORTS       Sports            60
+Relationship         ORN_REL_BABY         Baby            59
+  Life Event   ORN_EVT_ENGAGEMENT   Engagement            51
+  Life Event      ORN_EVT_NEWHOME     New Home            50
+Relationship     ORN_REL_MEMORIAL     Memorial            43
+Relationship       ORN_REL_FAMILY       Family            35
+Relationship      ORN_REL_PARENTS      Parents            33
+Relationship       ORN_REL_COUPLE       Couple            32
+Relationship       ORN_REL_FRIEND       Friend            28
+  Profession       ORN_PROF_NURSE        Nurse            25
+  Life Event   ORN_EVT_GRADUATION   Graduation            21
+Relationship       ORN_REL_SISTER       Sister            21
+    Interest        ORN_INT_MUSIC        Music            19
+Relationship ORN_REL_GRANDPARENTS Grandparents            19
+  Profession     ORN_PROF_TEACHER      Teacher            16
+  Life Event      ORN_EVT_WEDDING      Wedding            13
+       Faith        ORN_FAI_FAITH        Faith            12
+    Interest      ORN_INT_CAMPING      Camping            11
+    Interest      ORN_INT_FISHING      Fishing            10
+  Profession    ORN_PROF_MILITARY     Military            10
+    Interest       ORN_INT_TRAVEL       Travel             9
+    Interest       ORN_INT_COFFEE       Coffee             7
+  Life Event  ORN_EVT_ANNIVERSARY  Anniversary             7
+  Life Event   ORN_EVT_RETIREMENT   Retirement             6
+Relationship      ORN_REL_BROTHER      Brother             6
+Relationship     ORN_REL_COWORKER     Coworker             6
+    Interest      ORN_INT_READING      Reading             5
+  Occupation   ORN_OCC_OCCUPATION   Occupation             5
+    Interest         ORN_INT_WINE         Wine             3
+2026-07-09 17:10:12 INFO Matched rows per category:
+    category  matched_rows
+Relationship           396
+  Life Event           149
+    Interest           126
+  Profession            51
+       Faith            12
+  Occupation             5
+2026-07-10 07:55:02 INFO Reading 2025-09.csv for month 2025-09
+2026-07-10 07:55:02 INFO Reading 2025-10.csv for month 2025-10
+2026-07-10 07:55:02 INFO Reading 2025-11.csv for month 2025-11
+2026-07-10 07:55:02 INFO Reading 2025-12.csv for month 2025-12
+2026-07-10 07:55:10 INFO Demand Size formula: rank_curve_best_rank_log_weighted
+2026-07-10 07:55:10 INFO Top 20 niches after Demand Size:
+       niche  demand_index  demand_size  top_1_best_rank  top_2_best_rank  top_3_best_rank  top_5_best_rank  top_10_best_rank  search_term_count
+         Pet      1.640064       100.00          23979.0          37847.0          63370.0         149446.0          197553.0                 62
+  Engagement      1.102449        67.22          19603.0          27814.0          37941.0          91140.0          423570.0                 24
+    New Home      1.046448        63.81          23047.0          48939.0          60771.0         135588.0          500756.0                 22
+        Baby      1.024075        62.44          12368.0          55482.0          60217.0         207583.0          594433.0                 28
+      Sports      1.014164        61.84          37525.0          38136.0          46682.0          79792.0          547629.0                 28
+      Couple      0.843702        51.44          15681.0          70782.0         105281.0         192859.0          485504.0                 14
+      Family      0.668280        40.75          38068.0          40687.0         144236.0         463230.0          947785.0                 17
+    Memorial      0.598858        36.51          66032.0         141719.0         184170.0         405367.0          565316.0                 26
+      Friend      0.589784        35.96          75149.0          83589.0         103791.0         385378.0          980240.0                 13
+Grandparents      0.565717        34.49          78428.0         212273.0         222340.0         282577.0          824134.0                 10
+      Sister      0.550360        33.56          75037.0         120826.0         191269.0         403164.0         1247647.0                 10
+       Nurse      0.539594        32.90          68996.0          98113.0         246239.0         355184.0          844695.0                 15
+       Music      0.529977        32.31          54045.0          87153.0         233179.0         500756.0               NaN                  9
+     Teacher      0.453011        27.62          25494.0         129106.0         518684.0         804494.0         1170163.0                 13
+     Parents      0.426342        26.00         117708.0         167722.0         281028.0         517973.0          848567.0                 26
+  Graduation      0.406614        24.79         109427.0         151645.0         279283.0         717177.0         1277268.0                 11
+     Wedding      0.284783        17.36         131663.0         190433.0         491487.0        1219514.0               NaN                  5
+       Faith      0.263446        16.06         274405.0         302809.0         409925.0         507164.0               NaN                  7
+     Camping      0.250407        15.27         216932.0         286447.0         291226.0        1256017.0               NaN                  6
+      Coffee      0.231632        14.12          87042.0         560085.0         683834.0              NaN               NaN                  3
+2026-07-10 07:55:10 INFO Wrote demand size audit to data\product_research\output\ornament\demand_size_audit.csv
+2026-07-10 07:55:10 INFO Wrote demand size rank curve audit to data\product_research\output\ornament\demand_size_rank_curve_audit.csv
+2026-07-10 07:55:10 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-10 07:55:10 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-10 07:55:10 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-10 07:55:10 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-10 07:55:10 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-10 07:55:10 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-10 07:55:10 INFO Wrote dashboard dataset to data\product_research\output\ornament\ornament_dashboard.parquet
+2026-07-10 07:55:10 INFO Total search terms: 7,961
+2026-07-10 07:55:10 INFO Matched rows: 739
+2026-07-10 07:55:10 INFO Matched niches: 32
+2026-07-10 07:55:10 INFO Matched categories: 6
+2026-07-10 07:55:10 INFO Top 30 matched_pattern values:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-10 07:55:10 INFO Matched rows per pattern:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-10 07:55:10 INFO Matched rows per niche:
+    category             niche_id        niche  matched_rows
+Relationship          ORN_REL_PET          Pet           114
+    Interest       ORN_INT_SPORTS       Sports            60
+Relationship         ORN_REL_BABY         Baby            59
+  Life Event   ORN_EVT_ENGAGEMENT   Engagement            51
+  Life Event      ORN_EVT_NEWHOME     New Home            50
+Relationship     ORN_REL_MEMORIAL     Memorial            43
+Relationship       ORN_REL_FAMILY       Family            35
+Relationship      ORN_REL_PARENTS      Parents            33
+Relationship       ORN_REL_COUPLE       Couple            32
+Relationship       ORN_REL_FRIEND       Friend            28
+  Profession       ORN_PROF_NURSE        Nurse            25
+  Life Event   ORN_EVT_GRADUATION   Graduation            21
+Relationship       ORN_REL_SISTER       Sister            21
+    Interest        ORN_INT_MUSIC        Music            19
+Relationship ORN_REL_GRANDPARENTS Grandparents            19
+  Profession     ORN_PROF_TEACHER      Teacher            16
+  Life Event      ORN_EVT_WEDDING      Wedding            13
+       Faith        ORN_FAI_FAITH        Faith            12
+    Interest      ORN_INT_CAMPING      Camping            11
+    Interest      ORN_INT_FISHING      Fishing            10
+  Profession    ORN_PROF_MILITARY     Military            10
+    Interest       ORN_INT_TRAVEL       Travel             9
+    Interest       ORN_INT_COFFEE       Coffee             7
+  Life Event  ORN_EVT_ANNIVERSARY  Anniversary             7
+  Life Event   ORN_EVT_RETIREMENT   Retirement             6
+Relationship      ORN_REL_BROTHER      Brother             6
+Relationship     ORN_REL_COWORKER     Coworker             6
+    Interest      ORN_INT_READING      Reading             5
+  Occupation   ORN_OCC_OCCUPATION   Occupation             5
+    Interest         ORN_INT_WINE         Wine             3
+2026-07-10 07:55:10 INFO Matched rows per category:
+    category  matched_rows
+Relationship           396
+  Life Event           149
+    Interest           126
+  Profession            51
+       Faith            12
+  Occupation             5
+2026-07-10 08:04:11 INFO Reading 2025-09.csv for month 2025-09
+2026-07-10 08:04:11 INFO Reading 2025-10.csv for month 2025-10
+2026-07-10 08:04:11 INFO Reading 2025-11.csv for month 2025-11
+2026-07-10 08:04:11 INFO Reading 2025-12.csv for month 2025-12
+2026-07-10 08:04:19 INFO Demand Size formula: rank_curve_v2_best_rank_log_power_decay
+2026-07-10 08:04:19 INFO Top 20 niches after Demand Size:
+       niche  demand_index  demand_size  top_1_best_rank  top_3_average_rank  top_5_average_rank  top_10_average_rank  search_term_count
+         Pet      1.638776       100.00            23979        41732.000000        79956.200000        126170.000000                 62
+  Engagement      1.166007        71.15            19603        28452.666667        53471.600000        189688.100000                 24
+    New Home      1.109177        67.68            23047        44252.333333        76088.800000        185884.600000                 22
+      Sports      1.085856        66.26            37525        40781.000000        51787.400000        191426.400000                 28
+        Baby      1.071597        65.39            12368        42689.000000        84611.800000        239231.200000                 28
+      Couple      0.891220        54.38            15681        63914.666667       111854.400000        242822.800000                 14
+      Family      0.682555        41.65            38068        74330.333333       191330.600000        434459.700000                 17
+    Memorial      0.625507        38.17            66032       130640.333333       220172.800000        376452.400000                 26
+      Friend      0.607762        37.09            75149        87509.666667       185355.600000        444264.000000                 13
+Grandparents      0.607259        37.06            78428       171013.666667       205396.200000        343398.700000                 10
+      Sister      0.574400        35.05            75037       129044.000000       222104.200000        442884.800000                 10
+       Nurse      0.560097        34.18            68996       137782.666667       219535.200000        456374.800000                 15
+       Music      0.540032        32.95            54045       124792.333333       245866.200000        544812.000000                  9
+     Teacher      0.447791        27.32            25494       224428.000000       412365.000000        746790.600000                 13
+     Parents      0.438423        26.75           117708       188819.333333       313586.000000        534887.000000                 26
+  Graduation      0.408695        24.94           109427       180118.333333       315715.800000        684623.100000                 11
+     Wedding      0.275942        16.84           131663       271194.333333       612433.600000        612433.600000                  5
+       Faith      0.269448        16.44           274405       329046.333333       398605.400000        624318.142857                  7
+     Camping      0.242815        14.82           216932       264868.333333       608277.600000        720527.833333                  6
+      Coffee      0.228358        13.93            87042       443653.666667       443653.666667        443653.666667                  3
+2026-07-10 08:04:19 INFO Wrote demand size audit to data\product_research\output\ornament\demand_size_audit.csv
+2026-07-10 08:04:19 INFO Wrote demand size rank curve audit to data\product_research\output\ornament\demand_size_rank_curve_audit.csv
+2026-07-10 08:04:19 INFO Wrote demand size rank curve v2 audit to data\product_research\output\ornament\demand_size_rank_curve_v2.csv
+2026-07-10 08:04:19 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-10 08:04:19 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-10 08:04:19 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-10 08:04:19 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-10 08:04:19 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-10 08:04:19 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-10 08:04:19 INFO Wrote dashboard dataset to data\product_research\output\ornament\ornament_dashboard.parquet
+2026-07-10 08:04:19 INFO Total search terms: 7,961
+2026-07-10 08:04:19 INFO Matched rows: 739
+2026-07-10 08:04:19 INFO Matched niches: 32
+2026-07-10 08:04:19 INFO Matched categories: 6
+2026-07-10 08:04:19 INFO Top 30 matched_pattern values:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-10 08:04:19 INFO Matched rows per pattern:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-10 08:04:19 INFO Matched rows per niche:
+    category             niche_id        niche  matched_rows
+Relationship          ORN_REL_PET          Pet           114
+    Interest       ORN_INT_SPORTS       Sports            60
+Relationship         ORN_REL_BABY         Baby            59
+  Life Event   ORN_EVT_ENGAGEMENT   Engagement            51
+  Life Event      ORN_EVT_NEWHOME     New Home            50
+Relationship     ORN_REL_MEMORIAL     Memorial            43
+Relationship       ORN_REL_FAMILY       Family            35
+Relationship      ORN_REL_PARENTS      Parents            33
+Relationship       ORN_REL_COUPLE       Couple            32
+Relationship       ORN_REL_FRIEND       Friend            28
+  Profession       ORN_PROF_NURSE        Nurse            25
+  Life Event   ORN_EVT_GRADUATION   Graduation            21
+Relationship       ORN_REL_SISTER       Sister            21
+    Interest        ORN_INT_MUSIC        Music            19
+Relationship ORN_REL_GRANDPARENTS Grandparents            19
+  Profession     ORN_PROF_TEACHER      Teacher            16
+  Life Event      ORN_EVT_WEDDING      Wedding            13
+       Faith        ORN_FAI_FAITH        Faith            12
+    Interest      ORN_INT_CAMPING      Camping            11
+    Interest      ORN_INT_FISHING      Fishing            10
+  Profession    ORN_PROF_MILITARY     Military            10
+    Interest       ORN_INT_TRAVEL       Travel             9
+    Interest       ORN_INT_COFFEE       Coffee             7
+  Life Event  ORN_EVT_ANNIVERSARY  Anniversary             7
+  Life Event   ORN_EVT_RETIREMENT   Retirement             6
+Relationship      ORN_REL_BROTHER      Brother             6
+Relationship     ORN_REL_COWORKER     Coworker             6
+    Interest      ORN_INT_READING      Reading             5
+  Occupation   ORN_OCC_OCCUPATION   Occupation             5
+    Interest         ORN_INT_WINE         Wine             3
+2026-07-10 08:04:19 INFO Matched rows per category:
+    category  matched_rows
+Relationship           396
+  Life Event           149
+    Interest           126
+  Profession            51
+       Faith            12
+  Occupation             5
+2026-07-10 08:12:47 INFO Reading 2025-09.csv for month 2025-09
+2026-07-10 08:12:47 INFO Reading 2025-10.csv for month 2025-10
+2026-07-10 08:12:47 INFO Reading 2025-11.csv for month 2025-11
+2026-07-10 08:12:47 INFO Reading 2025-12.csv for month 2025-12
+2026-07-10 08:12:55 INFO Demand Size formula: rank_curve_v2_best_rank_log_power_decay
+2026-07-10 08:12:55 INFO Top 20 niches after Demand Size:
+       niche  demand_index  demand_size  top_1_best_rank  top_3_average_rank  top_5_average_rank  top_10_average_rank  search_term_count
+         Pet      1.638776       100.00            23979        41732.000000        79956.200000        126170.000000                 62
+  Engagement      1.166007        71.15            19603        28452.666667        53471.600000        189688.100000                 24
+    New Home      1.109177        67.68            23047        44252.333333        76088.800000        185884.600000                 22
+      Sports      1.085856        66.26            37525        40781.000000        51787.400000        191426.400000                 28
+        Baby      1.071597        65.39            12368        42689.000000        84611.800000        239231.200000                 28
+      Couple      0.891220        54.38            15681        63914.666667       111854.400000        242822.800000                 14
+      Family      0.682555        41.65            38068        74330.333333       191330.600000        434459.700000                 17
+    Memorial      0.625507        38.17            66032       130640.333333       220172.800000        376452.400000                 26
+      Friend      0.607762        37.09            75149        87509.666667       185355.600000        444264.000000                 13
+Grandparents      0.607259        37.06            78428       171013.666667       205396.200000        343398.700000                 10
+      Sister      0.574400        35.05            75037       129044.000000       222104.200000        442884.800000                 10
+       Nurse      0.560097        34.18            68996       137782.666667       219535.200000        456374.800000                 15
+       Music      0.540032        32.95            54045       124792.333333       245866.200000        544812.000000                  9
+     Teacher      0.447791        27.32            25494       224428.000000       412365.000000        746790.600000                 13
+     Parents      0.438423        26.75           117708       188819.333333       313586.000000        534887.000000                 26
+  Graduation      0.408695        24.94           109427       180118.333333       315715.800000        684623.100000                 11
+     Wedding      0.275942        16.84           131663       271194.333333       612433.600000        612433.600000                  5
+       Faith      0.269448        16.44           274405       329046.333333       398605.400000        624318.142857                  7
+     Camping      0.242815        14.82           216932       264868.333333       608277.600000        720527.833333                  6
+      Coffee      0.228358        13.93            87042       443653.666667       443653.666667        443653.666667                  3
+2026-07-10 08:12:55 INFO Wrote demand size audit to data\product_research\output\ornament\demand_size_audit.csv
+2026-07-10 08:12:55 INFO Wrote demand size rank curve audit to data\product_research\output\ornament\demand_size_rank_curve_audit.csv
+2026-07-10 08:12:55 INFO Wrote demand size rank curve v2 audit to data\product_research\output\ornament\demand_size_rank_curve_v2.csv
+2026-07-10 08:12:55 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.parquet
+2026-07-10 08:12:55 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms.csv
+2026-07-10 08:12:55 INFO Wrote 7,961 rows to data\product_research\output\ornament\historical_search_terms_with_niche.parquet
+2026-07-10 08:12:55 INFO Wrote niche summary to data\product_research\output\ornament\ornament_niche_summary.parquet
+2026-07-10 08:12:55 INFO Wrote niche monthly rollup to data\product_research\output\ornament\ornament_niche_monthly.parquet
+2026-07-10 08:12:55 INFO Wrote niche search-term detail to data\product_research\output\ornament\ornament_niche_search_terms.parquet
+2026-07-10 08:12:55 INFO Wrote dashboard dataset to data\product_research\output\ornament\ornament_dashboard.parquet
+2026-07-10 08:12:55 INFO Total search terms: 7,961
+2026-07-10 08:12:55 INFO Matched rows: 739
+2026-07-10 08:12:55 INFO Matched niches: 32
+2026-07-10 08:12:55 INFO Matched categories: 6
+2026-07-10 08:12:55 INFO Top 30 matched_pattern values:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-10 08:12:55 INFO Matched rows per pattern:
+                 matched_pattern  matched_rows
+                    cat ornament            52
+                    dog ornament            46
+               new home ornament            31
+                engaged ornament            27
+                   baby ornament            24
+             engagement ornament            24
+ baby's first christmas ornament            23
+               memorial ornament            20
+                 family ornament            19
+             graduation ornament            18
+                     rn ornament            16
+                  angel ornament            15
+             first home ornament            14
+               football ornament            14
+                teacher ornament            14
+             friendship ornament            13
+first christmas married ornament            12
+                wedding ornament            12
+             basketball ornament            11
+       family christmas ornament            10
+                 guitar ornament             9
+                 hockey ornament             9
+                    pet ornament             9
+                sisters ornament             9
+                 soccer ornament             9
+               baseball ornament             8
+                   golf ornament             8
+                    mom ornament             8
+                 sister ornament             8
+                grandma ornament             7
+2026-07-10 08:12:55 INFO Matched rows per niche:
+    category             niche_id        niche  matched_rows
+Relationship          ORN_REL_PET          Pet           114
+    Interest       ORN_INT_SPORTS       Sports            60
+Relationship         ORN_REL_BABY         Baby            59
+  Life Event   ORN_EVT_ENGAGEMENT   Engagement            51
+  Life Event      ORN_EVT_NEWHOME     New Home            50
+Relationship     ORN_REL_MEMORIAL     Memorial            43
+Relationship       ORN_REL_FAMILY       Family            35
+Relationship      ORN_REL_PARENTS      Parents            33
+Relationship       ORN_REL_COUPLE       Couple            32
+Relationship       ORN_REL_FRIEND       Friend            28
+  Profession       ORN_PROF_NURSE        Nurse            25
+  Life Event   ORN_EVT_GRADUATION   Graduation            21
+Relationship       ORN_REL_SISTER       Sister            21
+    Interest        ORN_INT_MUSIC        Music            19
+Relationship ORN_REL_GRANDPARENTS Grandparents            19
+  Profession     ORN_PROF_TEACHER      Teacher            16
+  Life Event      ORN_EVT_WEDDING      Wedding            13
+       Faith        ORN_FAI_FAITH        Faith            12
+    Interest      ORN_INT_CAMPING      Camping            11
+    Interest      ORN_INT_FISHING      Fishing            10
+  Profession    ORN_PROF_MILITARY     Military            10
+    Interest       ORN_INT_TRAVEL       Travel             9
+    Interest       ORN_INT_COFFEE       Coffee             7
+  Life Event  ORN_EVT_ANNIVERSARY  Anniversary             7
+  Life Event   ORN_EVT_RETIREMENT   Retirement             6
+Relationship      ORN_REL_BROTHER      Brother             6
+Relationship     ORN_REL_COWORKER     Coworker             6
+    Interest      ORN_INT_READING      Reading             5
+  Occupation   ORN_OCC_OCCUPATION   Occupation             5
+    Interest         ORN_INT_WINE         Wine             3
+2026-07-10 08:12:55 INFO Matched rows per category:
+    category  matched_rows
+Relationship           396
+  Life Event           149
+    Interest           126
+  Profession            51
+       Faith            12
+  Occupation             5

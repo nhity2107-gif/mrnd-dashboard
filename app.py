@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import math
+import json
 import string
 from html import escape
 from pathlib import Path
@@ -10,10 +12,12 @@ from typing import Iterable
 import altair as alt
 import pandas as pd
 import streamlit as st
+import streamlit.components.v1 as components
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 OUTPUT_ROOT = PROJECT_ROOT / "data" / "output"
+PRODUCT_RESEARCH_OUTPUT_ROOT = PROJECT_ROOT / "data" / "product_research" / "output"
 
 CSV_FILES = {
     "market_intelligence": OUTPUT_ROOT / "intelligence" / "market_intelligence.csv",
@@ -83,11 +87,11 @@ PRIORITY_ORDER = {
     "P2": 2,
     "P3": 3,
     "Watchlist": 4,
-    "★★★★★": 1,
-    "★★★★☆": 2,
-    "★★★☆☆": 3,
-    "★★☆☆☆": 4,
-    "★☆☆☆☆": 5,
+    "ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦": 1,
+    "ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ": 2,
+    "ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ": 3,
+    "ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ": 4,
+    "ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ": 5,
 }
 
 
@@ -811,6 +815,675 @@ def display_table(df: pd.DataFrame, columns: list[str] | None = None, height: in
 def page_header(title: str, subtitle: str) -> None:
     st.markdown(f'<h1 class="mrd-page-title">{title}</h1>', unsafe_allow_html=True)
     st.markdown(f'<div class="mrd-subtitle">{subtitle}</div>', unsafe_allow_html=True)
+
+
+def load_product_research_parquet(product: str, filename: str) -> pd.DataFrame:
+    path = PRODUCT_RESEARCH_OUTPUT_ROOT / product / filename
+    if not path.exists():
+        return pd.DataFrame()
+    return pd.read_parquet(path)
+
+
+def trend_badge_html(value: object) -> str:
+    text = clean_text(value) or "Stable"
+    tone_map = {
+        "Strong Up": "green",
+        "Up": "blue",
+        "Stable": "gray",
+        "Down": "amber",
+        "Strong Down": "red",
+    }
+    tone = tone_map.get(text, "gray")
+    return f'<span class="mrd-ornament-trend mrd-tone-{safe(tone)}">{safe(text)}</span>'
+
+
+def _ornament_term_trend(history: pd.DataFrame) -> str:
+    if history.empty or len(history) < 3:
+        return "Stable"
+
+    ranks = history["search_frequency_rank"].dropna().tolist()
+    if len(ranks) < 3:
+        return "Stable"
+
+    first_rank = float(ranks[0])
+    last_rank = float(ranks[-1])
+    if first_rank <= 0:
+        return "Stable"
+
+    change = (first_rank - last_rank) / first_rank
+
+    step_signs: list[int] = []
+    for previous, current in zip(ranks, ranks[1:]):
+        if pd.isna(previous) or pd.isna(current):
+            continue
+        if current < previous:
+            step_signs.append(1)
+        elif current > previous:
+            step_signs.append(-1)
+
+    if not step_signs:
+        return "Stable"
+
+    positive_steps = sum(1 for sign in step_signs if sign > 0)
+    negative_steps = sum(1 for sign in step_signs if sign < 0)
+    total_steps = len(step_signs)
+    dominant_consistency = max(positive_steps, negative_steps) / total_steps
+
+    if change >= 0.30 and positive_steps == total_steps and dominant_consistency >= 0.75:
+        return "Strong Up"
+    if change >= 0.10 and positive_steps >= math.ceil(total_steps * 0.67):
+        return "Up"
+    if change <= -0.30 and negative_steps == total_steps and dominant_consistency >= 0.75:
+        return "Strong Down"
+    if change <= -0.10 and negative_steps >= math.ceil(total_steps * 0.67):
+        return "Down"
+    return "Stable"
+
+
+def ornament_research_detail_rows(frame: pd.DataFrame) -> dict[str, list[dict[str, object]]]:
+    detail_rows: dict[str, list[dict[str, object]]] = {}
+    if frame.empty:
+        return detail_rows
+
+    detail_view = frame.copy()
+    if "search_frequency_rank" in detail_view.columns:
+        detail_view["search_frequency_rank"] = pd.to_numeric(detail_view["search_frequency_rank"], errors="coerce")
+    if "best_rank" in detail_view.columns:
+        detail_view["best_rank"] = pd.to_numeric(detail_view["best_rank"], errors="coerce")
+    if "month_index" in detail_view.columns:
+        detail_view["month_index"] = pd.to_numeric(detail_view["month_index"], errors="coerce")
+    if "reporting_date" in detail_view.columns:
+        detail_view["reporting_date"] = pd.to_datetime(detail_view["reporting_date"], errors="coerce")
+    if "month" in detail_view.columns:
+        detail_view["month"] = detail_view["month"].astype(str)
+
+    for niche_id, niche_group in detail_view.groupby("niche_id", sort=False):
+        term_rows: list[tuple[float, float, str, dict[str, object]]] = []
+        for search_term, term_group in niche_group.groupby("search_term", sort=False):
+            sort_columns = [column for column in ["month_index", "reporting_date", "month"] if column in term_group.columns]
+            if sort_columns:
+                term_group = term_group.sort_values(sort_columns, ascending=[True] * len(sort_columns), na_position="last")
+            latest_row = term_group.iloc[-1]
+            best_idx = term_group["search_frequency_rank"].idxmin() if term_group["search_frequency_rank"].notna().any() else None
+            best_row = term_group.loc[best_idx] if best_idx is not None else latest_row
+            peak_idx = term_group["search_frequency_rank"].idxmin() if term_group["search_frequency_rank"].notna().any() else None
+            peak_row = term_group.loc[peak_idx] if peak_idx is not None else latest_row
+            term_rows.append(
+                (
+                    numeric(best_row.get("search_frequency_rank"), 999999.0),
+                    numeric(latest_row.get("search_frequency_rank"), 999999.0),
+                    clean_text(search_term).lower(),
+                    {
+                        "search_term": clean_text(search_term),
+                        "latest_month": clean_text(latest_row.get("month")),
+                        "latest_rank": format_rank(latest_row.get("search_frequency_rank")),
+                        "best_rank": format_rank(best_row.get("search_frequency_rank")),
+                        "trend": _ornament_term_trend(term_group),
+                        "peak_month": clean_text(peak_row.get("month")),
+                    },
+                )
+            )
+
+        term_rows.sort(key=lambda item: (item[0], item[1], item[2]))
+        detail_rows[str(niche_id)] = [item[3] for item in term_rows]
+
+    return detail_rows
+
+
+def render_ornament_research_html(rows: list[dict[str, object]], detail_rows: dict[str, list[dict[str, object]]]) -> str:
+    rows_json = json.dumps(rows, ensure_ascii=False)
+    detail_json = json.dumps(detail_rows, ensure_ascii=False)
+    return f"""
+    <div class="mrd-ornament-research">
+      <style>
+        .mrd-ornament-research {{
+          color: #e5e7eb;
+          font-family: inherit;
+        }}
+
+        .mrd-ornament-table {{
+          width: 100%;
+          table-layout: fixed;
+          border-collapse: collapse;
+          background: rgba(11, 18, 32, 0.96);
+          border: 1px solid rgba(148, 163, 184, 0.22);
+          border-radius: 10px;
+          overflow: hidden;
+        }}
+
+        .mrd-ornament-table colgroup col:nth-child(1) {{
+          width: 72px;
+        }}
+
+        .mrd-ornament-table colgroup col:nth-child(2) {{
+          width: 18%;
+        }}
+
+        .mrd-ornament-table colgroup col:nth-child(3) {{
+          width: 16%;
+        }}
+
+        .mrd-ornament-table colgroup col:nth-child(4) {{
+          width: 14%;
+        }}
+
+        .mrd-ornament-table colgroup col:nth-child(5) {{
+          width: 14%;
+        }}
+
+        .mrd-ornament-table colgroup col:nth-child(6) {{
+          width: auto;
+        }}
+
+        .mrd-ornament-table thead th {{
+          position: sticky;
+          top: 0;
+          z-index: 2;
+          background: rgba(15, 23, 42, 0.98);
+          color: #9ca3af;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          font-size: 0.72rem;
+          border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+          padding: 0.72rem 0.75rem;
+          text-align: left;
+        }}
+
+        .mrd-ornament-table thead th button {{
+          all: unset;
+          cursor: pointer;
+          color: inherit;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.32rem;
+          white-space: nowrap;
+        }}
+
+        .mrd-ornament-table tbody tr.mrd-ornament-row td {{
+          border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+          padding: 0.78rem 0.75rem;
+          vertical-align: top;
+          font-size: 0.88rem;
+          overflow-wrap: anywhere;
+        }}
+
+        .mrd-ornament-table tbody tr.mrd-ornament-row:hover td {{
+          background: rgba(30, 41, 59, 0.38);
+        }}
+
+        .mrd-ornament-table tbody tr.mrd-ornament-detail td {{
+          border-bottom: 1px solid rgba(148, 163, 184, 0.10);
+          background: rgba(15, 23, 42, 0.72);
+          padding: 0 0.75rem 0.85rem;
+        }}
+
+        .mrd-ornament-rank {{
+          color: #9ca3af;
+          font-variant-numeric: tabular-nums;
+          width: 72px;
+        }}
+
+        .mrd-ornament-niche-cell {{
+          display: flex;
+          align-items: center;
+          gap: 0.45rem;
+        }}
+
+        .mrd-ornament-toggle {{
+          all: unset;
+          cursor: pointer;
+          color: #38bdf8;
+          font-weight: 700;
+          width: 1rem;
+          text-align: center;
+          line-height: 1;
+        }}
+
+        .mrd-ornament-name {{
+          color: #e5e7eb;
+          font-weight: 700;
+        }}
+
+        .mrd-ornament-strength {{
+          min-width: 220px;
+        }}
+
+        .mrd-ornament-strength-wrap {{
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+        }}
+
+        .mrd-ornament-strength-track {{
+          flex: 1 1 auto;
+          height: 9px;
+          border-radius: 999px;
+          background: rgba(148, 163, 184, 0.18);
+          overflow: hidden;
+        }}
+
+        .mrd-ornament-strength-fill {{
+          height: 100%;
+          border-radius: 999px;
+          background: linear-gradient(90deg, #38bdf8, #22c55e);
+        }}
+
+        .mrd-ornament-strength-value {{
+          width: 4.6rem;
+          text-align: right;
+          color: #e5e7eb;
+          font-variant-numeric: tabular-nums;
+        }}
+
+        .mrd-ornament-trend {{
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.2rem 0.58rem;
+          border-radius: 999px;
+          font-size: 0.75rem;
+          font-weight: 700;
+          border: 1px solid rgba(148, 163, 184, 0.22);
+          white-space: nowrap;
+        }}
+
+        .mrd-ornament-trend.mrd-tone-green {{
+          color: #22c55e;
+          background: rgba(34, 197, 94, 0.12);
+          border-color: rgba(34, 197, 94, 0.35);
+        }}
+
+        .mrd-ornament-trend.mrd-tone-blue {{
+          color: #38bdf8;
+          background: rgba(56, 189, 248, 0.12);
+          border-color: rgba(56, 189, 248, 0.35);
+        }}
+
+        .mrd-ornament-trend.mrd-tone-gray {{
+          color: #94a3b8;
+          background: rgba(148, 163, 184, 0.10);
+          border-color: rgba(148, 163, 184, 0.26);
+        }}
+
+        .mrd-ornament-trend.mrd-tone-amber {{
+          color: #f59e0b;
+          background: rgba(245, 158, 11, 0.12);
+          border-color: rgba(245, 158, 11, 0.35);
+        }}
+
+        .mrd-ornament-trend.mrd-tone-red {{
+          color: #ef4444;
+          background: rgba(239, 68, 68, 0.12);
+          border-color: rgba(239, 68, 68, 0.35);
+        }}
+
+        .mrd-ornament-key-insight {{
+          color: #e5e7eb;
+          line-height: 1.35;
+          overflow-wrap: anywhere;
+        }}
+
+        .mrd-ornament-detail-table {{
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 0.4rem;
+          border: 1px solid rgba(148, 163, 184, 0.16);
+          border-radius: 8px;
+          overflow: hidden;
+          table-layout: fixed;
+        }}
+
+        .mrd-ornament-detail-table th,
+        .mrd-ornament-detail-table td {{
+          padding: 0.58rem 0.72rem;
+          border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+          font-size: 0.84rem;
+          vertical-align: top;
+          overflow-wrap: anywhere;
+        }}
+
+        .mrd-ornament-detail-table th:nth-child(1),
+        .mrd-ornament-detail-table td:nth-child(1) {{
+          width: 30%;
+        }}
+
+        .mrd-ornament-detail-table th:nth-child(2),
+        .mrd-ornament-detail-table td:nth-child(2) {{
+          width: 14%;
+        }}
+
+        .mrd-ornament-detail-table th:nth-child(3),
+        .mrd-ornament-detail-table td:nth-child(3) {{
+          width: 14%;
+        }}
+
+        .mrd-ornament-detail-table th:nth-child(4),
+        .mrd-ornament-detail-table td:nth-child(4) {{
+          width: 14%;
+        }}
+
+        .mrd-ornament-detail-table th:nth-child(5),
+        .mrd-ornament-detail-table td:nth-child(5) {{
+          width: 14%;
+        }}
+
+        .mrd-ornament-detail-table th:nth-child(6),
+        .mrd-ornament-detail-table td:nth-child(6) {{
+          width: 14%;
+        }}
+
+        .mrd-ornament-detail-table th {{
+          color: #9ca3af;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          background: rgba(15, 23, 42, 0.96);
+          font-size: 0.7rem;
+        }}
+
+        .mrd-ornament-detail-table tr:last-child td {{
+          border-bottom: none;
+        }}
+
+        .mrd-ornament-empty {{
+          color: #9ca3af;
+          padding: 0.75rem 0.2rem;
+        }}
+      </style>
+      <table class="mrd-ornament-table" id="mrd-ornament-table">
+        <colgroup>
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+        </colgroup>
+        <thead>
+          <tr>
+            <th data-sort-key="dashboard_rank"><button type="button" data-label="Rank">Rank</button></th>
+            <th data-sort-key="niche"><button type="button" data-label="Niche">Niche</button></th>
+            <th data-sort-key="demand_size"><button type="button" data-label="Demand Size">Demand Size</button></th>
+            <th data-sort-key="trend"><button type="button" data-label="Trend">Trend</button></th>
+            <th data-sort-key="peak_month"><button type="button" data-label="Peak Month">Peak Month</button></th>
+            <th data-sort-key="key_insight"><button type="button" data-label="Key Insight">Key Insight</button></th>
+          </tr>
+        </thead>
+        <tbody id="mrd-ornament-body"></tbody>
+      </table>
+      <script>
+        (function() {{
+          const rows = {rows_json};
+          const detailRows = {detail_json};
+          const tbody = document.getElementById("mrd-ornament-body");
+          const sortState = {{ key: "dashboard_rank", asc: true }};
+          const expandedRows = new Set();
+          const trendOrder = {{ "Strong Up": 0, "Up": 1, "Stable": 2, "Down": 3, "Strong Down": 4 }};
+
+          function trendClass(value) {{
+            switch (value) {{
+              case "Strong Up": return "mrd-tone-green";
+              case "Up": return "mrd-tone-blue";
+              case "Down": return "mrd-tone-amber";
+              case "Strong Down": return "mrd-tone-red";
+              default: return "mrd-tone-gray";
+            }}
+          }}
+
+          function escapeHtml(value) {{
+            return String(value ?? "")
+              .replaceAll("&", "&amp;")
+              .replaceAll("<", "&lt;")
+              .replaceAll(">", "&gt;")
+              .replaceAll('"', "&quot;")
+              .replaceAll("'", "&#39;");
+          }}
+
+          function strengthCell(score) {{
+            const numeric = Number(score || 0);
+            const width = Math.max(0, Math.min(100, numeric));
+            return `
+              <div class="mrd-ornament-strength-wrap">
+                <div class="mrd-ornament-strength-track">
+                  <div class="mrd-ornament-strength-fill" style="width:${{width}}%;"></div>
+                </div>
+                <div class="mrd-ornament-strength-value">${{numeric.toFixed(2)}}</div>
+              </div>
+            `;
+          }}
+
+          function detailTable(nicheId) {{
+            const items = detailRows[nicheId] || [];
+            if (!items.length) {{
+              return '<div class="mrd-ornament-empty">No search terms available.</div>';
+            }}
+            const rows = items.map((item) => `
+              <tr>
+                <td>${{escapeHtml(item.search_term)}}</td>
+                <td>${{escapeHtml(item.latest_month)}}</td>
+                <td>${{escapeHtml(item.latest_rank)}}</td>
+                <td>${{escapeHtml(item.best_rank)}}</td>
+                <td><span class="mrd-ornament-trend ${{trendClass(item.trend)}}">${{escapeHtml(item.trend)}}</span></td>
+                <td>${{escapeHtml(item.peak_month)}}</td>
+              </tr>
+            `).join("");
+            return `
+              <table class="mrd-ornament-detail-table">
+                <thead>
+                  <tr>
+                    <th>Search Term</th>
+                    <th>Latest Month</th>
+                    <th>Latest Rank</th>
+                    <th>Best Rank</th>
+                    <th>Trend</th>
+                    <th>Peak Month</th>
+                  </tr>
+                </thead>
+                <tbody>${{rows}}</tbody>
+              </table>
+            `;
+          }}
+
+          function renderRows() {{
+            tbody.innerHTML = rows
+              .map((row) => {{
+                const expanded = expandedRows.has(row.niche_id);
+                return `
+                  <tr class="mrd-ornament-row" data-row-id="${{escapeHtml(row.niche_id)}}" data-dashboard-rank="${{row.dashboard_rank}}" data-niche="${{escapeHtml(row.niche)}}" data-demand-size="${{row.demand_size}}" data-trend="${{escapeHtml(row.trend)}}" data-key-insight="${{escapeHtml(row.key_insight)}}" data-sort-trend="${{trendOrder[row.trend] ?? 99}}">
+                    <td class="mrd-ornament-rank">#${{escapeHtml(row.dashboard_rank)}}</td>
+                    <td>
+                      <div class="mrd-ornament-niche-cell">
+                        <button type="button" class="mrd-ornament-toggle" aria-expanded="${{expanded ? 'true' : 'false'}}" data-target="${{escapeHtml(row.niche_id)}}">${{expanded ? '\u25be' : '\u25b8'}}</button>
+                        <span class="mrd-ornament-name">${{escapeHtml(row.niche)}}</span>
+                      </div>
+                    </td>
+                    <td class="mrd-ornament-strength">${{strengthCell(row.demand_size)}}</td>
+                    <td><span class="mrd-ornament-trend ${{trendClass(row.trend)}}">${{escapeHtml(row.trend)}}</span></td>
+                    <td>${{escapeHtml(row.peak_month)}}</td>
+                    <td class="mrd-ornament-key-insight">${{escapeHtml(row.key_insight)}}</td>
+                  </tr>
+                  <tr class="mrd-ornament-detail" data-parent-id="${{escapeHtml(row.niche_id)}}"${{expanded ? '' : ' hidden'}}>
+                    <td colspan="6">${{detailTable(row.niche_id)}}</td>
+                  </tr>
+                `;
+              }})
+              .join("");
+
+            tbody.querySelectorAll(".mrd-ornament-toggle").forEach((button) => {{
+              button.addEventListener("click", (event) => {{
+                event.preventDefault();
+                event.stopPropagation();
+                const target = button.getAttribute("data-target");
+                if (!target) return;
+                if (expandedRows.has(target)) {{
+                  expandedRows.delete(target);
+                }} else {{
+                  expandedRows.add(target);
+                }}
+                renderRows();
+                updateHeaders();
+              }});
+            }});
+          }}
+
+          function compareRows(a, b) {{
+            const key = sortState.key;
+            let left = a[key] ?? "";
+            let right = b[key] ?? "";
+            let result = 0;
+
+            if (key === "dashboard_rank" || key === "demand_size") {{
+              result = Number(left) - Number(right);
+            }} else if (key === "trend") {{
+              result = Number(trendOrder[left] ?? 99) - Number(trendOrder[right] ?? 99);
+            }} else {{
+              result = String(left).localeCompare(String(right), undefined, {{ sensitivity: "base" }});
+            }}
+
+            return sortState.asc ? result : -result;
+          }}
+
+          function sortAndRender() {{
+            rows.sort(compareRows);
+            renderRows();
+            updateHeaders();
+          }}
+
+          function updateHeaders() {{
+            document.querySelectorAll("#mrd-ornament-table thead th").forEach((header) => {{
+              const button = header.querySelector("button");
+              if (!button) return;
+              const base = button.getAttribute("data-label") || button.textContent.trim();
+              button.textContent = base;
+            }});
+          }}
+
+          document.querySelectorAll("#mrd-ornament-table thead th").forEach((header) => {{
+            const key = header.getAttribute("data-sort-key");
+            const button = header.querySelector("button");
+            if (!button || !key) return;
+            button.addEventListener("click", () => {{
+              if (sortState.key === key) {{
+                sortState.asc = !sortState.asc;
+              }} else {{
+                sortState.key = key;
+                sortState.asc = true;
+                if (key === "trend") {{
+                  sortState.asc = true;
+                }}
+              }}
+              sortAndRender();
+            }});
+          }});
+          sortAndRender();
+        }})();
+      </script>
+    </div>
+    """
+
+
+def ornament_research_page() -> None:
+    page_header(
+        "Ornament Research",
+        "Explore ornament niches and expand each niche into its search-term evidence.",
+    )
+
+    dashboard = load_product_research_parquet("ornament", "ornament_dashboard.parquet")
+    summary = load_product_research_parquet("ornament", "ornament_niche_summary.parquet")
+    search_terms = load_product_research_parquet("ornament", "ornament_niche_search_terms.parquet")
+
+    required_frames = {
+        "ornament_dashboard.parquet": dashboard,
+        "ornament_niche_summary.parquet": summary,
+        "ornament_niche_search_terms.parquet": search_terms,
+    }
+    missing = [name for name, frame in required_frames.items() if frame.empty]
+    if missing:
+        st.info(f"Missing product research data: {', '.join(missing)}")
+        return
+
+    filter_columns = st.columns([2, 1])
+    with filter_columns[0]:
+        search_term = st.text_input("Search niche", value="", placeholder="Type a niche name")
+    with filter_columns[1]:
+        trend_filter = st.selectbox(
+            "Trend",
+            ["All", "Strong Up", "Up", "Stable", "Down", "Strong Down"],
+            index=0,
+        )
+
+    dashboard_view = dashboard.copy()
+    dashboard_view["niche"] = dashboard_view["niche"].map(clean_text)
+    dashboard_view["trend"] = dashboard_view["trend"].map(clean_text)
+    dashboard_view["peak_month"] = dashboard_view["peak_month"].map(clean_text)
+    dashboard_view["dashboard_rank"] = pd.to_numeric(dashboard_view["dashboard_rank"], errors="coerce")
+    dashboard_view["demand_size"] = pd.to_numeric(dashboard_view["demand_size"], errors="coerce")
+    dashboard_view = dashboard_view.merge(
+        summary[["niche_id", "niche", "best_rank"]].drop_duplicates("niche_id"),
+        on="niche",
+        how="left",
+        suffixes=("", "_summary"),
+    )
+
+    if search_term.strip():
+        needle = search_term.strip().lower()
+        dashboard_view = dashboard_view[dashboard_view["niche"].str.lower().str.contains(needle, na=False)]
+    if trend_filter != "All":
+        dashboard_view = dashboard_view[dashboard_view["trend"] == trend_filter]
+
+    dashboard_view = dashboard_view.sort_values(
+        ["dashboard_rank", "best_rank", "niche"],
+        ascending=[True, True, True],
+        na_position="last",
+    ).reset_index(drop=True)
+
+    if dashboard_view.empty:
+        st.info("No ornament niches match the current filters.")
+        return
+
+    detail_view = search_terms.copy()
+    detail_view["niche_id"] = detail_view["niche_id"].map(clean_text)
+    detail_view["niche"] = detail_view["niche"].map(clean_text)
+    detail_view["search_term"] = detail_view["search_term"].map(clean_text)
+    detail_view["search_frequency_rank"] = pd.to_numeric(detail_view["search_frequency_rank"], errors="coerce")
+    detail_view = detail_view.merge(
+        summary[["niche_id", "best_rank"]].drop_duplicates("niche_id"),
+        on="niche_id",
+        how="left",
+    )
+    detail_view = detail_view.merge(
+        dashboard[["niche", "trend"]].drop_duplicates("niche"),
+        on="niche",
+        how="left",
+    )
+    detail_view["latest_rank"] = detail_view["search_frequency_rank"]
+
+    if search_term.strip():
+        needle = search_term.strip().lower()
+        allowed_niches = set(dashboard_view["niche_id"].dropna().astype(str))
+        detail_view = detail_view[detail_view["niche_id"].astype(str).isin(allowed_niches)]
+        detail_view = detail_view[detail_view["niche"].str.lower().str.contains(needle, na=False)]
+    if trend_filter != "All":
+        allowed_niches = set(dashboard_view["niche_id"].dropna().astype(str))
+        detail_view = detail_view[detail_view["niche_id"].astype(str).isin(allowed_niches)]
+
+    detail_rows = ornament_research_detail_rows(detail_view)
+
+    rows = []
+    for _, row in dashboard_view.iterrows():
+        rows.append(
+            {
+                "dashboard_rank": int(numeric(row.get("dashboard_rank"), 0)),
+                "niche_id": clean_text(row.get("niche_id")),
+                "niche": clean_text(row.get("niche")),
+                "demand_size": float(numeric(row.get("demand_size"), 0.0)),
+                "trend": clean_text(row.get("trend")),
+                "peak_month": clean_text(row.get("peak_month")),
+                "key_insight": clean_text(row.get("key_insight")),
+            }
+        )
+
+    html = render_ornament_research_html(rows, detail_rows)
+    components.html(html, height=860, scrolling=True)
 
 
 def section_break() -> None:
@@ -4374,7 +5047,7 @@ def research_center() -> None:
         insight_bullets.append("No customer insight summary is available for this market.")
 
     for bullet in insight_bullets[:5]:
-        st.markdown(f"• {bullet}")
+        st.markdown(f"ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ {bullet}")
 
 
 def score_breakdown_cards(row: pd.Series) -> None:
@@ -5008,6 +5681,7 @@ def render_sidebar() -> str:
             "Demand Explorer",
             "Customer Research",
             "Product Strategy",
+            "Ornament Research",
         ],
         key="dashboard_page",
     )
@@ -5034,6 +5708,8 @@ def main() -> None:
         research_center()
     elif page == "Product Strategy":
         product_intelligence()
+    elif page == "Ornament Research":
+        ornament_research_page()
 
 
 if __name__ == "__main__":
