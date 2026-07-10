@@ -1,15 +1,13 @@
-# Runtime data
-data/
-output/
-
 # Python
 .venv/
 __pycache__/
 *.pyc
 
-# Large database/files
+# Runtime databases
 *.duckdb
-*.parquet
+
+# Generated product research outputs
+data/product_research/output/
 
 # OS
 .DS_Store

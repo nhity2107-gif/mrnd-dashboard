@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import math
 import json
+import subprocess
 import string
+import sys
 from html import escape
 from pathlib import Path
 from typing import Iterable
@@ -824,6 +826,71 @@ def load_product_research_parquet(product: str, filename: str) -> pd.DataFrame:
     return pd.read_parquet(path)
 
 
+def product_research_required_output_paths(product: str) -> dict[str, Path]:
+    output_dir = PRODUCT_RESEARCH_OUTPUT_ROOT / product
+    return {
+        f"{product}_dashboard.parquet": output_dir / f"{product}_dashboard.parquet",
+        f"{product}_niche_summary.parquet": output_dir / f"{product}_niche_summary.parquet",
+        f"{product}_niche_search_terms.parquet": output_dir / f"{product}_niche_search_terms.parquet",
+    }
+
+
+def missing_product_research_outputs(product: str) -> list[str]:
+    return [
+        filename
+        for filename, path in product_research_required_output_paths(product).items()
+        if not path.exists()
+    ]
+
+
+def ensure_product_research_outputs(product: str = "ornament") -> None:
+    missing = missing_product_research_outputs(product)
+    if not missing:
+        return
+
+    state_key = f"product_research_build_attempted_{product}"
+    if st.session_state.get(state_key):
+        missing_text = ", ".join(missing)
+        raise FileNotFoundError(
+            f"Product research outputs are missing after the session build attempt for {product}: {missing_text}"
+        )
+
+    st.session_state[state_key] = True
+    script_path = PROJECT_ROOT / "src" / "product_research" / "build_product_research.py"
+    if not script_path.exists():
+        raise FileNotFoundError(f"Missing product research build script: {script_path}")
+
+    command = [sys.executable, str(script_path), "--product", product]
+    try:
+        subprocess.run(
+            command,
+            cwd=PROJECT_ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+    except subprocess.CalledProcessError as exc:
+        details = [
+            f"Product research build failed for {product}.",
+            f"Command: {' '.join(command)}",
+            f"Exit code: {exc.returncode}",
+            "stdout:",
+            exc.stdout or "",
+            "stderr:",
+            exc.stderr or "",
+        ]
+        raise RuntimeError("\n".join(details)) from exc
+
+    missing_after_build = missing_product_research_outputs(product)
+    if missing_after_build:
+        missing_text = ", ".join(missing_after_build)
+        raise FileNotFoundError(
+            f"Product research build completed, but required outputs are still missing for {product}: {missing_text}"
+        )
+
+
 def trend_badge_html(value: object) -> str:
     text = clean_text(value) or "Stable"
     tone_map = {
@@ -1386,6 +1453,15 @@ def ornament_research_page() -> None:
         "Ornament Research",
         "Explore ornament niches and expand each niche into its search-term evidence.",
     )
+
+    try:
+        if missing_product_research_outputs("ornament"):
+            with st.spinner("Building Ornament Research dataset..."):
+                ensure_product_research_outputs("ornament")
+            st.success("Ornament research dataset built successfully.")
+    except Exception as exc:
+        st.exception(exc)
+        return
 
     dashboard = load_product_research_parquet("ornament", "ornament_dashboard.parquet")
     summary = load_product_research_parquet("ornament", "ornament_niche_summary.parquet")
